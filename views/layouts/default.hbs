@@ -1,16 +1,46 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    {{!-- <link rel="stylesheet" href="/assets/css/index.css" type="text/css" /> --}}
-    
+    {{!-- BEGIN GLOBAL --}}
+    <script src="https://kit.fontawesome.com/46668bc562.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/assets/bootstrap.min.css" type="text/css" />
     <script src="/assets/jquery.min.js"></script>
-    <link rel="stylesheet" href="/assets/bootstrap.css" type="text/css" />
+    <script src="/assets/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="/assets/css/index.css" type="text/css" />
+    {{!-- END GLOBAL --}}
+
+    <link rel="stylesheet" href="/assets/css/home/home.css" type="text/css" />
 </head>
 <body>
+    <nav class="navbar">
+        <a class="link title" href="./">Academy</a>
+        <form class="search-form" action="./" method="GET">
+            <button type="submit" class="search-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            <input class="search-bar" name="q" type="search" placeholder="search for anything" />
+        </form>
+        <a class="link" href="./">Home</a>
+        <a class="link" href="#pages">Pages <i class="fa-solid fa-chevron-down"></i></a>
+        <a class="link" href="#courses">Courses <i class="fa-solid fa-chevron-down"></i></a>
+        <a class="link" href="#about">About</a>
+        <button class="shopping__cart-btn">
+            <img class="icon" src="/assets/svg/home/cart.svg" alt="shopping-cart" />
+            <span class="active-dot">1</span>
+        </button>
+        <a class="link join-btn" href="#join">Join now</a>
+    </nav>
     {{{ body }}}
+    <script>
+        $('#carouselExampleIndicators').carousel({
+            interval: 3000,
+            cycle: true
+        }); 
+    </script>
 </body>
 </html>
