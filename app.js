@@ -18,6 +18,7 @@ app.set('view engine', 'hbs');
 app.use(mongoSanitize());
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/assets/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
