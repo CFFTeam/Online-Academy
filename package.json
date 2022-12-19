@@ -5,16 +5,18 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "node server.js",
+    "start": "nodemon server.js",
     "test": "node test.js"
   },
   "author": "CFF",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.1",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "handlebars": "^4.7.7",
+    "express-handlebars": "^6.0.6",
+    "express-mongo-sanitize": "^2.2.0",
     "mongoose": "^6.8.0",
     "node": "^19.3.0",
     "nodemailer": "^6.8.0",
