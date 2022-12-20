@@ -27,7 +27,7 @@ app.engine(
     ".hbs",
     handlebars.engine({
         defaultLayout: "default",
-        partialsDir: path.join(dirname, "views/partials/"),
+        partialsDir: path.join(__dirname, "views/partials/"),
         extname: "hbs"
     })
 );
