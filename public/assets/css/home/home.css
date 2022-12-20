@@ -385,6 +385,7 @@
 .course-list {
     max-width: 127rem;
     margin: auto;
+    margin-bottom: 2rem;
 }
 
 .course-list > .course-list-wrapper { 

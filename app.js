@@ -25,8 +25,13 @@ app.use(connectLiveReload());
 
 app.engine(
   ".hbs",
-  handlebars.engine({ defaultLayout: "default", extname: ".hbs" })
+  handlebars.engine({
+    defaultLayout: "default",
+    partialsDir: path.join(__dirname, "views/partials/"),
+    extname: "hbs",
+  })
 );
+
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 

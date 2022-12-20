@@ -5,7 +5,7 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon server.js -e .js,.hbs",
+    "start": "nodemon server.js -e js,hbs,css",
     "test": "node test.js"
   },
   "author": "CFF",
