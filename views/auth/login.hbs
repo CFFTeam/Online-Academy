@@ -1,0 +1,45 @@
+<form id="login-form" method="post">
+  <div class="form-content">
+    <div class="title">Log in to your account</div>
+    {{!  email}}
+    <div class="form-group">
+      <label for="full-name" class="full-name">Email</label>
+      <input type="text" id="full-name" placeholder="Enter your email" />
+    </div>
+    {{!  password}}
+    <div class="form-group">
+      <label for="full-name" class="full-name">Password</label>
+      <input type="text" id="full-name" placeholder="Enter your password" />
+      <button class="eyes">
+        <img src="/assets/svg/auth/eyes.svg" alt="eye" />
+      </button>
+    </div>
+    {{! forgot password button }}
+    <div class="forgot-password"><a href="/account/forgot-password">Forgot
+        password?</a></div>
+    {{! Button submit }}
+    <div class="submit-btn">
+      <button>Log In</button>
+    </div>
+    {{! create an account if not have yet}}
+    <div class="footer">
+      <p>Not registered yet? <a href="/account/signup">Create an Account</a></p>
+    </div>
+    {{! line break }}
+    <hr class="line-break" />
+    {{! Login using social media platform }}
+    <p class="social-media-title">Or connect with Social Media</p>
+    {{! 3 buttons as 3 social media platform }}
+    <div class="social-media">
+      <button class="facebook=-btn">
+        <img src="/assets/svg/auth/facebook.svg" alt="facebook-icon" />
+      </button>
+      <button class="github-btn">
+        <img src="/assets/svg/auth/github.svg" alt="github-icon" />
+      </button>
+      <button class="google-btn">
+        <img src="/assets/svg/auth/google.svg" alt="google-icon" />
+      </button>
+    </div>
+  </div>
+</form>
