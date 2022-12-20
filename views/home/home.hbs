@@ -1057,20 +1057,727 @@
             </div>
         </div>
         <script>
-            const carouselWidth = $("#carouselMostView.carousel.slide.course-ls > .carousel-inner")[0].scrollWidth;
-            const cardWidth = $("#carouselMostView.carousel.slide.course-ls > .carousel-inner > .carousel-item").width() + 16;
-            let scrollPosition = 0;
+            const carouselWidthMostView = $("#carouselMostView.carousel.slide.course-ls > .carousel-inner")[0].scrollWidth;
+            const cardWidthMostView = $("#carouselMostView.carousel.slide.course-ls > .carousel-inner > .carousel-item").width() + 16;
+            let scrollPositionMostView = 0;
 
             $("#carouselMostView.carousel.slide.course-ls .carousel-control-next").on("click", function () {
-                if (scrollPosition < (carouselWidth - cardWidth * 4)) {
-                    scrollPosition += cardWidth;
-                    $("#carouselMostView.carousel.slide.course-ls > .carousel-inner").animate({ scrollLeft: scrollPosition }, 500); //scroll left
+                if (scrollPositionMostView < (carouselWidthMostView - cardWidthMostView * 4)) {
+                    scrollPositionMostView += cardWidthMostView;
+                    $("#carouselMostView.carousel.slide.course-ls > .carousel-inner").animate({ scrollLeft: scrollPositionMostView }, 500); //scroll left
                 }
             });
             $("#carouselMostView.carousel.slide.course-ls .carousel-control-prev").on("click", function () {
+                if (scrollPositionMostView > 0) {
+                    scrollPositionMostView -= cardWidthMostView;
+                    $("#carouselMostView.carousel.slide.course-ls > .carousel-inner").animate({ scrollLeft: scrollPositionMostView }, 500);
+                }
+            });
+        </script>
+    </div>
+
+    <div class="course-list">
+        <h1>Newest</h1>
+        <div class="course-list-wrapper">
+            <div
+                id="carouselNewest"
+                class="carousel slide course-ls"
+                data-bs-ride="false"
+            >
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="course-card">
+                            <div class="course-card-overlay">
+                                <button class="button-cs">More Details</button>
+                            </div>
+                            <img
+                                src="/assets/images/home/course-list/card/courseimage.png"
+                                class="course-card-img"
+                                alt="course-img"
+                            />
+                            <div class="card-main">
+                                <h1 class="card-heading">The Complete Javascript
+                                    Course: Version 1</h1>
+                                <div class="card-author">
+                                    <i class="fa-solid fa-user-pen"></i>
+                                    <span>Jonas Schmedtmann</span>
+                                </div>
+                                <div class="card-details-ls">
+                                    <div class="card-details-ls-icon">
+                                        <span><b>4.6</b></span>
+                                        <span><i
+                                                class="fa-regular fa-eye"
+                                            ></i></span>
+                                        <span><i
+                                                class="fa-solid fa-tag"
+                                            ></i></span>
+                                    </div>
+                                    <div class="card-details-ls-content">
+                                        <div class="card-details-ls-item">
+                                            <span class="flex g-0">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i
+                                                    class="fa-solid fa-star-half-stroke"
+                                                ></i>
+                                            </span>
+                                            <small>(160.753)</small>
+                                        </div>
+                                        <div>
+                                            <small>723.841 views</small>
+                                        </div>
+                                        <div>
+                                            <small>Website development</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <span class="card-price">
+                                        <i class="fa-solid fa-dollar"></i>
+                                        <span class="price-number">182</span>
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                        <b class="sale-number">
+                                            <i class="fa-solid fa-dollar"></i>
+                                            <span>99</span>
+                                        </b>
+                                    </span>
+                                    <span class="card-clock">
+                                        <i class="fa-regular fa-clock"></i>
+                                        <span>16-12-2022</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="course-card">
+                            <div class="course-card-overlay">
+                                <button class="button-cs">More Details</button>
+                            </div>
+                            <img
+                                src="/assets/images/home/course-list/card/courseimage.png"
+                                class="course-card-img"
+                                alt="course-img"
+                            />
+                            <div class="card-main">
+                                <h1 class="card-heading">The Complete Javascript
+                                    Course: Version 1</h1>
+                                <div class="card-author">
+                                    <i class="fa-solid fa-user-pen"></i>
+                                    <span>Jonas Schmedtmann</span>
+                                </div>
+                                <div class="card-details-ls">
+                                    <div class="card-details-ls-icon">
+                                        <span><b>4.6</b></span>
+                                        <span><i
+                                                class="fa-regular fa-eye"
+                                            ></i></span>
+                                        <span><i
+                                                class="fa-solid fa-tag"
+                                            ></i></span>
+                                    </div>
+                                    <div class="card-details-ls-content">
+                                        <div class="card-details-ls-item">
+                                            <span class="flex g-0">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i
+                                                    class="fa-solid fa-star-half-stroke"
+                                                ></i>
+                                            </span>
+                                            <small>(160.753)</small>
+                                        </div>
+                                        <div>
+                                            <small>723.841 views</small>
+                                        </div>
+                                        <div>
+                                            <small>Website development</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <span class="card-price">
+                                        <i class="fa-solid fa-dollar"></i>
+                                        <span class="price-number">182</span>
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                        <b class="sale-number">
+                                            <i class="fa-solid fa-dollar"></i>
+                                            <span>99</span>
+                                        </b>
+                                    </span>
+                                    <span class="card-clock">
+                                        <i class="fa-regular fa-clock"></i>
+                                        <span>16-12-2022</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="course-card">
+                            <div class="course-card-overlay">
+                                <button class="button-cs">More Details</button>
+                            </div>
+                            <img
+                                src="/assets/images/home/course-list/card/courseimage.png"
+                                class="course-card-img"
+                                alt="course-img"
+                            />
+                            <div class="card-main">
+                                <h1 class="card-heading">The Complete Javascript
+                                    Course: Version 1</h1>
+                                <div class="card-author">
+                                    <i class="fa-solid fa-user-pen"></i>
+                                    <span>Jonas Schmedtmann</span>
+                                </div>
+                                <div class="card-details-ls">
+                                    <div class="card-details-ls-icon">
+                                        <span><b>4.6</b></span>
+                                        <span><i
+                                                class="fa-regular fa-eye"
+                                            ></i></span>
+                                        <span><i
+                                                class="fa-solid fa-tag"
+                                            ></i></span>
+                                    </div>
+                                    <div class="card-details-ls-content">
+                                        <div class="card-details-ls-item">
+                                            <span class="flex g-0">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i
+                                                    class="fa-solid fa-star-half-stroke"
+                                                ></i>
+                                            </span>
+                                            <small>(160.753)</small>
+                                        </div>
+                                        <div>
+                                            <small>723.841 views</small>
+                                        </div>
+                                        <div>
+                                            <small>Website development</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <span class="card-price">
+                                        <i class="fa-solid fa-dollar"></i>
+                                        <span class="price-number">182</span>
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                        <b class="sale-number">
+                                            <i class="fa-solid fa-dollar"></i>
+                                            <span>99</span>
+                                        </b>
+                                    </span>
+                                    <span class="card-clock">
+                                        <i class="fa-regular fa-clock"></i>
+                                        <span>16-12-2022</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="course-card">
+                            <div class="course-card-overlay">
+                                <button class="button-cs">More Details</button>
+                            </div>
+                            <img
+                                src="/assets/images/home/course-list/card/courseimage.png"
+                                class="course-card-img"
+                                alt="course-img"
+                            />
+                            <div class="card-main">
+                                <h1 class="card-heading">The Complete Javascript
+                                    Course: Version 1</h1>
+                                <div class="card-author">
+                                    <i class="fa-solid fa-user-pen"></i>
+                                    <span>Jonas Schmedtmann</span>
+                                </div>
+                                <div class="card-details-ls">
+                                    <div class="card-details-ls-icon">
+                                        <span><b>4.6</b></span>
+                                        <span><i
+                                                class="fa-regular fa-eye"
+                                            ></i></span>
+                                        <span><i
+                                                class="fa-solid fa-tag"
+                                            ></i></span>
+                                    </div>
+                                    <div class="card-details-ls-content">
+                                        <div class="card-details-ls-item">
+                                            <span class="flex g-0">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i
+                                                    class="fa-solid fa-star-half-stroke"
+                                                ></i>
+                                            </span>
+                                            <small>(160.753)</small>
+                                        </div>
+                                        <div>
+                                            <small>723.841 views</small>
+                                        </div>
+                                        <div>
+                                            <small>Website development</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <span class="card-price">
+                                        <i class="fa-solid fa-dollar"></i>
+                                        <span class="price-number">182</span>
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                        <b class="sale-number">
+                                            <i class="fa-solid fa-dollar"></i>
+                                            <span>99</span>
+                                        </b>
+                                    </span>
+                                    <span class="card-clock">
+                                        <i class="fa-regular fa-clock"></i>
+                                        <span>16-12-2022</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="course-card">
+                            <div class="course-card-overlay">
+                                <button class="button-cs">More Details</button>
+                            </div>
+                            <img
+                                src="/assets/images/home/course-list/card/courseimage.png"
+                                class="course-card-img"
+                                alt="course-img"
+                            />
+                            <div class="card-main">
+                                <h1 class="card-heading">The Complete Javascript
+                                    Course: Version 1</h1>
+                                <div class="card-author">
+                                    <i class="fa-solid fa-user-pen"></i>
+                                    <span>Jonas Schmedtmann</span>
+                                </div>
+                                <div class="card-details-ls">
+                                    <div class="card-details-ls-icon">
+                                        <span><b>4.6</b></span>
+                                        <span><i
+                                                class="fa-regular fa-eye"
+                                            ></i></span>
+                                        <span><i
+                                                class="fa-solid fa-tag"
+                                            ></i></span>
+                                    </div>
+                                    <div class="card-details-ls-content">
+                                        <div class="card-details-ls-item">
+                                            <span class="flex g-0">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i
+                                                    class="fa-solid fa-star-half-stroke"
+                                                ></i>
+                                            </span>
+                                            <small>(160.753)</small>
+                                        </div>
+                                        <div>
+                                            <small>723.841 views</small>
+                                        </div>
+                                        <div>
+                                            <small>Website development</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <span class="card-price">
+                                        <i class="fa-solid fa-dollar"></i>
+                                        <span class="price-number">182</span>
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                        <b class="sale-number">
+                                            <i class="fa-solid fa-dollar"></i>
+                                            <span>99</span>
+                                        </b>
+                                    </span>
+                                    <span class="card-clock">
+                                        <i class="fa-regular fa-clock"></i>
+                                        <span>16-12-2022</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="course-card">
+                            <div class="course-card-overlay">
+                                <button class="button-cs">More Details</button>
+                            </div>
+                            <img
+                                src="/assets/images/home/course-list/card/courseimage.png"
+                                class="course-card-img"
+                                alt="course-img"
+                            />
+                            <div class="card-main">
+                                <h1 class="card-heading">The Complete Javascript
+                                    Course: Version 1</h1>
+                                <div class="card-author">
+                                    <i class="fa-solid fa-user-pen"></i>
+                                    <span>Jonas Schmedtmann</span>
+                                </div>
+                                <div class="card-details-ls">
+                                    <div class="card-details-ls-icon">
+                                        <span><b>4.6</b></span>
+                                        <span><i
+                                                class="fa-regular fa-eye"
+                                            ></i></span>
+                                        <span><i
+                                                class="fa-solid fa-tag"
+                                            ></i></span>
+                                    </div>
+                                    <div class="card-details-ls-content">
+                                        <div class="card-details-ls-item">
+                                            <span class="flex g-0">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i
+                                                    class="fa-solid fa-star-half-stroke"
+                                                ></i>
+                                            </span>
+                                            <small>(160.753)</small>
+                                        </div>
+                                        <div>
+                                            <small>723.841 views</small>
+                                        </div>
+                                        <div>
+                                            <small>Website development</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <span class="card-price">
+                                        <i class="fa-solid fa-dollar"></i>
+                                        <span class="price-number">182</span>
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                        <b class="sale-number">
+                                            <i class="fa-solid fa-dollar"></i>
+                                            <span>99</span>
+                                        </b>
+                                    </span>
+                                    <span class="card-clock">
+                                        <i class="fa-regular fa-clock"></i>
+                                        <span>16-12-2022</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="course-card">
+                            <div class="course-card-overlay">
+                                <button class="button-cs">More Details</button>
+                            </div>
+                            <img
+                                src="/assets/images/home/course-list/card/courseimage.png"
+                                class="course-card-img"
+                                alt="course-img"
+                            />
+                            <div class="card-main">
+                                <h1 class="card-heading">The Complete Javascript
+                                    Course: Version 1</h1>
+                                <div class="card-author">
+                                    <i class="fa-solid fa-user-pen"></i>
+                                    <span>Jonas Schmedtmann</span>
+                                </div>
+                                <div class="card-details-ls">
+                                    <div class="card-details-ls-icon">
+                                        <span><b>4.6</b></span>
+                                        <span><i
+                                                class="fa-regular fa-eye"
+                                            ></i></span>
+                                        <span><i
+                                                class="fa-solid fa-tag"
+                                            ></i></span>
+                                    </div>
+                                    <div class="card-details-ls-content">
+                                        <div class="card-details-ls-item">
+                                            <span class="flex g-0">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i
+                                                    class="fa-solid fa-star-half-stroke"
+                                                ></i>
+                                            </span>
+                                            <small>(160.753)</small>
+                                        </div>
+                                        <div>
+                                            <small>723.841 views</small>
+                                        </div>
+                                        <div>
+                                            <small>Website development</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <span class="card-price">
+                                        <i class="fa-solid fa-dollar"></i>
+                                        <span class="price-number">182</span>
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                        <b class="sale-number">
+                                            <i class="fa-solid fa-dollar"></i>
+                                            <span>99</span>
+                                        </b>
+                                    </span>
+                                    <span class="card-clock">
+                                        <i class="fa-regular fa-clock"></i>
+                                        <span>16-12-2022</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="course-card">
+                            <div class="course-card-overlay">
+                                <button class="button-cs">More Details</button>
+                            </div>
+                            <img
+                                src="/assets/images/home/course-list/card/courseimage.png"
+                                class="course-card-img"
+                                alt="course-img"
+                            />
+                            <div class="card-main">
+                                <h1 class="card-heading">The Complete Javascript
+                                    Course: Version 1</h1>
+                                <div class="card-author">
+                                    <i class="fa-solid fa-user-pen"></i>
+                                    <span>Jonas Schmedtmann</span>
+                                </div>
+                                <div class="card-details-ls">
+                                    <div class="card-details-ls-icon">
+                                        <span><b>4.6</b></span>
+                                        <span><i
+                                                class="fa-regular fa-eye"
+                                            ></i></span>
+                                        <span><i
+                                                class="fa-solid fa-tag"
+                                            ></i></span>
+                                    </div>
+                                    <div class="card-details-ls-content">
+                                        <div class="card-details-ls-item">
+                                            <span class="flex g-0">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i
+                                                    class="fa-solid fa-star-half-stroke"
+                                                ></i>
+                                            </span>
+                                            <small>(160.753)</small>
+                                        </div>
+                                        <div>
+                                            <small>723.841 views</small>
+                                        </div>
+                                        <div>
+                                            <small>Website development</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <span class="card-price">
+                                        <i class="fa-solid fa-dollar"></i>
+                                        <span class="price-number">182</span>
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                        <b class="sale-number">
+                                            <i class="fa-solid fa-dollar"></i>
+                                            <span>99</span>
+                                        </b>
+                                    </span>
+                                    <span class="card-clock">
+                                        <i class="fa-regular fa-clock"></i>
+                                        <span>16-12-2022</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="course-card">
+                            <div class="course-card-overlay">
+                                <button class="button-cs">More Details</button>
+                            </div>
+                            <img
+                                src="/assets/images/home/course-list/card/courseimage.png"
+                                class="course-card-img"
+                                alt="course-img"
+                            />
+                            <div class="card-main">
+                                <h1 class="card-heading">The Complete Javascript
+                                    Course: Version 1</h1>
+                                <div class="card-author">
+                                    <i class="fa-solid fa-user-pen"></i>
+                                    <span>Jonas Schmedtmann</span>
+                                </div>
+                                <div class="card-details-ls">
+                                    <div class="card-details-ls-icon">
+                                        <span><b>4.6</b></span>
+                                        <span><i
+                                                class="fa-regular fa-eye"
+                                            ></i></span>
+                                        <span><i
+                                                class="fa-solid fa-tag"
+                                            ></i></span>
+                                    </div>
+                                    <div class="card-details-ls-content">
+                                        <div class="card-details-ls-item">
+                                            <span class="flex g-0">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i
+                                                    class="fa-solid fa-star-half-stroke"
+                                                ></i>
+                                            </span>
+                                            <small>(160.753)</small>
+                                        </div>
+                                        <div>
+                                            <small>723.841 views</small>
+                                        </div>
+                                        <div>
+                                            <small>Website development</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <span class="card-price">
+                                        <i class="fa-solid fa-dollar"></i>
+                                        <span class="price-number">182</span>
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                        <b class="sale-number">
+                                            <i class="fa-solid fa-dollar"></i>
+                                            <span>99</span>
+                                        </b>
+                                    </span>
+                                    <span class="card-clock">
+                                        <i class="fa-regular fa-clock"></i>
+                                        <span>16-12-2022</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="course-card">
+                            <div class="course-card-overlay">
+                                <button class="button-cs">More Details</button>
+                            </div>
+                            <img
+                                src="/assets/images/home/course-list/card/courseimage.png"
+                                class="course-card-img"
+                                alt="course-img"
+                            />
+                            <div class="card-main">
+                                <h1 class="card-heading">The Complete Javascript
+                                    Course: Version 1</h1>
+                                <div class="card-author">
+                                    <i class="fa-solid fa-user-pen"></i>
+                                    <span>Jonas Schmedtmann</span>
+                                </div>
+                                <div class="card-details-ls">
+                                    <div class="card-details-ls-icon">
+                                        <span><b>4.6</b></span>
+                                        <span><i
+                                                class="fa-regular fa-eye"
+                                            ></i></span>
+                                        <span><i
+                                                class="fa-solid fa-tag"
+                                            ></i></span>
+                                    </div>
+                                    <div class="card-details-ls-content">
+                                        <div class="card-details-ls-item">
+                                            <span class="flex g-0">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i
+                                                    class="fa-solid fa-star-half-stroke"
+                                                ></i>
+                                            </span>
+                                            <small>(160.753)</small>
+                                        </div>
+                                        <div>
+                                            <small>723.841 views</small>
+                                        </div>
+                                        <div>
+                                            <small>Website development</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <span class="card-price">
+                                        <i class="fa-solid fa-dollar"></i>
+                                        <span class="price-number">182</span>
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                        <b class="sale-number">
+                                            <i class="fa-solid fa-dollar"></i>
+                                            <span>99</span>
+                                        </b>
+                                    </span>
+                                    <span class="card-clock">
+                                        <i class="fa-regular fa-clock"></i>
+                                        <span>16-12-2022</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button
+                    class="carousel-control-prev"
+                    type="button"
+                >
+                    <i class="fa-solid fa-chevron-left"></i>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button
+                    class="carousel-control-next"
+                    type="button"
+                >
+                    <i class="fa-solid fa-chevron-right"></i>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <script>
+            const carouselWidth = $("#carouselNewest.carousel.slide.course-ls > .carousel-inner")[0].scrollWidth;
+            const cardWidth = $("#carouselNewest.carousel.slide.course-ls > .carousel-inner > .carousel-item").width() + 16;
+            let scrollPosition = 0;
+
+            $("#carouselNewest.carousel.slide.course-ls .carousel-control-next").on("click", function () {
+                if (scrollPosition < (carouselWidth - cardWidth * 4)) {
+                    scrollPosition += cardWidth;
+                    $("#carouselNewest.carousel.slide.course-ls > .carousel-inner").animate({ scrollLeft: scrollPosition }, 500); //scroll left
+                }
+            });
+
+            $("#carouselNewest.carousel.slide.course-ls .carousel-control-prev").on("click", function () {
                 if (scrollPosition > 0) {
                     scrollPosition -= cardWidth;
-                    $("#carouselMostView.carousel.slide.course-ls > .carousel-inner").animate({ scrollLeft: scrollPosition }, 500);
+                    $("#carouselNewest.carousel.slide.course-ls > .carousel-inner").animate({ scrollLeft: scrollPosition }, 500);
                 }
             });
         </script>

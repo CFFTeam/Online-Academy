@@ -1,3 +1,5 @@
+import livereload from "livereload";
+import connectLiveReload from "connect-livereload";
 import express from 'express';
 import handlebars from 'express-handlebars';
 import mongoSanitize from 'express-mongo-sanitize';
@@ -9,7 +11,16 @@ import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
+const liveReloadServer = livereload.createServer();
+liveReloadServer.server.once("connection", () => {
+  setTimeout(() => {
+    liveReloadServer.refresh("/");
+  }, 10);
+});
+
 const app = express();
+
+app.use(connectLiveReload());
 
 app.engine('.hbs', handlebars.engine({ defaultLayout: 'default', extname: '.hbs' }));
 app.set('views', path.join(__dirname, 'views'));

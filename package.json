@@ -5,7 +5,7 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "nodemon server.js -e .js,.hbs",
     "test": "node test.js"
   },
   "author": "CFF",
@@ -25,6 +25,7 @@
     "nodemailer-smtp-transport": "^2.7.4"
   },
   "devDependencies": {
+    "connect-livereload": "^0.6.1",
     "eslint": "^8.25.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
@@ -33,6 +34,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.10",
+    "livereload": "^0.9.3",
     "nodemon": "^2.0.20",
     "prettier": "^2.7.1"
   }
