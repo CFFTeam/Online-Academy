@@ -1,4 +1,5 @@
 <nav class="navbar">
+    <button id="sidebar-open" class="button-cs phone"><i class="fa-solid fa-bars"></i></button>
     <a class="link title" href="./">Academy</a>
     <form class="search-form" action="./" method="GET">
         <button type="submit" class="search-btn">
@@ -6,13 +7,71 @@
         </button>
         <input class="search-bar" name="q" type="search" placeholder="search for anything" />
     </form>
-    <a class="link" href="./">Home</a>
-    <a class="link" href="#pages">Pages <i class="fa-solid fa-chevron-down"></i></a>
-    <a class="link" href="#courses">Courses <i class="fa-solid fa-chevron-down"></i></a>
-    <a class="link" href="#about">About</a>
+    <a class="link desktop mobile" href="./">Home</a>
+    <a class="link mobile" href="#pages">Pages <i class="fa-solid fa-chevron-down"></i></a>
+    <a class="link mobile" href="#courses">Courses <i class="fa-solid fa-chevron-down"></i></a>
+    <a class="link ipad mobile" href="#about">About</a>
     <button class="shopping__cart-btn">
         <img class="icon" src="/assets/svg/home/cart.svg" alt="shopping-cart" />
         <span class="active-dot">1</span>
     </button>
-    <a class="link join-btn" href="/account/login">Join now</a>
+    <a class="link join-btn mobile" href="/account/login">Join now</a>
+
+    {{!-- SIDEBAR --}}
+    <div class="sidebar-overlay phone"></div>
+    <aside class="sidebar phone">
+        <button id="sidebar-close" class="close-btn"><i class="fa-solid fa-close"></i></button>
+        <div class="sidebar-main">
+            <a class="sidebar-item" href="/account/login">Login</a>
+            <a class="sidebar-item" href="/account/signup">Register</a>
+            <hr />
+            <b class="heading">Most popular</b>
+            <div class="sidebar-group">
+                <button data-category="web-developement" class="sidebar-item"><span>Website development</span> <i class="fa-solid fa-chevron-right"></i></button>
+                <button data-category="mobile-development" class="sidebar-item"><span>Mobile development</span> <i class="fa-solid fa-chevron-right"></i></button>
+                <button data-category="blockchain-development" class="sidebar-item"><span>Blockchain development</span> <i class="fa-solid fa-chevron-right"></i></button>
+                <button data-category="artificial-intelligence" class="sidebar-item"><span>Artificial Intelligence</span> <i class="fa-solid fa-chevron-right"></i></button>
+                <button data-category="internet-of-things" class="sidebar-item"><span>Internet of things</span> <i class="fa-solid fa-chevron-right"></i></button>
+                <button data-category="devops" class="sidebar-item"><span>DevOps</span> <i class="fa-solid fa-chevron-right"></i></button>
+                <button data-category="all-categories" class="sidebar-item"><span>All categories</span> <i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <hr />
+            <b class="heading">More from Academy</b>
+            <div class="sidebar-group">
+                <a class="sidebar-item" href="#about">About</a>
+            </div>
+            <div data-category="web-developement" class="categories-group">
+                <button data-category="web-developement" class="back-btn"><i class="fa-solid fa-chevron-left"></i> <span>Back</span></button>
+                <a class="sidebar-item"><span>Javascript</span></a>
+                <a class="sidebar-item"><span>React</span></a>
+                <a class="sidebar-item"><span>NodeJS</span></a>
+                <a class="sidebar-item"><span>HTML</span></a>
+                <a class="sidebar-item"><span>CSS</span></a>
+            </div>
+        </div>
+    </aside>
 </nav>
+
+<script>
+    $("nav.navbar > #sidebar-open ~ .sidebar > .sidebar-main > .sidebar-group > button")
+    .on("click", (e) => {
+        const dataCategory = $(e.currentTarget).attr("data-category");
+        $(`nav.navbar > #sidebar-open ~ .sidebar > .sidebar-main > .categories-group[data-category="${dataCategory}"]`).addClass("open");
+    });
+
+    $("nav.navbar > #sidebar-open ~ .sidebar > .sidebar-main > .categories-group > button.back-btn")
+    .on("click", (e) => {
+        const dataCategory = $(e.currentTarget).attr("data-category");
+        $(`nav.navbar > #sidebar-open ~ .sidebar > .sidebar-main > .categories-group[data-category="${dataCategory}"]`).removeClass("open");
+    });
+
+    $("nav.navbar > #sidebar-open").on("click", () => {
+        $("nav.navbar > #sidebar-open ~ .sidebar").addClass("open");
+        $("nav.navbar > #sidebar-open ~ .sidebar-overlay").addClass("open");
+    });
+
+    $("nav.navbar > #sidebar-open ~ .sidebar > #sidebar-close").on("click", () => {
+        $("nav.navbar > #sidebar-open ~ .sidebar").removeClass("open");
+        $("nav.navbar > #sidebar-open ~ .sidebar-overlay").removeClass("open");
+    });
+</script>
