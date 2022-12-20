@@ -1,0 +1,93 @@
+#register-form {
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 35rem;
+  height: 35rem;
+  background-color: #fff;
+}
+
+form {
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.form-content {
+  /* background-color: red; */
+}
+
+.title {
+  color: #00a551;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-family: Montserrat;
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.form-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin: 1.3rem 0rem 0rem 3.6rem;
+  font-family: Montserrat;
+}
+
+.form-group label {
+  color: #7f7e83;
+  font-weight: 400;
+}
+
+.form-group input {
+  width: 80%;
+  border-radius: 10px;
+  height: 2.6rem;
+  padding: 0rem 1rem;
+  background-color: #f4f4f4;
+  border: none;
+  outline: none;
+}
+
+.submit-btn {
+  margin-top: 2.6rem;
+  text-align: center;
+}
+
+.submit-btn button {
+  color: #fff;
+  border: none;
+  width: 11rem;
+  background-color: #00a551;
+  border-radius: 10px;
+  padding: 0.2rem;
+  font-family: Montserrat;
+}
+
+.footer {
+  margin-top: 1.2rem;
+  text-align: center;
+  font-family: Montserrat;
+}
+
+.footer p a,
+.footer p a:link,
+.footer p a:visited,
+.footer p a:hover,
+.footer p a:focus,
+.footer p a:active {
+  color: #00a551;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+button.eyes {
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  top: 55%;
+  right: 22%;
+}

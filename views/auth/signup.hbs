@@ -1,0 +1,44 @@
+<form id="register-form" method="post">
+  <div class="form-content">
+    <div class="title">Create an account</div>
+    {{!  fullname}}
+    <div class="form-group">
+      <label for="full-name" class="full-name">Full name</label>
+      <input
+        type="text"
+        id="full-name"
+        autofocus
+        placeholder="Enter your name"
+      />
+    </div>
+    {{!  email}}
+    <div class="form-group">
+      <label for="full-name" class="full-name">Email</label>
+      <input type="text" id="full-name" placeholder="Enter your email" />
+    </div>
+    {{!  password}}
+    <div class="form-group">
+      <label for="full-name" class="full-name">Password</label>
+      <input type="text" id="full-name" placeholder="Enter your password" />
+      <button class="eyes">
+        <img src="/assets/svg/authen/eyes.svg" alt="eye" />
+      </button>
+    </div>
+    {{!  confirm password}}
+    <div class="form-group">
+      <label for="full-name" class="full-name">Confirm Password</label>
+      <input type="text" id="full-name" placeholder="Enter your password" />
+      <button class="eyes">
+        <img src="/assets/svg/authen/eyes.svg" alt="eye" />
+      </button>
+    </div>
+    {{! Button submit }}
+    <div class="submit-btn">
+      <button>Create Account</button>
+    </div>
+    {{! footer of form }}
+    <div class="footer">
+      <p>Already have an account? <a href="/account/login">Login</a></p>
+    </div>
+  </div>
+</form>

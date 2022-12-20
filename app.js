@@ -5,6 +5,7 @@ import handlebars from "express-handlebars";
 import mongoSanitize from "express-mongo-sanitize";
 import bodyParser from "body-parser";
 import HomeRoutes from "./routes/HomeRoutes.js";
+import UserRoutes from "./routes/UserRoutes.js";
 
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
@@ -26,8 +27,8 @@ app.engine(
     ".hbs",
     handlebars.engine({
         defaultLayout: "default",
-        extname: "hbs",
-        partialsDir: path.join(__dirname, "views/partials/")
+        partialsDir: path.join(dirname, "views/partials/"),
+        extname: "hbs"
     })
 );
 
@@ -46,5 +47,6 @@ app.use("/assets", [
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use("/", HomeRoutes);
+app.use("/account", UserRoutes);
 
 export default app;

@@ -1,0 +1,19 @@
+.img {
+  width: 100%;
+  translate: 0% -24%;
+}
+
+.left-hand {
+  width: 45%;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.right-hand {
+  position: absolute;
+  left: 45%;
+  top: 0%;
+  width: 55%;
+  height: 100vh;
+  /* background-color: grey; */
+}
