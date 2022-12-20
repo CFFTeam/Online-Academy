@@ -1,11 +1,10 @@
-form#register-form {
+form#login-form {
   background-color: #fff;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 35rem;
-  height: 37rem;
   background-color: #fff;
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
@@ -18,7 +17,7 @@ form#register-form {
 .title {
   color: #00a551;
   margin-top: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   font-family: Montserrat;
   font-size: 1.8rem;
   font-weight: 600;
@@ -40,7 +39,7 @@ form#register-form {
 }
 
 .form-group input {
-  width: 80%;
+  width: 85%;
   border-radius: 10px;
   height: 2.6rem;
   padding: 0rem 1rem;
@@ -50,19 +49,20 @@ form#register-form {
 }
 
 .submit-btn {
-  margin-top: 2.6rem;
+  margin-top: 1.6rem;
   text-align: center;
 }
 
 .submit-btn button {
   color: #fff;
   border: 2px solid transparent;
-  border: none;
   width: 11rem;
   background-color: #00a551;
   border-radius: 10px;
   padding: 0.2rem;
   font-family: Montserrat;
+  font-size: 1.2rem;
+  transition: all 0.1s ease-in-out;
 }
 
 .submit-btn button:hover {
@@ -72,10 +72,32 @@ form#register-form {
   box-sizing: border-box;
 }
 
+.forgot-password {
+  margin: 1rem 5rem 0rem 0rem;
+  text-align: right;
+  font-size: 0.9rem;
+}
+
+.forgot-password a,
+.forgot-password a:link,
+.forgot-password a:visited,
+.forgot-password a:hover,
+.forgot-password a:focus,
+.forgot-password a:active {
+  color: #00a551;
+  text-decoration: none;
+  font-family: Montserrat;
+  font-weight: 500;
+}
+
 .footer {
   margin-top: 1.2rem;
   text-align: center;
   font-family: Montserrat;
+  font-size: 0.9rem;
+}
+.footer p {
+  font-weight: 500;
 }
 
 .footer p a,
@@ -94,5 +116,41 @@ button.eyes {
   background-color: transparent;
   border: none;
   top: 55%;
-  right: 22%;
+  right: 16%;
+}
+
+.line-break {
+  border-color: #868e96;
+  border-width: 2px;
+  width: 75%;
+  margin: auto;
+}
+
+.social-media-title {
+  margin-top: 0.4rem;
+  font-size: 1rem;
+  font-family: Montserrat;
+  text-align: center;
+  color: #868e96;
+  font-weight: 400;
+}
+
+.social-media {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.social-media button {
+  padding: 0.2rem 0rem 2.4rem 0rem;
+  border: none;
+  background-color: transparent;
+}
+
+.social-media button:first-child img {
+  width: 3.6rem;
+}
+
+.social-media button img {
+  width: 3rem;
 }

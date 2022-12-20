@@ -14,9 +14,9 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const liveReloadServer = livereload.createServer();
 liveReloadServer.server.once("connection", () => {
-    setTimeout(() => {
-        liveReloadServer.refresh("/");
-    }, 10);
+  setTimeout(() => {
+    liveReloadServer.refresh("/");
+  }, 10);
 });
 
 const app = express();
@@ -24,12 +24,12 @@ const app = express();
 app.use(connectLiveReload());
 
 app.engine(
-    ".hbs",
-    handlebars.engine({
-        defaultLayout: "default",
-        partialsDir: path.join(__dirname, "views/partials/"),
-        extname: "hbs"
-    })
+  ".hbs",
+  handlebars.engine({
+    defaultLayout: "default",
+    partialsDir: path.join(__dirname, "views/partials/"),
+    extname: "hbs",
+  })
 );
 
 app.set("views", path.join(__dirname, "views"));
@@ -39,9 +39,9 @@ app.use(mongoSanitize());
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/assets", [
-    express.static(path.join(__dirname, "node_modules/bootstrap/dist/css/")),
-    express.static(path.join(__dirname, "node_modules/bootstrap/dist/js/")),
-    express.static(path.join(__dirname, "node_modules/jquery/dist/"))
+  express.static(path.join(__dirname, "node_modules/bootstrap/dist/css/")),
+  express.static(path.join(__dirname, "node_modules/bootstrap/dist/js/")),
+  express.static(path.join(__dirname, "node_modules/jquery/dist/")),
 ]);
 
 app.use(bodyParser.urlencoded({ extended: false }));
