@@ -47,6 +47,19 @@ body {
     cursor: pointer;
 }
 
+.course-card > .icon {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    color: white;
+    font-size: 1.8rem;
+    z-index: 2;
+}
+
+.course-card > .icon:hover { 
+    color: rgb(255, 96, 242);
+}
+
 .course-card > .course-card-overlay {
     position: absolute;
     display: flex;
@@ -104,8 +117,7 @@ body {
     margin-left: .5rem;
 }
 
-.course-card > .card-main > .card-footer > .card-price::before {
-    content: "";
+.course-card > .card-main > .card-footer > .card-price > .remove-line {
     position: absolute;
     inset: 0;
     top: 40%;
@@ -115,6 +127,7 @@ body {
     height: .2rem;
     background-color: #D70404;
     rotate: 15deg;
+    z-index: 2;
 }
 
 .course-card > .card-main > .card-footer > .card-price > .price-number {
