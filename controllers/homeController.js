@@ -1,4 +1,6 @@
 export const homePage = (req, res) => {
+    res.locals.handlebars = 'home/home';
+
     const categories = [
         {
             slug: "web-development",
@@ -80,7 +82,37 @@ export const homePage = (req, res) => {
         }
     ];
 
-    const mostviewCourse = [
+    const hostCourse = [
+        {
+            course_name: "Node.js, Express, MongoDB & More: The Complete Bootcamp 2023",
+            course_rate: "4.7",
+            course_vote: "15.379",
+            course_viewer: "94.227",
+            course_author: "Jonas Schmedtmann",
+            course_price: "105.67",
+            course_sale: "16.03",
+            course_category: "Website development",
+            course_date: "11/2022",
+            course_img: "https://img-c.udemycdn.com/course/240x135/1672410_9ff1_5.jpg",
+            course_description: "Master Node by building a real-world RESTful API and web app (with authentication, Node.js security, payments & more)",
+            course_duration: "42h 12m total duration",
+            course_lessons: "229 lessons"
+        },
+        {
+            course_name: "The Complete 2023 Web Development Bootcamp",
+            course_rate: "4.7",
+            course_vote: "246.888",
+            course_viewer: "843.615",
+            course_author: "Dr.Angela Yu",
+            course_price: "92.98",
+            course_sale: "12.64",
+            course_category: "Website development",
+            course_date: "11/2022",
+            course_img: "https://img-c.udemycdn.com/course/480x270/1565838_e54e_16.jpg",
+            course_description: "Become a Full-Stack Web Developer with just ONE course. HTML, CSS, Javascript, Node, React, MongoDB, Web3 and DApps",
+            course_duration: "65h 33m total duration",
+            course_lessons: "490 lessons"
+        },
         {
             course_name: "The Complete JavaScript Course 2023: From Zero to Expert!",
             course_rate: "4.7",
@@ -91,7 +123,55 @@ export const homePage = (req, res) => {
             course_sale: "14.76",
             course_date: "11/2022",
             course_category: "Website development",
-            course_img: "https://img-c.udemycdn.com/course/240x135/1672410_9ff1_5.jpg"
+            course_img: "https://img-c.udemycdn.com/course/240x135/851712_fc61_6.jpg",
+            course_description: "The modern JavaScript course for everyone! Master JavaScript with projects, challenges and theory. Many courses in one!",
+            course_duration: "69h 0m total duration",
+            course_lessons: "320 lesssions"
+        },
+        {
+            course_name: "Flutter & Dart - The Complete Guide [2023 Edition]",
+            course_rate: "4.6",
+            course_vote: "55.981",
+            course_viewer: "225.400",
+            course_author: "Maximilian Schwarzmüller",
+            course_price: "80.30",
+            course_sale: "11.80",
+            course_category: "Mobile development",
+            course_date: "11/2022",
+            course_img: "https://img-c.udemycdn.com/course/240x135/1708340_7108_5.jpg",
+            course_description: "Master Node by building a real-world RESTful API and web app (with authentication, Node.js security, payments & more)",
+            course_duration: "42h 12m total length",
+            course_lessons: " 229 lesssions"
+        },
+        {
+            course_name: "Artificial Intelligence A-Z™: Learn How To Build An AI",
+            course_rate: "4.4",
+            course_vote: "22.001",
+            course_viewer: "190.935",
+            course_author: "Hadelin de Ponteves",
+            course_price: "92.98",
+            course_sale: "12.64",
+            course_category: "Artificial Intelligence",
+            course_date: "12/2022",
+            course_img: "https://img-c.udemycdn.com/course/240x135/1219332_bdd7.jpg",
+            course_description: "Master Node by building a real-world RESTful API and web app (with authentication, Node.js security, payments & more)",
+            course_duration: "42h 12m total length",
+            course_lessons: " 229 lesssions"
+        }
+    ];
+
+    const mostviewCourse = [
+        {
+            course_name: "The Complete 2023 Web Development Bootcamp",
+            course_rate: "4.7",
+            course_vote: "246.888",
+            course_viewer: "843.615",
+            course_author: "Dr.Angela Yu",
+            course_price: "92.98",
+            course_sale: "12.64",
+            course_category: "Website development",
+            course_date: "11/2022",
+            course_img: "https://img-c.udemycdn.com/course/480x270/1565838_e54e_16.jpg"
         },
         {
             course_name: "Build Responsive Real-World Websites with HTML and CSS",
@@ -106,18 +186,6 @@ export const homePage = (req, res) => {
             course_img: "https://img-c.udemycdn.com/course/240x135/437398_46c3_10.jpg"
         },
         {
-            course_name: "Node.js, Express, MongoDB & More: The Complete Bootcamp 2023",
-            course_rate: "4.7",
-            course_vote: "15.379",
-            course_viewer: "94.227",
-            course_author: "Jonas Schmedtmann",
-            course_price: "105.67",
-            course_sale: "16.03",
-            course_category: "Website development",
-            course_date: "11/2022",
-            course_img: "https://img-c.udemycdn.com/course/240x135/851712_fc61_6.jpg"
-        },
-        {
             course_name: "React - The Complete Guide (incl Hooks, React Router, Redux)",
             course_rate: "4.6",
             course_vote: "170.867",
@@ -130,16 +198,28 @@ export const homePage = (req, res) => {
             course_img: "https://img-c.udemycdn.com/course/240x135/1362070_b9a1_2.jpg"
         },
         {
-            course_name: "The Complete 2023 Web Development Bootcamp",
+            course_name: "The Complete JavaScript Course 2023: From Zero to Expert!",
             course_rate: "4.7",
-            course_vote: "246.888",
-            course_viewer: "843.615",
-            course_author: "Dr.Angela Yu",
-            course_price: "92.98",
-            course_sale: "12.64",
+            course_vote: "160.970",
+            course_viewer: "725.001",
+            course_author: "Jonas Schmedtmann",
+            course_price: "105.67",
+            course_sale: "14.76",
+            course_date: "11/2022",
+            course_category: "Website development",
+            course_img: "https://img-c.udemycdn.com/course/240x135/851712_fc61_6.jpg"
+        },
+        {
+            course_name: "Node.js, Express, MongoDB & More: The Complete Bootcamp 2023",
+            course_rate: "4.7",
+            course_vote: "15.379",
+            course_viewer: "94.227",
+            course_author: "Jonas Schmedtmann",
+            course_price: "105.67",
+            course_sale: "16.03",
             course_category: "Website development",
             course_date: "11/2022",
-            course_img: "https://img-c.udemycdn.com/course/480x270/1565838_e54e_16.jpg"
+            course_img: "https://img-c.udemycdn.com/course/240x135/1672410_9ff1_5.jpg"
         },
         {
             course_name: "React Native - The Practical Guide [2023]",
@@ -211,7 +291,7 @@ export const homePage = (req, res) => {
             course_viewer: "1.159",
             course_author: "i novotek Academy",
             course_price: "18.14",
-            course_sale: "10.53",
+            // course_sale: "10.53",
             course_date: "11/2022",
             course_category: "Website development",
             course_img: "https://img-c.udemycdn.com/course/240x135/4980426_ee5d_3.jpg"
@@ -223,7 +303,7 @@ export const homePage = (req, res) => {
             course_viewer: "60",
             course_author: "K.Sathyaprakash Reddy",
             course_price: "18.14",
-            course_sale: "10.53",
+            // course_sale: "10.53",
             course_category: "Website development",
             course_date: "12/2022",
             course_img: "https://img-c.udemycdn.com/course/240x135/5015910_2a41_2.jpg"
@@ -265,40 +345,40 @@ export const homePage = (req, res) => {
             course_img: "https://img-c.udemycdn.com/course/240x135/4929652_63c4_8.jpg"
         },
         {
-            course_name: "Flutter & Dart - The Complete Guide [2023 Edition]",
-            course_rate: "4.6",
-            course_vote: "55.981",
-            course_viewer: "225.400",
-            course_author: "Maximilian Schwarzmüller",
-            course_price: "80.30",
-            course_sale: "11.80",
-            course_category: "Mobile development",
+            course_name: "Create E-commerce Web Application Using Node JS",
+            course_rate: "0",
+            course_vote: "0",
+            course_viewer: "1",
+            course_author: "Mustafa Alawi",
+            course_price: "71.84",
+            course_sale: "10.53",
+            course_category: "Website development",
             course_date: "11/2022",
-            course_img: "https://img-c.udemycdn.com/course/240x135/1708340_7108_5.jpg"
+            course_img: "https://img-c.udemycdn.com/course/240x135/4977502_ac7a.jpg"
         },
         {
-            course_name: "Artificial Intelligence A-Z™: Learn How To Build An AI",
-            course_rate: "4.4",
-            course_vote: "22.001",
-            course_viewer: "190.935",
-            course_author: "Hadelin de Ponteves",
-            course_price: "92.98",
-            course_sale: "12.64",
-            course_category: "Artificial Intelligence",
-            course_date: "12/2022",
-            course_img: "https://img-c.udemycdn.com/course/240x135/1219332_bdd7.jpg"
+            course_name: "Modern MERN Stack | React Node Express MongoDB",
+            course_rate: "5.0",
+            course_vote: "2",
+            course_viewer: "16",
+            course_author: "Riaz Qureshi",
+            course_price: "18.14",
+            // course_sale: "10.53",
+            course_category: "Website development",
+            course_date: "11/2022",
+            course_img: "https://img-c.udemycdn.com/course/240x135/4835930_d67c_4.jpg"
         },
         {
-            course_name: "TensorFlow Developer Certificate in 2023: Zero to Mastery",
-            course_rate: "4.7",
-            course_vote: "5.666",
-            course_viewer: "42.232",
-            course_author: "Andrei Neagoie",
-            course_price: "80.30",
-            course_sale: "11.80",
-            course_category: "Artificial Intelligence",
+            course_name: "React JS from Zero to Hero",
+            course_rate: "4.0",
+            course_vote: "1",
+            course_viewer: "2",
+            course_author: "Elias Rodrigo Rosa",
+            course_price: "18.14",
+            // course_sale: "10.53",
+            course_category: "Website development",
             course_date: "12/2022",
-            course_img: "https://img-c.udemycdn.com/course/240x135/3693164_f87d_3.jpg"
+            course_img: "https://img-c.udemycdn.com/course/240x135/4956178_557e_2.jpg"
         }
     ]
 

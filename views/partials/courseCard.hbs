@@ -27,13 +27,55 @@
             <div class="card-details-ls-content">
                 <div class="card-details-ls-item">
                     <span class="flex g-0">
+                    {{#if (gt course_rate 0)}}
+                        {{#if (gte course_rate 1)}}
                         <i class="fa-solid fa-star"></i>
+                        {{else}}
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        {{/if}}
+                    {{else}}
+                        <i class="fa-regular fa-star"></i>
+                    {{/if}}
+                    
+                    {{#if (gt course_rate 1)}}
+                        {{#if (gte course_rate 2)}}
                         <i class="fa-solid fa-star"></i>
+                        {{else}}
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        {{/if}}
+                    {{else}}
+                        <i class="fa-regular fa-star"></i>
+                    {{/if}}
+
+                    {{#if (gt course_rate 2)}}
+                        {{#if (gte course_rate 3)}}
                         <i class="fa-solid fa-star"></i>
+                        {{else}}
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        {{/if}}
+                    {{else}}
+                        <i class="fa-regular fa-star"></i>
+                    {{/if}}
+
+                    {{#if (gt course_rate 3)}}
+                        {{#if (gte course_rate 4)}}
                         <i class="fa-solid fa-star"></i>
-                        <i
-                            class="fa-solid fa-star-half-stroke"
-                        ></i>
+                        {{else}}
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        {{/if}}
+                    {{else}}
+                        <i class="fa-regular fa-star"></i>
+                    {{/if}}
+
+                    {{#if (gt course_rate 4)}}
+                        {{#if (gte course_rate 5)}}
+                        <i class="fa-solid fa-star"></i>
+                        {{else}}
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        {{/if}}
+                    {{else}}
+                        <i class="fa-regular fa-star"></i>
+                    {{/if}}
                     </span>
                     <small>({{course_vote}})</small>
                 </div>
