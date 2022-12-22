@@ -1,0 +1,224 @@
+<div class="shoppingCart">
+    <div class="title">
+      <h1>shopping cart</h1>
+      <img>
+      <svg width="55" height="49" viewBox="0 0 55 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M1.74532 3.58552C0.805533 3.58552 0 2.76857 0 1.77007C0 0.816954 0.805533 0 1.74532 0H6.31001C6.35476 0 6.44426 0 6.48902 0C8.10008 0.0453863 9.53214 0.363091 10.7404 1.13466C12.083 1.997 13.0675 3.3132 13.6046 5.26482C13.6046 5.3102 13.6046 5.35559 13.6493 5.40097L14.0968 7.21643H53.2547C54.2392 7.21643 55 8.03338 55 8.9865C55 9.16804 54.9552 9.34959 54.9105 9.53113L50.3458 28.1849C50.1668 29.0019 49.4508 29.5465 48.6452 29.5465H20.0041C20.6306 31.9066 21.2571 33.1774 22.1074 33.7674C23.1367 34.4482 24.9268 34.4936 27.9251 34.4482H27.9699H48.1977C49.1823 34.4482 49.943 35.2652 49.943 36.2183C49.943 37.2168 49.1375 37.9884 48.1977 37.9884H27.9699C24.2555 38.0338 21.9731 37.943 20.1383 36.7176C18.2587 35.4467 17.2742 33.2682 16.2897 29.3196L10.2929 6.3087C10.2929 6.26332 10.2929 6.26332 10.2482 6.21793C9.97966 5.21943 9.53214 4.53863 8.90561 4.17554C8.27909 3.76707 7.4288 3.58552 6.44426 3.58552C6.39951 3.58552 6.35476 3.58552 6.31001 3.58552H1.74532V3.58552ZM42.9618 40.0761C45.3336 40.0761 47.2579 42.0278 47.2579 44.4332C47.2579 46.8387 45.3336 48.7903 42.9618 48.7903C40.5899 48.7903 38.6656 46.8387 38.6656 44.4332C38.6656 42.0278 40.5899 40.0761 42.9618 40.0761ZM24.1212 40.0761C26.4931 40.0761 28.4174 42.0278 28.4174 44.4332C28.4174 46.8387 26.4931 48.7903 24.1212 48.7903C21.7494 48.7903 19.8251 46.8387 19.8251 44.4332C19.8251 42.0278 21.7494 40.0761 24.1212 40.0761ZM15.0814 10.7566L19.0643 25.961H47.3027L51.0171 10.7566H15.0814V10.7566Z"
+          fill="#535353" />
+      </svg>
+      </img>
+    </div>
+    <div class="cart">
+      <div class="itemList">
+
+      </div>
+      <div class="checkout">
+        <div class="price">
+          <p class="label">Price</p>
+          <p class="value">$106.07</p>
+        </div>
+        <div class="discount">
+          <p class="label">Discount</p>
+          <p class="value">(0%) - $0.00</p>
+        </div>
+        <div class="tax">
+          <p class="label">Tax</p>
+          <p class="value">+ $5.00</p>
+        </div>
+        <div class="total">
+          <p class="label">Total</p>
+          <p class="value">$106.07</p>
+        </div>
+        <div class="promotion">
+          <input class="promotionInput" placeholder="Enter your promote code...">
+          <button class="promotionButton">Apply</button>
+        </div>
+        <div class="promotionList"></div>
+
+        <button class="checkoutButton">checkout</button>
+      </div>
+    </div>
+  </div>
+    <script>
+    const addPromotion=(item,index)=>{
+    $(".promotionList").append(`<div id=${index} class="promotionItem">
+        <p>${item}</p>
+        <img>
+        <svg class="deletePromotionItem" width="10" height="20" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0_182_14269)">
+            <path
+              d="M7.76498 3.82378C8.07748 3.5064 8.07748 2.99097 7.76498 2.67358C7.45248 2.3562 6.94498 2.3562 6.63248 2.67358L3.99998 5.34976L1.36498 2.67612C1.05248 2.35874 0.544983 2.35874 0.232483 2.67612C-0.0800171 2.99351 -0.0800171 3.50894 0.232483 3.82632L2.86748 6.49995L0.234983 9.17612C-0.0775171 9.49351 -0.0775171 10.0089 0.234983 10.3263C0.547483 10.6437 1.05498 10.6437 1.36748 10.3263L3.99998 7.65015L6.63498 10.3238C6.94748 10.6412 7.45498 10.6412 7.76748 10.3238C8.07998 10.0064 8.07998 9.49097 7.76748 9.17358L5.13248 6.49995L7.76498 3.82378Z"
+              fill="#00A656" />
+          </g>
+          <defs>
+            <clipPath id="clip0_182_14269">
+              <rect width="8" height="13" fill="white" />
+            </clipPath>
+          </defs>
+        </svg>
+        </img>
+      </div>`)
+    };
+    const promotionList=["firstlearing","secondlearning"]
+      
+    promotionList.forEach(addPromotion)
+
+    $(".deletePromotionItem").on("click", (event)=>{
+      $(event.currentTarget).parent().remove(`${event.currentTarget.id}`);
+      promotionList.remove(event.currentTarget.id) 
+    });
+
+    $(".promotionButton").click(function(){
+        let bla = $('.promotionInput').val();
+        if(bla.length>0){
+           promotionList.push(bla);
+          addPromotion(bla, promotionList.length - 1);
+
+          $(`#${promotionList.length - 1} .deletePromotionItem`).on("click", (event)=>{
+            $(event.currentTarget).parent().remove(`${event.currentTarget.id}`); 
+            promotionList.splice(promotionList.indexOf(event.currentTarget.id),1) 
+          });
+
+          $('.promotionInput').val("");
+        }
+    });
+
+    $('.promotionInput').keypress(function (e) {
+        var key = e.which;
+        if(key == 13)  // the enter key code
+          {
+            let bla = $('.promotionInput').val();
+             if(bla.length>0){
+              promotionList.push(bla);
+              addPromotion(bla, promotionList.length - 1);
+
+              $(`#${promotionList.length - 1} .deletePromotionItem`).on("click", (event)=>{
+                $(event.currentTarget).parent().remove(`${event.currentTarget.id}`);
+                promotionList.splice(promotionList.indexOf(event.currentTarget.id),1) 
+              });
+
+              $('.promotionInput').val("");
+        }
+          }
+    });   
+
+    const addItem=(item,index)=>{
+      $(".itemList").append(`<div id=${index} class="item">
+          <div class="image">
+            <img src="/assets/images/payment/course.png">
+            <button class="trashButton">
+              <img>
+              <svg width="30" height="34" viewBox="0 0 30 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_187_14482)">
+                  <path
+                    d="M9.05357 1.17539C9.41518 0.451563 10.1585 0 10.9687 0H19.0313C19.8415 0 20.5848 0.451563 20.9464 1.17539L21.4286 2.125H27.8571C29.0424 2.125 30 3.07461 30 4.25C30 5.42539 29.0424 6.375 27.8571 6.375H2.14286C0.957589 6.375 0 5.42539 0 4.25C0 3.07461 0.957589 2.125 2.14286 2.125H8.57143L9.05357 1.17539ZM2.14286 8.5H27.8571V29.75C27.8571 32.0941 25.9353 34 23.5714 34H6.42857C4.06473 34 2.14286 32.0941 2.14286 29.75V8.5ZM8.57143 12.75C7.98214 12.75 7.5 13.2281 7.5 13.8125V28.6875C7.5 29.2719 7.98214 29.75 8.57143 29.75C9.16071 29.75 9.64286 29.2719 9.64286 28.6875V13.8125C9.64286 13.2281 9.16071 12.75 8.57143 12.75ZM15 12.75C14.4107 12.75 13.9286 13.2281 13.9286 13.8125V28.6875C13.9286 29.2719 14.4107 29.75 15 29.75C15.5893 29.75 16.0714 29.2719 16.0714 28.6875V13.8125C16.0714 13.2281 15.5893 12.75 15 12.75ZM21.4286 12.75C20.8393 12.75 20.3571 13.2281 20.3571 13.8125V28.6875C20.3571 29.2719 20.8393 29.75 21.4286 29.75C22.0179 29.75 22.5 29.2719 22.5 28.6875V13.8125C22.5 13.2281 22.0179 12.75 21.4286 12.75Z"
+                    fill="white" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_187_14482">
+                    <rect width="30" height="34" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+              </img>
+            </button>
+          </div>
+          <div class="information">
+            <p class="name">${item.name}</p>
+            <div class="rate--author">
+              <div class="rate">
+                <p>${item.rate}</p>
+                <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M8.80278 0.492188C8.65556 0.191406 8.34444 0 8.00278 0C7.66111 0 7.35278 0.191406 7.20278 0.492188L5.41667 4.10977L1.42778 4.68945C1.09444 4.73867 0.816667 4.96836 0.713889 5.28281C0.611111 5.59727 0.694444 5.94453 0.933333 6.17695L3.82778 8.99609L3.14444 12.9801C3.08889 13.3082 3.22778 13.6418 3.50278 13.8359C3.77778 14.0301 4.14167 14.0547 4.44167 13.8988L8.00556 12.0258L11.5694 13.8988C11.8694 14.0547 12.2333 14.0328 12.5083 13.8359C12.7833 13.6391 12.9222 13.3082 12.8667 12.9801L12.1806 8.99609L15.075 6.17695C15.3139 5.94453 15.4 5.59727 15.2944 5.28281C15.1889 4.96836 14.9139 4.73867 14.5806 4.68945L10.5889 4.10977L8.80278 0.492188Z"
+                    fill="#FFF500" />
+                </svg>
+                <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M8.80278 0.492188C8.65556 0.191406 8.34444 0 8.00278 0C7.66111 0 7.35278 0.191406 7.20278 0.492188L5.41667 4.10977L1.42778 4.68945C1.09444 4.73867 0.816667 4.96836 0.713889 5.28281C0.611111 5.59727 0.694444 5.94453 0.933333 6.17695L3.82778 8.99609L3.14444 12.9801C3.08889 13.3082 3.22778 13.6418 3.50278 13.8359C3.77778 14.0301 4.14167 14.0547 4.44167 13.8988L8.00556 12.0258L11.5694 13.8988C11.8694 14.0547 12.2333 14.0328 12.5083 13.8359C12.7833 13.6391 12.9222 13.3082 12.8667 12.9801L12.1806 8.99609L15.075 6.17695C15.3139 5.94453 15.4 5.59727 15.2944 5.28281C15.1889 4.96836 14.9139 4.73867 14.5806 4.68945L10.5889 4.10977L8.80278 0.492188Z"
+                    fill="#FFF500" />
+                </svg>
+                <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M8.80278 0.492188C8.65556 0.191406 8.34444 0 8.00278 0C7.66111 0 7.35278 0.191406 7.20278 0.492188L5.41667 4.10977L1.42778 4.68945C1.09444 4.73867 0.816667 4.96836 0.713889 5.28281C0.611111 5.59727 0.694444 5.94453 0.933333 6.17695L3.82778 8.99609L3.14444 12.9801C3.08889 13.3082 3.22778 13.6418 3.50278 13.8359C3.77778 14.0301 4.14167 14.0547 4.44167 13.8988L8.00556 12.0258L11.5694 13.8988C11.8694 14.0547 12.2333 14.0328 12.5083 13.8359C12.7833 13.6391 12.9222 13.3082 12.8667 12.9801L12.1806 8.99609L15.075 6.17695C15.3139 5.94453 15.4 5.59727 15.2944 5.28281C15.1889 4.96836 14.9139 4.73867 14.5806 4.68945L10.5889 4.10977L8.80278 0.492188Z"
+                    fill="#FFF500" />
+                </svg>
+                <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M8.80278 0.492188C8.65556 0.191406 8.34444 0 8.00278 0C7.66111 0 7.35278 0.191406 7.20278 0.492188L5.41667 4.10977L1.42778 4.68945C1.09444 4.73867 0.816667 4.96836 0.713889 5.28281C0.611111 5.59727 0.694444 5.94453 0.933333 6.17695L3.82778 8.99609L3.14444 12.9801C3.08889 13.3082 3.22778 13.6418 3.50278 13.8359C3.77778 14.0301 4.14167 14.0547 4.44167 13.8988L8.00556 12.0258L11.5694 13.8988C11.8694 14.0547 12.2333 14.0328 12.5083 13.8359C12.7833 13.6391 12.9222 13.3082 12.8667 12.9801L12.1806 8.99609L15.075 6.17695C15.3139 5.94453 15.4 5.59727 15.2944 5.28281C15.1889 4.96836 14.9139 4.73867 14.5806 4.68945L10.5889 4.10977L8.80278 0.492188Z"
+                    fill="#FFF500" />
+                </svg>
+                <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_187_14473)">
+                    <path
+                      d="M10.5028 4.23281L14.7611 4.85352C15.0111 4.88906 15.2167 5.06133 15.2972 5.29648C15.375 5.53437 15.3111 5.79414 15.1333 5.96641L12.0444 8.97969L12.775 13.2316C12.8167 13.4777 12.7139 13.7293 12.5056 13.8742C12.3 14.0191 12.0028 14.0383 11.8028 13.9207L7.99722 11.9191L4.16944 13.9207C3.96944 14.0383 3.69722 14.0191 3.48889 13.8742C3.28333 13.7293 3.18056 13.4777 3.19722 13.2316L3.95 8.97969L0.864167 5.96641C0.684722 5.79414 0.621111 5.53437 0.7 5.29648C0.778611 5.06133 0.986111 4.88906 1.23583 4.85352L5.49167 4.23281L7.39722 0.369687C7.51111 0.143527 7.74167 0 7.99722 0C8.25278 0 8.48611 0.143555 8.59722 0.369687L10.5028 4.23281ZM7.975 10.5191C8.10833 10.5191 8.21389 10.5437 8.31111 10.5957L11.2333 12.1324L10.6722 8.86211C10.6361 8.65156 10.7083 8.43555 10.8611 8.28516L13.2472 5.9582L9.96111 5.48242C9.74167 5.44961 9.55278 5.31289 9.45833 5.11875L7.975 2.16262V10.5191Z"
+                      fill="#FFF500" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_187_14473">
+                      <rect width="16" height="14" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+                <p>(${item.rateQuantity})</p>
+              </div>
+              <p class="author">${item.author}</p>
+            </div>
+            <p class="view">${item.view} views</p>
+            <p class="date">${item.date}</p>
+            <p class="itemPrice">$${item.price}</p>
+            <p class="bestseller">
+              Bestseller
+            </p>
+          </div>
+        </div>`)};
+
+        const itemList = [{
+          name: "Node.js, Express, MongoDB & More: The Complete Bootcamp 2020",
+          rate: "4.7",
+          rateQuantity: "15.279",
+          author: "Jonas Schmedtmann",
+          view: "93.700",
+          date: "16-12-2022",
+          price: "106.03"
+        },{
+          name: "Khóa học này không còn tồn tại",
+          rate: "0.0",
+          rateQuantity: "0.0",
+          author: "Jonas Schmedtmann",
+          view: "93.700",
+          date: "16-12-2022",
+          price: "0.00"
+        },{
+          name: "Node.js, Express, MongoDB & More: The Complete Bootcamp 2023",
+          rate: "4.7",
+          rateQuantity: "15.279",
+          author: "Jonas Schmedtmann",
+          view: "93.700",
+          date: "16-12-2022",
+          price: "106.03"
+        }];
+        let total = 0;
+        for(let i=0;i<itemList.length;i++){
+          total+=parseFloat(itemList[i].price);
+        }
+
+        $(".price > .value").text(total+"")
+        $(".total > .value").text(total+5+"")
+
+        itemList.forEach(addItem);
+        $(".trashButton").on("click", (event)=>{
+          $(event.currentTarget).parent().parent().remove(`${event.currentTarget.id}`); 
+          itemList.splice(itemList.indexOf(event.currentTarget.id),1)
+          total = 0;
+        for(let i=0;i<itemList.length;i++){
+          total+=parseFloat(itemList[i].price);
+        }
+
+        $(".price > .value").text(total+"")
+        $(".total > .value").text(total+5+"") 
+        });
+
+  </script>
+  </div>
