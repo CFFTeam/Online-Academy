@@ -12,6 +12,12 @@ import globalErrorHandler from "./controllers/errorController.js";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 
+// middleware
+import activate_session_middleware from "./middlewares/session.mdw.js";
+import activate_locals_middleware from "./middlewares/locals.mdw.js";
+
+
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const liveReloadServer = livereload.createServer();
@@ -47,7 +53,14 @@ app.use("/assets", [
   express.static(path.join(__dirname, "node_modules/jquery/dist/")),
 ]);
 
+
 app.use(bodyParser.urlencoded({ extended: false }));
+
+
+// trigger middleware functions
+activate_session_middleware(app);
+activate_locals_middleware(app);
+
 
 app.use("/", HomeRoutes);
 app.use("/account", UserRoutes);

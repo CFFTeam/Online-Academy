@@ -5,6 +5,8 @@ import catchAsync from "../utilities/catchAsync.js";
 import sendEmail from "../utilities/sendEmail.js";
 import crypto from 'crypto'
 import jwt from 'jsonwebtoken';
+import validateUser from '../middleware/auth.js';
+ 
 
 
 // handle for login (method GET)
@@ -23,6 +25,10 @@ export const handleLoginForm = catchAsync(async (req, res, next) => {
   if (!foundUser || !(await foundUser.correctPassword(password, foundUser.password))) {
     return next(new Error('Incorrect email or password. Please try again.'));
   }
+  req.session.auth = true;
+  req.session.authUser = foundUser;
+  // const url = req.session.retUrl || '/';
+  // res.redirect(url);
   res.render("auth/login.hbs", { layout: "auth.hbs", message: "success"});
 });
 
@@ -160,6 +166,14 @@ export const handleNewPasswordForm = catchAsync(async (req,res,next) => {
   })
   res.render("auth/newPassword.hbs", { layout: "auth.hbs", message: "success"});
 });
+
+// log out
+export const logout = catchAsync(async (req,res,next) => {
+  req.session.auth = false;
+  req.session.authUser = null;
+  const url = req.headers.referer || '/';
+  res.redirect(url);
+}
 
 
 // export const signup = (req, res) => {};
