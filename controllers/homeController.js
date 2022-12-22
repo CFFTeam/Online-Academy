@@ -254,6 +254,18 @@ export const homePage = (req, res) => {
             course_category: "Artificial Intelligence",
             course_date: "12/2022",
             course_img: "https://img-c.udemycdn.com/course/240x135/3693164_f87d_3.jpg"
+        },
+        {
+            course_name: "Deep Learning A-Z™: Hands-On Artificial Neural Networks",
+            course_rate: "4.5",
+            course_vote: "41.664",
+            course_viewer: "345.609",
+            course_author: "Kirill Eremenko",
+            course_price: "84.52",
+            course_sale: "12.64",
+            course_category: "Artificial Intelligence",
+            course_date: "12/2022",
+            course_img: "https://img-c.udemycdn.com/course/240x135/1151632_de9b.jpg"
         }
     ];
 
@@ -332,7 +344,7 @@ export const homePage = (req, res) => {
         },
         {
             course_name: "Create E-commerce Web Application Using Node JS",
-            course_rate: "0",
+            course_rate: "0.0",
             course_vote: "0",
             course_viewer: "1",
             course_author: "Mustafa Alawi",
@@ -365,6 +377,18 @@ export const homePage = (req, res) => {
             course_category: "Website development",
             course_date: "12/2022",
             course_img: "https://img-c.udemycdn.com/course/240x135/4956178_557e_2.jpg"
+        },
+        {
+            course_name: "Learn JavaScript By Creating A Simple Number Game",
+            course_rate: "0.0",
+            course_vote: "0",
+            course_viewer: "1",
+            course_author: "Godson Thomas",
+            course_price: "23.21",
+            // course_sale: "10.53",
+            course_category: "Game development",
+            course_date: "11/2022",
+            course_img: "https://img-c.udemycdn.com/course/240x135/4958404_f6f9_2.jpg"
         }
     ]
 
