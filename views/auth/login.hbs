@@ -4,14 +4,15 @@
     {{!  email}}
     <div class="form-group">
       <label for="full-name" class="full-name">Email</label>
-      <input type="text" id="full-name" placeholder="Enter your email" />
+      <input name = "email" type="text" id="txtEmail" placeholder="Enter your email" />
     </div>
     {{!  password}}
     <div class="form-group">
-      <label for="full-name" class="full-name">Password</label>
-      <input type="text" id="full-name" placeholder="Enter your password" />
+      <label for="full-name" class="password">Password</label>
+      <input name = "password" type="password" id="txtPassword" placeholder="Enter your password" />
       <button class="eyes">
-        <img src="/assets/svg/auth/eyes.svg" alt="eye" />
+        {{!-- <img src="/assets/svg/auth/eyes.svg" alt="eye" /> --}}
+         <i class="bi bi-eye-slash" class = "eyes-customize" id="togglePassword"></i>
       </button>
     </div>
     {{! forgot password button }}
@@ -19,7 +20,7 @@
         password?</a></div>
     {{! Button submit }}
     <div class="submit-btn">
-      <button>Log In</button>
+      <button type = "submit">Log In</button>
     </div>
     {{! create an account if not have yet}}
     <div class="footer">
@@ -43,3 +44,40 @@
     </div>
   </div>
 </form>
+<script>
+  const messageReceived = "{{message}}";
+  if (messageReceived !== "success" && messageReceived != "")
+  {
+    alert(`${messageReceived}`);
+  }
+  else if (messageReceived == "success")
+  {
+    alert("Logged in successfully...");
+    window.location.replace("http://localhost:5000/");
+  }
+  // submit login form
+  $('#login-form').on('submit', (e) => {
+  e.preventDefault(); 
+  const email = $('#txtEmail').val().trim(); 
+  const password = $('#txtPassword').val().trim(); 
+  if (email.length === 0 || password.length === 0) { 
+    alert("Please fill all the fields");
+    return;
+  } 
+  if (password.length < 8) {alert("Password must be at least 8 characters..."); return;}
+  $('#login-form').off('submit').submit();
+  });
+
+  // toggle password visibility
+  $(".eyes").on('click', (e) =>
+  {
+    e.preventDefault();
+    const password = document.querySelector('#txtPassword');
+    // toggle the type attribute
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+    // toggle the eye / eye slash icon
+    this.classList.toggle("bi-eye");
+  })
+</script>
+

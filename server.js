@@ -4,9 +4,9 @@ import app from "./app.js";
 
 dotenv.config({ path: "./config.env" });
 
-// mongoose.connect(process.env.DATABASE).then(() => {
-//     console.log("Connected to DB successfully");
-// });
+mongoose.connect(process.env.DATABASE).then(() => {
+    console.log("Connected to DB successfully");
+});
 
 const port = process.env.PORT || 5000;
 

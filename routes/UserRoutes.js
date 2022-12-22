@@ -3,11 +3,20 @@ import * as authController from "../controllers/authController.js";
 const router = express.Router();
 
 // handle for singup
-router.get("/signup", authController.renderSignupForm);
-router.post("/signup", authController.handleSignupForm);
+router.route("/verify-otp").get(authController.renderOTPForm).post(authController.handleOTPForm);
+router.route('/signup').get(authController.renderSignupForm).post(authController.handleSignupForm);
+router.route("/login")
+.get(authController.renderLoginForm)
+.post(authController.handleLoginForm);
 
-router.get("/login", authController.renderLoginForm);
-router.post("/login", authController.handleLoginForm);
+router.get("/forgot-password", authController.renderForgotPasswordForm);
+
+router.route("/forgot-password").get(authController.renderForgotPasswordForm)
+.post(authController.handleForgotPasswordForm);
+
+router.route("/new-password").get(authController.renderNewPasswordForm)
+.post(authController.handleNewPasswordForm);
+
 
 // router.post("/forgotPassword", authController.forgotPassword);
 // router.patch("/resetPassword", authController.resetPassword);

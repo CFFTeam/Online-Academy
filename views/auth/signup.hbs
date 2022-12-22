@@ -1,44 +1,134 @@
+{{!-- show message --}}
+{{!-- {{#if message }}
+<div class="d-flex {{#ifEquals message "success"}} bg-success {{else}} bg-danger {{/ifEquals}} text-white p-3 top-0 right-50">
+  <div class="toast-body">
+  {{message}}
+  </div>
+  <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+</div>
+{{/if}} --}}
+
+
 <form id="register-form" method="post">
   <div class="form-content">
     <div class="title">Create an account</div>
     {{!  fullname}}
     <div class="form-group">
-      <label for="full-name" class="full-name">Full name</label>
+      <label for="txtFullname" class="full-name">Full name</label>
       <input
+        name = "name"
         type="text"
-        id="full-name"
+        id="txtFullname"
         autofocus
         placeholder="Enter your name"
+        {{!-- value="{{#if historyName }}{{historyName}}{{/if}}" --}}
       />
     </div>
     {{!  email}}
     <div class="form-group">
-      <label for="full-name" class="full-name">Email</label>
-      <input type="text" id="full-name" placeholder="Enter your email" />
+      <label for="txtEmail" class="email">Email</label>
+      <input name = "email" type="text" id="txtEmail" placeholder="Enter your email" 
+      {{!-- value="{{#if historyEmail }}{{historyEmail}}{{/if}}"/> --}}
+      />
     </div>
     {{!  password}}
     <div class="form-group">
-      <label for="full-name" class="full-name">Password</label>
-      <input type="text" id="full-name" placeholder="Enter your password" />
-      <button class="eyes">
-        <img src="/assets/svg/auth/eyes.svg" alt="eye" />
+      <label for="txtPassword" class="password">Password</label>
+      <input name = "password" type="password" id="txtPassword" placeholder="Enter your password" />
+      <button class="password-shown">
+        {{!-- <img src="/assets/svg/auth/eyes.svg" alt="eye" /> --}}
+         <i class="bi bi-eye-slash" class = "eyes-customize" id="togglePassword"></i>
       </button>
     </div>
     {{!  confirm password}}
     <div class="form-group">
-      <label for="full-name" class="full-name">Confirm Password</label>
-      <input type="text" id="full-name" placeholder="Enter your password" />
-      <button class="eyes">
-        <img src="/assets/svg/auth/eyes.svg" alt="eye" />
+      <label for="txtConfirmPassword" class="passworđ-confirm">Confirm Password</label>
+      <input
+        name = "passwordConfirm"
+        type="password"
+        id="txtConfirmPassword"
+        placeholder="Enter your password"
+      />
+      <button class="confirm-password-shown">
+        {{!-- <img src="/assets/svg/auth/eyes.svg" alt="eye" /> --}}
+         <i class="bi bi-eye-slash" class = "eyes-customize" id="togglePassword"></i>
       </button>
     </div>
     {{! Button submit }}
     <div class="submit-btn">
-      <button>Create Account</button>
+      <button type = "submit">Create Account</button>
     </div>
     {{! footer of form }}
     <div class="footer">
       <p>Already have an account? <a href="/account/login">Login</a></p>
     </div>
   </div>
+  <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+</div>
 </form>
+<script>
+  // get message from server
+  const messageReceived = "{{message}}";
+  console.log("messaged received... ", messageReceived);
+  console.log(messageReceived);
+  if (messageReceived !== "success" && messageReceived != "")
+  {
+    alert(`${messageReceived}`);
+  }
+  // submit register form
+  $('#register-form').on('submit', (e) => {
+    e.preventDefault();
+    const fullName = $('#txtFullname').val().trim(); 
+    const email = $('#txtEmail').val().trim(); 
+    const password = $('#txtPassword').val().trim(); 
+    const confirmPassword = $('#txtConfirmPassword').val().trim(); 
+    if (fullName.length === 0 || email.length === 0 || password.length === 0 || confirmPassword.length === 0 ) { 
+      alert("Please fill all the fields");
+      return;
+    } 
+    if (email.length === 0 || !/[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$/.test(email))
+    {
+      alert("Please provide a valid email address.");
+      return;
+    }
+    if (password !== confirmPassword) {alert("Password and Password Confirm must be match."); return;}
+    if (password.length < 8) {alert("Password must be at least 8 characters..."); return;}
+    $('#register-form').off('submit').submit();
+  });
+  // toggle password visibility
+  $(".password-shown").on('click', (e) =>
+  {
+    e.preventDefault();
+    const password = document.querySelector('#txtPassword');
+    // toggle the type attribute
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+    // toggle the eye / eye slash icon
+    this.classList.toggle("bi-eye");
+  })
+  $(".confirm-password-shown").on('click', (e) =>
+  {
+    e.preventDefault();
+    const confirm_password = document.querySelector('#txtConfirmPassword');
+    // toggle the type attribute
+    const type = confirm_password.getAttribute('type') === 'password' ? 'text' : 'password';
+    confirm_password.setAttribute('type', type);
+    // toggle the eye / eye slash icon
+    this.classList.toggle("bi-eye");
+  })
+ 
+</script>
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
