@@ -111,35 +111,39 @@ body {
 
 .course-card > .card-main > .card-footer > .card-price {
     position: relative;
+    display: flex;
+    gap: .3rem;
     align-items: center;
     font-size: 1.8rem;
     font-weight: 500;
     margin-left: .5rem;
 }
 
-.course-card > .card-main > .card-footer > .card-price > .remove-line {
+.course-card > .card-main > .card-footer > .card-price .remove-line {
     position: absolute;
     inset: 0;
     top: 40%;
     left: -.3rem;
-    width: 5rem;
+    right: .3rem;
     border-radius: 10rem;
     height: .2rem;
     background-color: #D70404;
-    rotate: 15deg;
+    rotate: 10deg;
     z-index: 2;
 }
 
-.course-card > .card-main > .card-footer > .card-price > .price-number {
+.course-card > .card-main > .card-footer > .card-price .price-number {
     margin-right: .6rem;
+    font-size: 1.5rem;
 }
 
-.course-card > .card-main > .card-footer > .card-price > .sale-number {
+.course-card > .card-main > .card-footer > .card-price .sale-number {
     color: #E30000;
     margin-left: .6rem;
+    font-size: 1.5rem;
 }
 
-.course-card > .card-main > .card-footer > .card-price > .sale-number > span {
+.course-card > .card-main > .card-footer > .card-price .sale-number > span {
     margin-left: -.3rem;
 }
 

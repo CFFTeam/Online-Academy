@@ -471,7 +471,6 @@
     position: relative;
     max-width: 127rem;
     margin: 3.5rem auto;
-    border-radius: 2rem;
 }
 
 #carouselHotView.carousel.slide > button.carousel-control-prev {
@@ -491,7 +490,6 @@
 }
 
 #carouselHotView.carousel.slide > .carousel-inner {
-    border-radius: 2rem;
     overflow: hidden;
 }
 
@@ -508,7 +506,6 @@
 
 #carouselHotView.carousel.slide > .carousel-inner 
 > .carousel-item.active > div.bd-placeholder-img {
-    border-radius: 2rem;
 } 
 
 #carouselHotView.carousel.slide > .carousel-inner 

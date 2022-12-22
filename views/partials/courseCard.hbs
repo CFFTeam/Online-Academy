@@ -4,7 +4,7 @@
         <button class="button-cs">More Details</button>
     </div>
     <img
-        src="/assets/images/home/course-list/card/courseimage.png"
+        src="{{course_img}}"
         class="course-card-img"
         alt="course-img"
     />
@@ -16,7 +16,7 @@
         </div>
         <div class="card-details-ls">
             <div class="card-details-ls-icon">
-                <span><b>{{course-rate}}</b></span>
+                <span><b>{{course_rate}}</b></span>
                 <span><i
                         class="fa-regular fa-eye"
                     ></i></span>
@@ -47,22 +47,24 @@
         </div>
         <div class="card-footer">
             <span class="card-price">
-                {{#if course-sale}}
-                <span class="remove-line"></span>
+                <div class="position-relative">
+                {{#if course_sale}}
+                    <span class="remove-line"></span>
                 {{/if}}
-                <i class="fa-solid fa-dollar"></i>
-                <span class="price-number">{{course_price}}</span>
-                {{#if course-sale}}
-                <i class="fa-solid fa-arrow-right"></i>
-                <b class="sale-number">
                     <i class="fa-solid fa-dollar"></i>
-                    <span>{{course-sale}}</span>
-                </b>
+                    <span class="price-number">{{course_price}}</span>
+                </div>
+                {{#if course_sale}}
+                    <i class="fa-solid fa-arrow-right"></i>
+                    <b class="sale-number">
+                        <i class="fa-solid fa-dollar"></i>
+                        <span>{{course_sale}}</span>
+                    </b>
                 {{/if}}
             </span>
             <span class="card-clock">
                 <i class="fa-regular fa-clock"></i>
-                <span>{{course-date}}</span>
+                <span>{{course_date}}</span>
             </span>
         </div>
     </div>
