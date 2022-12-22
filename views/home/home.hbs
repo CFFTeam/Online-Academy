@@ -10,36 +10,12 @@
                 data-bs-ride="false"
             >
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        {{> courseCard}}
-                    </div>
-                    <div class="carousel-item">
-                        {{> courseCard}}
-                    </div>
-                    <div class="carousel-item">
-                        {{> courseCard}}
-                    </div>
-                    <div class="carousel-item">
-                        {{> courseCard}}
-                    </div>
-                    <div class="carousel-item">
-                        {{> courseCard}}
-                    </div>
-                    <div class="carousel-item">
-                        {{> courseCard}}
-                    </div>
-                    <div class="carousel-item">
-                        {{> courseCard}}
-                    </div>
-                    <div class="carousel-item">
-                        {{> courseCard}}
-                    </div>
-                    <div class="carousel-item">
-                        {{> courseCard}}
-                    </div>
-                    <div class="carousel-item">
-                        {{> courseCard}}
-                    </div>
+                    {{#each mostviewCourse}}
+                        {{!-- {{course_name}} --}}
+                        <div class="carousel-item">
+                            {{> courseCard this }}
+                        </div>
+                    {{/each}}
                 </div>
                 <button
                     class="carousel-control-prev"
@@ -59,7 +35,7 @@
         </div>
         <script>
             const carouselWidthMostView = $("#carouselMostView.carousel.slide.course-ls > .carousel-inner")[0].scrollWidth;
-            const cardWidthMostView = $("#carouselMostView.carousel.slide.course-ls > .carousel-inner > .carousel-item").width() + 16;
+            const cardWidthMostView = $("#carouselMostView.carousel.slide.course-ls > .carousel-inner > .carousel-item").width() + 20;
             let scrollPositionMostView = 0;
 
             $("#carouselMostView.carousel.slide.course-ls .carousel-control-next").on("click", function () {
@@ -78,7 +54,7 @@
     </div>
 
     <div class="course-list">
-        <h1>Newest</h1>
+        <h1>Newest</h1> {{message}}
         <div class="course-list-wrapper">
             <div
                 id="carouselNewest"
@@ -86,36 +62,12 @@
                 data-bs-ride="false"
             >
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        {{> courseCard}}
-                    </div>
-                    <div class="carousel-item">
-                        {{> courseCard}}
-                    </div>
-                    <div class="carousel-item">
-                        {{> courseCard}}
-                    </div>
-                    <div class="carousel-item">
-                        {{> courseCard}}
-                    </div>
-                    <div class="carousel-item">
-                        {{> courseCard}}
-                    </div>
-                    <div class="carousel-item">
-                        {{> courseCard}}
-                    </div>
-                    <div class="carousel-item">
-                        {{> courseCard}}
-                    </div>
-                    <div class="carousel-item">
-                        {{> courseCard}}
-                    </div>
-                    <div class="carousel-item">
-                        {{> courseCard}}
-                    </div>
-                    <div class="carousel-item">
-                        {{> courseCard}}
-                    </div>
+                    {{#each newestCourse}}
+                        {{!-- {{course_name}} --}}
+                        <div class="carousel-item">
+                            {{> courseCard this }}
+                        </div>
+                    {{/each}}
                 </div>
                 <button
                     class="carousel-control-prev"
@@ -135,7 +87,7 @@
         </div>
         <script>
             const carouselWidth = $("#carouselNewest.carousel.slide.course-ls > .carousel-inner")[0].scrollWidth;
-            const cardWidth = $("#carouselNewest.carousel.slide.course-ls > .carousel-inner > .carousel-item").width() + 16;
+            const cardWidth = $("#carouselNewest.carousel.slide.course-ls > .carousel-inner > .carousel-item").width() + 20;
             let scrollPosition = 0;
 
             $("#carouselNewest.carousel.slide.course-ls .carousel-control-next").on("click", function () {
