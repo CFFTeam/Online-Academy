@@ -7,7 +7,8 @@ import bodyParser from "body-parser";
 import HomeRoutes from "./routes/HomeRoutes.js";
 import UserRoutes from "./routes/UserRoutes.js";
 import PaymentRoutes from "./routes/PaymentRoutes.js";
-
+import helpers from "./views/helpers.js";
+import globalErrorHandler from "./controllers/errorController.js";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 
@@ -30,6 +31,7 @@ app.engine(
     defaultLayout: "default",
     partialsDir: path.join(__dirname, "views/partials/"),
     extname: "hbs",
+    helpers: helpers,
   })
 );
 
@@ -50,5 +52,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/", HomeRoutes);
 app.use("/account", UserRoutes);
 app.use("/payment", PaymentRoutes);
+// error handling middleware
+app.use(globalErrorHandler);
 
 export default app;

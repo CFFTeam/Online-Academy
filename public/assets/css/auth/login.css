@@ -154,3 +154,9 @@ button.eyes {
 .social-media button img {
   width: 3rem;
 }
+
+#togglePassword
+{
+  font-size: 1.4rem;
+  color: #9D9D9D;
+}

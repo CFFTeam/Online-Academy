@@ -1,0 +1,58 @@
+<form id="otp-form" method="post">
+  <a href = "/account/signup" class = "back-btn">
+    <img src="/assets/svg/auth/back.svg" alt="back-icon">
+  </a>
+  <div class="form-content-otp">
+    <div class="title-otp">OTP Verification</div>
+    {{!-- Message --}}
+    <div class = "message">
+        <p>We've sent a verification code to your email 
+        </p>
+        <p>Please enter it below</p>
+    </div>
+    {{!  Vefication code}}
+    <div class="form-group-otp">
+      <input name = "verificationCode" type="text" id="txtCode" placeholder="Enter verification code" />
+    </div>
+    {{! Button submit }}
+    <div class="submit-btn">
+      <button type = "submit">Submit</button>
+    </div>
+    {{! footer of form }}
+  </div>
+</form>
+
+
+<script>
+   // get message from server
+  const messageReceived = "{{message}}";
+  if (messageReceived !== "success-sign-up" && messageReceived != "reset-pwd" && messageReceived != "")
+  {
+    alert(`${messageReceived}`);
+  }
+  else if (messageReceived === "success-sign-up") 
+  {
+    setTimeout(() => {
+      alert("Signed up successfully. Please log in to your account...");
+      window.location.replace("http://localhost:5000/account/login");
+    }, 1500);
+  }
+  else if (messageReceived === "reset-pwd")
+  {
+    window.location.replace("http://localhost:5000/account/new-password");
+  }
+   $('.back-btn').on('click', (e) => {
+        e.preventDefault();
+        history.go(-1);
+    })
+    // submit verification code to server
+    $('#otp-form').on('submit', (e) => {
+      e.preventDefault();
+      const verificationCode = $('#txtCode').val().trim(); 
+      if (verificationCode.length === 0) { 
+        alert("Verification code must not be empty..."  );
+        return;
+      } 
+      $('#otp-form').off('submit').submit();
+    });
+</script>
