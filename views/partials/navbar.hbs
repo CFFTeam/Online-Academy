@@ -1,18 +1,140 @@
 <nav class="navbar">
+    <button title="menu" id="sidebar-open" class="button-cs phone"><i class="fa-solid fa-bars"></i></button>
     <a class="link title" href="./">Academy</a>
     <form class="search-form" action="./" method="GET">
-        <button type="submit" class="search-btn">
+        <button type="submit" title="search" class="search-btn">
             <i class="fa-solid fa-magnifying-glass"></i>
         </button>
         <input class="search-bar" name="q" type="search" placeholder="search for anything" />
     </form>
-    <a class="link" href="./">Home</a>
-    <a class="link" href="#pages">Pages <i class="fa-solid fa-chevron-down"></i></a>
-    <a class="link" href="#courses">Courses <i class="fa-solid fa-chevron-down"></i></a>
-    <a class="link" href="#about">About</a>
+    <a class="link desktop mobile" href="./">Home</a>
+    {{!-- <a class="link mobile" href="#pages">Pages <i class="fa-solid fa-chevron-down"></i></a> --}}
+    <div class="dropdown mobile">
+        <a class="link" href="#courses">Courses <i class="fa-solid fa-chevron-down"></i></a>
+        <div class="categories dropdown-list">
+            {{!-- <a class="dropdown-items"><span>Web Development</span><i class="fa-solid fa-chevron-right"></i></a>
+            <a class="dropdown-items"><span>Mobile Development</span><i class="fa-solid fa-chevron-right"></i></a>
+            <a class="dropdown-items"><span>Game Developement</span><i class="fa-solid fa-chevron-right"></i></a>
+            <a class="dropdown-items"><span>DevOps</span><i class="fa-solid fa-chevron-right"></i></a> --}}
+        </div>
+        <div class="sub-categories dropdown-list">
+            <a class="dropdown-items"><span>Javascript</span></a>
+            <a class="dropdown-items"><span>HTML</span></a>
+            <a class="dropdown-items"><span>CSS</span></a>
+            <a class="dropdown-items"><span>ReactJS</span></a>
+            <a class="dropdown-items"><span>NodeJS</span></a>
+        </div>
+    </div>
+    <a class="link ipad mobile" href="#about">About</a>
     <button class="shopping__cart-btn">
         <img class="icon" src="/assets/svg/home/cart.svg" alt="shopping-cart" />
         <span class="active-dot">1</span>
     </button>
-    <a class="link join-btn" href="#join">Join now</a>
+    <a class="link join-btn mobile" href="/account/login">Join now</a>
+
+    {{!-- SIDEBAR --}}
+    <div class="sidebar-overlay phone"></div>
+    <aside class="sidebar phone">
+        <button id="sidebar-close" title="close" class="close-btn"><i class="fa-solid fa-close"></i></button>
+        <div class="sidebar-main">
+            <a class="sidebar-item" href="/account/login">Login</a>
+            <a class="sidebar-item" href="/account/signup">Register</a>
+            <hr />
+            <b class="heading">Courses</b>
+            <div class="sidebar-group"></div>
+            <hr />
+            <b class="heading">More from Academy</b>
+            <div class="sidebar-group">
+                <a class="sidebar-item" href="#about">About</a>
+            </div>
+            <div class="categories-group"></div>
+        </div>
+    </aside>
 </nav>
+
+<script>
+    $(document).ready(() => {
+        const categoriesList = JSON.parse(`{{{categories}}}`);
+        
+        $("nav.navbar > #sidebar-open ~ .sidebar > .sidebar-main > .sidebar-group:first-child")
+        .children().remove();
+
+        $(".navbar > .dropdown > .categories.dropdown-list")
+        .children().remove();
+
+        categoriesList.map(categories => {
+            $(".navbar > .dropdown > .categories.dropdown-list")
+            .append(`<button data-category="${categories.slug}" class="dropdown-items"><span>${categories.title}</span> <i class="fa-solid fa-chevron-right"></i></button>`);
+
+            $("nav.navbar > #sidebar-open ~ .sidebar > .sidebar-main > .sidebar-group:first")
+            .append(`<button data-category="${categories.slug}" class="sidebar-item"><span>${categories.title}</span> <i class="fa-solid fa-chevron-right"></i></button>`);
+        
+            $(`.navbar > .dropdown > .categories.dropdown-list > button[data-category="${categories.slug}"].dropdown-items`).hover((e) => {
+                const dataCategory = $(e.currentTarget).attr("data-category");
+                
+                $(`.navbar > .dropdown > .categories.dropdown-list > button.dropdown-items`)
+                .removeClass('active');
+
+                $(e.currentTarget).addClass('active');
+
+                $(`.navbar > .dropdown > .sub-categories.dropdown-list`)
+                .attr("data-category", dataCategory);
+
+                $(`.navbar > .dropdown > .sub-categories.dropdown-list`)
+                .addClass("open");
+
+                $(`.navbar > .dropdown > .sub-categories.dropdown-list[data-category="${dataCategory}"]`)
+                .children().remove();
+                
+                const index = categoriesList.findIndex((category => category.slug === dataCategory));
+
+                index > -1 && categoriesList && categoriesList.length && categoriesList[index] && categoriesList[index].categories.length && categoriesList[index].categories.map(el => {
+                    $(`.navbar > .dropdown > .sub-categories.dropdown-list[data-category="${dataCategory}"]`)
+                    .append(`<a class="dropdown-items" href="${el.slug}"><span>${el.content}</span></a>`);
+                })
+            },
+            (e) => {
+            });
+
+            $(`nav.navbar > #sidebar-open ~ .sidebar > .sidebar-main > .sidebar-group:first > button[data-category="${categories.slug}"]`)
+            .on("click", (e) => {
+                const dataCategory = $(e.currentTarget).attr("data-category");
+                $(`nav.navbar > #sidebar-open ~ .sidebar > .sidebar-main > .categories-group`)
+                .attr("data-category", dataCategory);
+
+                $(`nav.navbar > #sidebar-open ~ .sidebar > .sidebar-main > .categories-group[data-category="${dataCategory}"]`)
+                .children().remove();
+                
+                $(`nav.navbar > #sidebar-open ~ .sidebar > .sidebar-main > .categories-group[data-category="${dataCategory}"]`)
+                .append(`<button data-category="${dataCategory}" class="back-btn"><i class="fa-solid fa-chevron-left"></i> <span>Back</span></button>`);
+
+                const index = categoriesList.findIndex((category => category.slug === dataCategory));
+
+                index > -1 && categoriesList && categoriesList.length && categoriesList[index] && categoriesList[index].categories.length && categoriesList[index].categories.map(el => {
+                    $(`nav.navbar > #sidebar-open ~ .sidebar > .sidebar-main > .categories-group`)
+                    .append(`<a class="sidebar-item" href="${el.slug}"><span>${el.content}</span></a>`);
+                })
+
+                $(`nav.navbar > #sidebar-open ~ .sidebar > .sidebar-main > .categories-group`).addClass("open");
+
+                $("nav.navbar > #sidebar-open ~ .sidebar > .sidebar-main > .categories-group > button.back-btn")
+                .on("click", (e) => {
+                    const dataCategory = $(e.currentTarget).attr("data-category");
+                    $(`nav.navbar > #sidebar-open ~ .sidebar > .sidebar-main > .categories-group[data-category="${dataCategory}"]`).removeClass("open");
+
+                    //$("nav.navbar > #sidebar-open ~ .sidebar > .sidebar-main > .categories-group > button.back-btn").off("click");
+                });
+            });
+        });
+    });
+
+    $("nav.navbar > #sidebar-open").on("click", () => {
+        $("nav.navbar > #sidebar-open ~ .sidebar").addClass("open");
+        $("nav.navbar > #sidebar-open ~ .sidebar-overlay").addClass("open");
+    });
+
+    $("nav.navbar > #sidebar-open ~ .sidebar > #sidebar-close").on("click", () => {
+        $("nav.navbar > #sidebar-open ~ .sidebar").removeClass("open");
+        $("nav.navbar > #sidebar-open ~ .sidebar-overlay").removeClass("open");
+    });
+</script>

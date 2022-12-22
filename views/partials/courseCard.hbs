@@ -1,0 +1,69 @@
+<div class="course-card">
+    <i class="fa-regular fa-heart icon"></i>
+    <div class="course-card-overlay">
+        <button class="button-cs">More Details</button>
+    </div>
+    <img
+        src="/assets/images/home/course-list/card/courseimage.png"
+        class="course-card-img"
+        alt="course-img"
+    />
+    <div class="card-main">
+        <h1 class="card-heading">{{course_name}}</h1>
+        <div class="card-author">
+            <i class="fa-solid fa-user-pen"></i>
+            <span>{{course_author}}</span>
+        </div>
+        <div class="card-details-ls">
+            <div class="card-details-ls-icon">
+                <span><b>{{course-rate}}</b></span>
+                <span><i
+                        class="fa-regular fa-eye"
+                    ></i></span>
+                <span><i
+                        class="fa-solid fa-tag"
+                    ></i></span>
+            </div>
+            <div class="card-details-ls-content">
+                <div class="card-details-ls-item">
+                    <span class="flex g-0">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i
+                            class="fa-solid fa-star-half-stroke"
+                        ></i>
+                    </span>
+                    <small>({{course_vote}})</small>
+                </div>
+                <div>
+                    <small>{{course_viewer}} views</small>
+                </div>
+                <div>
+                    <small>{{course_category}}</small>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span class="card-price">
+                {{#if course-sale}}
+                <span class="remove-line"></span>
+                {{/if}}
+                <i class="fa-solid fa-dollar"></i>
+                <span class="price-number">{{course_price}}</span>
+                {{#if course-sale}}
+                <i class="fa-solid fa-arrow-right"></i>
+                <b class="sale-number">
+                    <i class="fa-solid fa-dollar"></i>
+                    <span>{{course-sale}}</span>
+                </b>
+                {{/if}}
+            </span>
+            <span class="card-clock">
+                <i class="fa-regular fa-clock"></i>
+                <span>{{course-date}}</span>
+            </span>
+        </div>
+    </div>
+</div>
