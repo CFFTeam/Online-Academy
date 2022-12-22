@@ -505,10 +505,6 @@
 }
 
 #carouselHotView.carousel.slide > .carousel-inner 
-> .carousel-item.active > div.bd-placeholder-img {
-} 
-
-#carouselHotView.carousel.slide > .carousel-inner 
 > .carousel-item > div.bd-placeholder-img 
 > .lecture-content {
     position: relative;
@@ -564,7 +560,7 @@
 > .lecture-content > .details > .details__heading {
     display: flex;
     gap: 3.5rem;
-    align-items: center;
+    align-items: flex-end;
     width: 100%;
     font-weight: 400;
     font-size: 1.3rem;
@@ -573,8 +569,10 @@
 #carouselHotView.carousel.slide > .carousel-inner 
 > .carousel-item > div.bd-placeholder-img 
 > .lecture-content > .details > .details__heading > b {
+    max-width: 60%;
     font-size: 1.6rem;
     font-weight: 600;
+    overflow: hidden;
 }
 
 #carouselHotView.carousel.slide > .carousel-inner 

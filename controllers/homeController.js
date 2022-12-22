@@ -82,8 +82,9 @@ export const homePage = (req, res) => {
         }
     ];
 
-    const hostCourse = [
+    const hotCourse = [
         {
+            active: true,
             course_name: "Node.js, Express, MongoDB & More: The Complete Bootcamp 2023",
             course_rate: "4.7",
             course_vote: "15.379",
@@ -139,24 +140,9 @@ export const homePage = (req, res) => {
             course_category: "Mobile development",
             course_date: "11/2022",
             course_img: "https://img-c.udemycdn.com/course/240x135/1708340_7108_5.jpg",
-            course_description: "Master Node by building a real-world RESTful API and web app (with authentication, Node.js security, payments & more)",
-            course_duration: "42h 12m total length",
-            course_lessons: " 229 lesssions"
-        },
-        {
-            course_name: "Artificial Intelligence A-Z™: Learn How To Build An AI",
-            course_rate: "4.4",
-            course_vote: "22.001",
-            course_viewer: "190.935",
-            course_author: "Hadelin de Ponteves",
-            course_price: "92.98",
-            course_sale: "12.64",
-            course_category: "Artificial Intelligence",
-            course_date: "12/2022",
-            course_img: "https://img-c.udemycdn.com/course/240x135/1219332_bdd7.jpg",
-            course_description: "Master Node by building a real-world RESTful API and web app (with authentication, Node.js security, payments & more)",
-            course_duration: "42h 12m total length",
-            course_lessons: " 229 lesssions"
+            course_description: "A Complete Guide to the Flutter SDK & Flutter Framework for building native iOS and Android apps",
+            course_duration: "42h 34m total duration",
+            course_lessons: "379 lessons"
         }
     ];
 
@@ -382,5 +368,5 @@ export const homePage = (req, res) => {
         }
     ]
 
-    res.render('home/home', { categories: JSON.stringify(categories), mostviewCourse, newestCourse }); 
+    res.render('home/home', { categories: JSON.stringify(categories), hotCourse, mostviewCourse, newestCourse }); 
 };

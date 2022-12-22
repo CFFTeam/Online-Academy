@@ -33,30 +33,75 @@
         ></button>
     </div>
     <div class="carousel-inner">
-        <div class="carousel-item active">
+        {{#each hotCourse}}
+        <div class="carousel-item{{#if active}} active{{/if}}">
             <div
                 class="bd-placeholder-img bd-placeholder-img-lg w-100 hot-card"
             >
                 <div class="lecture-content">
                     <img
-                        src="/assets/images/home/carousel/carousel1.png"
-                        alt="slide 1"
+                        src="{{course_img}}"
+                        alt="{{course_name}}"
                     />
                     <div class="details">
                         <div class="details__heading">
-                            <b>Xây dựng Website với ReactJS</b>
+                            <b>{{course_name}}</b>
                             <span class="timer ms-auto">
                                 <i class="fa-regular fa-clock"></i>
-                                <span>15-12-2022</span>
+                                <span>{{course_date}}</span>
                             </span>
                             <span class="rates">
-                                <b>4.6</b>
+                                <b>{{course_rate}}</b>
                                 <span class="flex">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star-half-stroke"></i>
+                                    {{#if (gt course_rate 0)}}
+                                        {{#if (gte course_rate 1)}}
+                                        <i class="fa-solid fa-star"></i>
+                                        {{else}}
+                                        <i class="fa-solid fa-star-half-stroke"></i>
+                                        {{/if}}
+                                    {{else}}
+                                        <i class="fa-regular fa-star"></i>
+                                    {{/if}}
+                                    
+                                    {{#if (gt course_rate 1)}}
+                                        {{#if (gte course_rate 2)}}
+                                        <i class="fa-solid fa-star"></i>
+                                        {{else}}
+                                        <i class="fa-solid fa-star-half-stroke"></i>
+                                        {{/if}}
+                                    {{else}}
+                                        <i class="fa-regular fa-star"></i>
+                                    {{/if}}
+
+                                    {{#if (gt course_rate 2)}}
+                                        {{#if (gte course_rate 3)}}
+                                        <i class="fa-solid fa-star"></i>
+                                        {{else}}
+                                        <i class="fa-solid fa-star-half-stroke"></i>
+                                        {{/if}}
+                                    {{else}}
+                                        <i class="fa-regular fa-star"></i>
+                                    {{/if}}
+
+                                    {{#if (gt course_rate 3)}}
+                                        {{#if (gte course_rate 4)}}
+                                        <i class="fa-solid fa-star"></i>
+                                        {{else}}
+                                        <i class="fa-solid fa-star-half-stroke"></i>
+                                        {{/if}}
+                                    {{else}}
+                                        <i class="fa-regular fa-star"></i>
+                                    {{/if}}
+
+                                    {{#if (gt course_rate 4)}}
+                                        {{#if (gte course_rate 5)}}
+                                        <i class="fa-solid fa-star"></i>
+                                        {{else}}
+                                        <i class="fa-solid fa-star-half-stroke"></i>
+                                        {{/if}}
+                                    {{else}}
+                                        <i class="fa-regular fa-star"></i>
+                                    {{/if}}
                                 </span>
                             </span>
                         </div>
@@ -64,13 +109,7 @@
                             <div>
                                 <b>Introduce</b>
                                 <p>
-                                    Khóa học ReactJS từ cơ bản tới nâng cao, kết
-                                    quả của khóa học này là bạn có thể làm hầu
-                                    hết các dự án thường gặp với ReactJS. Cuối
-                                    khóa học này bạn sẽ sở hữu một dự án giống
-                                    Tiktok.com, bạn có thể tự tin đi xin việc
-                                    khi nắm chắc các kiến thức được chia sẻ
-                                    trong khóa học này.
+                                    {{course_description}}
                                 </p>
                             </div>
                             <div class="details__overview">
@@ -78,11 +117,11 @@
                                 <div class="details__overview-ls">
                                     <span class="overview__item">
                                         <i class="fa-solid fa-video"></i>
-                                        <span>28h 07m duration</span>
+                                        <span>{{course_duration}}</span>
                                     </span>
                                     <span class="overview__item">
                                         <i class="fa-solid fa-film"></i>
-                                        <span>Total 119 lessons</span>
+                                        <span>{{course_lessons}}</span>
                                     </span>
                                     <span class="overview__item">
                                         <i class="fa-solid fa-certificate"></i>
@@ -102,237 +141,13 @@
                 </div>
                 <div class="video-review">
                     <img
-                        src="/assets/images/home/carousel/review1.png"
+                        src="{{course_img}}"
                         alt="slide 1"
                     />
                 </div>
             </div>
         </div>
-        <div class="carousel-item">
-            <div
-                class="bd-placeholder-img bd-placeholder-img-lg w-100 hot-card"
-            >
-                <div class="lecture-content">
-                    <img
-                        src="/assets/images/home/carousel/carousel1.png"
-                        alt="slide 1"
-                    />
-                    <div class="details">
-                        <div class="details__heading">
-                            <b>Xây dựng Website với ReactJS</b>
-                            <span class="timer ms-auto">
-                                <i class="fa-regular fa-clock"></i>
-                                <span>15-12-2022</span>
-                            </span>
-                            <span class="rates">
-                                <b>4.6</b>
-                                <span class="flex">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star-half-stroke"></i>
-                                </span>
-                            </span>
-                        </div>
-                        <div class="details__body">
-                            <div>
-                                <b>Introduce</b>
-                                <p>
-                                    Khóa học ReactJS từ cơ bản tới nâng cao, kết
-                                    quả của khóa học này là bạn có thể làm hầu
-                                    hết các dự án thường gặp với ReactJS. Cuối
-                                    khóa học này bạn sẽ sở hữu một dự án giống
-                                    Tiktok.com, bạn có thể tự tin đi xin việc
-                                    khi nắm chắc các kiến thức được chia sẻ
-                                    trong khóa học này.
-                                </p>
-                            </div>
-                            <div class="details__overview">
-                                <b>Overview</b>
-                                <div class="details__overview-ls">
-                                    <span class="overview__item">
-                                        <i class="fa-solid fa-video"></i>
-                                        <span>28h 07m duration</span>
-                                    </span>
-                                    <span class="overview__item">
-                                        <i class="fa-solid fa-film"></i>
-                                        <span>Total 119 lessons</span>
-                                    </span>
-                                    <span class="overview__item">
-                                        <i class="fa-solid fa-certificate"></i>
-                                        <span>Certificate of completion</span>
-                                    </span>
-                                    <span class="overview__item">
-                                        <i
-                                            class="fa-solid fa-mobile-screen"
-                                        ></i>
-                                        <span>Learn on any device</span>
-                                    </span>
-                                </div>
-                            </div>
-                            <a class="button-cs">More Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="video-review">
-                    <img
-                        src="/assets/images/home/carousel/review1.png"
-                        alt="slide 1"
-                    />
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div
-                class="bd-placeholder-img bd-placeholder-img-lg w-100 hot-card"
-            >
-                <div class="lecture-content">
-                    <img
-                        src="/assets/images/home/carousel/carousel1.png"
-                        alt="slide 1"
-                    />
-                    <div class="details">
-                        <div class="details__heading">
-                            <b>Xây dựng Website với ReactJS</b>
-                            <span class="timer ms-auto">
-                                <i class="fa-regular fa-clock"></i>
-                                <span>15-12-2022</span>
-                            </span>
-                            <span class="rates">
-                                <b>4.6</b>
-                                <span class="flex">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star-half-stroke"></i>
-                                </span>
-                            </span>
-                        </div>
-                        <div class="details__body">
-                            <div>
-                                <b>Introduce</b>
-                                <p>
-                                    Khóa học ReactJS từ cơ bản tới nâng cao, kết
-                                    quả của khóa học này là bạn có thể làm hầu
-                                    hết các dự án thường gặp với ReactJS. Cuối
-                                    khóa học này bạn sẽ sở hữu một dự án giống
-                                    Tiktok.com, bạn có thể tự tin đi xin việc
-                                    khi nắm chắc các kiến thức được chia sẻ
-                                    trong khóa học này.
-                                </p>
-                            </div>
-                            <div class="details__overview">
-                                <b>Overview</b>
-                                <div class="details__overview-ls">
-                                    <span class="overview__item">
-                                        <i class="fa-solid fa-video"></i>
-                                        <span>28h 07m duration</span>
-                                    </span>
-                                    <span class="overview__item">
-                                        <i class="fa-solid fa-film"></i>
-                                        <span>Total 119 lessons</span>
-                                    </span>
-                                    <span class="overview__item">
-                                        <i class="fa-solid fa-certificate"></i>
-                                        <span>Certificate of completion</span>
-                                    </span>
-                                    <span class="overview__item">
-                                        <i
-                                            class="fa-solid fa-mobile-screen"
-                                        ></i>
-                                        <span>Learn on any device</span>
-                                    </span>
-                                </div>
-                            </div>
-                            <a class="button-cs">More Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="video-review">
-                    <img
-                        src="/assets/images/home/carousel/review1.png"
-                        alt="slide 1"
-                    />
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div
-                class="bd-placeholder-img bd-placeholder-img-lg w-100 hot-card"
-            >
-                <div class="lecture-content">
-                    <img
-                        src="/assets/images/home/carousel/carousel1.png"
-                        alt="slide 1"
-                    />
-                    <div class="details">
-                        <div class="details__heading">
-                            <b>Xây dựng Website với ReactJS</b>
-                            <span class="timer ms-auto">
-                                <i class="fa-regular fa-clock"></i>
-                                <span>15-12-2022</span>
-                            </span>
-                            <span class="rates">
-                                <b>4.6</b>
-                                <span class="flex">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star-half-stroke"></i>
-                                </span>
-                            </span>
-                        </div>
-                        <div class="details__body">
-                            <div>
-                                <b>Introduce</b>
-                                <p>
-                                    Khóa học ReactJS từ cơ bản tới nâng cao, kết
-                                    quả của khóa học này là bạn có thể làm hầu
-                                    hết các dự án thường gặp với ReactJS. Cuối
-                                    khóa học này bạn sẽ sở hữu một dự án giống
-                                    Tiktok.com, bạn có thể tự tin đi xin việc
-                                    khi nắm chắc các kiến thức được chia sẻ
-                                    trong khóa học này.
-                                </p>
-                            </div>
-                            <div class="details__overview">
-                                <b>Overview</b>
-                                <div class="details__overview-ls">
-                                    <span class="overview__item">
-                                        <i class="fa-solid fa-video"></i>
-                                        <span>28h 07m duration</span>
-                                    </span>
-                                    <span class="overview__item">
-                                        <i class="fa-solid fa-film"></i>
-                                        <span>Total 119 lessons</span>
-                                    </span>
-                                    <span class="overview__item">
-                                        <i class="fa-solid fa-certificate"></i>
-                                        <span>Certificate of completion</span>
-                                    </span>
-                                    <span class="overview__item">
-                                        <i
-                                            class="fa-solid fa-mobile-screen"
-                                        ></i>
-                                        <span>Learn on any device</span>
-                                    </span>
-                                </div>
-                            </div>
-                            <a class="button-cs">More Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="video-review">
-                    <img
-                        src="/assets/images/home/carousel/review1.png"
-                        alt="slide 1"
-                    />
-                </div>
-            </div>
-        </div>
+        {{/each}}
         <div class="hot__course-overlay">
             <div class="lecture-content"></div>
             <div class="video-review">
