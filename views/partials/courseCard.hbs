@@ -8,6 +8,9 @@
         class="course-card-img"
         alt="course-img"
     />
+    {{#if course_status}}
+    <div class="status {{course_status}}">{{course_status}}</div>
+    {{/if}}
     <div class="card-main">
         <h1 class="card-heading">{{course_name}}</h1>
         <div class="card-author">
