@@ -3,8 +3,7 @@ export default function (app) {
         if (typeof(req.session.auth) == 'undefined') {
             req.session.auth = false;
         }
-
-        res.locals.auth = req.session.auth;
+        res.locals.auth = req.session.passport ? true : req.session.auth;
         res.locals.authUser = req.session.passport ? req.session.passport.user : req.session.authUser;
         next();
     });
