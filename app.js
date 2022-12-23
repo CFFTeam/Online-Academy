@@ -6,6 +6,7 @@ import mongoSanitize from "express-mongo-sanitize";
 import bodyParser from "body-parser";
 import HomeRoutes from "./routes/HomeRoutes.js";
 import UserRoutes from "./routes/UserRoutes.js";
+import InstructorRoutes from "./routes/InstructorRoutes.js";
 import PaymentRoutes from "./routes/PaymentRoutes.js";
 import PassportRoutes from "./routes/PassportRoutes.js";
 import helpers from "./views/helpers.js";
@@ -65,6 +66,7 @@ passportAuth(passport);
 app.use("/", HomeRoutes);
 app.use('/auth', PassportRoutes);
 app.use("/account", UserRoutes);
+app.use("/instructor", InstructorRoutes);
 app.use("/payment", PaymentRoutes);
 // error handling middleware
 app.use(globalErrorHandler);

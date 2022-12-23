@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    {{!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"> --}}
+    <title>Document</title>
+    {{!-- BEGIN GLOBAL --}}
+    <script src="https://kit.fontawesome.com/46668bc562.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/assets/bootstrap.min.css" type="text/css" />
+    <script src="/assets/jquery.min.js"></script>
+    <script src="/assets/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="/assets/css/index.css" type="text/css" />
+    {{!-- END GLOBAL --}}
+    {{!-- bootstrap 4 --}}
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    {{!-- CSS --}}
+    <link rel="stylesheet" href="/assets/css/home/home.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/payment/shoppingCart.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/instructor/sidebar.css" type = "text/css" />
+    {{!-- SVG --}}
+    <link rel="stylesheet" href="/assets/css/instructor/sidebar.css" type = "text/css" />
+
+</head>
+<body>
+    {{> navbar }}
+    {{!-- {{> instructor/sidebar }} --}}
+    {{{ body }}}
+    {{> footer }}
+<script>
+   if (window.location.hash === "#_=_"){
+
+    // Check if the browser supports history.replaceState.
+    if (history.replaceState) {
+
+        // Keep the exact URL up to the hash.
+        var cleanHref = window.location.href.split("#")[0];
+
+        // Replace the URL in the address bar without messing with the back button.
+        history.replaceState(null, null, cleanHref);
+
+    } else {
+
+        // Well, you're on an old browser, we can get rid of the _=_ but not the #.
+        window.location.hash = "";
+
+    }
+
+}
+</script>
+</body>
+</html>
