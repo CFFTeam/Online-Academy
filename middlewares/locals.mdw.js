@@ -5,7 +5,7 @@ export default function(app)
             req.session.auth = false;
         }
         res.locals.auth = req.session.auth;
-        res.locals.authUser = req.session.authUser;
+        res.locals.authUser = req.session.passport ? req.session.passport.user : req.session.authUser;
         next();
     })
 }
