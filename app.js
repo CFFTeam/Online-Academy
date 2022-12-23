@@ -8,6 +8,7 @@ import HomeRoutes from "./routes/HomeRoutes.js";
 import UserRoutes from "./routes/UserRoutes.js";
 import PaymentRoutes from "./routes/PaymentRoutes.js";
 import AdminRoutes from "./routes/AdminRoutes.js"
+import PassportRoutes from "./routes/PassportRoutes.js";
 import helpers from "./views/helpers.js";
 import globalErrorHandler from "./controllers/errorController.js";
 import path, { dirname } from "path";
@@ -15,6 +16,8 @@ import { fileURLToPath } from "url";
 import Handlebars from "handlebars";
 
 const app = express();
+import passport from "passport";
+import passportAuth from "./middlewares/passport.js";
 
 // middleware
 import activate_session_middleware from "./middlewares/session.mdw.js";
@@ -47,7 +50,7 @@ app.engine(
     defaultLayout: "default",
     partialsDir: path.join(__dirname, "views/partials/"),
     extname: "hbs",
-    helpers: helpers,
+    helpers: helpers
   })
 );
 
@@ -60,7 +63,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/assets", [
   express.static(path.join(__dirname, "node_modules/bootstrap/dist/css/")),
   express.static(path.join(__dirname, "node_modules/bootstrap/dist/js/")),
-  express.static(path.join(__dirname, "node_modules/jquery/dist/")),
+  express.static(path.join(__dirname, "node_modules/jquery/dist/"))
 ]);
 
 app.use(
@@ -69,13 +72,13 @@ app.use(
   })
 );
 
-
 // trigger middleware functions
 activate_session_middleware(app);
 activate_locals_middleware(app);
 
-
+passportAuth(passport);
 app.use("/", HomeRoutes);
+app.use('/auth', PassportRoutes);
 app.use("/account", UserRoutes);
 app.use("/payment", PaymentRoutes);
 

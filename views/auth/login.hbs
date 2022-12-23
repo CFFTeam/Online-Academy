@@ -10,7 +10,7 @@
     <div class="form-group">
       <label for="full-name" class="password">Password</label>
       <input name = "password" type="password" id="txtPassword" placeholder="Enter your password" />
-      <button class="eyes">
+      <button class="eyes" type = "button">
         {{!-- <img src="/assets/svg/auth/eyes.svg" alt="eye" /> --}}
          <i class="bi bi-eye-slash" class = "eyes-customize" id="togglePassword"></i>
       </button>
@@ -32,19 +32,21 @@
     <p class="social-media-title">Or connect with Social Media</p>
     {{! 3 buttons as 3 social media platform }}
     <div class="social-media">
-      <button class="facebook=-btn">
+        <a href = "/auth/facebook" id="facebook-btn">
         <img src="/assets/svg/auth/facebook.svg" alt="facebook-icon" />
-      </button>
-      <button class="github-btn">
+        </a>
+        <a href = "/auth/github" id="github-btn">
         <img src="/assets/svg/auth/github.svg" alt="github-icon" />
-      </button>
-      <button class="google-btn">
+        </a>
+        <a href = "/auth/google" id = "google-btn">
         <img src="/assets/svg/auth/google.svg" alt="google-icon" />
-      </button>
+        </a>
     </div>
   </div>
 </form>
 <script>
+  // disable 3 buttons type submit social media 
+  $('.facebook-btn').attr("disabled", true);
   const messageReceived = "{{message}}";
   if (messageReceived !== "success" && messageReceived != "")
   {
