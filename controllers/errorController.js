@@ -28,5 +28,5 @@ const handleValidationErrorDB = (err) => {
 
     const layout = res.locals.handlebars ? res.locals.layout || 'default' : 'errors';
 
-    res.render(res.locals.handlebars || 'errors/500', { layout: layout, message: error.message, stack_error: err.stack.replaceAll('\\', '/'), ...res.locals.props});
+    res.render(res.locals.handlebars || 'errors/500', { layout: layout, message: error.message, stack_error: err.stack.replaceAll('\\', '/'), ...res.locals});
 };
