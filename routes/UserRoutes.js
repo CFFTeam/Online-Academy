@@ -18,6 +18,8 @@ router.route("/new-password").get(authController.renderNewPasswordForm)
 .post(authController.handleNewPasswordForm);
 
 
+router.post('/logout', authController.logout);
+
 // router.post("/forgotPassword", authController.forgotPassword);
 // router.patch("/resetPassword", authController.resetPassword);
 // router.patch("/updatePassword", authController.updatePassword);

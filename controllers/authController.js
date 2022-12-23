@@ -5,6 +5,8 @@ import catchAsync from "../utilities/catchAsync.js";
 import sendEmail from "../utilities/sendEmail.js";
 import crypto from 'crypto'
 import jwt from 'jsonwebtoken';
+import validateUser from '../middlewares/auth.mdw.js';
+ 
 
 
 // handle for login (method GET)
@@ -18,11 +20,29 @@ export const handleLoginForm = catchAsync(async (req, res, next) => {
   res.locals.handlebars = 'auth/login';
   res.locals.layout = "auth.hbs";
   res.locals.props = { historyEmail: req.body.email };
+  
   const {email, password }  = req.body;
   const foundUser = await User.findOne({email: email}).select('+password');
   if (!foundUser || !(await foundUser.correctPassword(password, foundUser.password))) {
     return next(new Error('Incorrect email or password. Please try again.'));
   }
+  // set session for request
+  req.session.auth = true;
+  req.session.authUser = {
+    id: foundUser._id,
+    name: foundUser.name,
+    email: foundUser.email,
+    sex: foundUser.sex,
+    role: foundUser.role,
+    photo: foundUser.photo,
+    phoneNumber: foundUser.phoneNumber,
+    birthday: foundUser.birthday,
+    address: foundUser.address,
+    active: foundUser.active
+  }
+ 
+  // const url = req.session.retUrl || '/';
+  // res.redirect(url);
   res.render("auth/login.hbs", { layout: "auth.hbs", message: "success"});
 });
 
@@ -68,7 +88,7 @@ export const handleSignupForm = catchAsync(async (req, res, next, err) => {
 });  
 
 
-export const renderOTPForm = async (req,res) =>
+export const renderOTPForm = (req,res) =>
 {
   res.render('auth/OTP.hbs', {layout: 'auth.hbs'});
 };
@@ -159,6 +179,14 @@ export const handleNewPasswordForm = catchAsync(async (req,res,next) => {
       await foundUser.save();
   })
   res.render("auth/newPassword.hbs", { layout: "auth.hbs", message: "success"});
+});
+
+// log out
+export const logout = catchAsync(async (req,res,next) => {
+  req.session.auth = false;
+  req.session.authUser = null;
+  const url = req.headers.referer || '/';
+  res.redirect(url);
 });
 
 
