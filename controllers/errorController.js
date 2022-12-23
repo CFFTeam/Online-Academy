@@ -19,6 +19,7 @@ const handleValidationErrorDB = (err) => {
 
   // error handler
  export default (err, req, res, next) => {
+    console.log(err);
     let error = err;
     if (err.name === 'CastError') error = handleCastErrorDB(err);
     if (err.name === 'ValidationError') error = handleValidationErrorDB(err);

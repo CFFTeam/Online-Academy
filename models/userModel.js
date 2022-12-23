@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     validate: [validator.isEmail, 'Please provide a valid email']
   },
+  facebookId: String,
   photo: String,
   phoneNumber: String,
   sex: String,
