@@ -1,5 +1,5 @@
 export const homePage = (req, res) => {
-    // res.locals.handlebars = 'home/home';
+    res.locals.handlebars = 'home/home';
 
     const categories = [
         {
