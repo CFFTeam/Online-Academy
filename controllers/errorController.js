@@ -24,5 +24,8 @@ const handleValidationErrorDB = (err) => {
     if (err.name === 'CastError') error = handleCastErrorDB(err);
     if (err.name === 'ValidationError') error = handleValidationErrorDB(err);
     if (err.code === 11000) error = handleDuplicateFieldsDB(err);
-    res.render(res.locals.handlebars, {layout: res.locals.layout || 'default', message: error.message, ...res.locals.props});
+
+    const layout = res.locals.handlebars ? res.locals.layout || 'default' : 'errors';
+
+    res.render(res.locals.handlebars || 'errors/500', { layout: layout, message: error.message, ...res.locals.props});
 };
