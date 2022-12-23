@@ -94,7 +94,7 @@ export const homePage = (req, res) => {
             course_sale: "16.03",
             course_category: "Website development",
             course_date: "11/2022",
-            course_img: "https://img-c.udemycdn.com/course/240x135/1672410_9ff1_5.jpg",
+            course_img: "https://img-c.udemycdn.com/course/750x422/1672410_9ff1_5.jpg",
             course_description: "Master Node by building a real-world RESTful API and web app (with authentication, Node.js security, payments & more)",
             course_duration: "42h 12m total duration",
             course_lessons: "229 lessons"
@@ -109,7 +109,7 @@ export const homePage = (req, res) => {
             course_sale: "12.64",
             course_category: "Website development",
             course_date: "11/2022",
-            course_img: "https://img-c.udemycdn.com/course/480x270/1565838_e54e_16.jpg",
+            course_img: "https://img-c.udemycdn.com/course/750x422/1565838_e54e_16.jpg",
             course_description: "Become a Full-Stack Web Developer with just ONE course. HTML, CSS, Javascript, Node, React, MongoDB, Web3 and DApps",
             course_duration: "65h 33m total duration",
             course_lessons: "490 lessons"
@@ -124,7 +124,7 @@ export const homePage = (req, res) => {
             course_sale: "14.76",
             course_date: "11/2022",
             course_category: "Website development",
-            course_img: "https://img-c.udemycdn.com/course/240x135/851712_fc61_6.jpg",
+            course_img: "https://img-c.udemycdn.com/course/750x422/851712_fc61_6.jpg",
             course_description: "The modern JavaScript course for everyone! Master JavaScript with projects, challenges and theory. Many courses in one!",
             course_duration: "69h 0m total duration",
             course_lessons: "320 lesssions"
@@ -139,7 +139,7 @@ export const homePage = (req, res) => {
             course_sale: "11.80",
             course_category: "Mobile development",
             course_date: "11/2022",
-            course_img: "https://img-c.udemycdn.com/course/240x135/1708340_7108_5.jpg",
+            course_img: "https://img-c.udemycdn.com/course/750x422/1708340_7108_5.jpg",
             course_description: "A Complete Guide to the Flutter SDK & Flutter Framework for building native iOS and Android apps",
             course_duration: "42h 34m total duration",
             course_lessons: "379 lessons"
@@ -157,7 +157,7 @@ export const homePage = (req, res) => {
             course_sale: "12.64",
             course_category: "Website development",
             course_date: "11/2022",
-            course_img: "https://img-c.udemycdn.com/course/480x270/1565838_e54e_16.jpg"
+            course_img: "https://img-c.udemycdn.com/course/750x422/1565838_e54e_16.jpg"
         },
         {
             course_name: "Build Responsive Real-World Websites with HTML and CSS",
@@ -169,7 +169,7 @@ export const homePage = (req, res) => {
             course_sale: "12.64",
             course_date: "11/2022",
             course_category: "Website development",
-            course_img: "https://img-c.udemycdn.com/course/240x135/437398_46c3_10.jpg"
+            course_img: "https://img-c.udemycdn.com/course/750x422/437398_46c3_10.jpg"
         },
         {
             course_name: "React - The Complete Guide (incl Hooks, React Router, Redux)",
@@ -181,7 +181,7 @@ export const homePage = (req, res) => {
             course_sale: "14.76",
             course_category: "Website development",
             course_date: "11/2022",
-            course_img: "https://img-c.udemycdn.com/course/240x135/1362070_b9a1_2.jpg"
+            course_img: "https://img-c.udemycdn.com/course/750x422/1362070_b9a1_2.jpg"
         },
         {
             course_name: "The Complete JavaScript Course 2023: From Zero to Expert!",
@@ -193,7 +193,7 @@ export const homePage = (req, res) => {
             course_sale: "14.76",
             course_date: "11/2022",
             course_category: "Website development",
-            course_img: "https://img-c.udemycdn.com/course/240x135/851712_fc61_6.jpg"
+            course_img: "https://img-c.udemycdn.com/course/750x422/851712_fc61_6.jpg"
         },
         {
             course_name: "Node.js, Express, MongoDB & More: The Complete Bootcamp 2023",
@@ -205,7 +205,7 @@ export const homePage = (req, res) => {
             course_sale: "16.03",
             course_category: "Website development",
             course_date: "11/2022",
-            course_img: "https://img-c.udemycdn.com/course/240x135/1672410_9ff1_5.jpg"
+            course_img: "https://img-c.udemycdn.com/course/750x422/1672410_9ff1_5.jpg"
         },
         {
             course_name: "React Native - The Practical Guide [2023]",
@@ -217,7 +217,7 @@ export const homePage = (req, res) => {
             course_sale: "12.64",
             course_category: "Mobile development",
             course_date: "11/2022",
-            course_img: "https://img-c.udemycdn.com/course/240x135/1436092_2024_4.jpg"
+            course_img: "https://img-c.udemycdn.com/course/750x422/1436092_2024_4.jpg"
         },
         {
             course_name: "Flutter & Dart - The Complete Guide [2023 Edition]",
@@ -229,7 +229,7 @@ export const homePage = (req, res) => {
             course_sale: "11.80",
             course_category: "Mobile development",
             course_date: "11/2022",
-            course_img: "https://img-c.udemycdn.com/course/240x135/1708340_7108_5.jpg"
+            course_img: "https://img-c.udemycdn.com/course/750x422/1708340_7108_5.jpg"
         },
         {
             course_name: "Artificial Intelligence A-Z™: Learn How To Build An AI",
@@ -241,7 +241,7 @@ export const homePage = (req, res) => {
             course_sale: "12.64",
             course_category: "Artificial Intelligence",
             course_date: "12/2022",
-            course_img: "https://img-c.udemycdn.com/course/240x135/1219332_bdd7.jpg"
+            course_img: "https://img-c.udemycdn.com/course/750x422/1219332_bdd7.jpg"
         },
         {
             course_name: "TensorFlow Developer Certificate in 2023: Zero to Mastery",
@@ -253,7 +253,7 @@ export const homePage = (req, res) => {
             course_sale: "11.80",
             course_category: "Artificial Intelligence",
             course_date: "12/2022",
-            course_img: "https://img-c.udemycdn.com/course/240x135/3693164_f87d_3.jpg"
+            course_img: "https://img-c.udemycdn.com/course/750x422/3693164_f87d_3.jpg"
         },
         {
             course_name: "Deep Learning A-Z™: Hands-On Artificial Neural Networks",
@@ -265,7 +265,7 @@ export const homePage = (req, res) => {
             course_sale: "12.64",
             course_category: "Artificial Intelligence",
             course_date: "12/2022",
-            course_img: "https://img-c.udemycdn.com/course/240x135/1151632_de9b.jpg"
+            course_img: "https://img-c.udemycdn.com/course/750x422/1151632_de9b.jpg"
         }
     ];
 
@@ -280,7 +280,7 @@ export const homePage = (req, res) => {
             course_sale: "10.53",
             course_date: "12/2022",
             course_category: "Artificial Intelligence",
-            course_img: "https://img-c.udemycdn.com/course/240x135/4849126_3676_2.jpg"
+            course_img: "https://img-c.udemycdn.com/course/750x422/4849126_3676_2.jpg"
         },
         {
             course_name: "Nodejs API Complete Guide Build a Blog Project API 2023",
@@ -292,7 +292,7 @@ export const homePage = (req, res) => {
             // course_sale: "10.53",
             course_date: "11/2022",
             course_category: "Website development",
-            course_img: "https://img-c.udemycdn.com/course/240x135/4980426_ee5d_3.jpg"
+            course_img: "https://img-c.udemycdn.com/course/750x422/4980426_ee5d_3.jpg"
         },
         {
             course_name: "MERN Stack Real Time Chat App - React , Node , Socket IO",
@@ -304,7 +304,7 @@ export const homePage = (req, res) => {
             // course_sale: "10.53",
             course_category: "Website development",
             course_date: "12/2022",
-            course_img: "https://img-c.udemycdn.com/course/240x135/5015910_2a41_2.jpg"
+            course_img: "https://img-c.udemycdn.com/course/750x422/5015910_2a41_2.jpg"
         },
         {
             course_name: "Data Science & Machine Learning: Naive Bayes in Python",
@@ -316,7 +316,7 @@ export const homePage = (req, res) => {
             course_sale: "10.53",
             course_category: "Artificial Intelligence",
             course_date: "12/2022",
-            course_img: "https://img-c.udemycdn.com/course/240x135/4929064_b97d.jpg"
+            course_img: "https://img-c.udemycdn.com/course/750x422/4929064_b97d.jpg"
         },
         {
             course_name: "End-to-end data science and machine learning project",
@@ -328,7 +328,7 @@ export const homePage = (req, res) => {
             course_sale: "10.53",
             course_category: "Artificial Intelligence",
             course_date: "11/2022",
-            course_img: "https://img-c.udemycdn.com/course/240x135/3681724_0b88_2.jpg"
+            course_img: "https://img-c.udemycdn.com/course/750x422/3681724_0b88_2.jpg"
         },
         {
             course_name: "Python All In-One 2023 ™️ -Everything You'll Ever Need",
@@ -340,7 +340,7 @@ export const homePage = (req, res) => {
             course_sale: "10.53",
             course_category: "Web development",
             course_date: "12/2022",
-            course_img: "https://img-c.udemycdn.com/course/240x135/4929652_63c4_8.jpg"
+            course_img: "https://img-c.udemycdn.com/course/750x422/4929652_63c4_8.jpg"
         },
         {
             course_name: "Create E-commerce Web Application Using Node JS",
@@ -352,7 +352,7 @@ export const homePage = (req, res) => {
             course_sale: "10.53",
             course_category: "Website development",
             course_date: "11/2022",
-            course_img: "https://img-c.udemycdn.com/course/240x135/4977502_ac7a.jpg"
+            course_img: "https://img-c.udemycdn.com/course/750x422/4977502_ac7a.jpg"
         },
         {
             course_name: "Modern MERN Stack | React Node Express MongoDB",
@@ -364,7 +364,7 @@ export const homePage = (req, res) => {
             // course_sale: "10.53",
             course_category: "Website development",
             course_date: "11/2022",
-            course_img: "https://img-c.udemycdn.com/course/240x135/4835930_d67c_4.jpg"
+            course_img: "https://img-c.udemycdn.com/course/750x422/4835930_d67c_4.jpg"
         },
         {
             course_name: "React JS from Zero to Hero",
@@ -376,7 +376,7 @@ export const homePage = (req, res) => {
             // course_sale: "10.53",
             course_category: "Website development",
             course_date: "12/2022",
-            course_img: "https://img-c.udemycdn.com/course/240x135/4956178_557e_2.jpg"
+            course_img: "https://img-c.udemycdn.com/course/750x422/4956178_557e_2.jpg"
         },
         {
             course_name: "Learn JavaScript By Creating A Simple Number Game",
@@ -388,7 +388,7 @@ export const homePage = (req, res) => {
             // course_sale: "10.53",
             course_category: "Game development",
             course_date: "11/2022",
-            course_img: "https://img-c.udemycdn.com/course/240x135/4958404_f6f9_2.jpg"
+            course_img: "https://img-c.udemycdn.com/course/750x422/4958404_f6f9_2.jpg"
         }
     ]
 
