@@ -13,6 +13,99 @@
     z-index: 10;
 }
 
+.navbar > .user-dropdown > .avatar {
+    position: relative;
+    width: 5rem;
+    height: 5rem;
+    overflow: hidden;
+    border-radius: 50%;
+    border: none;
+    margin-left: 4rem;
+}
+
+.navbar > .user-dropdown {
+    position: relative;
+}
+
+.navbar > .user-dropdown .no-avatar { 
+    font-size: 4rem;
+}
+
+.navbar > .user-dropdown > .user-dropdown-list { 
+    position: absolute;
+    right: 0;
+    top: 100%;
+    padding: .5rem 0rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .15s ease-in-out;
+}
+
+.navbar > .user-dropdown > .user-dropdown-list > .user-box {
+    width: 26rem;
+    border-radius: .5rem;
+    padding: 1.5rem 1rem;
+    background-color: white;
+    box-shadow: 0rem 0rem .4rem 0rem rgba(0, 0, 0, .15);
+}
+
+.navbar > .user-dropdown:hover > .user-dropdown-list {
+    opacity: 1;
+    visibility: visible;
+}
+
+.navbar > .user-dropdown > .user-dropdown-list > .user-box hr {
+    width: 80%;
+    margin: auto;
+    padding: .5rem 0rem;
+}
+
+.navbar > .user-dropdown > .user-dropdown-list > .user-box > .link.user-details { 
+    padding-bottom: 1.5rem;
+}
+
+.navbar > .user-dropdown > .user-dropdown-list > .user-box > .link.user-details > .no-avatar {
+    background-color: transparent;
+    font-size: 2rem;
+}
+
+.navbar > .user-dropdown > .user-dropdown-list > .user-box > .link.user-details > .name {
+    max-width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.navbar > .user-dropdown > .user-dropdown-list > .user-box > .link {
+    padding: .8rem 2.5rem;
+    color: #535353;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    gap: 1.5rem;
+    font-size: 1.4rem;
+}
+
+.navbar > .user-dropdown > .user-dropdown-list > .user-box > .link i:first-child {
+    font-size: 1.6rem;
+    overflow: hidden;
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: #f3f3f3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.navbar > .user-dropdown > .user-dropdown-list > .user-box > .link > span {
+    margin-right: auto;
+}
+
+.navbar > .user-dropdown > .user-dropdown-list > .user-box > .link:hover,
+.navbar > .user-dropdown > .user-dropdown-list > .user-box > .link:hover i {
+    color: #007C3D;
+}
+
 .navbar .link {
     display: flex;
     align-items: center;
@@ -181,6 +274,10 @@
 }
 
 @media only screen and (max-width: 816px) {
+    .phone {
+        display: inline-block !important;
+    }
+    
     .mobile {
         display: none !important;
     }
@@ -279,6 +376,19 @@
     font-weight: 500;
 }
 
+.sidebar .sidebar-item-profile {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 0rem 3rem;
+    margin: 1rem 0rem;
+}
+
+.sidebar .sidebar-item-profile > i:first-child {
+    font-size: 2.8rem;
+    color: #4BA675;
+}
+
 .sidebar > .sidebar-main > .heading {
     font-weight: 600;
     color: #525252;
@@ -302,13 +412,33 @@
     box-shadow: 0rem .1rem .4rem 0rem rgba(0, 0, 0, .3);
 }
 
+.sidebar > .sidebar-main > .user-details { 
+    display: flex;
+    align-items: center; 
+    padding: 0rem 2.5rem;
+    padding-bottom: 1.5rem;
+    border: none;
+    gap: 1.5rem;
+} 
+
+.sidebar > .sidebar-main > .user-details > .no-avatar {
+    font-size: 3.5rem;
+}
+
+.sidebar > .sidebar-main > .user-details > .name { 
+    margin-right: auto;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+} 
+
 .sidebar > .sidebar-main > .sidebar-group { 
     display: flex;
     flex-direction: column;
     margin-bottom: 2rem;
 }
 
-.sidebar > .sidebar-main > .categories-group {
+.sidebar > .sidebar-main > .view-group {
     position: absolute;
     background-color: white;
     inset: 0;
@@ -321,24 +451,24 @@
     overflow: hidden;
 }
 
-.sidebar > .sidebar-main > .categories-group > a {
+.sidebar > .sidebar-main > .view-group > a {
     white-space: nowrap;
 }
 
-.sidebar.open > .sidebar-main > .categories-group.open {
+.sidebar.open > .sidebar-main > .view-group.open {
     left: 0%;
     opacity: 1;
     visibility: visible;
 }
 
 .sidebar > .sidebar-main > .sidebar-group > .sidebar-item,
-.sidebar > .sidebar-main > .categories-group > .sidebar-item {
+.sidebar > .sidebar-main > .view-group > .sidebar-item {
     display: flex;
     justify-content: space-between;
     text-transform: capitalize;
 }
 
-.sidebar > .sidebar-main > .categories-group > .back-btn {
+.sidebar > .sidebar-main > .view-group > .back-btn {
     background-color: whitesmoke;
     color: #007C3D;
     font-weight: 600;

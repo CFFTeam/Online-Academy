@@ -37,7 +37,7 @@ app.engine(
     defaultLayout: "default",
     partialsDir: path.join(__dirname, "views/partials/"),
     extname: "hbs",
-    helpers: helpers,
+    helpers: helpers
   })
 );
 
@@ -50,17 +50,15 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/assets", [
   express.static(path.join(__dirname, "node_modules/bootstrap/dist/css/")),
   express.static(path.join(__dirname, "node_modules/bootstrap/dist/js/")),
-  express.static(path.join(__dirname, "node_modules/jquery/dist/")),
+  express.static(path.join(__dirname, "node_modules/jquery/dist/"))
 ]);
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-
 // trigger middleware functions
 activate_session_middleware(app);
 activate_locals_middleware(app);
-
 
 app.use("/", HomeRoutes);
 app.use("/account", UserRoutes);
