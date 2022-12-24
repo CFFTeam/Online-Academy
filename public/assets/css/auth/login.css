@@ -141,17 +141,19 @@ button.eyes {
   gap: 1rem;
 }
 
-.social-media button {
+.social-media a {
   padding: 0.2rem 0rem 2.4rem 0rem;
   border: none;
   background-color: transparent;
 }
 
-.social-media button:first-child img {
+.social-media a:first-child img {
   width: 3.6rem;
+  height: 4rem;
+  margin-top: -0.5rem;
 }
 
-.social-media button img {
+.social-media a img {
   width: 3rem;
 }
 

@@ -57,7 +57,7 @@ export const handleSignupForm = catchAsync(async (req, res, next, err) => {
   res.locals.layout = "auth.hbs";
   res.locals.props = {
     historyName: req.body.name,
-     historyEmail: req.body.email
+    historyEmail: req.body.email
   }
   // Find user by email to check it existed or not.
   const foundUser = await User.findOne({email: req.body.email});
@@ -155,7 +155,6 @@ export const handleForgotPasswordForm = catchAsync(async (req, res, next, err) =
 });
 
 
-
 export const renderNewPasswordForm = async (req,res) => {
   res.render('auth/newPassword.hbs', {layout: 'auth.hbs'});
 }
@@ -168,9 +167,6 @@ export const handleNewPasswordForm = catchAsync(async (req,res,next) => {
     if (err) return next(err);
       const {email} = decoded;
       const foundUser = await User.findOne({email: email});
-      // console.log("decode ra ne: ", decoded);
-      // console.log("password cua no: ", req.body.password);
-      // console.log("password real: ", foundUser.password);
       foundUser.password = req.body.password;
       foundUser.userVerifyToken = undefined;
       foundUser.passwordResetExpires = undefined;
@@ -191,8 +187,6 @@ export const logout = catchAsync(async (req,res,next) => {
 
 
 // export const signup = (req, res) => {};
-
 // export const forgotPassword = (req, res) => {};
 // export const resetPassword = (req, res) => {};
-
 // export const updatePassword = (req, res) => {};

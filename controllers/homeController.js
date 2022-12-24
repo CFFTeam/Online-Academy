@@ -1,6 +1,5 @@
 export const homePage = (req, res) => {
     res.locals.handlebars = 'home/home';
-
     const categories = [
         {
             slug: "web-development",
