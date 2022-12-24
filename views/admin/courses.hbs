@@ -19,10 +19,7 @@
         Select category
       </button>
       <div class="dropdown-menu">
-          <a
-            class="dropdown-item"
-            href="/admin/courses"
-          >All categories</a>
+        <a class="dropdown-item" href="/admin/courses">All categories</a>
         {{#each this.category}}
           <a
             class="dropdown-item"
@@ -46,7 +43,7 @@
     {{#each this.courses}}
       <tr>
         <td class="id">{{_id}}</td>
-        <td class="name">{{category}}</td> 
+        <td class="name">{{category}}</td>
         <td class="name">{{name}}</td>
 
         <td
@@ -77,14 +74,16 @@
 
         <!-- Modal Header -->
         <div class="modal-header" style="border:none; padding: 1rem 0 0 1rem;">
-          <h4 style="color:#00A551; font-weight: 700;margin: 0.5rem;">Detail</h4>
+          <h4
+            style="color:#00A551; font-weight: 700;margin: 0.5rem;"
+          >Detail</h4>
         </div>
 
         <!-- Modal body -->
         <div class="modal-body" style="margin: 0 auto 1rem auto; padding: 0;">
           <table class="not">
-            <br>
-              <td><b>ID: </td></b></td>
+            <tr>
+              <td><b>ID: </b></td>
               <td>1 </td>
             </tr>
             <tr>
@@ -105,12 +104,14 @@
             </tr>
             <tr>
               <td><b>Rate:</b> </td>
-              <td style="display: flex; align-items: center; justify-content: space-between;">
+              <td
+                style="display: flex; align-items: center; justify-content: space-between;"
+              >
                 <div>4.7</div>
                 {{#times 5}}
-                <div>
-                  <img src="/assets/svg/admin/star.svg" alt="star-icon" />
-                </div>
+                  <div>
+                    <img src="/assets/svg/admin/star.svg" alt="star-icon" />
+                  </div>
                 {{/times}}
                 <div>(15.279)</div>
               </td>
