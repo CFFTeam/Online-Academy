@@ -24,7 +24,6 @@ import passportAuth from "./middlewares/passport.js";
 import activate_session_middleware from "./middlewares/session.mdw.js";
 import activate_locals_middleware from "./middlewares/locals.mdw.js";
 
-
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const liveReloadServer = livereload.createServer();
@@ -69,7 +68,7 @@ app.use("/assets", [
 
 app.use(
   express.urlencoded({
-    extended: true, 
+    extended: true 
   })
 );
 
