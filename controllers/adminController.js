@@ -104,7 +104,12 @@ export const renderTeachers = catchAsync(async (req, res) => {
       name: "Jonas Schmedtmann",
     },
   ];
-  res.render("admin/teachers.hbs", { teachers: a, layout: "admin.hbs" });
+  const allCategories = await Category.find().lean();
+  res.render("admin/teachers.hbs", {
+    teachers: a,
+    category: allCategories,
+    layout: "admin.hbs",
+  });
 });
 
 export const addTeachers = catchAsync(async (req, res) => {

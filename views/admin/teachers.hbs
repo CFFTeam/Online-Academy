@@ -9,8 +9,13 @@
         <input type="text" placeholder="Search" />
       </label>
     </div>
-    <button class="but" style="margin: 1rem 0 0 0;">
-      <a href="#" style="text-decoration: none; color: white; font-weigth: 600;">Add new</a>
+    <button
+      class="but"
+      data-toggle="modal"
+      data-target="#addTeacher"
+      style="margin: 1rem 0 0 0;"
+    >
+      <p style="margin: 0;">Add new</p>
     </button>
 
   </div>
@@ -47,23 +52,21 @@
 
         </td>
 
-        <td
-          style="text-align: center; padding: 0 1rem;"
-        >
-        <a href="teachers/ban/{{_id}}">
-          <svg
-            width="25"
-            height="25"
-            viewBox="0 0 40 40"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M28.6875 32.2266L7.77344 11.3125C6.02344 13.7578 5 16.7578 5 20C5 28.2812 11.7188 35 20 35C23.2422 35 26.2422 33.9766 28.6875 32.2266ZM32.2266 28.6875C33.9766 26.2422 35 23.2422 35 20C35 11.7188 28.2812 5 20 5C16.7578 5 13.7578 6.02344 11.3125 7.77344L32.2266 28.6875ZM40 20C40 31.0469 31.0469 40 20 40C8.95313 40 0 31.0469 0 20C0 8.95313 8.95313 0 20 0C31.0469 0 40 8.95313 40 20Z"
-              fill="black"
-            ></path>
-          </svg>
-        </a>
+        <td style="text-align: center; padding: 0 1rem;">
+          <a href="teachers/ban/{{_id}}">
+            <svg
+              width="25"
+              height="25"
+              viewBox="0 0 40 40"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M28.6875 32.2266L7.77344 11.3125C6.02344 13.7578 5 16.7578 5 20C5 28.2812 11.7188 35 20 35C23.2422 35 26.2422 33.9766 28.6875 32.2266ZM32.2266 28.6875C33.9766 26.2422 35 23.2422 35 20C35 11.7188 28.2812 5 20 5C16.7578 5 13.7578 6.02344 11.3125 7.77344L32.2266 28.6875ZM40 20C40 31.0469 31.0469 40 20 40C8.95313 40 0 31.0469 0 20C0 8.95313 8.95313 0 20 0C31.0469 0 40 8.95313 40 20Z"
+                fill="black"
+              ></path>
+            </svg>
+          </a>
         </td>
 
         <td
@@ -122,7 +125,7 @@
   </table>
   <div class="center">
     <div class="pagination">
-      <a href="#"><</a>
+      <a href="#"></a>
       <a href="#">1</a>
       <a href="#" class="active">2</a>
       <a href="#">3</a>
@@ -145,7 +148,7 @@
         </div>
 
         <!-- Modal body -->
-        <div class="modal-body" style="margin: 0 auto 2rem auto; padding: 0;">
+        <div class="modal-body" style="margin: 0 auto 1rem auto; padding: 0;">
           <table class="not">
             <tr>
               <td><b>ID: </b></td>
@@ -200,17 +203,73 @@
     </div>
   </div>
 
+  <div class="modal" id="addTeacher">
+    <div
+      class="modal-dialog"
+      style="top: 50% !important; transform: translateY(-60%) !important"
+    >
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header" style="border:none; padding: 1rem 0 0 1rem;">
+          <h4 style="color:#00A551; font-weight: 700;margin: 0.5rem;">Add
+            Teacher</h4>
+        </div>
+
+        <!-- Modal body -->
+        <div
+          class="modal-body"
+          style="margin: 1rem 1.5rem 1rem 1.5rem; padding: 0;"
+        >
+          <form method="post" style="margin: 0;">
+
+            <p style="margin-bottom: 0.3rem; font-weight: 600;">Name</p>
+            <input
+              style="width: 100%; padding: 0.5rem; height: 2.2rem; margin-bottom: 0.5rem;"
+            />
+
+            <p style="margin-bottom: 0.3rem; font-weight: 600;">Email</p>
+            <input
+              style="width: 100%; padding: 0.5rem; height: 2.2rem; margin-bottom: 0.5rem;"
+            />
+
+            <p style="margin-bottom: 0.3rem; font-weight: 600;">Password</p>
+            <input
+              style="width: 100%; padding: 0.5rem; height: 2.2rem; margin-bottom: 0.5rem;"
+            />
+
+            <p style="margin-bottom: 0.3rem; font-weight: 600;">Introduction</p>
+            <textarea
+              style="width: 100%; padding: 0.5rem; height: 7rem; margin-bottom: 0.5rem; resize:none; border-radius: 5px; border: none; box-shadow: 2px 2px 8px #888888;"
+            ></textarea>
+
+            <button
+              class="but"
+              data-toggle="modal"
+              data-target="#addTeacher"
+              style="margin: 1rem auto 0 auto; display: block;"
+            >
+              <p style="margin: 0;">Save</p>
+            </button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
   <script>
-    $('#teacher').on('click','.edit',function() { 
-      const id=$(this).siblings('.id').text();
+    $('#teacher').on('click','.edit',function() { const
+    id=$(this).siblings('.id').text();
     if($(this).siblings('.name').find('input').length){
     $(this).siblings('.name').text($(this).siblings('.name').find('input').val());
-    } 
-    else { var content=$(this).siblings('.name').text(); 
-    var actionURL="teachers/edit/"+id; 
-    var form=$("<form/>", { method: 'POST',action: actionURL, style: 'margin: 0; padding: 0', } ).append($("<input>", {
-    type:'text', name:'title', class:"editname", value: content, }
-    ).val(content)).append($("<input>", { type:'submit', class:"butname", value:"Save" })) 
-    $(this).siblings('.name').text('').append(form); } });
+    } else { var content=$(this).siblings('.name').text(); var
+    actionURL="teachers/edit/"+id; var form=$("<form/>", { method:
+    'POST',action: actionURL, style: 'margin: 0; padding: 0', }
+    ).append($("<input>", { type:'text', name:'title', class:"editname", value:
+    content, } ).val(content)).append($("<input>", { type:'submit',
+    class:"butname", value:"Save" }))
+    $(this).siblings('.name').text('').append(form); } }); imgInp.onchange = evt
+    => { const [file] = imgInp.files if (file) { blah.src =
+    URL.createObjectURL(file) } }
   </script>
 </div>
