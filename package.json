@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "nodemon server.js -e js,hbs,css,svg",
+    "crawler": "node devtools/crawler",
     "test": "node test.js"
   },
   "author": "CFF",
@@ -31,6 +32,7 @@
     "validator": "^13.7.0"
   },
   "devDependencies": {
+    "cheerio": "^1.0.0-rc.12",
     "connect-livereload": "^0.6.1",
     "eslint": "^8.25.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -42,6 +44,7 @@
     "eslint-plugin-react": "^7.31.10",
     "livereload": "^0.9.3",
     "nodemon": "^2.0.20",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "request-promise": "^4.2.6"
   }
 }
