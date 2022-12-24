@@ -5,7 +5,7 @@ import CategoryDetail from "../models/categoryDetailModel.js";
 
 import url from "url";
 
-//Categories
+//-----------------Categories--------------
 export const renderCategories = catchAsync(async (req, res) => {
   const categoryDetail = await CategoryDetail.find().lean();
   res.render("admin/categories.hbs", {
@@ -21,7 +21,6 @@ export const addCategories = catchAsync(async (req, res) => {
     categories: categoryDetail,
     layout: "admin.hbs",
   });
-  
 });
 
 export const editCategories = catchAsync(async (req, res) => {
@@ -37,12 +36,14 @@ export const editCategories = catchAsync(async (req, res) => {
 export const deleteCategories = catchAsync(async (req, res) => {
   console.log(req.params.id);
   console.log("delete");
-  const deleteCategoryData = await CategoryDetail.deleteOne({ _id: req.params.id }).lean();
+  const deleteCategoryData = await CategoryDetail.deleteOne({
+    _id: req.params.id,
+  }).lean();
   res.redirect("/admin/categories");
 });
 
-//Courses
-export const renderCourses = async (req, res) => {
+//-------------------Courses------------------------
+export const renderCourses = catchAsync(async (req, res) => {
   const allCourses = await Course.find().lean();
   const allCategories = await Category.find().lean();
   res.render("admin/courses.hbs", {
@@ -50,9 +51,9 @@ export const renderCourses = async (req, res) => {
     category: allCategories,
     layout: "admin.hbs",
   });
-};
+});
 
-export const renderCoursesByCategories = async (req, res) => {
+export const renderCoursesByCategories = catchAsync(async (req, res) => {
   const categoryName = await Category.findOne({
     slug: url.parse(req.url, true).query.slug,
   });
@@ -66,10 +67,62 @@ export const renderCoursesByCategories = async (req, res) => {
     category: allCategories,
     layout: "admin.hbs",
   });
-};
+});
 
-export const deleteCourses = async (req, res) => {
-  console.log(req.params.id);
-  console.log("delete");
+export const deleteCourses = catchAsync(async (req, res) => {
+  const deleteCourses = await Course.deleteOne({ _id: req.params.id }).lean();
   res.redirect("/admin/courses");
-};
+});
+
+//-------------------Teacher------------------------
+export const renderTeachers = catchAsync(async (req, res) => {
+  //const allTeachers = await Teacher.find().lean();
+  const a = [
+    {
+      _id: 1,
+      name: "Jonas Schmedtmann",
+    },
+    {
+      _id: 1,
+      name: "Jonas Schmedtmann",
+    },
+    {
+      _id: 1,
+      name: "Jonas Schmedtmann",
+    },
+    {
+      _id: 1,
+      name: "Jonas Schmedtmann",
+    },
+
+    {
+      _id: 1,
+      name: "Jonas Schmedtmann",
+    },
+    {
+      _id: 1,
+      name: "Jonas Schmedtmann",
+    },
+  ];
+  res.render("admin/teachers.hbs", { teachers: a, layout: "admin.hbs" });
+});
+
+export const addTeachers = catchAsync(async (req, res) => {
+  //const allTeachers = await Teacher.find().lean();
+  res.redirect("/admin/teachers");
+});
+
+export const editTeachers = catchAsync(async (req, res) => {
+  //const allTeachers = await Teacher.find().lean();
+  res.redirect("/admin/teachers");
+});
+
+export const banTeachers = catchAsync(async (req, res) => {
+  //const allTeachers = await Teacher.find().lean();
+  res.redirect("/admin/teachers");
+});
+
+export const deleteTeachers = catchAsync(async (req, res) => {
+  //const allTeachers = await Teacher.find().lean();
+  res.redirect("/admin/teachers");
+});
