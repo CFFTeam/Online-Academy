@@ -18,6 +18,11 @@ router.post("/teachers/edit/:id", adminController.editTeachers);
 router.get("/teachers/ban/:id", adminController.banTeachers);
 router.get("/teachers/delete/:id",adminController.deleteTeachers);
 
+//Students
+router.route("/students").get(adminController.renderStudents).post(adminController.addStudents);
+router.post("/students/edit/:id", adminController.editStudents);
+router.get("/students/ban/:id", adminController.banStudents);
+router.get("/students/delete/:id",adminController.deleteStudents);
 
 export default router;
 

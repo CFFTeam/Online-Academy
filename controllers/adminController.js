@@ -131,3 +131,62 @@ export const deleteTeachers = catchAsync(async (req, res) => {
   //const allTeachers = await Teacher.find().lean();
   res.redirect("/admin/teachers");
 });
+
+
+//-------------------Student------------------------
+export const renderStudents = catchAsync(async (req, res) => {
+  //const allStudents = await Student.find().lean();
+  const a = [
+    {
+      _id: 1,
+      name: "Jonas Schmedtmann",
+    },
+    {
+      _id: 1,
+      name: "Jonas Schmedtmann",
+    },
+    {
+      _id: 1,
+      name: "Jonas Schmedtmann",
+    },
+    {
+      _id: 1,
+      name: "Jonas Schmedtmann",
+    },
+
+    {
+      _id: 1,
+      name: "Jonas Schmedtmann",
+    },
+    {
+      _id: 1,
+      name: "Jonas Schmedtmann",
+    },
+  ];
+  const allCategories = await Category.find().lean();
+  res.render("admin/students.hbs", {
+    students: a,
+    category: allCategories,
+    layout: "admin.hbs",
+  });
+});
+
+export const addStudents = catchAsync(async (req, res) => {
+  //const allTeachers = await Teacher.find().lean();
+  res.redirect("/admin/students");
+});
+
+export const editStudents = catchAsync(async (req, res) => {
+  //const allTeachers = await Teacher.find().lean();
+  res.redirect("/admin/students");
+});
+
+export const banStudents = catchAsync(async (req, res) => {
+  //const allTeachers = await Teacher.find().lean();
+  res.redirect("/admin/students");
+});
+
+export const deleteStudents = catchAsync(async (req, res) => {
+  //const allTeachers = await Teacher.find().lean();
+  res.redirect("/admin/students");
+});
