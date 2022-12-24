@@ -8,6 +8,8 @@ import HomeRoutes from "./routes/HomeRoutes.js";
 import UserRoutes from "./routes/UserRoutes.js";
 import InstructorRoutes from "./routes/InstructorRoutes.js";
 import PaymentRoutes from "./routes/PaymentRoutes.js";
+import UserProfileRoutes from "./routes/UserProfileRoutes.js";
+import WishlistRoutes from "./routes/WishlistRoutes.js";
 import AdminRoutes from "./routes/AdminRoutes.js"
 import PassportRoutes from "./routes/PassportRoutes.js";
 import helpers from "./views/helpers.js";
@@ -68,7 +70,7 @@ app.use("/assets", [
 
 app.use(
   express.urlencoded({
-    extended: true 
+    extended: true
   })
 );
 
@@ -82,6 +84,8 @@ app.use('/auth', PassportRoutes);
 app.use("/account", UserRoutes);
 app.use("/instructor", InstructorRoutes);
 app.use("/payment", PaymentRoutes);
+app.use("/user-profile", UserProfileRoutes);
+app.use("/wishlist", WishlistRoutes);
 
 //admin
 app.use("/admin", AdminRoutes);
