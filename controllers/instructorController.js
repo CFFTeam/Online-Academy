@@ -122,5 +122,65 @@ export const getMyCourses = function (req,res,next) {
         course_list: list,
         empty: list.length === 0
 });
-
 }
+
+export const addCourseDescription = (req,res) => {
+}
+
+export const addCourseContent = (req,res) => {
+    const lectures_empty = {
+        sections: [
+        ]
+    };
+    const lectures = {
+        sections: [
+            {
+                title: "Section 1",
+                lessons:[
+                    {
+                        title: "About the course"
+                    },
+                    {
+                        title: "What You'll Get in This Course"
+                    },
+                    {
+                        title: "Download the course syllabus"
+                    },
+                    {
+                        title: "Prepare your workspace"
+                    }
+                ]
+            },
+            {
+                title: "Section 2",
+                lessons:[
+                    {
+                        title: "About the course"
+                    },
+                    {
+                        title: "What You'll Get in This Course"
+                    },
+                    {
+                        title: "Download the course syllabus"
+                    },
+                    {
+                        title: "Prepare your workspace"
+                    }
+                ]
+            },
+            {
+                title: "Section 3",
+                lessons:[
+                ]
+            }
+        ]
+    };
+    res.render('instructor/addCourseContent', {
+        layout: "instructor",
+        sections: lectures.sections,
+       // sections_empty: lectures.sections.length == 0
+        sections_empty: true
+
+    });
+}
+
