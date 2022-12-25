@@ -1,0 +1,119 @@
+.wishlist > header {
+  width: 100%;
+  height: 15rem;
+  background-color: #ebfbee;
+  padding-top: 2.8rem;
+  padding-left: 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.wishlist > header > .title {
+  text-transform: uppercase;
+  font-size: 28px;
+  font-weight: 700;
+  color: #00a551;
+}
+
+.wishlist > header > .menu {
+  display: flex;
+  /* align-items: center; */
+  /* background-color: aqua; */
+  gap: 7.2rem;
+}
+
+.wishlist > header > .menu > p {
+  font-size: 17px;
+  font-weight: 700;
+  color: #100967;
+  /* background-color: yellow; */
+  height: 3rem;
+  margin: 0;
+  box-sizing: border-box;
+  border-bottom: 5px solid transparent;
+  cursor: pointer;
+}
+
+.wishlistMenuChosen {
+  border-bottom: 5px solid #00a551 !important;
+}
+
+.wishlist > main {
+  padding: 5rem 6.4rem;
+  display: flex;
+  /* justify-content: space-between; */
+  flex-wrap: wrap;
+  gap: 5.4rem;
+}
+
+.wishlist > main > .courseItem {
+  width: 30rem;
+  height: 35.6rem;
+  border-radius: 15px;
+  overflow: hidden;
+  border: 1px solid rgb(227, 227, 227);
+  box-sizing: border-box;
+}
+.wishlist > main > .courseItem > img {
+  width: 100%;
+}
+
+.wishlist > main > .courseItem > .content {
+  padding: 1rem 1.8rem;
+  display: flex;
+  flex-direction: column;
+}
+.wishlist > main > .courseItem > .content > .name {
+  font-size: 1.7rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.wishlist > main > .courseItem > .content > .author--rate{
+  display: flex;
+  align-items: center;
+}
+
+
+.wishlist > main > .courseItem > .content > .author--rate > .author {
+  display: flex;
+  /* align-items: center; */
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.wishlist > main > .courseItem > .content > .author--rate > .author > p {
+  font-size: 12px;
+  margin: 0;
+}
+
+.wishlist > main > .courseItem > .content > .author--rate > .rate1{
+  width: 100px;
+  height: 24px;
+  background-color: aqua;
+  display: flex;
+  align-items: center;
+}
+
+.wishlist > main > .courseItem > .content > .category {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.wishlist > main > .courseItem > .content > .category > p {
+  font-size: 14px;
+  margin: 0;
+}
+
+.wishlist > main > .courseItem > .content > .complete > p {
+  font-size: 14px;
+  margin: 0;
+}
+
+.wishlist > main > .courseItem > .content > .date {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+}
