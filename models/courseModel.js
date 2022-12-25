@@ -8,6 +8,7 @@ const courseSchema = new mongoose.Schema({
   currency: { type: String },
   price: { type: Number },
   sale: { type: Number },
+  slug: { type: String },
   category: { type: String },
   subcategory: { type: String },
   details: { type: Number },
