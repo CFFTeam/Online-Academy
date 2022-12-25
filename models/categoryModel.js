@@ -5,12 +5,12 @@ const categorySchema = new mongoose.Schema({
   title: { type: String },
   courses: {type: Number},
   students: {type: Number},
-  subcategories:  [
+  subcategories: [
     {
-    slug: { type: String },
-    content: { type: String },
-  },
-]
+      slug: { type: String },
+      content: { type: String }
+    }
+  ]
 });
 
 const Category = mongoose.model("category", categorySchema);
