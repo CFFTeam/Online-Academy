@@ -3,6 +3,7 @@ const courses = [
         _id: "",
         name: "",
         img: "",
+        slug: "",
         author: "",
         description: "",
         currency: "",

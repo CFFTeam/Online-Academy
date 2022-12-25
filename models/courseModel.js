@@ -5,11 +5,12 @@ const courseSchema = new mongoose.Schema({
   img: { type: String },
   author: { type: String },
   description: { type: String },
+  slug: { type: String},
   currency: { type: String },
   price: { type: Number },
   sale: { type: Number },
   category: { type: String },
-  subcategory: { type: String },
+  subcategory: [{ type: String }],
   details: { type: Number },
   date: { type: String },
   lectures: {
