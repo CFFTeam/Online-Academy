@@ -72,6 +72,7 @@
 .wishlist > main > .courseItem > .content > .author--rate{
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 
@@ -87,10 +88,7 @@
   margin: 0;
 }
 
-.wishlist > main > .courseItem > .content > .author--rate > .rate1{
-  width: 100px;
-  height: 24px;
-  background-color: aqua;
+.wishlist > main > .courseItem > .content > .author--rate > .rate{
   display: flex;
   align-items: center;
 }
