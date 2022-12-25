@@ -1,24 +1,23 @@
 import catchAsync from "../utilities/catchAsync.js";
 import Course from "../models/courseModel.js";
 import Category from "../models/categoryModel.js";
-import CategoryDetail from "../models/categoryDetailModel.js";
 
 import url from "url";
 
 //-----------------Categories--------------
 export const renderCategories = catchAsync(async (req, res) => {
-  const categoryDetail = await CategoryDetail.find().lean();
+  const category = await Category.find().lean();
   res.render("admin/categories.hbs", {
-    categories: categoryDetail,
+    categories: category,
     layout: "admin.hbs",
   });
 });
 
 export const addCategories = catchAsync(async (req, res) => {
-  const addCategoriesData = await CategoryDetail.create(req.body);
-  const categoryDetail = await CategoryDetail.find().lean();
+  const addCategoriesData = await Category.create(req.body);
+  const category = await Category.find().lean();
   res.render("admin/categories.hbs", {
-    categories: categoryDetail,
+    categories: category,
     layout: "admin.hbs",
   });
 });
@@ -26,7 +25,7 @@ export const addCategories = catchAsync(async (req, res) => {
 export const editCategories = catchAsync(async (req, res) => {
   console.log(req.params.id);
   console.log("edit");
-  const updateCategoryData = await CategoryDetail.updateOne(
+  const updateCategoryData = await Category.updateOne(
     { _id: req.params.id },
     { title: req.body.title }
   ).lean();
@@ -36,7 +35,7 @@ export const editCategories = catchAsync(async (req, res) => {
 export const deleteCategories = catchAsync(async (req, res) => {
   console.log(req.params.id);
   console.log("delete");
-  const deleteCategoryData = await CategoryDetail.deleteOne({
+  const deleteCategoryData = await Category.deleteOne({
     _id: req.params.id,
   }).lean();
   res.redirect("/admin/categories");
@@ -59,7 +58,7 @@ export const renderCoursesByCategories = catchAsync(async (req, res) => {
   });
   console.log(categoryName.title);
   const allCoursesByCategories = await Course.find({
-    name: categoryName.title,
+    category: categoryName.title,
   }).lean();
   const allCategories = await Category.find().lean();
   res.render("admin/courses.hbs", {

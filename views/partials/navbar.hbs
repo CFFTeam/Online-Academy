@@ -50,7 +50,7 @@
                     <span class="name">{{authUser.name}}</span>
                 </div>
                 <hr />
-                <a class="link" href="#profile"><i class="fa-solid fa-user"></i> <span>Edit profile</span></a>
+                <a class="link" href="/user-profile"><i class="fa-solid fa-user"></i> <span>Edit profile</span></a>
                 <a class="link" href="#courses"><i class="fa-solid fa-film"></i> <span>My courses</span></a>
                 <a class="link" href="#wishlist"><i class="fa-regular fa-heart"></i> <span>Wishlist</span></a>
                 <a class="link" href="/account/signout"><i class="fa-solid fa-sign-out"></i> <span>Sign out</span></a>
@@ -129,7 +129,7 @@
                 
                 const index = categoriesList.findIndex((category => category.slug === dataCategory));
 
-                index > -1 && categoriesList && categoriesList.length && categoriesList[index] && categoriesList[index].categories.length && categoriesList[index].categories.map(el => {
+                index > -1 && categoriesList && categoriesList.length && categoriesList[index] && categoriesList[index].subcategories && categoriesList[index].subcategories.length && categoriesList[index].subcategories.map(el => {
                     $(`.navbar > .dropdown > .sub-categories.dropdown-list[data-category="${dataCategory}"]`)
                     .append(`<a class="dropdown-items" href="${el.slug}"><span>${el.content}</span></a>`);
                 })
@@ -151,7 +151,7 @@
 
                 const index = categoriesList.findIndex((category => category.slug === dataCategory));
 
-                index > -1 && categoriesList && categoriesList.length && categoriesList[index] && categoriesList[index].categories.length && categoriesList[index].categories.map(el => {
+                index > -1 && categoriesList && categoriesList.length && categoriesList[index] && categoriesList[index].subcategories && categoriesList[index].subcategories.length && categoriesList[index].subcategories.map(el => {
                     $(`nav.navbar > #sidebar-open ~ .sidebar > .sidebar-main > .view-group`)
                     .append(`<a class="sidebar-item" href="${el.slug}"><span>${el.content}</span></a>`);
                 })
@@ -188,7 +188,7 @@
         .append(`<button data-category="${dataCategory}" class="back-btn"><i class="fa-solid fa-chevron-left"></i> <span>Back</span></button>`);
         
         $(`nav.navbar > #sidebar-open ~ .sidebar > .sidebar-main > .view-group`)
-        .append(`<a class="sidebar-item-profile" href="#profile"><i class="fa-solid fa-user-circle"></i><span>Edit profile</span></a>`);
+        .append(`<a class="sidebar-item-profile" href="/user-profile"><i class="fa-solid fa-user-circle"></i><span>Edit profile</span></a>`);
 
         $(`nav.navbar > #sidebar-open ~ .sidebar > .sidebar-main > .view-group`)
         .append(`<a class="sidebar-item-profile" href="#courses"><i class="fa-solid fa-film"></i><span>My courses</span></a>`);
