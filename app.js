@@ -8,6 +8,8 @@ import HomeRoutes from "./routes/HomeRoutes.js";
 import UserRoutes from "./routes/UserRoutes.js";
 import InstructorRoutes from "./routes/InstructorRoutes.js";
 import PaymentRoutes from "./routes/PaymentRoutes.js";
+import UserProfileRoutes from "./routes/UserProfileRoutes.js";
+import WishlistRoutes from "./routes/WishlistRoutes.js";
 import AdminRoutes from "./routes/AdminRoutes.js"
 import PassportRoutes from "./routes/PassportRoutes.js";
 import helpers from "./views/helpers.js";
@@ -24,7 +26,6 @@ import passportAuth from "./middlewares/passport.js";
 import activate_session_middleware from "./middlewares/session.mdw.js";
 import activate_locals_middleware from "./middlewares/locals.mdw.js";
 
-
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const liveReloadServer = livereload.createServer();
@@ -37,12 +38,12 @@ liveReloadServer.server.once("connection", () => {
 
 app.use(connectLiveReload());
 
-Handlebars.registerHelper('times', function(n, block) {
-  var accum = '';
-  for(var i = 0; i < n; ++i)
-      accum += block.fn(i);
-  return accum;
-});
+// Handlebars.registerHelper('times', function(n, block) {
+//   var accum = '';
+//   for(var i = 0; i < n; ++i)
+//       accum += block.fn(i);
+//   return accum;
+// });
 
 
 app.engine(
@@ -69,7 +70,7 @@ app.use("/assets", [
 
 app.use(
   express.urlencoded({
-    extended: true, 
+    extended: true
   })
 );
 
@@ -83,6 +84,8 @@ app.use('/auth', PassportRoutes);
 app.use("/account", UserRoutes);
 app.use("/instructor", InstructorRoutes);
 app.use("/payment", PaymentRoutes);
+app.use("/user-profile", UserProfileRoutes);
+app.use("/wishlist", WishlistRoutes);
 
 //admin
 app.use("/admin", AdminRoutes);

@@ -1,0 +1,193 @@
+<div class="card border-0" style="width:95%; margin-left:2rem;">
+
+  <div class="card-header border-0 bg-white pt-0 px-0">
+    <div
+      style="display:flex; justify-content: space-between; align-items:center; padding-top: 1.5rem;"
+    >
+      <h1 style="font-weight:700;">Teacher</h1>
+      <label>
+        <input type="text" placeholder="Search" />
+      </label>
+    </div>
+    <button
+      class="but"
+      data-toggle="modal"
+      data-target="#addTeacher"
+      style="margin: 1rem 0 0 0;"
+    >
+      <p style="margin: 0;">Add new</p>
+    </button>
+
+  </div>
+  <table id="teacher" class="cor">
+
+    <tr class="none-shawdow">
+      <th>ID</th>
+      <th>Name</th>
+      <th style="width: 1rem;"></th>
+      <th style="width: 1rem;"></th>
+      <th style="width: 1rem;"></th>
+      <th style="width: 1rem;"></th>
+    </tr>
+
+    {{#each this.teachers}}
+      <tr>
+        <td class="id">{{_id}}</td>
+        <td class="name">{{name}}</td>
+
+        <td class="edit" style="text-align: center; padding: 0 1rem;">
+            <img src="/assets/svg/admin/edit.svg" alt="edit-icon" />
+        </td>
+
+        <td style="text-align: center; padding: 0 1rem;">
+          <a href="teachers/ban/{{_id}}">
+            <img src="/assets/svg/admin/ban.svg" alt="ban-icon" />
+          </a>
+        </td>
+
+        <td
+          style="text-align: center; padding: 0 1rem;"
+          data-toggle="modal"
+          data-target="#myModal"
+        >
+          <img src="/assets/svg/admin/info.svg" alt="info-icon" />  
+        </td>
+
+        <td class="delete" style="text-align: center; padding: 0 1rem;">
+          <a href="/admin/teachers/delete/{{_id}}">
+            <img src="/assets/svg/admin/delete.svg" alt="delete-icon" />  
+          </a>
+        </td>
+
+      </tr>
+    {{/each}}
+
+  </table>
+
+  <div class="modal" id="myModal">
+    <div
+      class="modal-dialog"
+      style="top: 50% !important; transform: translateY(-70%) !important"
+    >
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header" style="border:none; padding: 1rem 0 0 1rem;">
+          <h4
+            style="color:#00A551; font-weight: 700;margin: 0.5rem;"
+          >Detail</h4>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body" style="margin: 0 auto 1rem auto; padding: 0;">
+          <table class="not">
+            <tr>
+              <td><b>ID: </b></td>
+              <td>1 </td>
+            </tr>
+            <tr>
+              <td><b>Name:</b></td>
+              <td>Python beginner to master </td>
+            </tr>
+            <tr>
+              <td><b>Category: </b></td>
+              <td>Web App Development </td>
+            </tr>
+            <tr>
+              <td><b>Teacher:</b> </td>
+              <td>Jonas Schema </td>
+            </tr>
+            <tr>
+              <td><b>Student quantity</b>: </td>
+              <td>172.867</td>
+            </tr>
+            <tr>
+              <td><b>Rate:</b> </td>
+              <td
+                style="display: flex; align-items: center; justify-content: space-between;"
+              >
+                <div>4.7</div>
+                {{#times 5}}
+                  <div>
+                    <img src="/assets/svg/admin/star.svg" alt="star-icon" />
+                  </div>
+                {{/times}}
+                <div>(15.279)</div>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="addTeacher">
+    <div
+      class="modal-dialog"
+      style="top: 50% !important; transform: translateY(-60%) !important"
+    >
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header" style="border:none; padding: 1rem 0 0 1rem;">
+          <h4 style="color:#00A551; font-weight: 700;margin: 0.5rem;">Add
+            Teacher</h4>
+        </div>
+
+        <!-- Modal body -->
+        <div
+          class="modal-body"
+          style="margin: 1rem 1.5rem 1rem 1.5rem; padding: 0;"
+        >
+          <form method="post" style="margin: 0;">
+
+            <p style="margin-bottom: 0.3rem; font-weight: 600;">Name</p>
+            <input
+              style="width: 100%; padding: 0.5rem; height: 2.2rem; margin-bottom: 0.5rem;"
+            />
+
+            <p style="margin-bottom: 0.3rem; font-weight: 600;">Email</p>
+            <input
+              style="width: 100%; padding: 0.5rem; height: 2.2rem; margin-bottom: 0.5rem;"
+            />
+
+            <p style="margin-bottom: 0.3rem; font-weight: 600;">Password</p>
+            <input
+              style="width: 100%; padding: 0.5rem; height: 2.2rem; margin-bottom: 0.5rem;"
+            />
+
+            <p style="margin-bottom: 0.3rem; font-weight: 600;">Introduction</p>
+            <textarea
+              style="width: 100%; padding: 0.5rem; height: 7rem; margin-bottom: 0.5rem; resize:none; border-radius: 5px; border: none; box-shadow: 2px 2px 8px #888888;"
+            ></textarea>
+
+            <button
+              class="but"
+              data-toggle="modal"
+              data-target="#addTeacher"
+              style="margin: 1rem auto 0 auto; display: block;"
+            >
+              <p style="margin: 0;">Save</p>
+            </button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    $('#teacher').on('click','.edit',function() { 
+      const id=$(this).siblings('.id').text();
+    if($(this).siblings('.name').find('input').length){
+    $(this).siblings('.name').text($(this).siblings('.name').find('input').val());
+    } 
+    else { var content=$(this).siblings('.name').text(); 
+    var actionURL="teachers/edit/"+id; 
+    var form=$("<form/>", { method: 'POST',action: actionURL, style: 'margin: 0; padding: 0', } ).append($("<input>", {
+    type:'text', name:'title', class:"editname", value: content, }
+    ).val(content)).append($("<input>", { type:'submit', class:"butname", value:"Save" })) 
+    $(this).siblings('.name').text('').append(form); } });
+  </script>
+</div>

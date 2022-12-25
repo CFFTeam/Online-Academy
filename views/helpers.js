@@ -10,5 +10,11 @@ export default {
     },
     or() {
         return Array.prototype.slice.call(arguments, 0, -1).some(Boolean);
-    }
+    },
+    times(n, block) {
+        var accum = '';
+        for(var i = 0; i < n; ++i)
+            accum += block.fn(i);
+        return accum;
+    },
 };

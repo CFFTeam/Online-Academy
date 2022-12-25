@@ -1,0 +1,430 @@
+.userProfile {
+  padding: 0 3.6rem;
+}
+
+.userProfile > .header {
+  padding: 2rem;
+  border-bottom: 1px solid rgb(161, 161, 161);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
+}
+
+.userProfile > .header > p {
+  margin: 0 auto;
+}
+
+.userProfile > .header > p:first-child {
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.userProfile > .header > p:last-child {
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.userProfile > .body {
+  display: flex;
+  padding: 4.5rem 12rem 4rem 12rem;
+  gap: 4rem;
+}
+
+.userProfile > .body > .card {
+  border: none;
+  width: 25rem;
+  height: 21rem;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgb(223, 223, 223);
+  margin-top: 1.2rem;
+}
+
+.userProfile > .body > .card > .avatar {
+  border-radius: 50%;
+  background-color: gray;
+  width: 8rem;
+  height: 8rem;
+  margin-top: 2rem;
+}
+
+.userProfile > .body > .card > .name {
+  font-weight: 500;
+  font-size: 21px;
+  margin: 0;
+  margin-top: 10px;
+}
+
+.userProfile > .body > .card > .role {
+  font-weight: 500;
+  font-size: 16px;
+  margin: 0;
+  margin-top: -4px;
+}
+.userProfile > .body > .card > .icons {
+  width: 13rem;
+  height: 3rem;
+  display: flex;
+}
+
+.userProfile > .body > .card > .icons > img {
+  width: 100%;
+}
+
+.userProfile > .body > .main {
+  width: 76rem;
+  height: 49rem;
+  background-color: #ffffff;
+  border: 1px solid rgb(223, 223, 223);
+  box-shadow: 0px 0px 3px #d1d1d1;
+}
+
+.userProfile > .body > .main > .menu {
+  width: 100%;
+  height: 5.1rem;
+  border-bottom: 1px solid rgb(218, 218, 218);
+  box-shadow: 1px 0px 3px #d1d1d1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-top: 1.1rem;
+  box-sizing: border-box;
+  gap: 10rem;
+}
+
+.userProfile > .body > .main > .menu > p {
+  margin: 0;
+  font-weight: 400;
+  font-size: 17px;
+  padding: 5px;
+  cursor: pointer;
+  border-bottom: solid 2px transparent;
+}
+
+.optionChosen {
+  color: #69db7c;
+  border-bottom: solid 2px #00a551 !important;
+}
+
+.userProfile > .body > .main > .content {
+  padding: 5.6rem 2.9rem;
+  /* background-color: blue; */
+}
+
+.userProfile > .body > .main > .content > .overview {
+  /* background-color: yellow; */
+}
+
+.userProfile > .body > .main > .content > .overview > .title {
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 2rem;
+}
+
+.userProfile > .body > .main > .content > .overview > .overviewForm {
+  display: flex;
+  gap: 4.8rem;
+}
+
+.userProfile > .body > .main > .content > .overview > .overviewForm > .type {
+  font-weight: 600;
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.userProfile > .body > .main > .content > .overview > .overviewForm > .infor {
+  font-size: 14px;
+  /* background-color: yellow; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.userProfile > .body > .main > .content > .editProfile > .imageProfile {
+  /* background-color: aqua; */
+  height: 11rem;
+  width: 100%;
+  margin-top: -1.5rem;
+}
+
+.userProfile
+  > .body
+  > .main
+  > .content
+  > .editProfile
+  > .imageProfile
+  > .image {
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+  background-color: gray;
+  margin: 0 auto;
+}
+
+.userProfile > .body > .main > .content > .editProfile > .imageProfile > .icon {
+  /* width: 10rem; */
+  height: 2.4rem;
+  margin: 0 auto;
+  margin-top: 0.8rem;
+  /* background-color: red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.userProfile > .body > .main > .content > .editProfile > .editForm {
+  width: 80%;
+  height: 23rem;
+  /* background-color: yellow; */
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.userProfile > .body > .main > .content > .editProfile > .editForm p {
+  font-weight: 500;
+  font-size: 18;
+  margin: 0;
+  margin-bottom: 5px;
+  padding-top: 1rem;
+  box-sizing: border-box;
+}
+
+.userProfile > .body > .main > .content > .editProfile > .editForm input {
+  height: 30px;
+  padding: 5px 8px;
+  box-sizing: border-box;
+  border: 1px solid black;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.userProfile
+  > .body
+  > .main
+  > .content
+  > .editProfile
+  > .editForm
+  input::placeholder {
+  color: rgb(53, 53, 53);
+}
+
+.userProfile
+  > .body
+  > .main
+  > .content
+  > .editProfile
+  > .editForm
+  > .fullName
+  > input {
+  width: 22rem;
+}
+
+.userProfile
+  > .body
+  > .main
+  > .content
+  > .editProfile
+  > .editForm
+  > .phoneNumber
+  > input {
+  width: 22rem;
+}
+
+.userProfile
+  > .body
+  > .main
+  > .content
+  > .editProfile
+  > .editForm
+  > .birthday
+  > input {
+  width: 13rem;
+}
+
+.userProfile
+  > .body
+  > .main
+  > .content
+  > .editProfile
+  > .editForm
+  > .sex
+  > input {
+  width: 13rem;
+}
+
+.userProfile
+  > .body
+  > .main
+  > .content
+  > .editProfile
+  > .editForm
+  > .email
+  > input {
+  width: 30rem;
+}
+
+.userProfile
+  > .body
+  > .main
+  > .content
+  > .editProfile
+  > .editForm
+  > .address
+  > input {
+  width: 56rem;
+}
+
+.userProfile
+  > .body
+  > .main
+  > .content
+  > .editProfile
+  > .buttonFrame
+  > .saveButton {
+  border: none;
+  background-color: #00a551;
+  width: 80px;
+  padding: 2px 0px;
+  border-radius: 6px;
+  color: #ffffff;
+}
+
+.userProfile
+  > .body
+  > .main
+  > .content
+  > .editProfile
+  > .buttonFrame
+  > .saveButton:hover {
+  background-color: #009045;
+}
+
+.userProfile > .body > .main > .content > .editProfile > .buttonFrame {
+  width: 80px;
+  margin: 12px auto;
+}
+
+.userProfile > .body > .main > .content > .changePassword {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userProfile > .body > .main > .content > .changePassword > .currentPassword,
+.userProfile > .body > .main > .content > .changePassword > .newPassword,
+.userProfile > .body > .main > .content > .changePassword > .confirmPassword {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.1rem;
+  align-items: center;
+}
+.userProfile
+  > .body
+  > .main
+  > .content
+  > .changePassword
+  > .currentPassword
+  > p,
+.userProfile > .body > .main > .content > .changePassword > .newPassword > p,
+.userProfile
+  > .body
+  > .main
+  > .content
+  > .changePassword
+  > .confirmPassword
+  > p {
+  width: 200px;
+  margin: 0;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.userProfile
+  > .body
+  > .main
+  > .content
+  > .changePassword
+  > .currentPassword
+  > input,
+.userProfile
+  > .body
+  > .main
+  > .content
+  > .changePassword
+  > .newPassword
+  > input,
+.userProfile
+  > .body
+  > .main
+  > .content
+  > .changePassword
+  > .confirmPassword
+  > input {
+  width: 300px;
+  margin: 0;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 0 10px;
+  font-size: 24;
+  height: 27px;
+}
+
+.userProfile > .body > .main > .content > .changePassword > .passwordStronger {
+  background-color: #e5fef2;
+  margin: 0 auto;
+  width: 50rem;
+  padding: 4px 10px;
+}
+
+.userProfile
+  > .body
+  > .main
+  > .content
+  > .changePassword
+  > .passwordStronger
+  > p {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.userProfile
+  > .body
+  > .main
+  > .content
+  > .changePassword
+  > .passwordStronger
+  > ul
+  > li {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.userProfile
+  > .body
+  > .main
+  > .content
+  > .changePassword
+  > .buttonFrame
+  > .changeButton {
+  border: none;
+  background-color: #00a551;
+  width: 170px;
+  padding: 5px 5px;
+  border-radius: 8px;
+  color: #ffffff;
+  margin-top: 2.4rem;
+}
+
+.hideUserProfile {
+  display: none !important;
+}

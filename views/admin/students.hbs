@@ -4,66 +4,57 @@
     <div
       style="display:flex; justify-content: space-between; align-items:center; padding-top: 1.5rem;"
     >
-      <h1 style="font-weight:700;">Course</h1>
+      <h1 style="font-weight:700;">Student</h1>
       <label>
         <input type="text" placeholder="Search" />
       </label>
     </div>
-    <div class="dropdown pt-5">
-      <button
-        type="button"
-        class="btn btn-success dropdown-toggle"
-        data-toggle="dropdown"
-        style="background-color: #00A551;"
-      >
-        Select category
-      </button>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="/admin/courses">All categories</a>
-        {{#each this.category}}
-          <a
-            class="dropdown-item"
-            href="/admin/courses/category?slug={{slug}}"
-          >{{title}}</a>
-        {{/each}}
-      </div>
-    </div>
 
   </div>
-  <table id="course" class="cor">
+  <table id="student" class="cor">
 
     <tr class="none-shawdow">
       <th>ID</th>
-      <th>Category</th>
-      <th style="padding-right: 10rem;">Course name</th>
+      <th>Name</th>
+      <th style="width: 1rem;"></th>
+      <th style="width: 1rem;"></th>
       <th style="width: 1rem;"></th>
       <th style="width: 1rem;"></th>
     </tr>
 
-    {{#each this.courses}}
+    {{#each this.students}}
       <tr>
         <td class="id">{{_id}}</td>
-        <td class="name">{{category}}</td>
         <td class="name">{{name}}</td>
+
+        <td class="edit" style="text-align: center; padding: 0 1rem;">
+          <img src="/assets/svg/admin/edit.svg" alt="edit-icon" />
+        </td>
+
+        <td style="text-align: center; padding: 0 1rem;">
+          <a href="students/ban/{{_id}}">
+            <img src="/assets/svg/admin/ban.svg" alt="ban-icon" />
+          </a>
+        </td>
 
         <td
           style="text-align: center; padding: 0 1rem;"
           data-toggle="modal"
           data-target="#myModal"
         >
-          <img src="/assets/svg/admin/info.svg" alt="info-icon" />
+          <img src="/assets/svg/admin/info.svg" alt="info-icon" /> 
         </td>
 
         <td class="delete" style="text-align: center; padding: 0 1rem;">
-          <a href="/admin/courses/delete/{{_id}}">
-            <img src="/assets/svg/admin/delete.svg" alt="delete-icon" />
+          <a href="/admin/students/delete/{{_id}}">
+            <img src="/assets/svg/admin/delete.svg" alt="delete-icon" />  
           </a>
         </td>
-
       </tr>
     {{/each}}
 
   </table>
+
 
   <div class="modal" id="myModal">
     <div
@@ -123,4 +114,18 @@
     </div>
   </div>
 
+  <script>
+    $('#student').on('click','.edit',function() { 
+      const id=$(this).siblings('.id').text();
+    if($(this).siblings('.name').find('input').length){
+    $(this).siblings('.name').text($(this).siblings('.name').find('input').val());
+    } 
+    else { var content=$(this).siblings('.name').text(); 
+    var actionURL="students/edit/"+id; 
+    var form=$("<form/>", { method: 'POST',action: actionURL, style: 'margin: 0; padding: 0', } ).append($("<input>", {
+    type:'text', name:'title', class:"editname", value: content, }
+    ).val(content)).append($("<input>", { type:'submit', class:"butname", value:"Save" })) 
+    $(this).siblings('.name').text('').append(form); } });
+  </script>
+  </script>
 </div>
