@@ -5,16 +5,17 @@ const courseSchema = new mongoose.Schema({
   img: { type: String },
   author: { type: String },
   description: { type: String },
+  slug: { type: String},
   currency: { type: String },
   price: { type: Number },
   sale: { type: Number },
   category: { type: String },
-  subcategory: { type: String },
+  subcategory: [{ type: String }],
   details: { type: Number },
   date: { type: String },
   lectures: {
     total: { type: Number },
-    duration: { type: String, },
+    duration: { type: String },
     sections: [
       {
         title: { type: String },
@@ -24,12 +25,12 @@ const courseSchema = new mongoose.Schema({
           {
             title: { type: String },
             resources: { type: String },
-            video: { type: String },
-          },
-        ],
-      },
-    ],
-  },
+            video: { type: String }
+          }
+        ]
+      }
+    ]
+  }
 });
 
 const Course = mongoose.model("course", courseSchema);

@@ -2,33 +2,33 @@ export const homePage = (req, res) => {
     res.locals.handlebars = 'home/home';
     const categories = [
         {
-            slug: "web-development",
+            slug: "/web-development",
             title: "Web Development",
             categories: [
                 {
-                    slug: "#javascript",
+                    slug: "/javascript",
                     content: "Javascript"
                 },
                 {
-                    slug: "#html",
+                    slug: "/html",
                     content: "HTML"
                 },
                 {
-                    slug: "#css",
+                    slug: "/css",
                     content: "CSS"
                 },
                 {
-                    slug: "#reactjs",
+                    slug: "/reactjs",
                     content: "ReactJS"
                 },
                 {
-                    slug: "#nodejs",
+                    slug: "/nodejs",
                     content: "NodeJS"
                 }
             ]
         },
         {
-            slug: "mobile-development",
+            slug: "/mobile-development",
             title: "Mobile Development",
             categories : [
                 {
@@ -54,7 +54,7 @@ export const homePage = (req, res) => {
             ]
         },
         {
-            slug: "game-development",
+            slug: "/game-development",
             title: "Game Development",
             categories: [
                 {
@@ -76,6 +76,34 @@ export const homePage = (req, res) => {
                 {
                     slug: "#blender",
                     content: "Blender"
+                }
+            ]
+        },
+        {
+            slug: "/artificial-intelligence",
+            title: "Artificial Intelligence",
+            courses: 50,
+            student: 1000,
+            subcategories: [
+                {
+                    slug: "/data-science",
+                    content: "Data Science"
+                },
+                {
+                    slug: "/python",
+                    content: "Python"
+                },
+                {
+                    slug: "/machine-learning",
+                    content: "Machine Learning"
+                },
+                {
+                    slug: "/deep-learning",
+                    content: "Deep Learning"
+                },
+                {
+                    slug: "/data-analysis",
+                    content: "Data Analysis"
                 }
             ]
         }
