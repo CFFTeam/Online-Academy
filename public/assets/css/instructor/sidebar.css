@@ -55,11 +55,38 @@
     box-shadow: 0 0 5px rgba(0,0,0,20%);
     width: 80%;
     margin-left: 26rem;
+
 }
 
-.table {
- width: 100%;
+.custom-table> tbody {
+    display:block;
+    height: 40rem;
+    overflow:auto;
 }
+.custom-table> thead, tbody tr {
+    display:table;
+    width: 100%;         
+}
+.custom-table> thead {
+    width: 100%   
+}
+.custom-table {
+    width:100%;
+}
+
+/* custom scrollbar */
+::-webkit-scrollbar {
+    width: 5px;
+    scrollbar-width: thin;
+    overflow-y: auto;
+  }
+  
+::-webkit-scrollbar-thumb {
+    background-color: #44CB92;
+    border-radius: 100px;
+  }
+
+
 
 .table thead th {
     border-bottom: 1px solid black;

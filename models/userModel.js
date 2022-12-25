@@ -15,6 +15,10 @@ const userSchema = new mongoose.Schema({
     lowercase: true
     //validate: [validator.isEmail, 'Please provide a valid email']
   },
+  myCourses: {
+    type: Array,
+    default: []
+  },
   facebookId: String,
   googleId: String,
   githubId: String,
@@ -35,7 +39,6 @@ const userSchema = new mongoose.Schema({
     minlength: 8,
     select: false
   },
-  
   passwordChangedAt: Date,
   userVerifyToken: String,
   passwordResetExpires: Date,
@@ -71,8 +74,6 @@ userSchema.methods.correctPassword = async function(
   return await bcrypt.compare(candidatePassword, userPassword);
 };
 
-// check users if they changed password after the token was issued
-//....
 
 const User = mongoose.model('User', userSchema);
 

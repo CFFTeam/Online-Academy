@@ -14,120 +14,42 @@
     <span>My Courses</span>
     <button class = "new-course-btn"> <img src="/assets/svg/instructor/newcourse.svg" alt="new-course"> New Course</button>
 </div>
-<table class="table table-striped">
+<table class="table table-striped custom-table">
   <thead>
-    <tr>
-      <th width="4%" scope="col">#</th>
-      <th width="30%" scope="col">Title</th>
-      <th width="12%"scope="col">Category</th>
-      <th width="5%" scope="col">Price</th>
-      <th  width="10%" scope="col">Date released</th>
-      <th width="5%"  scope="col">Status</th>
-      <th width="2%"></th>
-      <th width="2%"></th>
+     <tr>
+      <th width = "2.7%" scope="col" >#</th>
+      <th width = "47.3%" scope="col" >Title</th>
+      <th width = "19%" scope="col" >Category</th>
+      <th width = "5.4%" scope="col">Price</th>
+      <th width = "12%" scope="col">Released</th>
+      <th width = "5%" scope="col">Status</th>
+      <th></th>
+      <th ></th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>The Complete 2023 Web Development Bootcamp</td>
-      <td>Web development</td>
-      <td><span class = "dollar">$</span>99</td>
-      <td>2022-12-31</td>
-      <td><img src="/assets/svg/instructor/finish.svg" alt="finish"></td>
-      <td><button class = "edit-btn"><img src="/assets/svg/instructor/edit.svg" alt="edit"></button></td>
-      <td><button class = "delete-btn"><img src="/assets/svg/instructor/delete.svg" alt="delete"></button></td>
-    </tr>
-      <tr>
-      <th scope="row">2</th>
-      <td>The Complete 2023 Web Development Bootcamp</td>
-      <td>Web development</td>
-         <td><span class = "dollar">$</span>99</td>
-      <td>2022-12-31</td>
-      <td><img src="/assets/svg/instructor/unfinished.svg" alt="unfinished"></td>
-      <td><button class = "edit-btn"><img src="/assets/svg/instructor/edit.svg" alt="edit"></button></td>
-      <td><button class = "delete-btn"><img src="/assets/svg/instructor/delete.svg" alt="delete"></button></td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>The Complete 2023 Web Development Bootcamp</td>
-      <td>Web development</td>
-         <td><span class = "dollar">$</span>99</td>
-      <td>2022-12-31</td>
-       <td><img src="/assets/svg/instructor/finish.svg" alt="finish"></td>
-      <td><button class = "edit-btn"><img src="/assets/svg/instructor/edit.svg" alt="edit"></button></td>
-      <td><button class = "delete-btn"><img src="/assets/svg/instructor/delete.svg" alt="delete"></button></td>
-    </tr>
-    <tr>
-      <th scope="row">4</th>
-      <td>The Complete 2023 Web Development Bootcamp</td>
-      <td>Web development</td>
-         <td><span class = "dollar">$</span>99</td>
-      <td>2022-12-31</td>
-       <td><img src="/assets/svg/instructor/finish.svg" alt="finish"></td>
-      <td><button class = "edit-btn"><img src="/assets/svg/instructor/edit.svg" alt="edit"></button></td>
-      <td><button class = "delete-btn"><img src="/assets/svg/instructor/delete.svg" alt="delete"></button></td>
-    </tr>
-     <tr>
-      <th scope="row">5</th>
-      <td>The Complete 2023 Web Development Bootcamp</td>
-      <td>Web development</td>
-         <td><span class = "dollar">$</span>99</td>
-      <td>2022-12-31</td>
-      <td><img src="/assets/svg/instructor/finish.svg" alt="finish"></td>
-      <td><button class = "edit-btn"><img src="/assets/svg/instructor/edit.svg" alt="edit"></button></td>
-      <td><button class = "delete-btn"><img src="/assets/svg/instructor/delete.svg" alt="delete"></button></td>
-    </tr>
-     <tr>
-      <th scope="row">6</th>
-      <td>The Complete 2023 Web Development Bootcamp</td>
-      <td>Web development</td>
-         <td><span class = "dollar">$</span>99</td>
-      <td>2022-12-31</td>
-      <td><img src="/assets/svg/instructor/unfinished.svg" alt="unfinished"></td>
-      <td><button class = "edit-btn"><img src="/assets/svg/instructor/edit.svg" alt="edit"></button></td>
-      <td><button class = "delete-btn"><img src="/assets/svg/instructor/delete.svg" alt="delete"></button></td>
-    </tr>
-    <tr>
-      <th scope="row">7</th>
-      <td>The Complete 2023 Web Development Bootcamp</td>
-      <td>Web development</td>
-         <td><span class = "dollar">$</span>99</td>
-      <td>2022-12-31</td>
-       <td><img src="/assets/svg/instructor/unfinished.svg" alt="unfinished"></td>
-      <td><button class = "edit-btn"><img src="/assets/svg/instructor/edit.svg" alt="edit"></button></td>
-      <td><button class = "delete-btn"><img src="/assets/svg/instructor/delete.svg" alt="delete"></button></td>
-    </tr>
-    <tr>
-      <th scope="row">8</th>
-      <td>The Complete 2023 Web Development Bootcamp</td>
-      <td>Web development</td>
-         <td><span class = "dollar">$</span>99</td>
-      <td>2022-12-31</td>
-       <td><img src="/assets/svg/instructor/unfinished.svg" alt="unfinished"></td>
-      <td><button class = "edit-btn"><img src="/assets/svg/instructor/edit.svg" alt="edit"></button></td>
-      <td><button class = "delete-btn"><img src="/assets/svg/instructor/delete.svg" alt="delete"></button></td>
-    </tr>
+    {{#if this.empty}}
+      <div class="card-body">
+         Không có dữ liệu!
+      </div>
+      {{else}}
+        {{#each this.course_list}}
         <tr>
-      <th scope="row">9</th>
-      <td>The Complete 2023 Web Development Bootcamp</td>
-      <td>Web development</td>
-         <td><span class = "dollar">$</span>99</td>
-      <td>2022-12-31</td>
-       <td><img src="/assets/svg/instructor/unfinished.svg" alt="finish"></td>
-      <td><button class = "edit-btn"><img src="/assets/svg/instructor/edit.svg" alt="edit"></button></td>
-      <td><button class = "delete-btn"><img src="/assets/svg/instructor/delete.svg" alt="delete"></button></td>
-    </tr>
-     <tr>
-      <th scope="row">10</th>
-      <td>The Complete 2023 Web Development Bootcamp</td>
-      <td>Web development</td>
-         <td><span class = "dollar">$</span>99</td>
-      <td>2022-12-31</td>
-       <td><img src="/assets/svg/instructor/finish.svg" alt="finish"></td>
-      <td><button class = "edit-btn"><img src="/assets/svg/instructor/edit.svg" alt="edit"></button></td>
-      <td><button class = "delete-btn"><img src="/assets/svg/instructor/delete.svg" alt="delete"></button></td>
-    </tr>
+        <th scope="row">{{id}}</th>
+        <td>{{title}}</td>
+        <td>{{category}}</td>
+        <td><span class = "dollar">{{price.currency}}</span>{{price.amount}}</td>
+        <td>{{date_released}}</td>
+        {{#if finish}}
+          <td style = "text-align: right;"><img src="/assets/svg/instructor/finish.svg" alt="finish"></td>
+          {{else}}
+           <td style = "text-align: right;"><img src="/assets/svg/instructor/unfinished.svg" alt="finish"></td>
+        {{/if}}
+        <td style = "text-align: right;"><button class = "edit-btn"><img src="/assets/svg/instructor/edit.svg" alt="edit"></button></td>
+        <td style = "text-align: right;"><button class = "delete-btn"><img src="/assets/svg/instructor/delete.svg" alt="delete"></button></td>
+        </tr>
+        {{/each}}
+    {{/if}}
   </tbody>
 </table>
 </div>

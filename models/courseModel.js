@@ -14,7 +14,7 @@ const courseSchema = new mongoose.Schema({
   date: { type: String },
   lectures: {
     total: { type: Number },
-    duration: { type: String, },
+    duration: { type: String },
     sections: [
       {
         title: { type: String },
@@ -24,12 +24,12 @@ const courseSchema = new mongoose.Schema({
           {
             title: { type: String },
             resources: { type: String },
-            video: { type: String },
-          },
-        ],
-      },
-    ],
-  },
+            video: { type: String }
+          }
+        ]
+      }
+    ]
+  }
 });
 
 const Course = mongoose.model("course", courseSchema);
