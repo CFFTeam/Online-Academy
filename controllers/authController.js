@@ -6,7 +6,7 @@ import sendEmail from "../utilities/sendEmail.js";
 import crypto from 'crypto'
 import jwt from 'jsonwebtoken';
 import validateUser from '../middlewares/auth.mdw.js';
- 
+
 
 
 // handle for login (method GET)
@@ -20,16 +20,16 @@ export const handleLoginForm = catchAsync(async (req, res, next) => {
   res.locals.handlebars = 'auth/login';
   res.locals.layout = "auth.hbs";
   res.locals.props = { historyEmail: req.body.email };
-  
-  const {email, password }  = req.body;
-  const foundUser = await User.findOne({email: email}).select('+password');
+
+  const { email, password } = req.body;
+  const foundUser = await User.findOne({ email: email }).select('+password');
   if (!foundUser || !(await foundUser.correctPassword(password, foundUser.password))) {
     return next(new Error('Incorrect email or password. Please try again.'));
   }
   // set session for request
   req.session.auth = true;
   req.session.authUser = {
-    id: foundUser._id,
+    _id: foundUser._id,
     name: foundUser.name,
     email: foundUser.email,
     sex: foundUser.sex,
@@ -40,10 +40,10 @@ export const handleLoginForm = catchAsync(async (req, res, next) => {
     address: foundUser.address,
     active: foundUser.active
   }
- 
+
   // const url = req.session.retUrl || '/';
   // res.redirect(url);
-  res.render("auth/login.hbs", { layout: "auth.hbs", message: "success"});
+  res.render("auth/login.hbs", { layout: "auth.hbs", message: "success" });
 });
 
 // handle for register (method GET)
@@ -60,7 +60,7 @@ export const handleSignupForm = catchAsync(async (req, res, next, err) => {
     historyEmail: req.body.email
   }
   // Find user by email to check it existed or not.
-  const foundUser = await User.findOne({email: req.body.email});
+  const foundUser = await User.findOne({ email: req.body.email });
   if (foundUser) return next(new Error("This email already exists. Please try again."));
 
   // create OTP 
@@ -73,7 +73,7 @@ export const handleSignupForm = catchAsync(async (req, res, next, err) => {
       message
     });
   }
- catch (err) {
+  catch (err) {
     return next(new Error('There was an error sending the email. Try again later!'));
   }
   // create payload field in token
@@ -83,14 +83,14 @@ export const handleSignupForm = catchAsync(async (req, res, next, err) => {
     email: req.body.email,
     password: req.body.password
   }
-  const userVerifyToken = jwt.sign(payload, 
+  const userVerifyToken = jwt.sign(payload,
     process.env.USER_VERIFY_TOKEN_SECRET);
   res.redirect(`/account/verify-otp?u=${userVerifyToken}`);
-});  
+});
 
 
-export const renderOTPForm = (req,res) => {
-  res.render('auth/OTP.hbs', {layout: 'auth.hbs'});
+export const renderOTPForm = (req, res) => {
+  res.render('auth/OTP.hbs', { layout: 'auth.hbs' });
 };
 
 export const handleOTPForm = catchAsync(async (req, res, next, err) => {
@@ -109,27 +109,27 @@ export const handleOTPForm = catchAsync(async (req, res, next, err) => {
           email,
           name,
           password
-      });
-      msg = "success-sign-up";
-    }
+        });
+        msg = "success-sign-up";
+      }
       else msg = "reset-pwd";
     }
-   // else return next(new Error('Invalid verification code'));
+    // else return next(new Error('Invalid verification code'));
     else return next(new Error('Invalid verification code'));
   })
-  if (msg == "success-sign-up") res.render('auth/OTP.hbs', {layout: 'auth.hbs', message: msg});
+  if (msg == "success-sign-up") res.render('auth/OTP.hbs', { layout: 'auth.hbs', message: msg });
   else if (msg == "reset-pwd") res.redirect(`/account/new-password/?u=${userVerifyToken}`);
 });
 
-export const renderForgotPasswordForm = async (req,res) => {
-  res.render('auth/forgotPassword.hbs', {layout: 'auth.hbs'});
+export const renderForgotPasswordForm = async (req, res) => {
+  res.render('auth/forgotPassword.hbs', { layout: 'auth.hbs' });
 }
 
 export const handleForgotPasswordForm = catchAsync(async (req, res, next, err) => {
   res.locals.handlebars = 'auth/forgotPassword';
   res.locals.layout = "auth.hbs";
   res.locals.props = { historyEmail: req.body.email };
-  const foundUser = await User.findOne({email: req.body.email});
+  const foundUser = await User.findOne({ email: req.body.email });
   if (!foundUser) return next(new Error("This email does not exist. Please try again."));
   // create OTP 
   const verificationCode = crypto.randomBytes(3).toString('hex');
@@ -141,7 +141,7 @@ export const handleForgotPasswordForm = catchAsync(async (req, res, next, err) =
       message
     });
   }
- catch (err) {
+  catch (err) {
     return next(new Error('There was an error sending the email. Try again later!'));
   }
   // create payload field in token
@@ -149,36 +149,36 @@ export const handleForgotPasswordForm = catchAsync(async (req, res, next, err) =
     verificationCode: verificationCode,
     email: req.body.email
   }
-  const userVerifyToken = jwt.sign(payload, 
+  const userVerifyToken = jwt.sign(payload,
     process.env.USER_VERIFY_TOKEN_SECRET);
   res.redirect(`/account/verify-otp?u=${userVerifyToken}`);
 });
 
 
-export const renderNewPasswordForm = async (req,res) => {
-  res.render('auth/newPassword.hbs', {layout: 'auth.hbs'});
+export const renderNewPasswordForm = async (req, res) => {
+  res.render('auth/newPassword.hbs', { layout: 'auth.hbs' });
 }
 
-export const handleNewPasswordForm = catchAsync(async (req,res,next) => {
+export const handleNewPasswordForm = catchAsync(async (req, res, next) => {
   res.locals.handlebars = 'auth/newPassword';
   res.locals.layout = "auth.hbs";
   const userVerifyToken = req.query.u;
   await jwt.verify(userVerifyToken, process.env.USER_VERIFY_TOKEN_SECRET, async (err, decoded) => {
     if (err) return next(err);
-      const {email} = decoded;
-      const foundUser = await User.findOne({email: email});
-      foundUser.password = req.body.password;
-      foundUser.userVerifyToken = undefined;
-      foundUser.passwordResetExpires = undefined;
-      //  Update changedPasswordAt property for the user
-      foundUser.passwordChangedAt = Date.now() - 1000;
-      await foundUser.save();
+    const { email } = decoded;
+    const foundUser = await User.findOne({ email: email });
+    foundUser.password = req.body.password;
+    foundUser.userVerifyToken = undefined;
+    foundUser.passwordResetExpires = undefined;
+    //  Update changedPasswordAt property for the user
+    foundUser.passwordChangedAt = Date.now() - 1000;
+    await foundUser.save();
   })
-  res.render("auth/newPassword.hbs", { layout: "auth.hbs", message: "success"});
+  res.render("auth/newPassword.hbs", { layout: "auth.hbs", message: "success" });
 });
 
 // log out
-export const logout = catchAsync(async (req,res,next) => {
+export const logout = catchAsync(async (req, res, next) => {
   req.session.auth = false;
   req.session.authUser = null;
   const url = req.headers.referer || '/';

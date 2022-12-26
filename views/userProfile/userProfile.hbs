@@ -18,10 +18,10 @@
       <div class="menu">
         <p class="overview optionChosen">Overview</p>
         <p class="edit">Edit Profile</p>
-        <p class="change">Change Password</p>
+        {{#if (eq loginby "local")}}<p class="change">Change Password</p>{{/if}}
       </div>
       <div class="content">
-        <div class="overview">
+        <div class="overview{{#if page}} hideUserProfile{{else}}{{/if}}">
           <p class="title">Profile Details</p>
           <div class="overviewForm">
             <div class="type">
@@ -33,17 +33,17 @@
               <p>Address</p>
             </div>
             <div class="infor">
-              <p>Khoa Nguyen</p>
-              <p>0903851718</p>
-              <p>Male</p>
-              <p>14/04/2002</p>
-              <p>khoanguyen@gmail.com</p>
-              <p>binh thanh</p>
+              <p>{{name}}</p>
+              <p>{{phoneNumber}}</p>
+              <p>{{sex}}</p>
+              <p>{{birthday}}</p>
+              <p>{{email}}</p>
+              <p>{{address}}</p>
             </div>
           </div>
         </div>
 
-        <div class="editProfile hideUserProfile">
+        <form method="post" class="editProfile{{#if (eq page "editform")}}{{else}} hideUserProfile{{/if}}">
           <div class="imageProfile">
             <div class="image">
 
@@ -79,48 +79,50 @@
           <div class="editForm">
             <div class="fullName">
               <p>Full name</p>
-              <input value="Khoa Nguyen" />
+              <input type="text" name="fullname" value='{{name}}' />
             </div>
-            <div class="birthday">
+            <div   class="birthday">
               <p>Birthday</p>
-              <input value="14/04/2002" />
+              <input name="dob" value="{{birthday}}" />
             </div>
             <div class="sex">
               <p>Sex</p>
-              <input value="Male" />
+              <input name="sex" value="{{sex}}" />
             </div>
             <div class="phoneNumber">
               <p>Phone Number</p>
-              <input value="0903851718" />
+              <input name="phonenumber" value="{{phoneNumber}}" />
             </div>
             <div class="email">
               <p>Email</p>
-              <input value="khoanguyen@gmail.com" />
+              <input name="email" value='{{email}}' />
             </div>
             <div class="address">
               <p>Address</p>
               <input
-                value="24/16 Vo Oanh Street, Ward 26, Binh Thanh District"
+              name="address"
+                value="{{address}}"
               />
             </div>
           </div>
+          <p class="messageUserProfile">{{message}}</p>
           <div class="buttonFrame">
-            <button class="saveButton">Save</button>
+            <button name="submitForm" class="saveButton" value="editProfile">Save</button>
           </div>
-        </div>
+        </form>
 
-        <div class="changePassword hideUserProfile">
+        <form method="post" class="changePassword{{#if (eq page "changeform")}}{{else}} hideUserProfile{{/if}}">
           <div class="currentPassword">
             <p>Current Password</p>
-            <input type="password" value="12345678" />
+            <input name="currentPassword" type="password" value="{{user.historyCurrentPassword}}" />
           </div>
           <div class="newPassword">
             <p>New Password</p>
-            <input type="password" value="12345678" />
+            <input name="password" type="password" value="{{user.historyPassword}}" />
           </div>
           <div class="confirmPassword">
             <p>Confirm New Password</p>
-            <input type="password" value="12345678" />
+            <input name="passwordConfirm" type="password" value="{{user.passwordConfirm}}" />
           </div>
           <div class="passwordStronger">
             <p>To make your password stronger: </p>
@@ -130,10 +132,12 @@
               <li>Add punctuation</li>
             </ul>
           </div>
+          <p class="messageUserProfile">{{message}}</p>
+
           <div class="buttonFrame">
-            <button class="changeButton">Change Password</button>
+            <button name="submitForm" class="changeButton" value="editPassword">Change Password</button>
           </div>
-        </div>
+        </form>
 
       </div>
     </div>
@@ -162,6 +166,11 @@
       $(".body > .main > .content > .changePassword").addClass("hideUserProfile") 
       $(".body > .main > .content > .editProfile").addClass("hideUserProfile") 
       $(".body > .main > .content > .overview").removeClass("hideUserProfile")
-    }) 
+    });
+    $(document).ready(function(){
+    const messages = "{{messages}}"
+    if(messages && (messages==="success")) alert("Changed password successfully!");
+    })
+
   </script>
 </div>

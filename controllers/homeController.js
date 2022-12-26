@@ -338,5 +338,5 @@ export const homePage = async (req, res) => {
         }
     ]
 
-    res.render('home/home', { categories: JSON.stringify(categories), hotCourse, mostviewCourse, newestCourse }); 
+    res.render('home/home', { categories: JSON.stringify(categories), hotCourse, mostviewCourse, newestCourse });
 };
