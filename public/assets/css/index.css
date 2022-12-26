@@ -183,6 +183,14 @@ body {
     margin-bottom: .3rem;
 }
 
+.course-card > .card-main > .card-author > span {
+    display: block;
+    max-width: 60%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}  
+
 .course-card > .card-main > .card-author i {
     margin-top: .1rem;
 }

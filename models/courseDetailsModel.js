@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const courseDetailsSchema = new mongoose.Schema({
-  course_id: { type: mongoose.Types.ObjectId },
+  course_id: { type: String },
   viewer: { type: Number },
   avg_rating: { type: Number },
   num_reviews: { type: Number },
