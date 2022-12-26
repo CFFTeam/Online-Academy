@@ -1,0 +1,89 @@
+<div class="course-content">
+    <div class="curriculum">
+        <span class="title">Curriculum</span>
+        <div class="mode">
+            <a href="/preview">Preview</a>
+            <a href="/add-course-description">Description</a>
+            <a href="/add-course-content" class="active">Content</a>
+        </div>
+    </div>
+    <div class="section">
+        {{#each this.sections}}
+        <div class="section-heading">
+            <div class="section-title">{{title}}</div>
+            <button class="edit-btn" type="button"><img src="/assets/svg/instructor/edit-section.svg"
+                    alt="edit-btn"></button>
+        </div>
+        {{#each lessons}}
+        <div class="lesson">
+            <span class="lesson-title"><img src="/assets/svg/instructor/lesson.svg" alt="lesson">{{title}}</span>
+            <a class="edit-lesson-btn"><img src="/assets/svg/instructor/edit-lesson.svg" alt="edit-lesson"></a>
+        </div>
+        {{/each}}
+        <div class="new-lesson">
+            <button class="add-new-lesson-btn">
+                <img src="/assets/svg/instructor/add-new.svg" alt="add-new-icon">
+                <span class="title">Add a new lesson</span>
+            </button>
+        </div>
+        {{/each}}
+    </div>
+    <div class="new-section">
+        <a class="add-new-section-btn" href="/account/login">
+            <img src="/assets/svg/instructor/add-new.svg" alt="add-new-icon">
+            <span class="title">Add a new section</span>
+        </a>
+    </div>
+    <div class="confirm-section">
+        <button class="save-btn">SAVE</button>
+        <button class="finish-btn">FINISH THE COURSE</button>
+    </div>
+</div>
+
+<div class="backdrop"></div>
+<div class="handle-lesson-form">
+    <div class="title">Edit a custom lesson</div>
+    <div class="heading">
+        <a class="lecture-section active">Lecture</a>
+        <a class="resources-section">Resources</a>
+        <a class="quizz-section">Quizz</a>
+        <a class="announcements-section">Announcements</a>
+    </div>
+    <form action="" method="post">
+        <div class="lecture-info">
+            <div class="form-group">
+                <label for="lecture-title" class="lecture-title">Lecture Title</label>
+                <input name="lecture_title" type="text" id="txtLectureTitle" placeholder="Enter your lecture title" />
+            </div>
+            <div class="form-group">
+                <label for="lecture-description" class="lecture-description">Lecture Description</label>
+                <textarea name="lecture_description" id="txtLectureDescription" cols="45" rows="3"
+                    placeholder="Describe briefly this lecture..."></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="video-uploader">Video uploader</label>
+            <div class="message">Use the video uploader to upload videos into your lecture</div>
+            <div class="video"></div>
+        </div>
+        <div class="confirm-section">
+            <a class="publish-btn">Publish</a>
+            <a class="cancel-btn">Cancel</a>
+        </div>
+    </form>
+</div>
+
+<script>
+    $(".backdrop, .cancel-btn").click(() => {
+        $('.backdrop').removeClass("show");
+        $('.handle-lesson-form').removeClass("show");
+        $('.backdrop').addClass("hide");
+        $('.handle-lesson-form').addClass("hide");
+    })
+    $('.edit-lesson-btn, .add-new-lesson-btn').click(() => {
+        $('.backdrop').removeClass("hide");
+        $('.handle-lesson-form').removeClass("hide");
+        $('.backdrop').addClass("show");
+        $('.handle-lesson-form').addClass("show");
+    })
+</script>
