@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const categorySchema = new mongoose.Schema({
+const courseDetailsSchema = new mongoose.Schema({
   course_id: { type: mongoose.Types.ObjectId },
   viewer: { type: Number },
   avg_rating: { type: Number },
@@ -20,6 +20,6 @@ const categorySchema = new mongoose.Schema({
   ]
 });
 
-const Category = mongoose.model("category", categorySchema);
+const courseDetails = mongoose.model("courses_details", courseDetailsSchema);
 
-export default Category;
+export default courseDetails;

@@ -4,7 +4,7 @@
     {{!  email}}
     <div class="form-group">
       <label for="full-name" class="full-name">Email</label>
-      <input name = "email" type="text" id="txtEmail" placeholder="Enter your email" />
+      <input name = "email" type="text" id="txtEmail" placeholder="Enter your email" value="{{#if props.historyEmail }}{{props.historyEmail}}{{/if}}" />
     </div>
     {{!  password}}
     <div class="form-group">

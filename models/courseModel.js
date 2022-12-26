@@ -9,6 +9,7 @@ const courseSchema = new mongoose.Schema({
   currency: { type: String },
   price: { type: String },
   sale: { type: String },
+  finish: { type: Number },
   category: { type: String },
   subcategory: [{ type: String }],
   details: { type: String },
@@ -24,7 +25,9 @@ const courseSchema = new mongoose.Schema({
         lessons: [
           {
             title: { type: String },
-            resources: { type: String },
+            resources: [{ type: String }],
+            url: { type: String },
+            preview: { type: String },
             video: { type: String }
           }
         ]
