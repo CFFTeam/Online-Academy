@@ -2,6 +2,9 @@ import { NOTIMP } from "dns";
 import express from "express";
 import catchAsync from "../utilities/catchAsync.js";
 import validateUser from '../middlewares/auth.mdw.js';
+import multer from 'multer';
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
 
 export const getMyCourses = function (req,res,next) {
     //res.render('instructor/my-courses.hbs');
@@ -183,4 +186,23 @@ export const addCourseContent = (req,res) => {
 
     });
 }
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
+export const uploadLesson = catchAsync(async(req,res,next) => {
+    res.locals.handlebars = "instructor/addCourseContent";
+    res.locals.layout = "instructor.hbs";
+    const storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+          cb(null, `./public/tmp/my-uploads`)
+        },
+        filename: function (req, file, cb) {
+          cb(null, file.originalname);
+        }
+    })
+    const upload = multer({ storage: storage });
+    upload.single('videoUploadFile')(req,res, (err) => {
+        console.log(req.body);
+        if (err) { console.error(err);}
+        else res.render('instructor/addCourseContent', {layout: 'instructor'});
+    })
+});
