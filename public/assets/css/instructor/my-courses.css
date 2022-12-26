@@ -1,0 +1,114 @@
+/* my course table */
+.my-course
+{
+    margin-top: 5rem;
+    box-shadow: 0 0 5px rgba(0,0,0,20%);
+    width: 75%;
+    margin-left: 7.5rem;
+
+}
+
+.custom-table> tbody {
+    display:block;
+    height: 40rem;
+    overflow:auto;
+}
+.custom-table> thead, tbody tr {
+    display:table;
+    width: 100%;         
+}
+.custom-table> thead {
+    width: 100%   
+}
+.custom-table {
+    width:100%;
+}
+
+/* custom scrollbar */
+tbody::-webkit-scrollbar {
+    width: 5px;
+    scrollbar-width: thin;
+    overflow-y: auto;
+  }
+  
+  tbody::-webkit-scrollbar-thumb {
+    background-color: #44CB92;
+    border-radius: 100px;
+  }
+
+
+
+.table thead th {
+    border-bottom: 1px solid black;
+    border-top: none;
+}
+
+  
+.table th, .table td {
+  font-size: 1.6rem;
+  font-family: Montserrat;
+}
+
+.table td {
+  font-weight: 500;
+}
+
+
+
+.table-striped>tbody>tr:nth-child(odd)>td, 
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color: #E4FFE7;
+ }
+
+
+ .dollar
+ {
+    font-weight: 600;
+    margin-right: 0.3rem;
+ }
+
+ .edit-btn, .delete-btn
+ {
+    border: none;
+ }
+
+ /*  status */
+ .table > tbody > tr > td > img
+ {
+    margin-left: 1.2rem;
+ }
+
+
+
+ .my-course .heading
+ {
+    font-size: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1rem 2rem 3rem 1rem; 
+    color: #00A551;
+    font-family: Montserrat;
+    font-weight: 700;
+ }
+
+ .my-course .heading span
+ {
+    align-self: flex-start;
+ }
+
+ .my-course .heading button
+ {
+    margin-top: 2rem;
+    color: #fff;
+    font-size: 1.8rem;
+    padding: 0.5rem 1rem;
+    background-color: #00A551;
+    border-radius: 5px;
+ }
+
+ 
+ .my-course .heading button
+ {
+    border: none;
+ }

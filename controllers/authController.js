@@ -70,9 +70,10 @@ export const handleSignupForm = catchAsync(async (req, res, next, err) => {
     await sendEmail({
       email: req.body.email,
       subject: "Your verification code (valid for 10 minutes)",
-      message,
+      message
     });
-  } catch (err) {
+  }
+  catch (err) {
     return next(new Error('There was an error sending the email. Try again later!'));
   }
   // create payload field in token
@@ -107,7 +108,7 @@ export const handleOTPForm = catchAsync(async (req, res, next, err) => {
         await User.create({
           email,
           name,
-          password,
+          password
         });
         msg = "success-sign-up";
       }
@@ -137,15 +138,16 @@ export const handleForgotPasswordForm = catchAsync(async (req, res, next, err) =
     await sendEmail({
       email: req.body.email,
       subject: "Your verification code (valid for 10 minutes)",
-      message,
+      message
     });
-  } catch (err) {
+  }
+  catch (err) {
     return next(new Error('There was an error sending the email. Try again later!'));
   }
   // create payload field in token
   const payload = {
     verificationCode: verificationCode,
-    email: req.body.email,
+    email: req.body.email
   }
   const userVerifyToken = jwt.sign(payload,
     process.env.USER_VERIFY_TOKEN_SECRET);

@@ -12,7 +12,6 @@
     <script src="/assets/jquery.min.js"></script>
     <script src="/assets/bootstrap.min.js"></script>
     
-    <link rel="stylesheet" href="/assets/css/index.css" type="text/css" />
     {{!-- END GLOBAL --}}
     {{!-- bootstrap 4 --}}
     <!-- Latest compiled and minified CSS -->
@@ -30,15 +29,21 @@
     <link rel="stylesheet" href="/assets/css/home/home.css" type="text/css" />
     <link rel="stylesheet" href="/assets/css/payment/shoppingCart.css" type="text/css" />
     <link rel="stylesheet" href="/assets/css/instructor/sidebar.css" type = "text/css" />
-    {{!-- SVG --}}
+    <link rel="stylesheet" href="/assets/css/instructor/add-course-content.css" type = "text/css" />
     <link rel="stylesheet" href="/assets/css/instructor/sidebar.css" type = "text/css" />
-
+    <link rel="stylesheet" href="/assets/css/instructor/my-courses.css" type = "text/css" />
+    <link rel="stylesheet" href="/assets/css/instructor/main.css" type = "text/css" />
+    <link rel="stylesheet" href="/assets/css/index.css" type="text/css" />
+    {{!-- SVG --}}
 </head>
 <body>
     {{> navbar }}
-    {{!-- {{> instructor/sidebar }} --}}
-    {{{ body }}}
-    {{!-- {{> footer }} --}}
+    <div class = "main">
+       {{> instructor/sidebar }}
+       {{{ body }}}
+    </div>
+   
+    {{> footer }}
 <script>
    if (window.location.hash === "#_=_"){
 

@@ -1,0 +1,419 @@
+/* curriculum */
+.course-content
+{
+    margin-left: 10rem;
+    width: 70%;
+}
+.curriculum
+{
+    margin-top: 5rem;
+    padding: 1rem 2rem;
+    font-size: 1.6rem;
+    min-height: 5rem;
+    box-shadow: 0 0 10px rgba(0,0,0,20%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Montserrat;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #00A551;
+}
+
+.mode {
+    display: flex;
+    gap: 3rem;
+    font-family: Montserrat;
+    font-size: 1.8rem;
+}
+
+.mode a 
+{
+    color: #000;
+    font-weight: 700;
+    padding: 0.5rem 1.6rem;
+    text-decoration: none;
+    border-radius: 7px;
+    border: 1px solid #343a40;
+}
+
+.mode a:hover {
+    color: #fff;
+    background-color: #2FC397;
+    border: 1px solid transparent;
+}
+
+.mode .active
+{
+ border: 2px solid transparent;
+ color: #fff;
+ background-color: #2FC397;
+}
+
+
+.mode .active:hover
+{
+    border: 2px solid transparent;
+    color: #fff;
+    background-color: #2FC397;
+}
+
+/* section */
+.section {
+    margin-top: 4rem;
+    font-family: Montserrat;
+    font-size: 1.6rem;
+}
+.section .section-heading
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #D9D9D9;
+    height: 5rem;
+    font-size: 2rem;
+    padding: 0rem 1.5rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-top: 3rem;
+}
+
+.section .section-heading button 
+{
+    margin-top: 0;
+    background-color: transparent;
+    border: none;
+    margin-bottom: 0.5rem;
+}
+
+/* lesson */
+.section .lesson {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #F1F3F5;
+    height: 5rem;
+    font-size: 2rem;
+    padding: 0rem 1.5rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.section:last-child
+{
+    margin-bottom: 0;
+}
+
+.section .lesson > .lesson-title
+{
+    font-size: 1.6rem; 
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.section .lesson button
+{
+    border: none;
+}
+
+/* add new lesson */
+.section .new-lesson
+{
+    min-height: 5rem;
+    box-shadow: 0 3px 2px rgba(0,0,0,20%);
+    font-family: Montserrat;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+button.add-new-lesson-btn
+{
+    border: none;
+}
+
+button.add-new-lesson-btn .title {
+    border: none;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #00A551;
+}
+
+/* new-section */
+.new-section 
+{
+    margin-top: 4rem;
+    padding: 1rem 2rem;
+    font-size: 1.8rem;
+    min-height: 7rem;
+    box-shadow: 0 0 10px rgba(0,0,0,20%);
+    font-family: Montserrat;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+a.add-new-section-btn
+{
+    border: none;
+    text-decoration: none;
+}
+
+
+a.add-new-section-btn .title
+{
+    color: #00A551;
+    font-weight: 500;
+}
+
+/* confirm section */
+
+.confirm-section
+{
+    margin-top: 4rem;
+    /* background-color: aquamarine; */
+    display: flex;
+    justify-content: center;
+    gap: 7rem;
+}
+
+.confirm-section button.save-btn
+{
+    padding: 0.5rem 14.3rem;
+    border:  2px solid #00A551;
+    color: #00A551;
+    font-weight: 500;
+    border-radius: 12px;
+    transition: all 0.1s ease-in-out;
+}
+
+.confirm-section button.save-btn:hover
+{
+    background-color: #00A551;
+    color: #fff;
+}
+
+
+.confirm-section button.finish-btn
+{
+    padding: 0.5rem 8rem;
+    color: #fff;
+    background-color: #00A551;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: all 0.1s ease-in-out;
+}
+
+.confirm-section button.finish-btn:hover
+{
+    border: 2px solid #00A551;
+    background-color: transparent;
+    color: #00A551;
+}
+
+/* backdrop */
+.backdrop {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 20;
+    display: none
+}
+
+/* edit-lesson */
+.handle-lesson-form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #fff;
+    width: 90rem;
+    height: 65rem;
+    z-index: 30;
+    display: none
+}
+
+.handle-lesson-form .title
+{
+    background-color: #12B886;
+    color: #fff;
+    padding: 0.5rem;
+    font-size: 2rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.handle-lesson-form > div.heading {
+    display: flex;
+    justify-content: center;
+    gap: 6rem;
+    font-family: Montserrat;
+    font-size: 1.8rem;
+    padding: 2rem;
+    background-color: #fff;
+    box-shadow: 0 0 3px rgba(0,0,0,20%);
+    margin-bottom: 1rem;
+}
+
+.handle-lesson-form > .heading > a
+{
+    color: #000;
+    font-weight: 700;
+    padding: 0.5rem 1.6rem;
+    text-decoration: none;
+    border-radius: 7px;
+    border: 1px solid #343a40;
+}
+
+
+.handle-lesson-form > .heading > a:hover {
+    color: #fff;
+    background-color: #2FC397;
+    border: 1px solid transparent;
+}
+
+.handle-lesson-form > .heading > a.active
+{
+ border: 2px solid transparent;
+ color: #fff;
+ background-color: #2FC397;
+}
+
+
+.handle-lesson-form > .heading > a.active:hover
+{
+    border: 2px solid transparent;
+    color: #fff;
+    background-color: #2FC397;
+}
+
+/* form info */
+
+form > .lecture-info
+{
+    display: flex;
+    justify-content: space-around;
+}
+
+.lecture-info:nth-child(1)
+{
+    margin-left: -3rem;
+    
+}
+
+.form-group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin: 1.3rem 0rem 0rem 3.6rem;
+    font-family: Montserrat;
+}
+  
+  .form-group label {
+    color: #000;
+    font-weight: 700;
+  }
+  
+  .form-group input {
+    width: 35rem;
+    border-radius: 10px;
+    height: 3.6rem;
+    padding: 0rem 1.5rem;
+    background-color: #f4f4f4;
+    border: none;
+    outline: none;
+  }
+
+  .form-group textarea {
+    padding: 1rem;
+    border: none;
+    box-shadow: 0 0 10px rgba(0,0,0,20%);
+    resize: none;
+    border: none;
+    outline: none;
+  }
+
+  form > .form-group
+  {
+    color: #868E96;
+    font-weight: 500;
+  }
+
+  form > .form-group > .video
+  {
+    margin-top: 1rem;
+    width: 95%;
+    height: 20rem;
+    background-color: #F4F4F4;
+  }
+  
+  form > .confirm-section
+{
+    margin-top: 4rem;
+    display: flex;
+    justify-content: center;
+    gap: 7rem;
+}
+form > .confirm-section a {
+    text-decoration: none;
+}
+
+form > .confirm-section a.publish-btn
+{
+    padding: 0.5rem 8rem;
+    border:  2px solid #20C997;
+    background-color: #20C997;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 12px;
+    transition: all 0.1s ease-in-out;
+}
+
+form > .confirm-section a.publish-btn:hover
+{
+    background-color: #fff;
+    color: #20C997;
+}
+
+
+form > .confirm-section a.cancel-btn
+{
+    padding: 0.5rem 8rem;
+    color: #fff;
+    background-color: red;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: all 0.1s ease-in-out;
+}
+
+form > .confirm-section a.cancel-btn:hover
+{
+    border: 2px solid red;
+    background-color: transparent;
+    color: red;
+}
+
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+a:hover {
+    cursor: pointer;
+}

@@ -21,15 +21,13 @@
         id="txtFullname"
         autofocus
         placeholder="Enter your name"
-        {{!-- value="{{#if historyName }}{{historyName}}{{/if}}" --}}
-      />
+        value="{{#if props.historyName }}{{props.historyName}}{{/if}}" />
     </div>
     {{!  email}}
     <div class="form-group">
       <label for="txtEmail" class="email">Email</label>
       <input name = "email" type="text" id="txtEmail" placeholder="Enter your email" 
-      {{!-- value="{{#if historyEmail }}{{historyEmail}}{{/if}}"/> --}}
-      />
+      value="{{#if props.historyEmail }}{{props.historyEmail}}{{/if}}" />
     </div>
     {{!  password}}
     <div class="form-group">
