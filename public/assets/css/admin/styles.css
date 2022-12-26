@@ -5,7 +5,7 @@
     
 }
 
-.nav-item h5:hover {
+.nav-item h3:hover {
     color: #00A551;
 }
 
@@ -25,12 +25,14 @@
     fill: #00A551
 }
 
-.nav-item h5 {
+.nav-item h3 {
     color: #808080;
     font-weight: 700;
 }
 
-
+.dropdown-item{
+    font-size: 1.5rem;
+}
 
 .logout {
     text-align: center;
@@ -40,7 +42,7 @@
     left: 0;
     right: 0;
     font-weight: 700;
-    font-size: 1.3rem;
+    font-size: 2rem;
     cursor: pointer;
 }
 
@@ -56,22 +58,22 @@
     fill: #00A551;
 }
 
-input {
-    height: 2.5rem;
-    width: 20rem;
-    box-shadow: 2px 2px 8px #888888;
+.input1 {
+    height: 3.5rem;
+    width: 30rem;
     border: none;
-    padding-left: 2rem;
-    padding-bottom: 0.2rem;
+    padding: 0.2rem 1rem;
+    border: 1px solid #808080;
     border-radius: 5px;
+    margin-top: 1.5rem;
 }
 
-input::placeholder {
+.input1::placeholder {
     color: #808080;
-    font-size: 1rem;
+    font-size: 1.5rem;
 }
 
-label {
+/* label {
     position: relative;
     margin-top: 1rem;
 }
@@ -79,26 +81,26 @@ label {
 label:before {
     content: "";
     position: absolute;
-    left: 0.5rem;
+    left: 0.9rem;
     top: 0;
     bottom: 0;
-    width: 1rem;
+    width: 1.8rem;
     background: url("/assets/images/admin/search.png") center / contain no-repeat;
-}
+} */
 
 .newcat {
-    height: 2.5rem;
-    width: 20rem;
+    height: 3.5rem; 
+    width: 30rem;
     border: 1px solid #ABABAB;
     box-shadow: none;
-    padding-left: 1rem;
-    margin-top: 2rem;
+    padding: 0.2rem 1.5rem;
+    margin: 2rem 0;
     border-radius: 5px;
 }
 
 .editname {
     height: 2.2rem;
-    width: 15rem;
+    width: 30rem;
     border: 1px solid #ABABAB;
     box-shadow: none;
     padding-left: 1rem;
@@ -109,20 +111,21 @@ label:before {
 
 .newcat::placeholder {
     color: 808080;
-    font-size: 1rem;
+    font-size: 1.5rem;
 }
 
 .but {
     background: #00A551;
     color: white;
     font-weight: 600;
-    height: 2.4rem;
+    height: 3.5rem;
     margin-left: 1rem;
     margin-top: 0rem;
     border-radius: 5px;
     box-sizing: border-box;
     border: none;
     padding: 0 1rem;
+    font-size: 1.5rem;
 }
 
 .butname{
@@ -212,9 +215,6 @@ tr:nth-child(odd) {
     text-decoration: none;
 }
 
-.button{
-    background-color: #00A551;
-}
 
 .not{
     border-collapse: separate;
