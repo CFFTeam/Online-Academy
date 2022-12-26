@@ -12,11 +12,11 @@ import UserProfileRoutes from "./routes/UserProfileRoutes.js";
 import WishlistRoutes from "./routes/WishlistRoutes.js";
 import AdminRoutes from "./routes/AdminRoutes.js"
 import PassportRoutes from "./routes/PassportRoutes.js";
+import CourseDetailRoutes from "./routes/CourseDetailRoutes.js";
 import helpers from "./views/helpers.js";
 import globalErrorHandler from "./controllers/errorController.js";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
-import Handlebars from "handlebars";
 
 const app = express();
 import passport from "passport";
@@ -81,6 +81,10 @@ app.use("/instructor", InstructorRoutes);
 app.use("/payment", PaymentRoutes);
 app.use("/user-profile", auth_middleware, UserProfileRoutes);
 app.use("/wishlist", WishlistRoutes);
+
+
+//Course detail
+app.use("/course", CourseDetailRoutes);
 
 //admin
 app.use("/admin", AdminRoutes);

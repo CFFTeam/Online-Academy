@@ -1,4 +1,7 @@
-<div class="card border-0" style="width:95%; justify-content: center; margin-left:3.3rem;">
+<div
+  class="card border-0"
+  style="width:95%; justify-content: center; margin-left:3.3rem;"
+>
 
   <div class="card-header border-0 bg-white pt-0 px-0">
     <div
@@ -19,7 +22,8 @@
     </button>
 
   </div>
-  <table id="teacher" class="cor">
+
+  <table id="teacher" class="cor" style="margin-top: 2rem;">
 
     <tr class="none-shawdow">
       <th>ID</th>
@@ -36,11 +40,11 @@
         <td class="name">{{name}}</td>
 
         <td class="edit" style="text-align: center; padding: 0 1rem;">
-            <img src="/assets/svg/admin/edit.svg" alt="edit-icon" />
+          <img src="/assets/svg/admin/edit.svg" alt="edit-icon" />
         </td>
 
         <td style="text-align: center; padding: 0 1rem;">
-          <a href="teachers/ban/{{_id}}">
+          <a href="students/ban/{{_id}}">
             <img src="/assets/svg/admin/ban.svg" alt="ban-icon" />
           </a>
         </td>
@@ -50,15 +54,14 @@
           data-toggle="modal"
           data-target="#myModal"
         >
-          <img src="/assets/svg/admin/info.svg" alt="info-icon" />  
+          <img src="/assets/svg/admin/info.svg" alt="info-icon" />
         </td>
 
         <td class="delete" style="text-align: center; padding: 0 1rem;">
-          <a href="/admin/teachers/delete/{{_id}}">
-            <img src="/assets/svg/admin/delete.svg" alt="delete-icon" />  
+          <a href="/admin/students/delete/{{_id}}">
+            <img src="/assets/svg/admin/delete.svg" alt="delete-icon" />
           </a>
         </td>
-
       </tr>
     {{/each}}
 
@@ -73,9 +76,9 @@
 
         <!-- Modal Header -->
         <div class="modal-header" style="border:none; padding: 1rem 0 0 1rem;">
-          <h4
+          <h1
             style="color:#00A551; font-weight: 700;margin: 0.5rem;"
-          >Detail</h4>
+          >Detail</h1>
         </div>
 
         <!-- Modal body -->
@@ -176,18 +179,18 @@
       </div>
     </div>
   </div>
-  
+
   <script>
-    $('#teacher').on('click','.edit',function() { 
-      const id=$(this).siblings('.id').text();
+    $('#teacher').on('click','.edit',function() { const
+    id=$(this).siblings('.id').text();
     if($(this).siblings('.name').find('input').length){
     $(this).siblings('.name').text($(this).siblings('.name').find('input').val());
-    } 
-    else { var content=$(this).siblings('.name').text(); 
-    var actionURL="teachers/edit/"+id; 
-    var form=$("<form/>", { method: 'POST',action: actionURL, style: 'margin: 0; padding: 0', } ).append($("<input>", {
-    type:'text', name:'title', class:"editname", value: content, }
-    ).val(content)).append($("<input>", { type:'submit', class:"butname", value:"Save" })) 
+    } else { var content=$(this).siblings('.name').text(); var
+    actionURL="teachers/edit/"+id; var form=$("<form/>", { method:
+    'POST',action: actionURL, style: 'margin: 0; padding: 0', }
+    ).append($("<input>", { type:'text', name:'title', class:"editname", value:
+    content, } ).val(content)).append($("<input>", { type:'submit',
+    class:"butname", value:"Save" }))
     $(this).siblings('.name').text('').append(form); } });
   </script>
 </div>

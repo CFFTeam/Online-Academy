@@ -1,4 +1,7 @@
-<div class="card border-0" style="width:95%; justify-content: center; margin-left:3.3rem;">
+<div
+  class="card border-0"
+  style="width:95%; justify-content: center; margin-left:3.3rem;"
+>
 
   <div class="card-header border-0 bg-white pt-0 px-0">
     <div
@@ -32,36 +35,36 @@
   </div>
   <table id="course" class="cor">
 
-    <tr class="none-shawdow">
-      <th>ID</th>
-      <th>Category</th>
-      <th style="padding-right: 10rem;">Course name</th>
-      <th style="width: 1rem;"></th>
-      <th style="width: 1rem;"></th>
-    </tr>
-
-    {{#each this.courses}}
-      <tr>
-        <td class="id">{{_id}}</td>
-        <td class="name">{{category}}</td>
-        <td class="name">{{name}}</td>
-
-        <td
-          style="text-align: center; padding: 0 1rem;"
-          data-toggle="modal"
-          data-target="#myModal"
-        >
-          <img src="/assets/svg/admin/info.svg" alt="info-icon" />
-        </td>
-
-        <td class="delete" style="text-align: center; padding: 0 1rem;">
-          <a href="/admin/courses/delete/{{_id}}">
-            <img src="/assets/svg/admin/delete.svg" alt="delete-icon" />
-          </a>
-        </td>
-
+      <tr class="none-shawdow">
+        <th>ID</th>
+        <th>Category</th>
+        <th style="padding-right: 10rem;">Course name</th>
+        <th style="width: 1rem;"></th>
+        <th style="width: 1rem;"></th>
       </tr>
-    {{/each}}
+
+      {{#each this.courses}}
+        <tr>
+          <td class="id">{{_id}}</td>
+          <td class="name">{{category}}</td>
+          <td class="name">{{name}}</td>
+
+          <td
+            style="text-align: center; padding: 0 1rem;"
+            data-toggle="modal"
+            data-target="#myModal"
+          >
+            <img src="/assets/svg/admin/info.svg" alt="info-icon" />
+          </td>
+
+          <td class="delete" style="text-align: center; padding: 0 1rem;">
+            <a href="/admin/courses/delete/{{_id}}">
+              <img src="/assets/svg/admin/delete.svg" alt="delete-icon" />
+            </a>
+          </td>
+
+        </tr>
+      {{/each}}
 
   </table>
 
