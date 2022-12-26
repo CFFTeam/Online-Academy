@@ -39,8 +39,9 @@
         <button class="finish-btn">FINISH THE COURSE</button>
     </div>
 </div>
-
+{{!-- backdrop --}}
 <div class="backdrop"></div>
+{{!-- edit lesson form --}}
 <div class="handle-lesson-form">
     <div class="title">Edit a custom lesson</div>
     <div class="heading">
@@ -49,7 +50,7 @@
         <a class="quizz-section">Quizz</a>
         <a class="announcements-section">Announcements</a>
     </div>
-    <form action="" method="post">
+    <form action="/instructor/upload-lesson" method="post" enctype="multipart/form-data">
         <div class="lecture-info">
             <div class="form-group">
                 <label for="lecture-title" class="lecture-title">Lecture Title</label>
@@ -64,16 +65,27 @@
         <div class="form-group">
             <label for="video-uploader">Video uploader</label>
             <div class="message">Use the video uploader to upload videos into your lecture</div>
-            <div class="video"></div>
+            <label class="video" for="videoUploadFile">
+                <div class="specific">
+                    <span class="upload-video-icon"><img src="/assets/svg/instructor/upload-lesson.svg"
+                            alt="upload-icon"></span>
+                    <span class="upload-video-message">Drop video files here or click to choose</span>
+                </div>
+            </label>
+            <input name="videoUploadFile" id="videoUploadFile" type="file" style="display: none;">
+            <div class="cancel-upload">
+                <button class="cancel-upload-btn" type="button">Cancel upload</button>
+            </div>
         </div>
         <div class="confirm-section">
-            <a class="publish-btn">Publish</a>
-            <a class="cancel-btn">Cancel</a>
+            <button class="publish-btn" type="submit">Publish</button>
+            <button class="cancel-btn" type="button">Cancel</button>
         </div>
     </form>
 </div>
 
 <script>
+    // show/hide overlay and edit lesson form when user click
     $(".backdrop, .cancel-btn").click(() => {
         $('.backdrop').removeClass("show");
         $('.handle-lesson-form').removeClass("show");
@@ -85,5 +97,16 @@
         $('.handle-lesson-form').removeClass("hide");
         $('.backdrop').addClass("show");
         $('.handle-lesson-form').addClass("show");
+    })
+    // set file name when uploading
+    $('#videoUploadFile').change(function (event) {
+        const filename = event.target.files[0].name;
+        $('.upload-video-message').text(filename);
+        $('.upload-video-message').css("color", "#495057");
+    })
+    // cancel upload
+    $('.cancel-upload-btn').click(() => {
+        $('#videoUploadFile').val(null);
+        $('.upload-video-message').text("Drop video files here or click to choose");
     })
 </script>

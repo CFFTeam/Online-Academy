@@ -238,8 +238,9 @@ a.add-new-section-btn .title
     transform: translate(-50%,-50%);
     background-color: #fff;
     width: 90rem;
-    height: 65rem;
+    /* height: 65rem; */
     z-index: 30;
+    padding-bottom: 3rem;
     display: none
 }
 
@@ -350,13 +351,6 @@ form > .lecture-info
     font-weight: 500;
   }
 
-  form > .form-group > .video
-  {
-    margin-top: 1rem;
-    width: 95%;
-    height: 20rem;
-    background-color: #F4F4F4;
-  }
   
   form > .confirm-section
 {
@@ -365,11 +359,9 @@ form > .lecture-info
     justify-content: center;
     gap: 7rem;
 }
-form > .confirm-section a {
-    text-decoration: none;
-}
 
-form > .confirm-section a.publish-btn
+
+form > .confirm-section button.publish-btn
 {
     padding: 0.5rem 8rem;
     border:  2px solid #20C997;
@@ -380,14 +372,14 @@ form > .confirm-section a.publish-btn
     transition: all 0.1s ease-in-out;
 }
 
-form > .confirm-section a.publish-btn:hover
+form > .confirm-section button.publish-btn:hover
 {
     background-color: #fff;
     color: #20C997;
 }
 
 
-form > .confirm-section a.cancel-btn
+form > .confirm-section button.cancel-btn
 {
     padding: 0.5rem 8rem;
     color: #fff;
@@ -398,13 +390,61 @@ form > .confirm-section a.cancel-btn
     transition: all 0.1s ease-in-out;
 }
 
-form > .confirm-section a.cancel-btn:hover
+form > .confirm-section button.cancel-btn:hover
 {
     border: 2px solid red;
     background-color: transparent;
     color: red;
 }
 
+
+form > .form-group > label.video
+{
+  margin-top: 1rem;
+  width: 95%;
+  height: 20rem;
+  background-color: #F4F4F4;
+  border: 1px solid grey;
+  text-align: center;
+}
+
+form > .form-group > label.video > .specific {
+    margin-top: 2.4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #939393;
+}
+form > .form-group > label
+{
+    cursor: pointer;
+}
+
+form > .form-group > .cancel-upload
+{
+    text-align: right;
+    margin-right: 4.2rem;
+}
+
+form > .form-group > .cancel-upload > button.cancel-upload-btn
+{
+    border: 1px solid red;
+    padding: 0.5rem 1.5rem;
+    border-radius: 5px;
+    background-color: red;
+    color: white;
+}
+
+
+form > .form-group > .cancel-upload > button.cancel-upload-btn:hover
+{
+    background-color: white;
+    color: red;
+}
 
 .hide {
     display: none;
