@@ -1,4 +1,7 @@
-<div class="card border-0" style="width:95%; justify-content: center; margin-left:3.3rem;">
+<div
+  class="card border-0"
+  style="width:95%; justify-content: center; margin-left:3.3rem;"
+>
 
   <div class="card-header border-0 bg-white pt-0 px-0">
     <div
@@ -20,6 +23,7 @@
     </form>
 
   </div>
+
   <table id="category" class="cor">
 
     <tr class="none-shawdow">
@@ -55,7 +59,7 @@
             data-toggle="modal"
             data-target="#myModal"
           >
-          <img src="/assets/svg/admin/delete.svg" alt="delete-icon" />
+            <img src="/assets/svg/admin/delete.svg" alt="delete-icon" />
           </td>
         {{/if}}
 
@@ -87,16 +91,16 @@
   </div>
 
   <script>
-    $('#category').on('click','.edit',function() { 
-      const id=$(this).siblings('.id').text();
+    $('#category').on('click','.edit',function() { const
+    id=$(this).siblings('.id').text();
     if($(this).siblings('.name').find('input').length){
     $(this).siblings('.name').text($(this).siblings('.name').find('input').val());
-    } 
-    else { var content=$(this).siblings('.name').text(); 
-    var actionURL="categories/edit/"+id; 
-    var form=$("<form/>", { method: 'POST',action: actionURL, style: 'margin: 0; padding: 0', } ).append($("<input>", {
-    type:'text', name:'title', class:"editname", value: content, }
-    ).val(content)).append($("<input>", { type:'submit', class:"butname", value:"Save" })) 
+    } else { var content=$(this).siblings('.name').text(); var
+    actionURL="categories/edit/"+id; var form=$("<form/>", { method:
+    'POST',action: actionURL, style: 'margin: 0; padding: 0', }
+    ).append($("<input>", { type:'text', name:'title', class:"editname", value:
+    content, } ).val(content)).append($("<input>", { type:'submit',
+    class:"butname", value:"Save" }))
     $(this).siblings('.name').text('').append(form); } });
   </script>
 </div>
