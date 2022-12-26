@@ -18,7 +18,7 @@
       <div class="menu">
         <p class="overview optionChosen">Overview</p>
         <p class="edit">Edit Profile</p>
-        <p class="change">Change Password</p>
+        {{#if (eq loginby "local")}}<p class="change">Change Password</p>{{/if}}
       </div>
       <div class="content">
         <div class="overview{{#if page}} hideUserProfile{{else}}{{/if}}">
@@ -43,7 +43,7 @@
           </div>
         </div>
 
-        <form method="post" class="editProfile{{#if page}}{{else}} hideUserProfile{{/if}}">
+        <form method="post" class="editProfile{{#if (eq page "editform")}}{{else}} hideUserProfile{{/if}}">
           <div class="imageProfile">
             <div class="image">
 
@@ -105,23 +105,24 @@
               />
             </div>
           </div>
+          <p class="messageUserProfile">{{message}}</p>
           <div class="buttonFrame">
-            <button class="saveButton">Save</button>
+            <button name="submitForm" class="saveButton" value="editProfile">Save</button>
           </div>
         </form>
 
-        <div class="changePassword hideUserProfile">
+        <form method="post" class="changePassword{{#if (eq page "changeform")}}{{else}} hideUserProfile{{/if}}">
           <div class="currentPassword">
             <p>Current Password</p>
-            <input type="password" value="12345678" />
+            <input name="currentPassword" type="password" value="{{user.historyCurrentPassword}}" />
           </div>
           <div class="newPassword">
             <p>New Password</p>
-            <input type="password" value="12345678" />
+            <input name="password" type="password" value="{{user.historyPassword}}" />
           </div>
           <div class="confirmPassword">
             <p>Confirm New Password</p>
-            <input type="password" value="12345678" />
+            <input name="passwordConfirm" type="password" value="{{user.passwordConfirm}}" />
           </div>
           <div class="passwordStronger">
             <p>To make your password stronger: </p>
@@ -131,10 +132,12 @@
               <li>Add punctuation</li>
             </ul>
           </div>
+          <p class="messageUserProfile">{{message}}</p>
+
           <div class="buttonFrame">
-            <button class="changeButton">Change Password</button>
+            <button name="submitForm" class="changeButton" value="editPassword">Change Password</button>
           </div>
-        </div>
+        </form>
 
       </div>
     </div>
@@ -164,5 +167,10 @@
       $(".body > .main > .content > .editProfile").addClass("hideUserProfile") 
       $(".body > .main > .content > .overview").removeClass("hideUserProfile")
     });
+    $(document).ready(function(){
+    const messages = "{{messages}}"
+    if(messages && (messages==="success")) alert("Changed password successfully!");
+    })
+
   </script>
 </div>
