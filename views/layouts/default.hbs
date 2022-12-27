@@ -16,10 +16,26 @@
     {{!-- END GLOBAL --}}
 
     <link rel="stylesheet" href="/assets/css/home/home.css" type="text/css" />
+    
+    {{#if (eq handlebars "payment/shoppingCart")}}
     <link rel="stylesheet" href="/assets/css/payment/shoppingCart.css" type="text/css" />
+    {{/if}}
+
+    {{#if (eq handlebars "userProfile/userProfile")}}
     <link rel="stylesheet" href="/assets/css/userProfile/userProfile.css" type="text/css" />
+    {{/if}}
+
+    {{#if (eq handlebars "wishlist/wishlist")}}
     <link rel="stylesheet" href="/assets/css/wishlist/wishlist.css" type="text/css" />
+    {{/if}}
+
+    {{#if (eq handlebars "courseDetail/courseDetail")}}
     <link rel="stylesheet" href="/assets/css/courseDetail/courseDetail.css" type="text/css" />
+    {{/if}}
+
+    {{#if (eq handlebars "home/courses")}}
+    <link rel="stylesheet" href="/assets/css/home/courses.css" type="text/css" />
+    {{/if}}
 </head>
 <body>
     {{> navbar }}
@@ -30,20 +46,14 @@
 
     // Check if the browser supports history.replaceState.
     if (history.replaceState) {
-
         // Keep the exact URL up to the hash.
         var cleanHref = window.location.href.split("#")[0];
-
         // Replace the URL in the address bar without messing with the back button.
         history.replaceState(null, null, cleanHref);
-
     } else {
-
         // Well, you're on an old browser, we can get rid of the _=_ but not the #.
         window.location.hash = "";
-
     }
-
 }
 </script>
 </body>

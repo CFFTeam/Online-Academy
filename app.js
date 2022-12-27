@@ -26,6 +26,7 @@ import passportAuth from "./middlewares/passport.js";
 import activate_session_middleware from "./middlewares/session.mdw.js";
 import activate_locals_middleware from "./middlewares/locals.mdw.js";
 import auth_middleware from "./middlewares/auth.mdw.js";
+import load_categories_middlewares from "./middlewares/load_categories.mdw.js";
 
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -74,6 +75,8 @@ activate_session_middleware(app);
 activate_locals_middleware(app);
 
 passportAuth(passport);
+load_categories_middlewares(app);
+
 app.use("/", HomeRoutes);
 app.use('/auth', PassportRoutes);
 app.use("/account", UserRoutes);
