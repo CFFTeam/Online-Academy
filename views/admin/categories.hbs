@@ -1,4 +1,7 @@
-<div class="card border-0" style="width:95%; justify-content: center; margin-left:3.3rem;">
+<div
+  class="card border-0"
+  style="width:95%; justify-content: center; margin-left:3.3rem;"
+>
 
   <div class="card-header border-0 bg-white pt-0 px-0">
     <div
@@ -20,6 +23,7 @@
     </form>
 
   </div>
+
   <table id="category" class="cor">
 
     <tr class="none-shawdow">
@@ -55,7 +59,7 @@
             data-toggle="modal"
             data-target="#myModal"
           >
-          <img src="/assets/svg/admin/delete.svg" alt="delete-icon" />
+            <img src="/assets/svg/admin/delete.svg" alt="delete-icon" />
           </td>
         {{/if}}
 
@@ -98,5 +102,6 @@
     type:'text', name:'title', class:"editname", value: content, }
     ).val(content)).append($("<input>", { type:'submit', class:"butname", value:"Save" })) 
     $(this).siblings('.name').text('').append(form); } });
+  </script>
   </script>
 </div>

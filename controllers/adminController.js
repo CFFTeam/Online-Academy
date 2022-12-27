@@ -56,6 +56,7 @@ export const renderCoursesByCategories = catchAsync(async (req, res) => {
   const categoryName = await Category.findOne({
     slug: url.parse(req.url, true).query.slug,
   });
+  console.log(url.parse(req.url, true).pathname);
   console.log(categoryName.title);
   const allCoursesByCategories = await Course.find({
     category: categoryName.title,
