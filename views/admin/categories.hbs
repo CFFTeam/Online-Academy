@@ -91,16 +91,17 @@
   </div>
 
   <script>
-    $('#category').on('click','.edit',function() { const
-    id=$(this).siblings('.id').text();
+    $('#category').on('click','.edit',function() { 
+      const id=$(this).siblings('.id').text();
     if($(this).siblings('.name').find('input').length){
     $(this).siblings('.name').text($(this).siblings('.name').find('input').val());
-    } else { var content=$(this).siblings('.name').text(); var
-    actionURL="categories/edit/"+id; var form=$("<form/>", { method:
-    'POST',action: actionURL, style: 'margin: 0; padding: 0', }
-    ).append($("<input>", { type:'text', name:'title', class:"editname", value:
-    content, } ).val(content)).append($("<input>", { type:'submit',
-    class:"butname", value:"Save" }))
+    } 
+    else { var content=$(this).siblings('.name').text(); 
+    var actionURL="categories/edit/"+id; 
+    var form=$("<form/>", { method: 'POST',action: actionURL, style: 'margin: 0; padding: 0', } ).append($("<input>", {
+    type:'text', name:'title', class:"editname", value: content, }
+    ).val(content)).append($("<input>", { type:'submit', class:"butname", value:"Save" })) 
     $(this).siblings('.name').text('').append(form); } });
+  </script>
   </script>
 </div>

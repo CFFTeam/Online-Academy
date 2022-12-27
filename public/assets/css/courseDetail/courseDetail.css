@@ -1,18 +1,18 @@
 .info-container{
     display:flex;
     justify-content: space-between;
+    position: relative;
 }
 
 .content{
     width: 55%;
-    height: 55rem;
+    height: 60rem;
     background: #f1f3f5;
 }
 
 .info-content{
-    width: 85%;
-    background: white;
-    margin: 4rem 12rem !important;
+    width: 90%;
+    margin: 2rem 12rem !important;
 }
 
 .info-content p{
@@ -32,8 +32,139 @@
     font-weight: 700;
 }
 
+.rating-content{
+    display:flex;
+    margin-top: 2rem;
+}
+
+.rating-content p{
+    border: 2px solid #D9480F;
+    color: #D9480F;
+    font-weight: 650;
+    padding: 0 0.6rem;
+    align-self: center;
+    margin: 0; 
+}
+
+.star-display{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1.5rem;
+}
+
+.star-display img{
+    padding: 0 0.5rem;
+}
+
+.star-display p{
+    border: none;
+    color: #F59F00;
+    font-weight: 600;
+    padding: 0 0.6rem;
+    margin: 0; 
+}
+
+.order{
+    display: flex;
+    margin-top: 2rem;
+    gap: 2rem;
+}
+.add-to-cart{
+    padding: 1rem 0;
+    width: 18rem;
+    background: #00A551;
+    color: white;
+    font-weight: 700;
+    border: 2px solid #00A551;
+    font-size: 2.3rem;
+}
+
+.buy-now{
+    padding: 1rem 0;
+    width: 18rem;
+    color: #00A551;
+    border: 2px solid #00A551;
+    font-weight: 700;
+    font-size: 2.3rem;
+}
+
+.add-to-cart:hover{
+    background: #087f5b;
+}
+
+.buy-now:hover{
+    background: #dee2e6;
+}  
+
 .video{
-    background: aqua;
-    width: 45%;
+    width: 50%;
     height: 55rem;
+    position: relative;
+    background: #f1f3f5;
+    height: 60rem;
+}
+
+.demo-img{
+    clip-path: polygon(16% 0, 100% 0, 100% 100%, 0% 100%);
+    opacity: 0.8;
+    width: 100%;
+    height: 60rem;
+}
+
+
+.play{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    width: 8rem;
+    height: 8rem;
+}
+
+.play:hover{
+    cursor: pointer;
+}
+
+.more{
+    position: absolute;
+    top: 90%;
+    left: 0px;
+    width: 140rem;
+    height: 10rem;
+    background: #CED4DA;
+    clip-path: polygon(0 0, 100% 0, 97.5% 100%, 0% 100%);
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+    color: black;
+}
+
+.icon-content{
+    width: 33rem;
+    height: 8rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.more-margin{
+    margin-left: 5rem;
+}
+
+.more-width{
+    width: 60rem;
+}
+
+
+.informative-content{
+    width: 25rem;
+    height: 8rem;
+    font-size: 2rem;
+}
+
+.informative-content h2{
+    font-weight: 700;
+    margin-top: 1.5rem;
 }

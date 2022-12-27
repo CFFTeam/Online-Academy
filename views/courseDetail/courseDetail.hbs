@@ -4,10 +4,62 @@
         <p class="p-green">Course > {{courseDetail.category}} > {{#each courseDetail.subcategory}}{{this}} &nbsp;{{/each}}</p>
         <h1>{{courseDetail.name}}</h1>
         <p>{{courseDetail.description}}</p>
+        <div class="rating-content">
+          <p>Best seller</p>          
+          <div class="star-display">
+            {{#times integerPart }}
+              <img src="/assets/svg/admin/star.svg" alt="star-icon"/>
+            {{/times}}
+            {{#if isRemainder}}
+              <img src="/assets/svg/admin/haft-star.svg" alt="haft-star-icon"/>
+            {{/if}}
+            <p>{{courseRating.avg_rating}}</p>
+            <p style="color: #00A551; font-weight: 600; padding-left: 1rem; font-size: 1.7rem;"> ( {{courseRating.num_reviews}} ratings ) </p>
+            <p style="color: black; font-weight: 400; font-size: 1.7rem;">{{courseRating.viewer}} students</p>
+           </div>
+        </div>
+        <p style="color: black; font-weight: 400; font-size: 1.7rem; font-style: italic;">Last updated {{dateUpdate}}</p>
+        <h1 style="color: black; font-weight: 700; font-size: 3.5rem;">{{courseDetail.price}} $</h1>
+        <div class="order">
+          <form action="#">
+            <input type="submit" value="Add to cart" class="add-to-cart"/>
+          </form>
+          <form action="#">
+            <input type="submit" value="Buy now" class="buy-now"/>
+          </form>
+        </div>
     </div>
   </div>
 
   <div class="video">
+    <img src={{courseDetail.img}} class="demo-img"/>
+    <img src="/assets/svg/course/play.svg" alt="play-button" class="play" />
+  </div>
 
+  <div class="more">
+    <div class="icon-content more-margin">
+      <img src="/assets/svg/course/clock.svg" alt="clock-icon" />
+      <div class="informative-content">
+        <h2>{{courseDetail.lectures.duration}}</h2>
+        <p>Videos, exercises, posts</p>
+      </div>
+    </div>
+
+    <div class="icon-content">
+      <img src="/assets/svg/course/infinite.svg" alt="infinite-icon" />
+      <div class="informative-content">
+        <h2>Access license</h2>
+        <p>Permanent full access</p>
+      </div>
+    </div>
+
+    <div class="icon-content more-width">
+      <img src="/assets/svg/course/instructor.svg" alt="instructor-icon" />
+      <div class="informative-content" style="width: 52rem;">
+        <h2>Instructor</h2>
+        <p>{{courseDetail.author}}</p>
+      </div>
+    </div>
   </div>
 </div>
+
