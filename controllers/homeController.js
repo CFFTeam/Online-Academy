@@ -103,7 +103,6 @@ export const homePage = catchAsync(async (req, res) => {
 
 export const coursesPage = catchAsync(async (req, res) => {
     res.locals.handlebars = 'home/courses';
-
     res.locals.sort_by = req.query.sort_by || 'default';
 
     const courses = await loadAllCourses();
