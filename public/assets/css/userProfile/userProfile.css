@@ -43,13 +43,24 @@
   margin-top: 1.2rem;
 }
 
+.userProfile > .body > .card p{
+  text-align: center;
+}
+
 .userProfile > .body > .card > .avatar {
   border-radius: 50%;
   background-color: gray;
   width: 8rem;
   height: 8rem;
   margin-top: 2rem;
+overflow: hidden;
+
 }
+
+.userProfile > .body > .card > .avatar  > img{
+width: 100%;
+}
+
 
 .userProfile > .body > .card > .name {
   font-weight: 500;
@@ -110,8 +121,8 @@
 }
 
 .userProfile > .body > .main > .content {
+  width: 100%;
   padding: 5.6rem 2.9rem;
-  /* background-color: blue; */
 }
 
 .userProfile > .body > .main > .content > .overview {

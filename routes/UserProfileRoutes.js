@@ -4,7 +4,6 @@ const router = express.Router();
 
 router.get('/', userProfileController.userProfilePage);
 router.post('/', userProfileController.updateProfilePage);
-// router.post('/', userProfileController.updatePasswordPage);
 
 
 export default router;

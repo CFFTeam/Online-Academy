@@ -17,4 +17,13 @@
             {{> courseCard this }} 
         {{/each}}
     </div>
+    <div class="page-group">
+        {{#each pageList}}
+            {{#if (eq this "...")}}
+            <span class="page-items">{{this}}</span>
+            {{else}}
+            <a class="page-items{{#if (eq ../page this)}} active{{/if}}" href="{{#if ../sort_by}}?sort_by={{../sort_by}}&{{else}}?{{/if}}page={{this}}">{{this}}</a>
+            {{/if}}
+        {{/each}}
+    </div>
 </div>

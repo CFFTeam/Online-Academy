@@ -16,7 +16,7 @@
       <div class="checkout">
         <div class="price">
           <p class="label">Price</p>
-          <p class="value">$106.07</p>
+          <p class="value">$0</p>
         </div>
         <div class="discount">
           <p class="label">Discount</p>
@@ -28,7 +28,7 @@
         </div>
         <div class="total">
           <p class="label">Total</p>
-          <p class="value">$106.07</p>
+          <p class="value">$0</p>
         </div>
         <div class="promotion">
           <input class="promotionInput" placeholder="Enter your promote code...">
@@ -40,6 +40,10 @@
       </div>
     </div>
   </div>
+  <form method="post" name="deleteItem">
+    <input value="delete" type="hidden" name="deleteItem">
+    <input value="delete" type="hidden" name="id" class="getId">
+  </form>
     <script>
     const addPromotion=(item,index)=>{
     $(".promotionList").append(`<div id=${index} class="promotionItem">
@@ -106,8 +110,8 @@
     const addItem=(item,index)=>{
       $(".itemList").append(`<div id=${index} class="item">
           <div class="image">
-            <img src="/assets/images/payment/course.png">
-            <button class="trashButton">
+            <img src=${item.img}>
+            <button value="update" name="cc" type="button" class="trashButton">
               <img>
               <svg width="30" height="34" viewBox="0 0 30 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_187_14482)">
@@ -129,26 +133,14 @@
             <div class="rate--author">
               <div class="rate">
                 <p>${item.rate}</p>
+                {{#times 4}}
                 <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M8.80278 0.492188C8.65556 0.191406 8.34444 0 8.00278 0C7.66111 0 7.35278 0.191406 7.20278 0.492188L5.41667 4.10977L1.42778 4.68945C1.09444 4.73867 0.816667 4.96836 0.713889 5.28281C0.611111 5.59727 0.694444 5.94453 0.933333 6.17695L3.82778 8.99609L3.14444 12.9801C3.08889 13.3082 3.22778 13.6418 3.50278 13.8359C3.77778 14.0301 4.14167 14.0547 4.44167 13.8988L8.00556 12.0258L11.5694 13.8988C11.8694 14.0547 12.2333 14.0328 12.5083 13.8359C12.7833 13.6391 12.9222 13.3082 12.8667 12.9801L12.1806 8.99609L15.075 6.17695C15.3139 5.94453 15.4 5.59727 15.2944 5.28281C15.1889 4.96836 14.9139 4.73867 14.5806 4.68945L10.5889 4.10977L8.80278 0.492188Z"
                     fill="#FFF500" />
                 </svg>
-                <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M8.80278 0.492188C8.65556 0.191406 8.34444 0 8.00278 0C7.66111 0 7.35278 0.191406 7.20278 0.492188L5.41667 4.10977L1.42778 4.68945C1.09444 4.73867 0.816667 4.96836 0.713889 5.28281C0.611111 5.59727 0.694444 5.94453 0.933333 6.17695L3.82778 8.99609L3.14444 12.9801C3.08889 13.3082 3.22778 13.6418 3.50278 13.8359C3.77778 14.0301 4.14167 14.0547 4.44167 13.8988L8.00556 12.0258L11.5694 13.8988C11.8694 14.0547 12.2333 14.0328 12.5083 13.8359C12.7833 13.6391 12.9222 13.3082 12.8667 12.9801L12.1806 8.99609L15.075 6.17695C15.3139 5.94453 15.4 5.59727 15.2944 5.28281C15.1889 4.96836 14.9139 4.73867 14.5806 4.68945L10.5889 4.10977L8.80278 0.492188Z"
-                    fill="#FFF500" />
-                </svg>
-                <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M8.80278 0.492188C8.65556 0.191406 8.34444 0 8.00278 0C7.66111 0 7.35278 0.191406 7.20278 0.492188L5.41667 4.10977L1.42778 4.68945C1.09444 4.73867 0.816667 4.96836 0.713889 5.28281C0.611111 5.59727 0.694444 5.94453 0.933333 6.17695L3.82778 8.99609L3.14444 12.9801C3.08889 13.3082 3.22778 13.6418 3.50278 13.8359C3.77778 14.0301 4.14167 14.0547 4.44167 13.8988L8.00556 12.0258L11.5694 13.8988C11.8694 14.0547 12.2333 14.0328 12.5083 13.8359C12.7833 13.6391 12.9222 13.3082 12.8667 12.9801L12.1806 8.99609L15.075 6.17695C15.3139 5.94453 15.4 5.59727 15.2944 5.28281C15.1889 4.96836 14.9139 4.73867 14.5806 4.68945L10.5889 4.10977L8.80278 0.492188Z"
-                    fill="#FFF500" />
-                </svg>
-                <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M8.80278 0.492188C8.65556 0.191406 8.34444 0 8.00278 0C7.66111 0 7.35278 0.191406 7.20278 0.492188L5.41667 4.10977L1.42778 4.68945C1.09444 4.73867 0.816667 4.96836 0.713889 5.28281C0.611111 5.59727 0.694444 5.94453 0.933333 6.17695L3.82778 8.99609L3.14444 12.9801C3.08889 13.3082 3.22778 13.6418 3.50278 13.8359C3.77778 14.0301 4.14167 14.0547 4.44167 13.8988L8.00556 12.0258L11.5694 13.8988C11.8694 14.0547 12.2333 14.0328 12.5083 13.8359C12.7833 13.6391 12.9222 13.3082 12.8667 12.9801L12.1806 8.99609L15.075 6.17695C15.3139 5.94453 15.4 5.59727 15.2944 5.28281C15.1889 4.96836 14.9139 4.73867 14.5806 4.68945L10.5889 4.10977L8.80278 0.492188Z"
-                    fill="#FFF500" />
-                </svg>
+                {{/times}}
+
                 <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g clip-path="url(#clip0_187_14473)">
                     <path
@@ -161,7 +153,7 @@
                     </clipPath>
                   </defs>
                 </svg>
-                <p>(${item.rateQuantity})</p>
+                <p>(${item.numReview})</p>
               </div>
               <p class="author">${item.author}</p>
             </div>
@@ -174,50 +166,27 @@
           </div>
         </div>`)};
 
-        const itemList = [{
-          name: "Node.js, Express, MongoDB & More: The Complete Bootcamp 2020",
-          rate: "4.7",
-          rateQuantity: "15.279",
-          author: "Jonas Schmedtmann",
-          view: "93.700",
-          date: "16-12-2022",
-          price: "106.03"
-        },{
-          name: "Khóa học này không còn tồn tại",
-          rate: "0.0",
-          rateQuantity: "0.0",
-          author: "Jonas Schmedtmann",
-          view: "93.700",
-          date: "16-12-2022",
-          price: "0.00"
-        },{
-          name: "Node.js, Express, MongoDB & More: The Complete Bootcamp 2023",
-          rate: "4.7",
-          rateQuantity: "15.279",
-          author: "Jonas Schmedtmann",
-          view: "93.700",
-          date: "16-12-2022",
-          price: "106.03"
-        }];
+
+        const itemList = JSON.parse(`{{{course}}}`)
+        
         let total = 0;
         for(let i=0;i<itemList.length;i++){
           total+=parseFloat(itemList[i].price);
         }
-
-        $(".price > .value").text(total+"")
-        $(".total > .value").text(total+5+"")
-
+        if(total>0){
+         $(".price > .value").text("$"+total)
+         $(".total > .value").text("$"+(total+5))
+        }
         itemList.forEach(addItem);
+        
+        let deleteForm = document.forms['deleteItem']
+
         $(".trashButton").on("click", (event)=>{
           $(event.currentTarget).parent().parent().remove(`${event.currentTarget.id}`); 
-          itemList.splice(itemList.indexOf(event.currentTarget.id),1)
-          total = 0;
-        for(let i=0;i<itemList.length;i++){
-          total+=parseFloat(itemList[i].price);
-        }
-
-        $(".price > .value").text(total+"")
-        $(".total > .value").text(total+5+"") 
+          itemList[$(event.currentTarget).parent().parent().attr('id')].price = 0;
+          $(".getId").val(itemList[$(event.currentTarget).parent().parent().attr('id')].id)
+          
+          deleteForm.submit()
         });
 
   </script>

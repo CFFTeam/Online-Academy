@@ -9,19 +9,28 @@ export const userProfilePage = catchAsync(async (req, res) => {
   if (res.locals && res.locals.authUser) {
     users = await User.findOne({ _id: res.locals.authUser._id });
   }
+
+  res.locals.page = "overview"
   // SEND RESPONSE
   res.render(res.locals.handlebars, users);
 });
 
 export const updateProfilePage = catchAsync(async (req, res, next) => {
   const submitForm = req.body.submitForm;
+  const user = await User.findOne({ _id: res.locals.authUser._id });
+
+  res.locals.name = user.name;
+  res.locals.birthday = user.birthday;
+  res.locals.sex = user.sex;
+  res.locals.phoneNumber = user.phoneNumber;
+  res.locals.email = user.email;
+  res.locals.address = user.address;
 
   if (submitForm == "editProfile") {
     res.locals.handlebars = "userProfile/userProfile";
 
     const { fullname, dob, sex, phonenumber, email, address } = req.body;
 
-    const user = await User.findOne({ _id: res.locals.authUser._id });
 
     user.name = fullname;
     user.birthday = dob;
@@ -103,13 +112,3 @@ export const updateProfilePage = catchAsync(async (req, res, next) => {
   }
 });
 
-
-export const updatePasswordPage = catchAsync(async (req, res, next) => {
-
-  // 4) Log the user in, send JWT
-  // const token = signToken(user._id);
-  // res.status(200).json({
-  //   status: 'success',
-  //   token,
-  // });
-});
