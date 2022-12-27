@@ -7,6 +7,7 @@ import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import mongoose from "mongoose";
 import Course from "../models/courseModel.js";
+import e from "express";
 
 
 export const getMyCourses = function (req,res,next) {
@@ -161,6 +162,7 @@ export const addCourseContent = async (req,res) => {
        my_url = temp_url.replace(`&lesson=${lesson_id}`, "");
     }
     const course_id = req.query.course;
+    const section_id = req.query.section;
     // console.log("foundLesson: ", foundLesson);
     res.render('instructor/addCourseContent', {
         layout: "instructor",
@@ -168,6 +170,7 @@ export const addCourseContent = async (req,res) => {
         sections_empty: true,
         url: my_url,
         course_id: course_id,
+        section_id: section_id,
         lesson: {
             title: foundLesson.title,
         }
@@ -175,7 +178,7 @@ export const addCourseContent = async (req,res) => {
 }
 
 
-export const uploadLesson = catchAsync(async(req,res,next) => {
+export const editCourseContent = catchAsync(async(req,res,next) => {
     res.locals.handlebars = "instructor/addCourseContent";
     res.locals.layout = "instructor.hbs";
     // config storage
@@ -192,26 +195,68 @@ export const uploadLesson = catchAsync(async(req,res,next) => {
         if (err) { console.error(err);}
         else {
             const course = await Course.findById({_id: req.query.course}).lean(); // find course
-            let foundLesson = {}; // find that lesson
+            // if user add new section
+            if (req.query.section == "") {
+                const thisCourseLectures = await Course.findById({_id: req.query.course}).select('lectures');
+                let thisCourseSections = thisCourseLectures.lectures.sections;
+                const newSection = {
+                    title: "New Section",
+                    total: 0,
+                    duration: "0h 0m",
+                    lessons: []
+                }
+                thisCourseSections.push(newSection);
+                await thisCourseLectures.save();
+            }
+            
+            // if user edit lesson
             if (req.body.requestAction === "publish") {
                 const thisCourseLectures = await Course.findById({_id: req.query.course}).select('lectures');
-                thisCourseLectures.lectures.sections.forEach(section => {
-                    const queryLessons = section.lessons.filter(lesson => {
-                        return lesson._id.toString() === req.query.lesson;
+                if (req.query.lesson) {  // edit lesson
+                    let foundLesson = {}; // find that lesson
+                    thisCourseLectures.lectures.sections.forEach(section => {
+                        const queryLessons = section.lessons.filter(lesson => {
+                            return lesson._id.toString() === req.query.lesson;
+                        });
+                        if (queryLessons[0]) {
+                            foundLesson = queryLessons[0];
+                            return;
+                        }
+                    })
+                    if (req.body.lecture_title != "") foundLesson.title = req.body.lecture_title;
+                    await thisCourseLectures.save();
+                    //return res.redirect(`/instructor/add-course-content/?course=${course._id}`);
+                    return res.render('instructor/addCourseContent', {
+                        layout: "instructor",
+                        course_id: req.query.course,
+                        message: "success"
+                    })
+                }
+                // if user add new lessons
+                else if (req.query.section) { // user add new lessons
+                    const thisCourseLectures = await Course.findById({_id: req.query.course}).select('lectures');
+                    let thisSection = thisCourseLectures.lectures.sections.filter((section) => {
+                        return section._id.toString() === req.query.section;
                     });
-                    if (queryLessons[0]) {
-                        foundLesson = queryLessons[0];
-                        return;
+                    thisSection = thisSection[0]; // get section out of an array
+                    const newLesson = {
+                        title: req.body.lecture_title,
+                        resources: [],
+                        url: "",
+                        video: "",
+                        preview: "",
+                        _id: new mongoose.Types.ObjectId()
                     }
-                })
-                if (req.body.lecture_title != "") foundLesson.title = req.body.lecture_title;
-                await thisCourseLectures.save();
-                //return res.redirect(`/instructor/add-course-content/?course=${course._id}`);
-                return res.render('instructor/addCourseContent', {
-                    layout: "instructor",
-                    course_id: req.query.course,
-                    message: "success"
-                })
+                    thisSection.lessons.push(newLesson);
+                    await thisCourseLectures.save();
+                    //return res.redirect(`/instructor/add-course-content/?course=${course._id}`);
+                    return res.render('instructor/addCourseContent', {
+                        layout: "instructor",
+                        course_id: req.query.course,
+                        message: "success"
+                    })
+                }
+               
             }
             return res.redirect(`/instructor/add-course-content/?course=${course._id}`);
         }

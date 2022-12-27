@@ -22,18 +22,25 @@
         </div>
         {{/each}}
         <div class="new-lesson">
-            <button class="add-new-lesson-btn">
+            <a href="{{../url}}&section={{this._id}}" class="add-new-lesson-btn">
                 <img src="/assets/svg/instructor/add-new.svg" alt="add-new-icon">
                 <span class="title">Add a new lesson</span>
-            </button>
+            </a>
         </div>
         {{/each}}
     </div>
     <div class="new-section">
-        <a class="add-new-section-btn" href="/account/login">
-            <img src="/assets/svg/instructor/add-new.svg" alt="add-new-icon">
-            <span class="title">Add a new section</span>
-        </a>
+        <form action="{{url}}&section={{section_id}}" method="post">
+            {{!-- <a class="add-new-section-btn" href="{{url}}&section={{section_id}}">
+                <img src="/assets/svg/instructor/add-new.svg" alt="add-new-icon">
+                <span class="title">Add a new section</span>
+            </a> --}}
+            <button class="add-new-section-btn" type="submit">
+                <img src="/assets/svg/instructor/add-new.svg" alt="add-new-icon">
+                <span class="title">Add a new section</span>
+            </button>
+        </form>
+
     </div>
     <div class="confirm-section">
         <button class="save-btn">SAVE</button>
@@ -41,9 +48,9 @@
     </div>
 </div>
 {{!-- backdrop --}}
-<div class="{{#if lesson.title}}show {{/if}}backdrop"></div>
+<div class="{{#if lesson.title}}show {{/if}}{{#if section_id}}show {{/if}}backdrop"></div>
 {{!-- edit lesson form --}}
-<div class="{{#if lesson.title}}show {{/if}}handle-lesson-form">
+<div class="{{#if lesson.title}}show {{/if}}{{#if section_id}}show {{/if}}handle-lesson-form">
     <div class="title">Edit a custom lesson</div>
     <div class="heading">
         <a class="lecture-section active">Lecture</a>
