@@ -4,8 +4,10 @@ import courseDetail from "../models/courseDetailsModel.js";
 import url from "url";
 
 export const renderCourseDetail = catchAsync(async (req, res) => {
+    res.locals.handlebars = "courseDetail/courseDetail";
+
     const getCourse = await Course.findOne({
-        slug: `/course${url.parse(req.url, true).pathname}/`,
+        slug: `/course${url.parse(req.url, true).pathname}/`
     }).lean();
 
 

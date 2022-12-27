@@ -3,7 +3,6 @@ import connectLiveReload from "connect-livereload";
 import express from "express";
 import handlebars from "express-handlebars";
 import mongoSanitize from "express-mongo-sanitize";
-import bodyParser from "body-parser";
 import HomeRoutes from "./routes/HomeRoutes.js";
 import UserRoutes from "./routes/UserRoutes.js";
 import InstructorRoutes from "./routes/InstructorRoutes.js";
@@ -26,7 +25,7 @@ import passportAuth from "./middlewares/passport.js";
 import activate_session_middleware from "./middlewares/session.mdw.js";
 import activate_locals_middleware from "./middlewares/locals.mdw.js";
 import auth_middleware from "./middlewares/auth.mdw.js";
-
+import load_categories_middlewares from "./middlewares/load_categories.mdw.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -37,9 +36,7 @@ liveReloadServer.server.once("connection", () => {
   }, 10);
 });
 
-
 app.use(connectLiveReload());
-
 
 app.engine(
   ".hbs",
@@ -74,6 +71,8 @@ activate_session_middleware(app);
 activate_locals_middleware(app);
 
 passportAuth(passport);
+load_categories_middlewares(app);
+
 app.use("/", HomeRoutes);
 app.use('/auth', PassportRoutes);
 app.use("/account", UserRoutes);
@@ -81,7 +80,6 @@ app.use("/instructor", InstructorRoutes);
 app.use("/payment", PaymentRoutes);
 app.use("/user-profile", auth_middleware, UserProfileRoutes);
 app.use("/wishlist", WishlistRoutes);
-
 
 //Course detail
 app.use("/course", CourseDetailRoutes);

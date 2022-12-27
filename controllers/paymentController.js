@@ -4,7 +4,10 @@ import User from "../models/userModel.js";
 import ShoppingCart from "../models/shoppingCartModel.js";
 import catchAsync from "../utilities/catchAsync.js";
 
+
 export const shoppingCartPage = catchAsync(async (req, res, next) => {
+  res.locals.handlebars = "payment/shoppingCart";
+
   let shoppingCart = null;
   let course = []
 
