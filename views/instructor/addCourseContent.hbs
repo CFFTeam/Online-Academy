@@ -17,7 +17,8 @@
         {{#each lessons}}
         <div class="lesson">
             <span class="lesson-title"><img src="/assets/svg/instructor/lesson.svg" alt="lesson">{{title}}</span>
-            <a class="edit-lesson-btn"><img src="/assets/svg/instructor/edit-lesson.svg" alt="edit-lesson"></a>
+            <a href="{{../../url}}&lesson={{this._id}}" class="edit-lesson-btn"><img
+                    src="/assets/svg/instructor/edit-lesson.svg" alt="edit-lesson"></a>
         </div>
         {{/each}}
         <div class="new-lesson">
@@ -40,9 +41,9 @@
     </div>
 </div>
 {{!-- backdrop --}}
-<div class="backdrop"></div>
+<div class="{{#if lesson.title}}show {{/if}}backdrop"></div>
 {{!-- edit lesson form --}}
-<div class="handle-lesson-form">
+<div class="{{#if lesson.title}}show {{/if}}handle-lesson-form">
     <div class="title">Edit a custom lesson</div>
     <div class="heading">
         <a class="lecture-section active">Lecture</a>
@@ -50,17 +51,11 @@
         <a class="quizz-section">Quizz</a>
         <a class="announcements-section">Announcements</a>
     </div>
-    <form action="/instructor/upload-lesson" method="post" enctype="multipart/form-data">
-        <div class="lecture-info">
-            <div class="form-group">
-                <label for="lecture-title" class="lecture-title">Lecture Title</label>
-                <input name="lecture_title" type="text" id="txtLectureTitle" placeholder="Enter your lecture title" />
-            </div>
-            <div class="form-group">
-                <label for="lecture-description" class="lecture-description">Lecture Description</label>
-                <textarea name="lecture_description" id="txtLectureDescription" cols="45" rows="3"
-                    placeholder="Describe briefly this lecture..."></textarea>
-            </div>
+    <form action="" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="txtLectureTitle" class="lecture-title">Lecture Title</label>
+            <input name="lecture_title" type="text" id="txtLectureTitle" placeholder="Enter your lecture title"
+                value="{{#if lesson.title}}{{lesson.title}}{{/if}}" />
         </div>
         <div class="form-group">
             <label for="video-uploader">Video uploader</label>
@@ -78,8 +73,8 @@
             </div>
         </div>
         <div class="confirm-section">
-            <button class="publish-btn" type="submit">Publish</button>
-            <button class="cancel-btn" type="button">Cancel</button>
+            <button class="publish-btn" type="submit" name="requestAction" value="publish">Publish</button>
+            <button class="cancel-btn" type="submit" name="requestAction" value="cancel">Cancel</button>
         </div>
     </form>
 </div>
@@ -92,7 +87,7 @@
         $('.backdrop').addClass("hide");
         $('.handle-lesson-form').addClass("hide");
     })
-    $('.edit-lesson-btn, .add-new-lesson-btn').click(() => {
+    $('.add-new-lesson-btn').click(() => {
         $('.backdrop').removeClass("hide");
         $('.handle-lesson-form').removeClass("hide");
         $('.backdrop').addClass("show");
@@ -109,4 +104,20 @@
         $('#videoUploadFile').val(null);
         $('.upload-video-message').text("Drop video files here or click to choose");
     })
+    // display message when user upload file
+    if ("{{message}}" == "success") {
+        alert("Your change was saved successfully...");
+        window.location.replace("http://localhost:5000/instructor/add-course-content/?course={{course_id}}");
+    }
+    if ("{{message}}" !== "success" && "{{message}}" != "") {
+        alert("{{message}}");
+        window.location.replace("http://localhost:5000/instructor/add-course-content/?course={{course_id}}");
+    }
 </script>
+
+{{!-- $('.edit-lesson-btn, .add-new-lesson-btn').click(() => {
+$('.backdrop').removeClass("hide");
+$('.handle-lesson-form').removeClass("hide");
+$('.backdrop').addClass("show");
+$('.handle-lesson-form').addClass("show");
+}) --}}
