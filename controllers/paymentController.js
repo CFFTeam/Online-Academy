@@ -1,3 +1,4 @@
 export const shoppingCartPage = (req, res) => {
-  res.render("payment/shoppingCart")
+  res.locals.handlebars = "payment/shoppingCart";
+  res.render(res.locals.handlebars);
 };

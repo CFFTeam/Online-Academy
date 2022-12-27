@@ -4,12 +4,13 @@ import catchAsync from "../utilities/catchAsync.js";
 
 export const userProfilePage = catchAsync(async (req, res) => {
   // let users
+  res.locals.handlebars = "userProfile/userProfile";
   let users = null;
   if (res.locals && res.locals.authUser) {
     users = await User.findOne({ _id: res.locals.authUser._id });
   }
   // SEND RESPONSE
-  res.render("userProfile/userProfile", users);
+  res.render(res.locals.handlebars, users);
 });
 
 export const updateProfilePage = catchAsync(async (req, res, next) => {

@@ -1,0 +1,47 @@
+.main-courses {
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.main-courses > .main-courses-heading {
+    width: min(83vw, 83%);
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-courses > .main-courses-heading > h1 {
+    font-size: 2.8rem;
+    font-weight: 600;
+}
+
+.main-courses > .main-courses-heading > .filter {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    font-size: 1.6rem;
+}
+
+.main-courses > .main-courses-heading > .filter .dropdown {
+    border: 1px solid lightgray;
+    padding: .5rem 1rem;
+    outline: none;
+}
+
+.main-courses > .main-courses-heading > .filter > i {
+    font-size: 2.5rem;
+}
+
+.list-courses {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(26rem, 1fr));
+    justify-items: center;
+    gap: 3rem;
+    width: min(85vw, 85%);
+}
+
+.list-courses > .course-card {
+    margin: 1rem 0rem;
+}
