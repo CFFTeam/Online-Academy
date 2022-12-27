@@ -300,11 +300,10 @@ a.add-new-section-btn .title
 
 /* form info */
 
-form > .lecture-info
+/* form > .lecture-info
 {
     display: flex;
-    justify-content: space-around;
-}
+} */
 
 .lecture-info:nth-child(1)
 {
@@ -327,7 +326,7 @@ form > .lecture-info
   }
   
   .form-group input {
-    width: 35rem;
+    width: 95%;
     border-radius: 10px;
     height: 3.6rem;
     padding: 0rem 1.5rem;

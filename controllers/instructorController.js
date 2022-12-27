@@ -5,6 +5,9 @@ import validateUser from '../middlewares/auth.mdw.js';
 import multer from 'multer';
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
+import mongoose from "mongoose";
+import Course from "../models/courseModel.js";
+
 
 export const getMyCourses = function (req,res,next) {
     //res.render('instructor/my-courses.hbs');
@@ -130,79 +133,136 @@ export const getMyCourses = function (req,res,next) {
 export const addCourseDescription = (req,res) => {
 }
 
-export const addCourseContent = (req,res) => {
-    const lectures_empty = {
-        sections: [
-        ]
+export const addCourseContent = async (req,res) => {
+    const course = await Course.findById({_id: req.query.course}).lean();
+    const thisCourseLectures = await Course.findById({_id: req.query.course}).select('lectures');
+    let foundLesson = {
+        title: "",
     };
-    const lectures = {
-        sections: [
-            {
-                title: "Section 1",
-                lessons:[
-                    {
-                        title: "About the course"
-                    },
-                    {
-                        title: "What You'll Get in This Course"
-                    },
-                    {
-                        title: "Download the course syllabus"
-                    },
-                    {
-                        title: "Prepare your workspace"
-                    }
-                ]
-            },
-            {
-                title: "Section 2",
-                lessons:[
-                    {
-                        title: "About the course"
-                    },
-                    {
-                        title: "What You'll Get in This Course"
-                    },
-                    {
-                        title: "Download the course syllabus"
-                    },
-                    {
-                        title: "Prepare your workspace"
-                    }
-                ]
-            },
-            {
-                title: "Section 3",
-                lessons:[
-                ]
+    let section_found = {};
+    if (req.query.lesson) {
+        thisCourseLectures.lectures.sections.forEach(section => {
+            const queryLessons = section.lessons.filter(lesson => {
+               
+                return lesson._id.toString() === req.query.lesson;
+            });
+            if (queryLessons[0]) {
+                foundLesson = queryLessons[0];
+                return;
             }
-        ]
-    };
+        })
+        await thisCourseLectures.save();
+    }
+    // pre processing url
+    let my_url = req.originalUrl;
+    if (my_url.includes("&lesson")) {
+       const temp_url = my_url;
+       const lesson_id = temp_url.split("&lesson=").pop();
+       my_url = temp_url.replace(`&lesson=${lesson_id}`, "");
+    }
+    const course_id = req.query.course;
+    // console.log("foundLesson: ", foundLesson);
     res.render('instructor/addCourseContent', {
         layout: "instructor",
-        sections: lectures.sections,
-       // sections_empty: lectures.sections.length == 0
-        sections_empty: true
-
+        sections: course.lectures.sections,
+        sections_empty: true,
+        url: my_url,
+        course_id: course_id,
+        lesson: {
+            title: foundLesson.title,
+        }
     });
 }
-const __dirname = dirname(fileURLToPath(import.meta.url));
+
 
 export const uploadLesson = catchAsync(async(req,res,next) => {
     res.locals.handlebars = "instructor/addCourseContent";
     res.locals.layout = "instructor.hbs";
+    // config storage
     const storage = multer.diskStorage({
         destination: function (req, file, cb) {
-          cb(null, `./public/tmp/my-uploads`)
+        cb(null, `./public/tmp/my-uploads`)
         },
         filename: function (req, file, cb) {
-          cb(null, file.originalname);
+        cb(null, file.originalname);
+        }
+    })   
+    const upload = multer({ storage: storage });
+    upload.single('videoUploadFile')(req,res, async (err) => {
+        if (err) { console.error(err);}
+        else {
+            const course = await Course.findById({_id: req.query.course}).lean(); // find course
+            let foundLesson = {}; // find that lesson
+            if (req.body.requestAction === "publish") {
+                const thisCourseLectures = await Course.findById({_id: req.query.course}).select('lectures');
+                thisCourseLectures.lectures.sections.forEach(section => {
+                    const queryLessons = section.lessons.filter(lesson => {
+                        return lesson._id.toString() === req.query.lesson;
+                    });
+                    if (queryLessons[0]) {
+                        foundLesson = queryLessons[0];
+                        return;
+                    }
+                })
+                if (req.body.lecture_title != "") foundLesson.title = req.body.lecture_title;
+                await thisCourseLectures.save();
+                //return res.redirect(`/instructor/add-course-content/?course=${course._id}`);
+                return res.render('instructor/addCourseContent', {
+                    layout: "instructor",
+                    course_id: req.query.course,
+                    message: "success"
+                })
+            }
+            return res.redirect(`/instructor/add-course-content/?course=${course._id}`);
         }
     })
-    const upload = multer({ storage: storage });
-    upload.single('videoUploadFile')(req,res, (err) => {
-        console.log(req.body);
-        if (err) { console.error(err);}
-        else res.render('instructor/addCourseContent', {layout: 'instructor'});
-    })
 });
+
+
+// const lectures_empty = {
+//     sections: [
+//     ]
+// };
+// const lectures = {
+//     sections: [
+//         {
+//             title: "Section 1", 
+//             lessons:[
+//                 {
+//                     title: "About the course"
+//                 },
+//                 {
+//                     title: "What You'll Get in This Course"
+//                 },
+//                 {
+//                     title: "Download the course syllabus"
+//                 },
+//                 {
+//                     title: "Prepare your workspace"
+//                 }
+//             ]
+//         },
+//         {
+//             title: "Section 2",
+//             lessons:[
+//                 {
+//                     title: "About the course"
+//                 },
+//                 {
+//                     title: "What You'll Get in This Course"
+//                 },
+//                 {
+//                     title: "Download the course syllabus"
+//                 },
+//                 {
+//                     title: "Prepare your workspace"
+//                 }
+//             ]
+//         },
+//         {
+//             title: "Section 3",
+//             lessons:[
+//             ]
+//         }
+//     ]
+// };
