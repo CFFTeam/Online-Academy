@@ -20,7 +20,8 @@ export const renderCourseDetail = catchAsync(async (req, res) => {
         courseRating: getCourseRating,
         integerPart: Math.floor(getCourseRating.avg_rating),
         isRemainder: getCourseRating.avg_rating - Math.floor(getCourseRating.avg_rating) !==0,
-        dateUpdate: getCourse.date.slice(0,10)
+        dateUpdate: getCourse.date.slice(0,10),
+        numberSection: getCourse.lectures.sections.length,
     });
 
   });

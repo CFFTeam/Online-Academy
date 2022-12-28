@@ -131,12 +131,13 @@
     gap: 1rem;
 }
 
-button.add-new-lesson-btn
+a.add-new-lesson-btn
 {
     border: none;
+    text-decoration: none;
 }
 
-button.add-new-lesson-btn .title {
+a.add-new-lesson-btn .title {
     border: none;
     font-size: 1.6rem;
     font-weight: 500;
@@ -171,6 +172,21 @@ a.add-new-section-btn .title
     color: #00A551;
     font-weight: 500;
 }
+
+button.add-new-section-btn
+{
+    border: none;
+    text-decoration: none;
+}
+
+
+button.add-new-section-btn .title
+{
+    color: #00A551;
+    font-weight: 500;
+}
+
+
 
 /* confirm section */
 
