@@ -26,10 +26,12 @@
         </div>
     </div>
     <a class="link ipad mobile" href="#about">About</a>
-    <button class="shopping__cart-btn">
-        <img class="icon" src="/assets/svg/home/cart.svg" alt="shopping-cart" />
-        <span class="active-dot">1</span>
-    </button>
+    <a class="link" href="/payment">
+        <button class="shopping__cart-btn">
+            <img class="icon" src="/assets/svg/home/cart.svg" alt="shopping-cart" />
+            <span class="active-dot">{{cart_number}}</span>
+        </button>
+    </a>
     {{#if auth}}
     <div class="user-dropdown mobile">
         <button type="button" class="avatar mobile">

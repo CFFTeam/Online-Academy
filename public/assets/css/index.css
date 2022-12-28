@@ -504,12 +504,12 @@ button {
     outline: none;
 }
 
-.navbar > button.shopping__cart-btn {
+.navbar button.shopping__cart-btn {
     position: relative;
     border: none;
 }
 
-.navbar > button.shopping__cart-btn > .active-dot {
+.navbar button.shopping__cart-btn > .active-dot {
     position: absolute;
     inset: 0;
     top: -30%;
@@ -523,7 +523,7 @@ button {
     color: white;
 }
 
-.navbar > button.shopping__cart-btn > img.icon {
+.navbar button.shopping__cart-btn > img.icon {
     width: 2.2rem;
     display: block;
 }
