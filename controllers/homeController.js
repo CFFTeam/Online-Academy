@@ -14,6 +14,7 @@ const loadhotCourse = async () => {
         const new_hot_course = {
             active: index === 0 ? true : false,
             course_name: course.name,
+            course_slug: course.slug,
             course_rate: hotCoursesDetails.avg_rating,
             course_vote: fixNumberFormat(hotCoursesDetails.num_reviews),
             course_viewer: fixNumberFormat(hotCoursesDetails.viewer),
@@ -43,6 +44,7 @@ const loadNewestCourse = async () => {
         const newest_course = {
             active: index === 0 ? true : false,
             course_name: course.name,
+            course_slug: course.slug,
             course_rate: newestCourseDetails.avg_rating,
             course_vote: fixNumberFormat(newestCourseDetails.num_reviews),
             course_viewer: fixNumberFormat(newestCourseDetails.viewer),
