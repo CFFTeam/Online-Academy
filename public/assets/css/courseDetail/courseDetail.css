@@ -350,3 +350,10 @@
 .flex-rating p{
     margin-left: 1rem;
 }
+
+.assess{
+    display: flex;
+    margin: 5rem 15rem;
+    background: #F59F00;
+    height: 50rem;
+}
