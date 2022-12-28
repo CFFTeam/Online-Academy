@@ -42,6 +42,20 @@ export const shoppingCartPage = catchAsync(async (req, res, next) => {
 export const updateShoppingCart = catchAsync(async (req, res, next) => {
   if (req.body.deleteItem == "delete") {
     await ShoppingCart.deleteOne({ _id: req.body.id });
-    shoppingCartPage(req, res, next)
   }
+  else if (req.body.deleteItem == "checkout") {
+    if (res.locals && res.locals.authUser) {
+      const shoppingCart = Object.values(await ShoppingCart.find({ user_id: res.locals.authUser._id }));
+      if (shoppingCart && shoppingCart.length > 0) {
+        for (const sc of shoppingCart) {
+          const user = await User.findOne({ _id: res.locals.authUser._id });
+          await User.updateOne(
+            { _id: sc.user_id },
+            { myCourses: [...user.myCourses, sc.course_id] })
+          await ShoppingCart.deleteOne({ _id: sc._id });
+        }
+      }
+    }
+  }
+  shoppingCartPage(req, res, next)
 })
