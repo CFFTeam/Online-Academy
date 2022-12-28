@@ -19,6 +19,7 @@ export const renderCourseDetail = catchAsync(async (req, res) => {
         getThreeLastComment[i]["integerPart"] = Math.floor(getThreeLastComment[i].rating);
         getThreeLastComment[i]["isRemainder"] = getThreeLastComment[i].rating - Math.floor(getThreeLastComment[i].rating) !==0 ;
     }
+    
     res.render("courseDetail/courseDetail.hbs", {
         courseDetail: getCourse,
         courseRating: getCourseRating,
