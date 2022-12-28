@@ -4,6 +4,7 @@ import express from "express";
 import handlebars from "express-handlebars";
 import mongoSanitize from "express-mongo-sanitize";
 import HomeRoutes from "./routes/HomeRoutes.js";
+import CoursesRoutes from "./routes/CoursesRoutes.js";
 import UserRoutes from "./routes/UserRoutes.js";
 import InstructorRoutes from "./routes/InstructorRoutes.js";
 import PaymentRoutes from "./routes/PaymentRoutes.js";
@@ -74,6 +75,7 @@ passportAuth(passport);
 load_categories_middlewares(app);
 
 app.use("/", HomeRoutes);
+app.use("/courses", CoursesRoutes);
 app.use('/auth', PassportRoutes);
 app.use("/account", UserRoutes);
 app.use("/instructor", InstructorRoutes);

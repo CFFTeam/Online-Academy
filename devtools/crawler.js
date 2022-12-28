@@ -47,7 +47,7 @@ if (mode === "--courses") {
                     const course_name = courseObj.published_title;
     
                     newCourse.name = courseObj.title;
-                    newCourse.img = courseObj.image_480x270;
+                    newCourse.img = courseObj.image_480x270.replaceAll('480x270', '750x422');
                     newCourse.details = courseObj.description;
                     newCourse.slug = courseObj.url;
                     newCourse.author = courseObj.visible_instructors[0].display_name;

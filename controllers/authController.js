@@ -23,6 +23,9 @@ export const handleLoginForm = catchAsync(async (req, res, next) => {
 
   const { email, password } = req.body;
   const foundUser = await User.findOne({ email: email }).select('+password');
+  if (foundUser && !foundUser.password) {
+    return next(new Error('This account is already used with social media platform. Please try again.'));
+  }
   if (!foundUser || !(await foundUser.correctPassword(password, foundUser.password))) {
     return next(new Error('Incorrect email or password. Please try again.'));
   }
@@ -131,6 +134,9 @@ export const handleForgotPasswordForm = catchAsync(async (req, res, next, err) =
   res.locals.props = { historyEmail: req.body.email };
   const foundUser = await User.findOne({ email: req.body.email });
   if (!foundUser) return next(new Error("This email does not exist. Please try again."));
+  if (foundUser && !foundUser.password) {
+    return next(new Error('You can not use this feature because this account is already used with social media platform.'));
+  }
   // create OTP 
   const verificationCode = crypto.randomBytes(3).toString('hex');
   const message = `Your verification code is ${verificationCode}. Please enter it to register your account.`;
