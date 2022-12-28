@@ -285,3 +285,68 @@
 .header-content p{
     margin: 0
 }
+
+.ins{
+    width: 100%;
+    height: 60rem;
+    margin-top: 4rem;
+    background: #f1f3f5;
+    display: flex;
+    color: black;
+}
+
+.heading-ins{
+    width: 40%;
+    background: black;
+    align-items: center;
+    clip-path: polygon(0 0, 100% 0, 82% 100%, 0% 100%);
+}
+
+.heading-ins h1{
+    font-size: 4rem;
+    font-weight: 700;
+    margin-left: 7rem;
+    margin-top: 3rem;
+    color: white;
+}
+
+.heading-ins p{
+    font-weight: 600;
+    margin-left: 7rem;
+    margin-top: 1rem;
+    color: white;
+}
+
+.content-ins{
+    width: 60%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.content-ins-s{
+    width: 75%; 
+    margin: 2rem auto;
+}
+
+.info-ins{
+    display: flex;
+    width: 60%;
+    height: 20rem;;
+    margin-left: 7rem;
+    margin-top: 4rem;
+}
+
+.info-rating{
+    margin-left: 3rem;
+}
+
+.flex-rating {
+    margin: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.flex-rating p{
+    margin-left: 1rem;
+}
