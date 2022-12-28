@@ -13,7 +13,7 @@
       <div class="itemList">
 
       </div>
-      <div class="checkout">
+      <form method="post" class="checkout">
         <div class="price">
           <p class="label">Price</p>
           <p class="value">$0</p>
@@ -36,8 +36,8 @@
         </div>
         <div class="promotionList"></div>
 
-        <button class="checkoutButton">checkout</button>
-      </div>
+        <button name="deleteItem" value="checkout" class="checkoutButton">checkout</button>
+      </form>
     </div>
   </div>
   <form method="post" name="deleteItem">
@@ -166,7 +166,7 @@
           </div>
         </div>`)};
 
-
+        
         const itemList = JSON.parse(`{{{course}}}`)
         
         let total = 0;
@@ -189,5 +189,8 @@
           deleteForm.submit()
         });
 
+    $(".checkoutButton").on("click",(event)=>{
+      if(itemList.length>0) alert("Payment successfully!");
+    })
   </script>
   </div>

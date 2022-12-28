@@ -70,7 +70,7 @@
         style="top: 50% !important; transform: translateY(-60%) !important;"
       >
         <div class="modal-content">
-            <iframe height="700px" src="https://www.youtube.com/embed/K4TOrB7at0Y"> </iframe>=
+            <iframe height="700px" src="https://www.youtube.com/embed/K4TOrB7at0Y"> </iframe>
         </div>
       </div>
     </div>
@@ -79,6 +79,60 @@
   <div class="course-preview">
     <div class="heading-cp">\
       <h1>Course Preview</h1>
+    </div>
+    <div class="content-cp">
+      <div class="content-cp-s">
+        <div class="total-length">
+          <p>{{numberSection}} sections - {{courseDetail.lectures.total}} lectures - {{courseDetail.lectures.duration}}</p>
+          <a href="#" class="all-sections">View all sections</a>
+        </div>
+        <a href="#" class="link-video">
+          <div class="section-video" style="margin-top: 3rem;">
+            <img src={{courseDetail.img}} style="height: 8rem;"/>
+            <div class="header-content">
+              <h2>{{courseDetail.lectures.sections.0.title}}</h2>
+              <p>{{courseDetail.lectures.sections.0.lessons.0.title}}</p>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="link-video">
+          <div class="section-video">
+            <img src={{courseDetail.img}} style="height: 8rem;"/>
+            <div class="header-content">
+              <h2>{{courseDetail.lectures.sections.1.title}}</h2>
+              <p>{{courseDetail.lectures.sections.1.lessons.1.title}}</p>
+            </div>
+          </div>
+        </a>
+        <a href="#" class="link-video">
+          <div class="section-video">
+            <img src={{courseDetail.img}} style="height: 8rem;"/>
+            <div class="header-content">
+              <h2>{{courseDetail.lectures.sections.2.title}}</h2>
+              <p>{{courseDetail.lectures.sections.2.lessons.1.title}}</p>
+            </div>
+          </div>
+        </a>
+        <a href="#" class="link-video">
+          <div class="section-video">
+            <img src={{courseDetail.img}} style="height: 8rem;"/>
+            <div class="header-content">
+              <h2>{{courseDetail.lectures.sections.3.title}}</h2>
+              <p>{{courseDetail.lectures.sections.3.lessons.1.title}}</p>
+            </div>
+          </div>
+        </a>
+        <a href="#" class="link-video">
+          <div class="section-video">
+            <img src={{courseDetail.img}} style="height: 8rem;"/>
+            <div class="header-content">
+              <h2>{{courseDetail.lectures.sections.4.title}}</h2>
+              <p>{{courseDetail.lectures.sections.4.lessons.1.title}}</p>
+            </div>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 
@@ -89,4 +143,53 @@
     </div>
   </div>
 
+  <div class="ins">
+    <div class="heading-ins">\
+      <h1>Instructor</h1>
+      <h1 style="color: #51CF66; margin-top: 1rem;">Jonas Schemedtmann</h1>
+      <p>Web Developer, Designer, and Teacher</p>
+      <div class="info-ins">
+        <img src={{courseDetail.img}} style="height: 20rem; width: 20rem;"/>
+        <div class="info-rating">
+          <div class="flex-rating">
+            <img src="/assets/svg/course/star.svg" alt="star-icon"/>
+            <p> 4.7 Instructor Rating</p>
+          </div>
+          <div class="flex-rating">
+            <img src="/assets/svg/course/like.svg" alt="star-icon"/>
+            <p> 400.000 Reviwers</p>
+          </div>
+          <div class="flex-rating">
+            <img src="/assets/svg/course/student.svg" alt="student-icon"/>
+            <p> 1.500.000 Students</p>
+          </div>
+          <div class="flex-rating">
+            <img src="/assets/svg/course/course.svg" alt="course-icon"/>
+            <p> 6 Courses</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-ins">
+      <div class="content-ins-s">
+          <p style="font-weight: 400;">
+            Hi, I'm Jonas! I have been identified as one of Udemy's Top Instructors and all my premium courses have earned the best-selling status for outstanding performance and student satisfaction.
+            I'm a full-stack web developer and designer with a passion for building beautiful things from scratch. I've been building websites and apps since 2010 and also have a Master's degree in Engineering.
+            I discovered my passion for teaching and helping others by sharing all I knew when I was in college, and that passion brought me to Udemy in 2015.
+            Here, in all my courses, what students love the most is that I take the time to explain every concept in a way that everyone can easily understand.
+            So, do you want to learn how to build awesome websites with modern HTML and CSS?
+            Looking for a complete JavaScript course that takes you from zero to an advanced developer?
+            Or maybe you want to build modern and fast back-end applications with Node.js?
+            Then don't waste your time with random tutorials or incomplete youtube videos. All my courses are easy-to-follow, all-in-one packages that will take your skills to the next level.
+            These courses are exactly the courses I wish I had when I was first getting into web development!
+            So see for yourself, enroll in one of my courses (or all of them :D) and join 1,000,000+ happy students today.
+          </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="assess">
+    
+  </div>
 </div>
+
