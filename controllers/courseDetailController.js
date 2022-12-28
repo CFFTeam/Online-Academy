@@ -10,11 +10,15 @@ export const renderCourseDetail = catchAsync(async (req, res) => {
         slug: `/course${url.parse(req.url, true).pathname}/`
     }).lean();
 
-
     const getCourseRating = await courseDetail.findOne({
         course_id: getCourse._id
     }).lean();  
 
+    const getThreeLastComment = getCourseRating.reviews.slice(getCourseRating.reviews.length-3, getCourseRating.reviews.length);
+    for(let i = 0; i < getThreeLastComment.length; i++) {
+        getThreeLastComment[i]["integerPart"] = Math.floor(getThreeLastComment[i].rating);
+        getThreeLastComment[i]["isRemainder"] = getThreeLastComment[i].rating - Math.floor(getThreeLastComment[i].rating) !==0 ;
+    }
     res.render("courseDetail/courseDetail.hbs", {
         courseDetail: getCourse,
         courseRating: getCourseRating,
@@ -22,6 +26,7 @@ export const renderCourseDetail = catchAsync(async (req, res) => {
         isRemainder: getCourseRating.avg_rating - Math.floor(getCourseRating.avg_rating) !==0,
         dateUpdate: getCourse.date.slice(0,10),
         numberSection: getCourse.lectures.sections.length,
+        getThreeLastComment: getThreeLastComment,
         layout: "courseDetail.hbs"
     });
 

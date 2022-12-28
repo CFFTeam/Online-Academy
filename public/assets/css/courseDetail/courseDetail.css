@@ -354,12 +354,12 @@
 .assess{
     display: flex;
     margin: 5rem 20rem;
-    height: 50rem;
 }
 
 .assessment{
-    width: 50%;
+    width: 40%;
     background: #00A551;
+    
 }
 
 .assessment h1{
@@ -368,7 +368,7 @@
 }
 
 .comment{
-    width: 50%;
+    width: 60%;
     background: #F59F00;
 }
 
@@ -439,4 +439,27 @@
 .header-comment p:hover{
     color: #00A551;
     cursor: pointer;
+}
+
+.comment-info{
+    background: #dee2e6;
+    padding: 1.5rem;
+    margin-top: 3rem;
+}
+.comment-info p{
+    margin-top: 1rem;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.rating-point-under{
+    margin: 0;
+    display: flex;
+    background: #f1f3f5;
+    align-items: center;
+    gap: 1rem;
+}
+
+.star-point-under{
+    margin: 0;
 }
