@@ -6,9 +6,9 @@
   <div class="body">
     <div class="card">
       <div class="avatar">
-
+<img src="/assets/images/userProfile/user.jpg" />
       </div>
-      <p class="name">Khoa Nguyen</p>
+      <p class="name">{{name}}</p>
       <p class="role">user</p>
       <div class="icons">
         <img src="/assets/images/userProfile/image.png" />
@@ -16,12 +16,12 @@
     </div>
     <div class="main">
       <div class="menu">
-        <p class="overview optionChosen">Overview</p>
-        <p class="edit">Edit Profile</p>
-        {{#if (eq loginby "local")}}<p class="change">Change Password</p>{{/if}}
+        <p class="overview {{#if (eq page "overview")}} optionChosen{{/if}}">Overview</p>
+        <p class="edit {{#if (eq page "editform")}} optionChosen{{/if}}">Edit Profile</p>
+        {{#if (eq loginby "local")}}<p class="change {{#if (eq page "changeform")}} optionChosen{{/if}}">Change Password</p>{{/if}}
       </div>
       <div class="content">
-        <div class="overview{{#if page}} hideUserProfile{{else}}{{/if}}">
+        <div class="overview{{#if (eq page "overview")}}{{else}} hideUserProfile{{/if}}">
           <p class="title">Profile Details</p>
           <div class="overviewForm">
             <div class="type">
@@ -143,13 +143,16 @@
     </div>
   </div>
   <script>
+    $(".messageUserProfile").text("{{message}}")
+
         $(".body > .main > .menu > .edit").click(function(){ 
       $(".body > .main > .menu > .change").removeClass("optionChosen")
       $(".body >.main > .menu > .overview").removeClass("optionChosen")
       $(".body > .main>.menu > .edit").addClass("optionChosen")
       $(".body > .main > .content > .overview").addClass("hideUserProfile") 
       $(".body > .main > .content > .changePassword").addClass("hideUserProfile") 
-      $(".body > .main > .content > .editProfile").removeClass("hideUserProfile") 
+      $(".body > .main > .content > .editProfile").removeClass("hideUserProfile")
+    $(".messageUserProfile").text("")
     }); 
     $(".body > .main > .menu > .change").click(function(){ 
       $(".body > .main > .menu > .edit").removeClass("optionChosen") 
@@ -157,7 +160,8 @@
       $(".body > .main > .menu > .change").addClass("optionChosen") 
       $(".body > .main > .content > .overview").addClass("hideUserProfile") 
       $(".body > .main > .content > .editProfile").addClass("hideUserProfile")
-      $(".body > .main > .content > .changePassword").removeClass("hideUserProfile") 
+      $(".body > .main > .content > .changePassword").removeClass("hideUserProfile")
+    $(".messageUserProfile").text("")
     }); 
     $(".body > .main > .menu > .overview").click(function(){ 
       $(".body > .main > .menu > .edit").removeClass("optionChosen") 
@@ -165,7 +169,8 @@
       $(".body > .main > .menu > .overview").addClass("optionChosen") 
       $(".body > .main > .content > .changePassword").addClass("hideUserProfile") 
       $(".body > .main > .content > .editProfile").addClass("hideUserProfile") 
-      $(".body > .main > .content > .overview").removeClass("hideUserProfile")
+      $(".body > .main > .content > .overview").removeClass("hideUserProfile")    
+    $(".messageUserProfile").text("")
     });
     $(document).ready(function(){
     const messages = "{{messages}}"
