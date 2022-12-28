@@ -134,7 +134,9 @@ export const getMyCourses = function (req,res,next) {
 export const addCourseDescription = (req,res) => {
 }
 
-export const addCourseContent = async (req,res) => {
+export const renderCourseContent = async (req,res) => {
+    // if haven't registered course yet
+    if (!req.query.course) res.redirect('/instructor/my-courses');
     const course = await Course.findById({_id: req.query.course}).lean();
     const thisCourseLectures = await Course.findById({_id: req.query.course}).select('lectures');
     let foundLesson = {
@@ -195,9 +197,9 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
         if (err) { console.error(err);}
         else {
             const course = await Course.findById({_id: req.query.course}).lean(); // find course
+            const thisCourseLectures = await Course.findById({_id: req.query.course}).select('lectures');
             // if user add new section
             if (req.query.section == "") {
-                const thisCourseLectures = await Course.findById({_id: req.query.course}).select('lectures');
                 let thisCourseSections = thisCourseLectures.lectures.sections;
                 const newSection = {
                     title: "New Section",
@@ -208,10 +210,17 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                 thisCourseSections.push(newSection);
                 await thisCourseLectures.save();
             }
-            
+             // if user edit  section
+            else if (req.query.section && !req.body.requestAction) {
+                let thisSection = thisCourseLectures.lectures.sections.filter((section) => {
+                    return section._id.toString() === req.query.section;
+                });
+                thisSection = thisSection[0]; // get section out of an array
+                thisSection.title = req.body.section_title;
+                await thisCourseLectures.save();
+            }
             // if user edit lesson
             if (req.body.requestAction === "publish") {
-                const thisCourseLectures = await Course.findById({_id: req.query.course}).select('lectures');
                 if (req.query.lesson) {  // edit lesson
                     let foundLesson = {}; // find that lesson
                     thisCourseLectures.lectures.sections.forEach(section => {
@@ -234,7 +243,6 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                 }
                 // if user add new lessons
                 else if (req.query.section) { // user add new lessons
-                    const thisCourseLectures = await Course.findById({_id: req.query.course}).select('lectures');
                     let thisSection = thisCourseLectures.lectures.sections.filter((section) => {
                         return section._id.toString() === req.query.section;
                     });
