@@ -4,6 +4,11 @@ import courseDetailsModel from "../models/courseDetailsModel.js";
 import { fixDateFormat, fixNumberFormat } from "../utilities/fixFormat.js";
 import catchAsync from "../utilities/catchAsync.js";
 
+const loadBestSeller = async () => { 
+    const allcourses = await courseDetailsModel.find({}, {course_id: 1}).sort('-viewer').limit(10).lean();
+    return allcourses.map(course => course.course_id.toString());
+};
+
 const loadCourses = async (find_by = {}, sort_by, offset = 1, limit = 10) => {
 
     const skip = (offset - 1) * limit;
@@ -11,28 +16,29 @@ const loadCourses = async (find_by = {}, sort_by, offset = 1, limit = 10) => {
     if (sort_by === 'default') sort_by = '-viewer';
     if (sort_by === 'rating') sort_by = '-avg_rating';
 
-    const allcourses = await courseModel.find(find_by, {'_id': 1});
+    const bestseller = await loadBestSeller();
+
+    const allcourses = await courseModel.find(find_by, {_id: 1});
     const allcourses_id = allcourses.map(course => course._id);
 
     const courses = (sort_by === 'price') 
-    
     ? await courseModel.find(find_by).select('-lectures.sections')
     .sort(sort_by).collation({ locale: 'en', numericOrdering: true })
     .skip(skip).limit(limit).lean()
-
     : await courseDetailsModel.find({ course_id: { $in: allcourses_id } }).select('-reviews')
     .sort(sort_by).collation({ locale: 'en', numericOrdering: true })
     .skip(skip).limit(limit).lean()
 
     const newcourse = [];
-    
+
     for (let index = 0; index < courses.length; index++) {
         const course = (sort_by === 'price') ? courses[index] : await courseModel.findOne({ _id: courses[index].course_id }).select('-lectures.sections').lean();
         const coursesDetails = (sort_by === 'price') ? await courseDetailsModel.findOne({ course_id: courses[index]._id }).select('-reviews').lean() : courses[index];
-
         const newest_course = {
             active: index === 0 ? true : false,
+            course_status: (bestseller.includes(course._id.toString())) ? 'best seller' : '',
             course_name: course.name,
+            course_slug: course.slug,
             course_rate: coursesDetails.avg_rating,
             course_vote: fixNumberFormat(coursesDetails.num_reviews),
             course_viewer: fixNumberFormat(coursesDetails.viewer),
@@ -45,6 +51,7 @@ const loadCourses = async (find_by = {}, sort_by, offset = 1, limit = 10) => {
             course_duration: course.lectures.duration,
             course_lessons: course.lectures.total
         }
+
         newcourse.push(newest_course);
     }
 
@@ -104,7 +111,7 @@ export const loadCategory = catchAsync(async (req, res, next) => {
 
         const categoryList = await categoryModel.findOne(find_by).lean();
 
-        const subCategory = categoryList.subcategories.find(category => { 
+        const subCategory = categoryList && categoryList.subcategories.find(category => { 
             return category.slug === `/${subcategory}`;
         });
         
