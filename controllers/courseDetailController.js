@@ -12,7 +12,7 @@ export const renderCourseDetail = catchAsync(async (req, res) => {
 
     const getCourseRating = await courseDetail.findOne({
         course_id: getCourse._id
-    }).lean();  
+    }).lean();
 
     const getThreeLastComment = getCourseRating.reviews.slice(getCourseRating.reviews.length-3, getCourseRating.reviews.length);
     for(let i = 0; i < getThreeLastComment.length; i++) {
