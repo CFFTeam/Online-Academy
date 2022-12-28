@@ -10,7 +10,13 @@
     <div class="section">
         {{#each this.sections}}
         <div class="section-heading">
-            <div class="section-title">{{title}}</div>
+            {{!-- <div class="section-title">{{title}}</div> --}}
+            <div class="section-title">
+                <form action="{{../url}}&section={{this._id}}" method="post">
+                    <input type="text" name="section_title" value="{{this.title}}">
+                    <input type="submit" hidden />
+                </form>
+            </div>
             <button class="edit-btn" type="button"><img src="/assets/svg/instructor/edit-section.svg"
                     alt="edit-btn"></button>
         </div>
@@ -31,10 +37,6 @@
     </div>
     <div class="new-section">
         <form action="{{url}}&section={{section_id}}" method="post">
-            {{!-- <a class="add-new-section-btn" href="{{url}}&section={{section_id}}">
-                <img src="/assets/svg/instructor/add-new.svg" alt="add-new-icon">
-                <span class="title">Add a new section</span>
-            </a> --}}
             <button class="add-new-section-btn" type="submit">
                 <img src="/assets/svg/instructor/add-new.svg" alt="add-new-icon">
                 <span class="title">Add a new section</span>
