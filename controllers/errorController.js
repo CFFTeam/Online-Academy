@@ -26,7 +26,6 @@ export default (err, req, res, next) => {
   if (err.name === 'ValidationError') error = handleValidationErrorDB(err);
   if (err.code === 11000) error = handleDuplicateFieldsDB(err);
 
-  console.log(res.locals.user);
   const layout = res.locals.handlebars ? res.locals.layout || 'default' : 'errors';
   res.render(res.locals.handlebars || 'errors/500', { layout: layout, message: error.message, stack_error: err.stack.replaceAll('\\', '/'), ...res.locals });
 };

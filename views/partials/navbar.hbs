@@ -26,10 +26,12 @@
         </div>
     </div>
     <a class="link ipad mobile" href="#about">About</a>
-    <button class="shopping__cart-btn">
-        <img class="icon" src="/assets/svg/home/cart.svg" alt="shopping-cart" />
-        <span class="active-dot">1</span>
-    </button>
+    <a class="link" href="/payment">
+        <button class="shopping__cart-btn">
+            <img class="icon" src="/assets/svg/home/cart.svg" alt="shopping-cart" />
+            <span class="active-dot">{{cart_number}}</span>
+        </button>
+    </a>
     {{#if auth}}
     <div class="user-dropdown mobile">
         <button type="button" class="avatar mobile">
@@ -105,15 +107,15 @@
 
         categoriesList.map(categories => {
             $(".navbar > .dropdown > .categories.dropdown-list")
-            .append(`<button data-category="${categories.slug}" class="dropdown-items"><span>${categories.title}</span> <i class="fa-solid fa-chevron-right"></i></button>`);
+            .append(`<a data-category="${categories.slug}" href="/courses${categories.slug}" class="dropdown-items"><span>${categories.title}</span> <i class="fa-solid fa-chevron-right"></i></a>`);
 
             $("nav.navbar > #sidebar-open ~ .sidebar > .sidebar-main > .sidebar-group:first")
             .append(`<button data-category="${categories.slug}" class="sidebar-item"><span>${categories.title}</span> <i class="fa-solid fa-chevron-right"></i></button>`);
         
-            $(`.navbar > .dropdown > .categories.dropdown-list > button[data-category="${categories.slug}"].dropdown-items`).hover((e) => {
+            $(`.navbar > .dropdown > .categories.dropdown-list > a[data-category="${categories.slug}"].dropdown-items`).hover((e) => {
                 const dataCategory = $(e.currentTarget).attr("data-category");
                 
-                $(`.navbar > .dropdown > .categories.dropdown-list > button.dropdown-items`)
+                $(`.navbar > .dropdown > .categories.dropdown-list > a.dropdown-items`)
                 .removeClass('active');
 
                 $(e.currentTarget).addClass('active');
@@ -131,7 +133,7 @@
 
                 index > -1 && categoriesList && categoriesList.length && categoriesList[index] && categoriesList[index].subcategories && categoriesList[index].subcategories.length && categoriesList[index].subcategories.map(el => {
                     $(`.navbar > .dropdown > .sub-categories.dropdown-list[data-category="${dataCategory}"]`)
-                    .append(`<a class="dropdown-items" href="${el.slug}"><span>${el.content}</span></a>`);
+                    .append(`<a class="dropdown-items" href="/courses${categories.slug}${el.slug}"><span>${el.content}</span></a>`);
                 })
             },
             (e) => {
@@ -153,7 +155,7 @@
 
                 index > -1 && categoriesList && categoriesList.length && categoriesList[index] && categoriesList[index].subcategories && categoriesList[index].subcategories.length && categoriesList[index].subcategories.map(el => {
                     $(`nav.navbar > #sidebar-open ~ .sidebar > .sidebar-main > .view-group`)
-                    .append(`<a class="sidebar-item" href="${el.slug}"><span>${el.content}</span></a>`);
+                    .append(`<a class="sidebar-item" href="/courses${categories.slug}${el.slug}"><span>${el.content}</span></a>`);
                 })
 
                 $(`nav.navbar > #sidebar-open ~ .sidebar > .sidebar-main > .view-group`).addClass("open");

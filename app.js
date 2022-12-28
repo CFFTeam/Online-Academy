@@ -4,6 +4,7 @@ import express from "express";
 import handlebars from "express-handlebars";
 import mongoSanitize from "express-mongo-sanitize";
 import HomeRoutes from "./routes/HomeRoutes.js";
+import CoursesRoutes from "./routes/CoursesRoutes.js";
 import UserRoutes from "./routes/UserRoutes.js";
 import InstructorRoutes from "./routes/InstructorRoutes.js";
 import PaymentRoutes from "./routes/PaymentRoutes.js";
@@ -26,6 +27,7 @@ import activate_session_middleware from "./middlewares/session.mdw.js";
 import activate_locals_middleware from "./middlewares/locals.mdw.js";
 import auth_middleware from "./middlewares/auth.mdw.js";
 import load_categories_middlewares from "./middlewares/load_categories.mdw.js";
+import get_shopping_cart_total from "./middlewares/load_shopping_cart.mdw.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -72,8 +74,10 @@ activate_locals_middleware(app);
 
 passportAuth(passport);
 load_categories_middlewares(app);
+get_shopping_cart_total(app);
 
 app.use("/", HomeRoutes);
+app.use("/courses", CoursesRoutes);
 app.use('/auth', PassportRoutes);
 app.use("/account", UserRoutes);
 app.use("/instructor", InstructorRoutes);

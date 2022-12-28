@@ -1,32 +1,44 @@
+import categoryModel from "../models/categoryModel.js";
 import courseModel from "../models/courseModel.js";
 import courseDetailsModel from "../models/courseDetailsModel.js";
 import { fixDateFormat, fixNumberFormat } from "../utilities/fixFormat.js";
 import catchAsync from "../utilities/catchAsync.js";
 
-const loadAllCourses = async (sort_by, offset = 1, limit = 10) => {
+const loadBestSeller = async () => { 
+    const allcourses = await courseDetailsModel.find({}, {course_id: 1}).sort('-viewer').limit(10).lean();
+    return allcourses.map(course => course.course_id.toString());
+};
+
+const loadCourses = async (find_by = {}, sort_by, offset = 1, limit = 10) => {
 
     const skip = (offset - 1) * limit;
 
     if (sort_by === 'default') sort_by = '-viewer';
     if (sort_by === 'rating') sort_by = '-avg_rating';
 
+    const bestseller = await loadBestSeller();
+
+    const allcourses = await courseModel.find(find_by, {_id: 1});
+    const allcourses_id = allcourses.map(course => course._id);
+
     const courses = (sort_by === 'price') 
-    ? await courseModel.find().select('-lectures.sections')
+    ? await courseModel.find(find_by).select('-lectures.sections')
     .sort(sort_by).collation({ locale: 'en', numericOrdering: true })
     .skip(skip).limit(limit).lean()
-    : await courseDetailsModel.find().select('-reviews')
+    : await courseDetailsModel.find({ course_id: { $in: allcourses_id } }).select('-reviews')
     .sort(sort_by).collation({ locale: 'en', numericOrdering: true })
     .skip(skip).limit(limit).lean()
 
     const newcourse = [];
-    
+
     for (let index = 0; index < courses.length; index++) {
         const course = (sort_by === 'price') ? courses[index] : await courseModel.findOne({ _id: courses[index].course_id }).select('-lectures.sections').lean();
         const coursesDetails = (sort_by === 'price') ? await courseDetailsModel.findOne({ course_id: courses[index]._id }).select('-reviews').lean() : courses[index];
-
         const newest_course = {
             active: index === 0 ? true : false,
+            course_status: (bestseller.includes(course._id.toString())) ? 'best seller' : '',
             course_name: course.name,
+            course_slug: course.slug,
             course_rate: coursesDetails.avg_rating,
             course_vote: fixNumberFormat(coursesDetails.num_reviews),
             course_viewer: fixNumberFormat(coursesDetails.viewer),
@@ -39,22 +51,14 @@ const loadAllCourses = async (sort_by, offset = 1, limit = 10) => {
             course_duration: course.lectures.duration,
             course_lessons: course.lectures.total
         }
+
         newcourse.push(newest_course);
     }
-    return newcourse;
+
+    return { courses: newcourse, total_pages: Math.ceil(allcourses.length / limit) };
 };
 
-export const coursesPage = catchAsync(async (req, res) => {
-    res.locals.handlebars = 'home/courses';
-    res.locals.sort_by = req.query.sort_by || 'default';
-    res.locals.page = req.query.page || 1;
-
-    const limit = 10;
-    const offset = res.locals.page;
-
-    const courses = await loadAllCourses(res.locals.sort_by, offset, limit);
-    const totalPage = Math.floor((await courseModel.find().count()) / limit);
-
+const getPageList = (totalPage) => {
     const pageList = [1];
     if (totalPage > 10) {
         for (let i = 2; i <= Math.min(totalPage, 4); i++)
@@ -68,16 +72,57 @@ export const coursesPage = catchAsync(async (req, res) => {
     else 
         for (let i = 2; i <= totalPage; i++)
             pageList.push(i);
+    return pageList;
+};
+
+export const coursesPage = catchAsync(async (req, res) => {
+    res.locals.handlebars = 'home/courses';
+    res.locals.sort_by = req.query.sort_by || 'default';
+    res.locals.page = req.query.page || 1;
+
+    const find_by = req.find_by;
+
+    const limit = 10;
+    const offset = res.locals.page;
+
+    const results = await loadCourses(find_by, res.locals.sort_by, offset, limit);
+
+    const courses = results.courses;
+    const totalPage = results.total_pages;
+
+    const pageList = getPageList(totalPage);
 
     
     res.render(res.locals.handlebars, { courses, pageList: pageList });
 });
 
-export const categoryCoursePage = catchAsync(async (req, res) => { 
-    res.locals.handlebars = 'home/courses';
+export const loadCategory = catchAsync(async (req, res, next) => { 
 
     const { category, subcategory } = req.params;
-    
-    console.log(category, subcategory);
-    res.render(res.locals.handlebars);
+    const find_by = {}
+
+    req.find_by = {};
+
+    if (category || subcategory) {
+        if (category)
+        find_by.slug = `/${category}`;
+        if (subcategory)
+            find_by.subcategory = { $elemMatch: { slug: `/${subcategory}` } };
+
+        const categoryList = await categoryModel.findOne(find_by).lean();
+
+        const subCategory = categoryList && categoryList.subcategories.find(category => { 
+            return category.slug === `/${subcategory}`;
+        });
+        
+        const categoryName = categoryList ? categoryList.title : null;
+        const subcategoryName = subCategory ? subCategory.content : null;
+
+        if (categoryName)
+            req.find_by.category = categoryName;
+        if (subcategoryName)
+            req.find_by.subcategory = { $in: [subcategoryName] };
+    }
+
+    next();
 });
