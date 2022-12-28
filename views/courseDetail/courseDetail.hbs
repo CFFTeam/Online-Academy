@@ -2,40 +2,57 @@
   <div class="info-container">
     <div class="content">
       <div class="info-content">
-          <p class="p-green">Course > {{courseDetail.category}} > {{#each courseDetail.subcategory}}{{this}} &nbsp;{{/each}}</p>
-          <h1>{{courseDetail.name}}</h1>
-          <p>{{courseDetail.description}}</p>
-          <div class="rating-content">
-            <p>Best seller</p>          
-            <div class="star-display">
-              {{#times integerPart }}
-                <img src="/assets/svg/admin/star.svg" alt="star-icon"/>
-              {{/times}}
-              {{#if isRemainder}}
-                <img src="/assets/svg/admin/haft-star.svg" alt="haft-star-icon"/>
-              {{/if}}
-              <p>{{courseRating.avg_rating}}</p>
-              <p style="color: #00A551; font-weight: 600; padding-left: 1rem; font-size: 1.7rem;"> ( {{courseRating.num_reviews}} ratings ) </p>
-              <p style="color: black; font-weight: 400; font-size: 1.7rem;">{{courseRating.viewer}} students</p>
-            </div>
+        <p class="p-green">Course >
+          {{courseDetail.category}}
+          >
+          {{#each courseDetail.subcategory}}{{this}} &nbsp;{{/each}}</p>
+        <h1>{{courseDetail.name}}</h1>
+        <p>{{courseDetail.description}}</p>
+        <div class="rating-content">
+          <p>Best seller</p>
+          <div class="star-display">
+            {{#times integerPart}}
+              <img src="/assets/svg/admin/star.svg" alt="star-icon" />
+            {{/times}}
+            {{#if isRemainder}}
+              <img src="/assets/svg/admin/haft-star.svg" alt="haft-star-icon" />
+            {{/if}}
+            <p>{{courseRating.avg_rating}}</p>
+            <p
+              style="color: #00A551; font-weight: 600; padding-left: 1rem; font-size: 1.7rem;"
+            > ( {{courseRating.num_reviews}} ratings ) </p>
+            <p
+              style="color: black; font-weight: 400; font-size: 1.7rem;"
+            >{{courseRating.viewer}} students</p>
           </div>
-          <p style="color: black; font-weight: 400; font-size: 1.7rem; font-style: italic;">Last updated {{dateUpdate}}</p>
-          <h1 style="color: black; font-weight: 700; font-size: 3.5rem;">{{courseDetail.price}} $</h1>
-          <div class="order">
-            <form action="#">
-              <input type="submit" value="Add to cart" class="add-to-cart"/>
-            </form>
-            <form action="#">
-              <input type="submit" value="Buy now" class="buy-now" />
-            </form>
-          </div>
+        </div>
+        <p
+          style="color: black; font-weight: 400; font-size: 1.7rem; font-style: italic;"
+        >Last updated {{dateUpdate}}</p>
+        <h1
+          style="color: black; font-weight: 700; font-size: 3.5rem;"
+        >{{courseDetail.price}} $</h1>
+        <div class="order">
+          <form action="#">
+            <input type="submit" value="Add to cart" class="add-to-cart" />
+          </form>
+          <form action="#">
+            <input type="submit" value="Buy now" class="buy-now" />
+          </form>
+        </div>
       </div>
     </div>
 
     <div class="video">
-      <img src={{courseDetail.img}} class="demo-img"/>
-      <img src="/assets/svg/course/play.svg" alt="play-button" data-toggle="modal" data-target="#myModal" class="play">
-      
+      <img src={{courseDetail.img}} class="demo-img" />
+      <img
+        src="/assets/svg/course/play.svg"
+        alt="play-button"
+        data-toggle="modal"
+        data-target="#myModal"
+        class="play"
+      />
+
     </div>
 
     <div class="more">
@@ -64,13 +81,16 @@
       </div>
     </div>
 
-    <div class="modal" id="myModal" >
+    <div class="modal" id="myModal">
       <div
         class="modal-dialog modal-xl"
         style="top: 50% !important; transform: translateY(-60%) !important;"
       >
         <div class="modal-content">
-            <iframe height="700px" src="https://www.youtube.com/embed/K4TOrB7at0Y"> </iframe>
+          <iframe
+            height="700px"
+            src="https://www.youtube.com/embed/K4TOrB7at0Y"
+          > </iframe>
         </div>
       </div>
     </div>
@@ -83,12 +103,16 @@
     <div class="content-cp">
       <div class="content-cp-s">
         <div class="total-length">
-          <p>{{numberSection}} sections - {{courseDetail.lectures.total}} lectures - {{courseDetail.lectures.duration}}</p>
+          <p>{{numberSection}}
+            sections -
+            {{courseDetail.lectures.total}}
+            lectures -
+            {{courseDetail.lectures.duration}}</p>
           <a href="#" class="all-sections">View all sections</a>
         </div>
         <a href="#" class="link-video">
           <div class="section-video" style="margin-top: 3rem;">
-            <img src={{courseDetail.img}} style="height: 8rem;"/>
+            <img src={{courseDetail.img}} style="height: 8rem;" />
             <div class="header-content">
               <h2>{{courseDetail.lectures.sections.0.title}}</h2>
               <p>{{courseDetail.lectures.sections.0.lessons.0.title}}</p>
@@ -98,7 +122,7 @@
 
         <a href="#" class="link-video">
           <div class="section-video">
-            <img src={{courseDetail.img}} style="height: 8rem;"/>
+            <img src={{courseDetail.img}} style="height: 8rem;" />
             <div class="header-content">
               <h2>{{courseDetail.lectures.sections.1.title}}</h2>
               <p>{{courseDetail.lectures.sections.1.lessons.1.title}}</p>
@@ -107,7 +131,7 @@
         </a>
         <a href="#" class="link-video">
           <div class="section-video">
-            <img src={{courseDetail.img}} style="height: 8rem;"/>
+            <img src={{courseDetail.img}} style="height: 8rem;" />
             <div class="header-content">
               <h2>{{courseDetail.lectures.sections.2.title}}</h2>
               <p>{{courseDetail.lectures.sections.2.lessons.1.title}}</p>
@@ -116,7 +140,7 @@
         </a>
         <a href="#" class="link-video">
           <div class="section-video">
-            <img src={{courseDetail.img}} style="height: 8rem;"/>
+            <img src={{courseDetail.img}} style="height: 8rem;" />
             <div class="header-content">
               <h2>{{courseDetail.lectures.sections.3.title}}</h2>
               <p>{{courseDetail.lectures.sections.3.lessons.1.title}}</p>
@@ -125,7 +149,7 @@
         </a>
         <a href="#" class="link-video">
           <div class="section-video">
-            <img src={{courseDetail.img}} style="height: 8rem;"/>
+            <img src={{courseDetail.img}} style="height: 8rem;" />
             <div class="header-content">
               <h2>{{courseDetail.lectures.sections.4.title}}</h2>
               <p>{{courseDetail.lectures.sections.4.lessons.1.title}}</p>
@@ -149,22 +173,22 @@
       <h1 style="color: #51CF66; margin-top: 1rem;">Jonas Schemedtmann</h1>
       <p>Web Developer, Designer, and Teacher</p>
       <div class="info-ins">
-        <img src={{courseDetail.img}} style="height: 20rem; width: 20rem;"/>
+        <img src={{courseDetail.img}} style="height: 20rem; width: 20rem;" />
         <div class="info-rating">
           <div class="flex-rating">
-            <img src="/assets/svg/course/star.svg" alt="star-icon"/>
+            <img src="/assets/svg/course/star.svg" alt="star-icon" />
             <p> 4.7 Instructor Rating</p>
           </div>
           <div class="flex-rating">
-            <img src="/assets/svg/course/like.svg" alt="star-icon"/>
+            <img src="/assets/svg/course/like.svg" alt="star-icon" />
             <p> 400.000 Reviwers</p>
           </div>
           <div class="flex-rating">
-            <img src="/assets/svg/course/student.svg" alt="student-icon"/>
+            <img src="/assets/svg/course/student.svg" alt="student-icon" />
             <p> 1.500.000 Students</p>
           </div>
           <div class="flex-rating">
-            <img src="/assets/svg/course/course.svg" alt="course-icon"/>
+            <img src="/assets/svg/course/course.svg" alt="course-icon" />
             <p> 6 Courses</p>
           </div>
         </div>
@@ -172,18 +196,28 @@
     </div>
     <div class="content-ins">
       <div class="content-ins-s">
-          <p style="font-weight: 400;">
-            Hi, I'm Jonas! I have been identified as one of Udemy's Top Instructors and all my premium courses have earned the best-selling status for outstanding performance and student satisfaction.
-            I'm a full-stack web developer and designer with a passion for building beautiful things from scratch. I've been building websites and apps since 2010 and also have a Master's degree in Engineering.
-            I discovered my passion for teaching and helping others by sharing all I knew when I was in college, and that passion brought me to Udemy in 2015.
-            Here, in all my courses, what students love the most is that I take the time to explain every concept in a way that everyone can easily understand.
-            So, do you want to learn how to build awesome websites with modern HTML and CSS?
-            Looking for a complete JavaScript course that takes you from zero to an advanced developer?
-            Or maybe you want to build modern and fast back-end applications with Node.js?
-            Then don't waste your time with random tutorials or incomplete youtube videos. All my courses are easy-to-follow, all-in-one packages that will take your skills to the next level.
-            These courses are exactly the courses I wish I had when I was first getting into web development!
-            So see for yourself, enroll in one of my courses (or all of them :D) and join 1,000,000+ happy students today.
-          </p>
+        <p style="font-weight: 400;">
+          Hi, I'm Jonas! I have been identified as one of Udemy's Top
+          Instructors and all my premium courses have earned the best-selling
+          status for outstanding performance and student satisfaction. I'm a
+          full-stack web developer and designer with a passion for building
+          beautiful things from scratch. I've been building websites and apps
+          since 2010 and also have a Master's degree in Engineering. I
+          discovered my passion for teaching and helping others by sharing all I
+          knew when I was in college, and that passion brought me to Udemy in
+          2015. Here, in all my courses, what students love the most is that I
+          take the time to explain every concept in a way that everyone can
+          easily understand. So, do you want to learn how to build awesome
+          websites with modern HTML and CSS? Looking for a complete JavaScript
+          course that takes you from zero to an advanced developer? Or maybe you
+          want to build modern and fast back-end applications with Node.js? Then
+          don't waste your time with random tutorials or incomplete youtube
+          videos. All my courses are easy-to-follow, all-in-one packages that
+          will take your skills to the next level. These courses are exactly the
+          courses I wish I had when I was first getting into web development! So
+          see for yourself, enroll in one of my courses (or all of them :D) and
+          join 1,000,000+ happy students today.
+        </p>
       </div>
     </div>
   </div>
@@ -194,11 +228,19 @@
       <div class="rating-point">
         <h1>{{courseRating.avg_rating}}</h1>
         <div class="star-point">
-          {{#times integerPart }}
-            <img src="/assets/svg/course/star.svg" alt="star-icon" style="padding-bottom: 0.5rem;"/>
+          {{#times integerPart}}
+            <img
+              src="/assets/svg/course/star.svg"
+              alt="star-icon"
+              style="padding-bottom: 0.5rem;"
+            />
           {{/times}}
           {{#if isRemainder}}
-            <img src="/assets/svg/course/haft-star.svg" alt="haft-star-icon" style="padding-bottom: 0.5rem;"/>
+            <img
+              src="/assets/svg/course/haft-star.svg"
+              alt="haft-star-icon"
+              style="padding-bottom: 0.5rem;"
+            />
           {{/if}}
           <p>{{courseRating.num_reviews}} ratings</p>
         </div>
@@ -207,95 +249,196 @@
         <p>5 stars</p>
         <div class="progress">
           <div class="progress-bar" style="width:85%;"></div>
-        </div><br>
+        </div><br />
         <p>85%</p>
       </div>
       <div class="star-chart">
         <p>4 stars</p>
         <div class="progress">
           <div class="progress-bar" style="width:12%;"></div>
-        </div><br>
+        </div><br />
         <p>12%</p>
       </div>
       <div class="star-chart">
         <p>3 stars</p>
         <div class="progress">
           <div class="progress-bar" style="width:1.5%;"></div>
-        </div><br>
+        </div><br />
         <p>1.5%</p>
       </div>
       <div class="star-chart">
         <p>2 stars</p>
         <div class="progress">
           <div class="progress-bar" style="width:0.3%;"></div>
-        </div><br>
+        </div><br />
         <p>0.3%</p>
       </div>
       <div class="star-chart">
         <p>1 stars</p>
         <div class="progress" style="width: 45%; height: 2rem;">
-          <div class="progress-bar" style="width:1.2%; background: #F59F00;"></div>
-        </div><br>
+          <div
+            class="progress-bar"
+            style="width:1.2%; background: #F59F00;"
+          ></div>
+        </div><br />
         <p>1.2%</p>
       </div>
     </div>
     <div class="comment">
       <div class="header-comment">
         <h1>Comment</h1>
-        <p>View more</p>
+        <button data-toggle="modal" data-target="#allCmt">View more</button>
       </div>
 
       <div class="comment-info">
         <div class="rating-point-under">
-          <img src={{getThreeLastComment.0.user.avatar}} style="width: 6rem; height: 6rem;">
+          <img
+            src={{getThreeLastComment.0.user.avatar}}
+            style="width: 6rem; height: 6rem;"
+          />
           <div class="star-point-under">
             {{#times getThreeLastComment.0.integerPart}}
-              <img src="/assets/svg/course/star.svg" alt="star-icon" style="padding-bottom: 0.5rem;"/>
+              <img
+                src="/assets/svg/course/star.svg"
+                alt="star-icon"
+                style="padding-bottom: 0.5rem;"
+              />
             {{/times}}
             {{#if getThreeLastComment.0.isRemainder}}
-              <img src="/assets/svg/course/haft-star.svg" alt="haft-star-icon" style="padding-bottom: 0.5rem;"/>
+              <img
+                src="/assets/svg/course/haft-star.svg"
+                alt="haft-star-icon"
+                style="padding-bottom: 0.5rem;"
+              />
             {{/if}}
-            <p style="color: black; font-weight: 400; margin: 0;">{{getThreeLastComment.0.user.name}} - {{getThreeLastComment.0.created}}</p>
+            <p
+              style="color: black; font-weight: 400; margin: 0;"
+            >{{getThreeLastComment.0.user.name}}
+              -
+              {{getThreeLastComment.0.created}}</p>
           </div>
         </div>
         {{{getThreeLastComment.0.content}}}
       </div>
 
       <div class="comment-info">
-          <div class="rating-point-under">
-            <img src={{getThreeLastComment.1.user.avatar}} style="width: 6rem; height: 6rem;">
-            <div class="star-point-under">
-              {{#times getThreeLastComment.1.integerPart}}
-                <img src="/assets/svg/course/star.svg" alt="star-icon" style="padding-bottom: 0.5rem;"/>
-              {{/times}}
-              {{#if getThreeLastComment.1.isRemainder}}
-                <img src="/assets/svg/course/haft-star.svg" alt="haft-star-icon" style="padding-bottom: 0.5rem;"/>
-              {{/if}}
-              <p style="color: black; font-weight: 400; margin: 0;">{{getThreeLastComment.1.user.name}} - {{getThreeLastComment.1.created}}</p>
-            </div>
+        <div class="rating-point-under">
+          <img
+            src={{getThreeLastComment.1.user.avatar}}
+            style="width: 6rem; height: 6rem;"
+          />
+          <div class="star-point-under">
+            {{#times getThreeLastComment.1.integerPart}}
+              <img
+                src="/assets/svg/course/star.svg"
+                alt="star-icon"
+                style="padding-bottom: 0.5rem;"
+              />
+            {{/times}}
+            {{#if getThreeLastComment.1.isRemainder}}
+              <img
+                src="/assets/svg/course/haft-star.svg"
+                alt="haft-star-icon"
+                style="padding-bottom: 0.5rem;"
+              />
+            {{/if}}
+            <p
+              style="color: black; font-weight: 400; margin: 0;"
+            >{{getThreeLastComment.1.user.name}}
+              -
+              {{getThreeLastComment.1.created}}</p>
           </div>
-          {{{getThreeLastComment.1.content}}}
         </div>
+        {{{getThreeLastComment.1.content}}}
+      </div>
 
       <div class="comment-info">
+        <div class="rating-point-under">
+          <img
+            src={{getThreeLastComment.2.user.avatar}}
+            style="width: 6rem; height: 6rem;"
+          />
+          <div class="star-point-under">
+            {{#times getThreeLastComment.2.integerPart}}
+              <img
+                src="/assets/svg/course/star.svg"
+                alt="star-icon"
+                style="padding-bottom: 0.5rem;"
+              />
+            {{/times}}
+            {{#if getThreeLastComment.2.isRemainder}}
+              <img
+                src="/assets/svg/course/haft-star.svg"
+                alt="haft-star-icon"
+                style="padding-bottom: 0.5rem;"
+              />
+            {{/if}}
+            <p
+              style="color: black; font-weight: 400; margin: 0;"
+            >{{getThreeLastComment.2.user.name}}
+              -
+              {{getThreeLastComment.2.created}}</p>
+          </div>
+        </div>
+        {{{getThreeLastComment.2.content}}}
+      </div>
+
+      <form method="POST" action="#">
+        <div class="comment-info">
           <div class="rating-point-under">
-            <img src={{getThreeLastComment.2.user.avatar}} style="width: 6rem; height: 6rem;">
+            <img src={{courseDetail.img}} style="height: 6rem; width: 6rem;" />
             <div class="star-point-under">
-              {{#times getThreeLastComment.2.integerPart}}
-                <img src="/assets/svg/course/star.svg" alt="star-icon" style="padding-bottom: 0.5rem;"/>
-              {{/times}}
-              {{#if getThreeLastComment.2.isRemainder}}
-                <img src="/assets/svg/course/haft-star.svg" alt="haft-star-icon" style="padding-bottom: 0.5rem;"/>
-              {{/if}}
-              <p style="color: black; font-weight: 400; margin: 0;">{{getThreeLastComment.2.user.name}} - {{getThreeLastComment.2.created}}</p>
+              <select name="5 stars">
+                <option value="5 stars">5 stars</option>
+                <option value="4 stars">4 stars</option>
+                <option value="3 stars">3 stars</option>
+                <option value="2 stars">2 stars</option>
+                <option value="1 stars">1 stars</option>
+              </select>
             </div>
           </div>
-          {{{getThreeLastComment.2.content}}}
+          <input
+            type="text"
+            class="input-comment"
+            placeholder="Enter your comment"
+          />
+
+          <input type="submit" value="Post" class="button-submit" />
         </div>
+      </form>
 
     </div>
 
-
+  </div>
+  <div class="modal" id="allCmt">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          {{#each courseRating.reviews}}
+        <div class="comment-info">
+            <div class="rating-point-under">
+              <img
+                src={{this.user.avatar}}
+                style="width: 6rem; height: 6rem;"
+              />
+              <div class="star-point-under">
+                <p>
+                  {{this.rating}}
+                  <img
+                    src="/assets/svg/course/star.svg"
+                    alt="star-icon"
+                    style="padding-bottom: 0.5rem;"
+                  /></p>
+                <p
+                  style="color: black; font-weight: 400; margin: 0;"
+                >{{this.user.name}}
+                  -
+                  {{this.created}}</p>
+              </div>
+            </div>
+            {{{this.content}}}
+        </div>
+          {{/each}}
+      </div>
+    </div>
   </div>
 </div>
-

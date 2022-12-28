@@ -5,18 +5,18 @@
 }
 
 .content{
-    width: 55%;
+    width: 70%;
     height: 60rem;
     background: #f1f3f5;
 }
 
 .info-content{
     width: 90%;
-    margin: 3rem 12rem !important;
+    margin: 2rem 10rem !important;
 }
 
 .info-content p{
-    margin-top: 2rem;
+    margin-top: 1rem;
     font-size: 2rem;
 }
 
@@ -27,7 +27,7 @@
 }
 
 .info-content h1{
-    font-size: 4.5rem;
+    font-size: 4rem;
     margin-top: 2rem;
     font-weight: 700;
 }
@@ -144,7 +144,7 @@
     width: 140rem;
     height: 10rem;
     background: #CED4DA;
-    clip-path: polygon(0 0, 100% 0, 97.5% 100%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0, 98.5% 100%, 0% 100%);
     display: flex;
     align-items: center;
     gap: 5rem;
@@ -181,12 +181,12 @@
 
 .about-container{
     width: 100%;
-    margin-top: 4rem;
+    margin-top: 3rem;
 }
 
 .about-container h1{
     font-size: 4.5rem;
-    padding-top: 5rem;
+    padding-top: 3rem;
     text-align: center;
     font-weight: 700;
 }
@@ -216,9 +216,9 @@
 }
 
 .heading-cp h1{
-    font-size: 4.5rem;
+    font-size: 4rem;
     font-weight: 700;
-    margin-left: 12rem;
+    margin-left: 6rem;
     color: black;
 }
 
@@ -305,14 +305,14 @@
 .heading-ins h1{
     font-size: 4rem;
     font-weight: 700;
-    margin-left: 7rem;
+    margin-left: 3rem;
     margin-top: 7rem;
     color: white;
 }
 
 .heading-ins p{
     font-weight: 600;
-    margin-left: 7rem;
+    margin-left: 3rem;
     margin-top: 1rem;
     color: white;
 }
@@ -331,9 +331,8 @@
 
 .info-ins{
     display: flex;
-    width: 60%;
     height: 20rem;;
-    margin-left: 7rem;
+    margin-left: 3rem;
     margin-top: 4rem;
 }
 
@@ -357,9 +356,7 @@
 }
 
 .assessment{
-    width: 40%;
-    background: #00A551;
-    
+    width: 40%;   
 }
 
 .assessment h1{
@@ -369,12 +366,10 @@
 
 .comment{
     width: 60%;
-    background: #F59F00;
 }
 
 .rating-point{
     display: flex;
-    background: #f1f3f5;
     margin-top: 3rem;
     align-items: center;
     gap: 1rem;
@@ -406,6 +401,7 @@
 
 .star-chart p{
     margin: 0 2rem 0 0;
+    width: 6rem;
 }
 
 .progress{
@@ -430,13 +426,13 @@
     margin: 0;
 }
 
-.header-comment p{
+.header-comment button{
     font-weight: 600;
     margin: 0;
-    text-decoration: underline;
+    border:none;
 }
 
-.header-comment p:hover{
+.header-comment button:hover{
     color: #00A551;
     cursor: pointer;
 }
@@ -455,11 +451,36 @@
 .rating-point-under{
     margin: 0;
     display: flex;
-    background: #f1f3f5;
     align-items: center;
     gap: 1rem;
 }
 
 .star-point-under{
     margin: 0;
+}
+
+.star-point-under select{
+    font-weight: 500;
+    border: 1px solid #00A551;
+    padding: 0.5rem;
+    color:#00A551;
+}
+
+.input-comment{
+    padding: 0.5rem 1rem;
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+.button-submit{
+    padding: 0.5rem 2rem;
+    font-weight: 700;
+    color:white;
+    background: #00A551;
+    margin-top: 1rem;
+    border:none;
+}
+
+.button-submit:hover{
+    background: #087f5b;
 }

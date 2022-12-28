@@ -7,7 +7,7 @@ export const renderCourseDetail = catchAsync(async (req, res) => {
     res.locals.handlebars = "courseDetail/courseDetail";
 
     const getCourse = await Course.findOne({
-        slug: `/course${url.parse(req.url, true).pathname}/`
+        slug: `/course${url.parse(req.url, true).pathname}`
     }).lean();
 
     const getCourseRating = await courseDetail.findOne({
@@ -19,6 +19,7 @@ export const renderCourseDetail = catchAsync(async (req, res) => {
         getThreeLastComment[i]["integerPart"] = Math.floor(getThreeLastComment[i].rating);
         getThreeLastComment[i]["isRemainder"] = getThreeLastComment[i].rating - Math.floor(getThreeLastComment[i].rating) !==0 ;
     }
+    
     res.render("courseDetail/courseDetail.hbs", {
         courseDetail: getCourse,
         courseRating: getCourseRating,
