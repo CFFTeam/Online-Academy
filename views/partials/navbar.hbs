@@ -1,7 +1,7 @@
 <nav class="navbar">
     <button title="menu" id="sidebar-open" class="button-cs phone"><i class="fa-solid fa-bars"></i></button>
     <a class="link title" href="/">Academy</a>
-    <form class="search-form" action="" method="GET">
+    <form class="search-form" action="/courses" method="GET">
         <button type="submit" title="search" class="search-btn">
             <i class="fa-solid fa-magnifying-glass"></i>
         </button>
@@ -83,7 +83,7 @@
             <a class="sidebar-item" href="/account/signup">Register</a>
             {{/if}}
             <hr />
-            <b class="heading">Courses</b>
+            <a class="heading" href="/courses">Courses</a>
             <div class="sidebar-group"></div>
             <hr />
             <b class="heading">More from Academy</b>
@@ -196,7 +196,7 @@
         .append(`<a class="sidebar-item-profile" href="#courses"><i class="fa-solid fa-film"></i><span>My courses</span></a>`);
 
         $(`nav.navbar > #sidebar-open ~ .sidebar > .sidebar-main > .view-group`)
-        .append(`<a class="sidebar-item-profile" href="#wishlist"><i class="fa-solid fa-heart"></i><span>Wish list</span></a>`);
+        .append(`<a class="sidebar-item-profile" href="/wishlist"><i class="fa-solid fa-heart"></i><span>Wish list</span></a>`);
 
         $(`nav.navbar > #sidebar-open ~ .sidebar > .sidebar-main > .view-group`)
         .append(`<a class="sidebar-item-profile" href="/account/signout"><i class="fa-solid fa-sign-out"></i><span>Sign out</span></a>`);

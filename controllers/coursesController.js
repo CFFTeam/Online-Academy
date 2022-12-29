@@ -126,3 +126,11 @@ export const loadCategory = catchAsync(async (req, res, next) => {
 
     next();
 });
+
+export const loadSearch = catchAsync(async (req, res, next) => {
+    if (req.query.q) {
+        res.locals.q = req.query.q;
+        req.find_by = { $text: { $search: req.query.q }, ...req.find_by };
+    }
+    next();
+});
