@@ -83,13 +83,13 @@
     margin-top: 0;
     background-color: transparent;
     border: none;
-    margin-bottom: 0.5rem;
 }
 
 .section-heading .section-title 
 {
     flex: 1;
 }
+
 
 .section-title > form > input
 {
@@ -101,6 +101,21 @@
     outline-color: #adb5bd;
     width: 70%;
 }
+form.edit-section-content 
+{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+div.edit-section-content 
+{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+
 
 
 /* lesson */
@@ -151,7 +166,7 @@
 a.add-new-lesson-btn
 {
     border: none;
-    text-decoration: none;
+    /* text-decoration: none; */
 }
 
 a.add-new-lesson-btn .title {
@@ -159,6 +174,25 @@ a.add-new-lesson-btn .title {
     font-size: 1.6rem;
     font-weight: 500;
     color: #00A551;
+}
+
+button.add-new-lesson-btn
+{
+    border: none;
+    /* text-decoration: none; */
+}
+
+button.add-new-lesson-btn .title {
+    border: none;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #00A551;
+}
+
+.edit-lesson-content
+{
+    display: flex;
+    gap: 2rem;
 }
 
 /* new-section */
@@ -365,7 +399,7 @@ button.add-new-section-btn .title
     padding: 0rem 1.5rem;
     background-color: #f4f4f4;
     border: none;
-    outline: none;
+    /* outline: none; */
   }
 
   .form-group textarea {
@@ -492,3 +526,16 @@ a:hover {
 
 
 
+/* section heading newest */
+
+
+.section-title  > input
+{
+    border: none;
+    background-color: transparent;
+    font-size: 1.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    outline-color: #adb5bd;
+    width: 70%;
+}

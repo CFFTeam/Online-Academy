@@ -9,22 +9,47 @@
     </div>
     <div class="section">
         {{#each this.sections}}
-        <div class="section-heading">
-            {{!-- <div class="section-title">{{title}}</div> --}}
+        {{!-- <div class="section-heading">
             <div class="section-title">
-                <form action="{{../url}}&section={{this._id}}" method="post">
-                    <input type="text" name="section_title" value="{{this.title}}">
+                <form id="txtSectionForm" action="{{../url}}&section={{this._id}}" method="post">
+                    <input type="text" class="txtSectionTitle" name="section_title" value="{{this.title}}">
                     <input type="submit" hidden />
                 </form>
             </div>
-            <button class="edit-btn" type="button"><img src="/assets/svg/instructor/edit-section.svg"
-                    alt="edit-btn"></button>
-        </div>
+            <form action="{{../url}}&section={{this._id}}" class="edit-section-content" method="post">
+                <button name="requestAction" value="delete_section"
+                    class="delete-section-btn"
+                    type="submit"><img src="/assets/svg/instructor/garbage.svg" alt="delete-btn"></button>
+                <button name="requestAction" value="save_section" class="save-section-btn" type="button"><img
+                        src="/assets/svg/instructor/save-btn.svg" alt="save-btn"></button>
+                <a  class="edit-section-btn"><img
+                        src="/assets/svg/instructor/edit-section.svg" alt="edit-btn"></a>
+            </form>
+        </div> --}}
+         <form class="section-heading" action="{{../url}}&section={{this._id}}" method = "post">
+            <div class="section-title">
+                <input type="text" class="txtSectionTitle" name="section_title" value="{{this.title}}">
+                <input name="requestActionInSection" value = "save_section" type="submit" hidden />
+            </div>
+            <div class = "edit-section-content">
+                <button name="requestActionInSection" value="delete_section" class="delete-section-btn" type="submit"><img src="/assets/svg/instructor/garbage.svg" alt="delete-btn"></button>
+                <button name="requestActionInSection" value="save_section" class="save-section-btn" type="submit"><img
+                        src="/assets/svg/instructor/save-btn.svg" alt="save-btn"></button>
+                <a  class="edit-section-btn"><img src="/assets/svg/instructor/edit-section.svg" alt="edit-btn"></a>
+            </div>
+        </form>
+        
         {{#each lessons}}
         <div class="lesson">
             <span class="lesson-title"><img src="/assets/svg/instructor/lesson.svg" alt="lesson">{{title}}</span>
-            <a href="{{../../url}}&lesson={{this._id}}" class="edit-lesson-btn"><img
-                    src="/assets/svg/instructor/edit-lesson.svg" alt="edit-lesson"></a>
+            <div class="edit-lesson-content">
+                <form action="{{../../url}}&section={{../_id}}&lesson={{this._id}}" method="post">
+                    <button name="requestAction" value="delete_lesson" class="delete-lesson-btn" type="submit"><img
+                            src="/assets/svg/instructor/garbage.svg" alt="garbage"></button>
+                </form>
+                <a href="{{../../url}}&lesson={{this._id}}" class="edit-lesson-btn"><img
+                        src="/assets/svg/instructor/edit-lesson.svg" alt="edit-lesson"></a>
+            </div>
         </div>
         {{/each}}
         <div class="new-lesson">
@@ -45,8 +70,10 @@
 
     </div>
     <div class="confirm-section">
-        <button class="save-btn">SAVE</button>
-        <button class="finish-btn">FINISH THE COURSE</button>
+        <form action="{{url}}" method="post">
+            {{!-- <button name="requestAction" value="save" class="save-btn">SAVE</button> --}}
+            <button name="requestAction" value="finish" class="finish-btn">FINISH THE COURSE</button>
+        </form>
     </div>
 </div>
 {{!-- backdrop --}}
@@ -96,12 +123,7 @@
         $('.backdrop').addClass("hide");
         $('.handle-lesson-form').addClass("hide");
     })
-    $('.add-new-lesson-btn').click(() => {
-        $('.backdrop').removeClass("hide");
-        $('.handle-lesson-form').removeClass("hide");
-        $('.backdrop').addClass("show");
-        $('.handle-lesson-form').addClass("show");
-    })
+
     // set file name when uploading
     $('#videoUploadFile').change(function (event) {
         const filename = event.target.files[0].name;
@@ -124,9 +146,3 @@
     }
 </script>
 
-{{!-- $('.edit-lesson-btn, .add-new-lesson-btn').click(() => {
-$('.backdrop').removeClass("hide");
-$('.handle-lesson-form').removeClass("hide");
-$('.backdrop').addClass("show");
-$('.handle-lesson-form').addClass("show");
-}) --}}

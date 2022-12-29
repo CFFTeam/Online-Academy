@@ -3,6 +3,9 @@
         <h1 >All courses</h1>
         <div class="filter">
             <form action="" method="GET">
+                {{#if q}}
+                <input type="hidden" name="q" value="{{q}}" />
+                {{/if}}
                 <select onchange='this.form.submit()' name="sort_by" class="dropdown">
                     <option {{#if (or (eq sort_by "default") (eq sort_by ""))}}selected {{/if}}value="default">Default</option>
                     <option {{#if (eq sort_by "price")}}selected {{/if}}value="price">Price &#9651;</option>
@@ -22,7 +25,7 @@
             {{#if (eq this "...")}}
             <span class="page-items">{{this}}</span>
             {{else}}
-            <a class="page-items{{#if (eq ../page this)}} active{{/if}}" href="{{#if ../sort_by}}?sort_by={{../sort_by}}&{{else}}?{{/if}}page={{this}}">{{this}}</a>
+            <a class="page-items{{#if (eq ../page this)}} active{{/if}}" href="?{{#if ../q}}q={{../q}}&{{/if}}{{#if ../sort_by}}sort_by={{../sort_by}}&{{/if}}page={{this}}">{{this}}</a>
             {{/if}}
         {{/each}}
     </div>

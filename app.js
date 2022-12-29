@@ -9,7 +9,8 @@ import UserRoutes from "./routes/UserRoutes.js";
 import InstructorRoutes from "./routes/InstructorRoutes.js";
 import PaymentRoutes from "./routes/PaymentRoutes.js";
 import UserProfileRoutes from "./routes/UserProfileRoutes.js";
-import WishlistRoutes from "./routes/WishlistRoutes.js";
+import MyCoursesRoutes from "./routes/MyCoursesRoutes.js";
+import WishlistRoutes from "./routes/WishlistRoutes.js"
 import AdminRoutes from "./routes/AdminRoutes.js"
 import PassportRoutes from "./routes/PassportRoutes.js";
 import CourseDetailRoutes from "./routes/CourseDetailRoutes.js";
@@ -27,6 +28,7 @@ import activate_session_middleware from "./middlewares/session.mdw.js";
 import activate_locals_middleware from "./middlewares/locals.mdw.js";
 import auth_middleware from "./middlewares/auth.mdw.js";
 import load_categories_middlewares from "./middlewares/load_categories.mdw.js";
+import get_shopping_cart_total from "./middlewares/load_shopping_cart.mdw.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -73,6 +75,7 @@ activate_locals_middleware(app);
 
 passportAuth(passport);
 load_categories_middlewares(app);
+get_shopping_cart_total(app);
 
 app.use("/", HomeRoutes);
 app.use("/courses", CoursesRoutes);
@@ -81,6 +84,7 @@ app.use("/account", UserRoutes);
 app.use("/instructor", InstructorRoutes);
 app.use("/payment", PaymentRoutes);
 app.use("/user-profile", auth_middleware, UserProfileRoutes);
+app.use("/my-courses", MyCoursesRoutes);
 app.use("/wishlist", WishlistRoutes);
 
 //Course detail
@@ -88,6 +92,10 @@ app.use("/course", CourseDetailRoutes);
 
 //admin
 app.use("/admin", AdminRoutes);
+
+app.use('*', (req, res, next) => {
+  res.render('errors/404', { layout: 'errors' });
+});
 
 // error handling middleware
 app.use(globalErrorHandler);

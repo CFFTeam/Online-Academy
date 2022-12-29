@@ -42,6 +42,7 @@ export const shoppingCartPage = catchAsync(async (req, res, next) => {
 export const updateShoppingCart = catchAsync(async (req, res, next) => {
   if (req.body.deleteItem == "delete") {
     await ShoppingCart.deleteOne({ _id: req.body.id });
+    res.locals.cart_number = res.locals.cart_number - 1;
   }
   else if (req.body.deleteItem == "checkout") {
     if (res.locals && res.locals.authUser) {
@@ -57,5 +58,25 @@ export const updateShoppingCart = catchAsync(async (req, res, next) => {
       }
     }
   }
-  shoppingCartPage(req, res, next)
+  else {
+    const { course_id } = req.body;
+    const backURL = req.headers.referer;
+
+    if (!res.locals.auth)
+      return res.redirect(`${backURL}?message=Please login to continue}`);
+
+    const shopping_cart = { course_id: course_id, user_id: res.locals.authUser._id };
+    const prev_course = await ShoppingCart.findOne(shopping_cart);
+
+    if (prev_course) {
+      return res.redirect(`${backURL}?message=Course already in cart`);
+    }
+
+    await ShoppingCart.create(shopping_cart);
+
+    return res.redirect(`${backURL}?message=Course added to cart`);
+  }
+
+  if (req.body.deleteItem == "delete" || req.body.deleteItem == "checkout")
+    shoppingCartPage(req, res, next)
 })

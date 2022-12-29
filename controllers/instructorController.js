@@ -139,6 +139,15 @@ export const renderCourseContent = async (req,res) => {
     if (!req.query.course) res.redirect('/instructor/my-courses');
     const course = await Course.findById({_id: req.query.course}).lean();
     const thisCourseLectures = await Course.findById({_id: req.query.course}).select('lectures');
+    const course_id = req.query.course;
+    const section_id = req.query.section;
+    // pre processing url
+    let my_url = req.originalUrl;
+    if (my_url.includes("&lesson")) {
+       const temp_url = my_url;
+       const lesson_id = temp_url.split("&lesson=").pop();
+       my_url = temp_url.replace(`&lesson=${lesson_id}`, "");
+    }
     let foundLesson = {
         title: "",
     };
@@ -156,16 +165,6 @@ export const renderCourseContent = async (req,res) => {
         })
         await thisCourseLectures.save();
     }
-    // pre processing url
-    let my_url = req.originalUrl;
-    if (my_url.includes("&lesson")) {
-       const temp_url = my_url;
-       const lesson_id = temp_url.split("&lesson=").pop();
-       my_url = temp_url.replace(`&lesson=${lesson_id}`, "");
-    }
-    const course_id = req.query.course;
-    const section_id = req.query.section;
-    // console.log("foundLesson: ", foundLesson);
     res.render('instructor/addCourseContent', {
         layout: "instructor",
         sections: course.lectures.sections,
@@ -175,7 +174,7 @@ export const renderCourseContent = async (req,res) => {
         section_id: section_id,
         lesson: {
             title: foundLesson.title,
-        }
+        },
     });
 }
 
@@ -209,17 +208,40 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                 }
                 thisCourseSections.push(newSection);
                 await thisCourseLectures.save();
+                return res.render('instructor/addCourseContent', {
+                    layout: "instructor",
+                    course_id: req.query.course,
+                    message: "success"
+                })
             }
              // if user edit  section
-            else if (req.query.section && !req.body.requestAction) {
+            else if (req.body.requestActionInSection  == 'save_section') {
                 let thisSection = thisCourseLectures.lectures.sections.filter((section) => {
                     return section._id.toString() === req.query.section;
                 });
                 thisSection = thisSection[0]; // get section out of an array
-                thisSection.title = req.body.section_title;
+                thisSection.title = req.body.section_title; 
                 await thisCourseLectures.save();
+                return res.render('instructor/addCourseContent', {
+                    layout: "instructor",
+                    course_id: req.query.course,
+                    message: "success"
+                })
             }
-            // if user edit lesson
+            // if user delete section
+            else if (req.body.requestActionInSection  == "delete_section") {
+                const newSectionArray = thisCourseLectures.lectures.sections.filter((section) => {
+                    return section._id.toString() !== req.query.section;
+                })
+                thisCourseLectures.lectures.sections = newSectionArray;
+                await thisCourseLectures.save();
+                return res.render('instructor/addCourseContent', {
+                    layout: "instructor",
+                    course_id: req.query.course,
+                    message: "success"
+                })
+            }
+            // if user edit course content
             if (req.body.requestAction === "publish") {
                 if (req.query.lesson) {  // edit lesson
                     let foundLesson = {}; // find that lesson
@@ -255,6 +277,17 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                         preview: "",
                         _id: new mongoose.Types.ObjectId()
                     }
+                    const foundLesson = thisSection.lessons.filter((lesson) => {
+                        return lesson.title.toString() === newLesson.title.toString();
+                    });
+                    // if this lesson's title existed
+                    if(foundLesson.length > 0) {
+                        return res.render('instructor/addCourseContent', {
+                            layout: "instructor",
+                            course_id: req.query.course,
+                            message: "This lesson already exists. Please choose a different lesson title."
+                        })
+                    }
                     thisSection.lessons.push(newLesson);
                     await thisCourseLectures.save();
                     //return res.redirect(`/instructor/add-course-content/?course=${course._id}`);
@@ -265,6 +298,26 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                     })
                 }
                
+            }
+            else if (req.body.requestAction === "delete_lesson") { // if user delete a lesson
+                let thisSection = thisCourseLectures.lectures.sections.filter((section) => {
+                    return section._id.toString() === req.query.section;
+                });
+                thisSection = thisSection[0]; // get section out of an array
+                const newLessonArray = thisSection.lessons.filter((lesson) => {
+                    return lesson._id.toString() !== req.query.lesson;
+                })
+                thisSection.lessons = newLessonArray;
+                await thisCourseLectures.save();
+                return res.render('instructor/addCourseContent', {
+                    layout: "instructor",
+                    course_id: req.query.course,
+                    message: "success"
+                })
+            }
+             // if user finish the course
+            else if (req.body.requestAction === "finish") {
+                // coding later...
             }
             return res.redirect(`/instructor/add-course-content/?course=${course._id}`);
         }
