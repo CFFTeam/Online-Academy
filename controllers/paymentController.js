@@ -62,7 +62,7 @@ export const updateShoppingCart = catchAsync(async (req, res, next) => {
     const { course_id } = req.body;
     const backURL = req.headers.referer;
 
-    if (!res.locals.auth) 
+    if (!res.locals.auth)
       return res.redirect(`${backURL}?message=Please login to continue}`);
 
     const shopping_cart = { course_id: course_id, user_id: res.locals.authUser._id };
@@ -71,12 +71,12 @@ export const updateShoppingCart = catchAsync(async (req, res, next) => {
     if (prev_course) {
       return res.redirect(`${backURL}?message=Course already in cart`);
     }
-    
+
     await ShoppingCart.create(shopping_cart);
-    
+
     return res.redirect(`${backURL}?message=Course added to cart`);
   }
 
-  if (req.body.deleteItem == "delete" || req.body.deleteItem == "checkout") 
+  if (req.body.deleteItem == "delete" || req.body.deleteItem == "checkout")
     shoppingCartPage(req, res, next)
 })
