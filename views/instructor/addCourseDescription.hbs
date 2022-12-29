@@ -8,28 +8,30 @@
         </div>
     </div>  
     <form class = "description-form">
+        {{!-- course title and course subtitle --}}
         <div class = "course-information course-title-subtitle">
             <div class="form-group-description">
                 <label for="txtCourseTitle" class="course-title">Course Title</label>
-                <input name="lecture_title" type="text" id="txtCourseTitle" placeholder="Enter your course title"
+                <input name="course_title" type="text" id="txtCourseTitle" placeholder="Enter your course title"
                     value="{{#if course.title}}{{course.title}}{{/if}}" />
             </div>
           <div class="form-group-description">
-                <label for="txtCourseSubTitle" class="course-language">Select language</label>
-                <select name="course_subtitle" id="txtCourseLanguage"  placeholder="Enter your course title">
-                    {{!-- <option value="" disabled selected hidden>Enter your language</option>
+                <label for="txtCourseLanguage" class="course-language">Select language</label>
+                <select name="course_language" id="txtCourseLanguage"  placeholder="Enter your course title">
+                    <option value="" disabled selected hidden>Choose your language</option>
                     <option value="Vietnamese">Vietnamese</option>
                     <option value="English">English</option>
                     <option value="Chinese">Chinese</option>
                     <option value="Spanish">Spanish</option>
-                    <option value="France">France</option> --}}
+                    <option value="France">France</option>
                 </select>
             </div>
         </div>
+        {{!-- course language and course category --}}
         <div class = "course-information course-language-category">
             <div class="form-group-description">
-                <label for="txtCourseSubTitle" class="course-category">Select course category</label>
-                 <select name="course_subtitle" id="txtCourseCategory">
+                <label for="txtCourseCategory" class="course-category">Select course category</label>
+                 <select name="course_category" id="txtCourseCategory">
                     <option value="" disabled selected hidden>Choose course category</option>
                     {{#each this.categoryList}}
                         <option value='{{title}}'>{{title}}</option>
@@ -37,8 +39,8 @@
                 </select>
             </div>
              <div class="form-group-description">
-                <label for="txtCourseSubTitle" class="course-sub-category">Select course sub-category</label>
-                <select name="course_subtitle" id="txtCourseSubCategory">
+                <label for="txtCourseSubCategory" class="course-sub-category">Select course sub-category</label>
+                <select name="course_sub_category" id="txtCourseSubCategory">
                     <option value="" disabled selected hidden>Choose course sub-category</option>
                     <option value="Vietnamese">Mobile Development</option>
                     <option value="English">Web Development</option>
@@ -47,22 +49,43 @@
                 </select>
             </div>
         </div>
+        {{!-- course pricing and promotion code --}}
         <div class = "course-information course-pricing-promotionCode">
             <div class="form-group-description">
-                <label for="txtCourseSubTitle" class="course-pricing">Pricing</label>
+                <label class="course-pricing">Pricing</label>
                 <div class = "course-pricing-info">
-                    <select name="course_subtitle" id="txtCoursePricingCurrency">
+                    <select name="price_currency" id="txtCoursePricingCurrency">
                         <option value="" disabled selected hidden>Select currency</option>
                         <option value="Vietnamese">VND</option>
                         <option value="English">USD</option>
                     </select>
                     <input id="txtCoursePricingAmount" type="text" name = "price_amount" placeholder="Enter price">
                 </div>
-                
             </div>
              <div class="form-group-description">
-                <label for="txtCourseSubTitle" class="course-sub-category">Promotion code (optional)</label>
-                <input name="lecture_title" type="text" id="txtCourseTitle" placeholder="Enter your promotion code"/>
+                <label for="txtCoursePromotionCode" class="course-sub-category">Promotion code (optional)</label>
+                <input name="promotion_code" type="text" id="txtCoursePromotionCode" placeholder="Enter your promotion code"/>
+            </div>
+        </div>
+        {{!-- short description and image --}}
+        <div class = "course-information course-short-description-image">
+            <div class = "form-group-description">
+                <label for="txtCourseShortDescription" class="short-description">Short description</label>
+                <textarea name="short_description" id="shortDescription" rows="3" placeholder="Describe briefly your course........"></textarea>
+            </div>
+            <div class = "form-group-description">
+                <label for="uploadImage" class="">Course Image</label>
+                <label for="courseImageFile" class = "course-image" style = "cursor: pointer;">
+                    <div class = "upload-file" style = "display: flex; flex-direction: column;" >
+                      <span class="upload-image-icon"><img src="/assets/svg/instructor/upload-image.svg"
+                            alt="upload-icon"></span>
+                      <span class="upload-image-message" style = "display: inline-block">UPLOAD FILE</span>
+                    </div>
+                    <div class = "image-description">
+                        <p >Upload your course image here. It must meet our course image quality standard to be accepted. Important guidelines: 750x422 pixels; .jpg, .jpeg, .gif; or .png no text on the image.</p>
+                    </div>
+                </label>
+                 <input name="courseImage" id="courseImageFile" type="file" style="display: none;">
             </div>
         </div>
         
@@ -70,7 +93,7 @@
 </div>
 
 <script>
-    // display message
+    // display subcategory
     const categories = JSON.parse(`{{{this.js_categories}}}`);
 
     $('#txtCourseCategory').change(() => {
@@ -83,6 +106,12 @@
             $('#txtCourseSubCategory').append(`<option value='${subcategory.content}'>${subcategory.content}</option>`);
         });
     });
+
+     // set file name when uploading
+    $('#courseImageFile').change(function (event) {
+        const filename = event.target.files[0].name;
+        $('.upload-image-message').text(filename);
+    })
     
 </script>
     {{!-- const categories = JSON.parse(`{{{this.js_categories}}}`);
