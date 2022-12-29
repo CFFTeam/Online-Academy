@@ -16,6 +16,7 @@ export const renderCourseDetail = catchAsync(async (req, res) => {
 
     const getThreeLastComment = getCourseRating.reviews.slice(getCourseRating.reviews.length-3, getCourseRating.reviews.length);
     for(let i = 0; i < getThreeLastComment.length; i++) {
+        getThreeLastComment[i]["update"] = getThreeLastComment[i].created.slice(0,10);
         getThreeLastComment[i]["integerPart"] = Math.floor(getThreeLastComment[i].rating);
         getThreeLastComment[i]["isRemainder"] = getThreeLastComment[i].rating - Math.floor(getThreeLastComment[i].rating) !==0 ;
     }
