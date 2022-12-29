@@ -34,7 +34,7 @@
 .userProfile > .body > .card {
   border: none;
   width: 25rem;
-  height: 21rem;
+  height: 22.5rem;
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -175,7 +175,18 @@ width: 100%;
   border-radius: 50%;
   background-color: gray;
   margin: 0 auto;
+  overflow: hidden;
 }
+
+.userProfile
+  > .body
+  > .main
+  > .content
+  > .editProfile
+  > .imageProfile
+  > .image > img{
+    width: 100%;
+  }
 
 .userProfile > .body > .main > .content > .editProfile > .imageProfile > .icon {
   /* width: 10rem; */

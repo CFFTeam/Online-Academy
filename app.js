@@ -9,7 +9,8 @@ import UserRoutes from "./routes/UserRoutes.js";
 import InstructorRoutes from "./routes/InstructorRoutes.js";
 import PaymentRoutes from "./routes/PaymentRoutes.js";
 import UserProfileRoutes from "./routes/UserProfileRoutes.js";
-import WishlistRoutes from "./routes/WishlistRoutes.js";
+import MyCoursesRoutes from "./routes/MyCoursesRoutes.js";
+import WishlistRoutes from "./routes/WishlistRoutes.js"
 import AdminRoutes from "./routes/AdminRoutes.js"
 import PassportRoutes from "./routes/PassportRoutes.js";
 import CourseDetailRoutes from "./routes/CourseDetailRoutes.js";
@@ -83,6 +84,7 @@ app.use("/account", UserRoutes);
 app.use("/instructor", InstructorRoutes);
 app.use("/payment", PaymentRoutes);
 app.use("/user-profile", auth_middleware, UserProfileRoutes);
+app.use("/my-courses", MyCoursesRoutes);
 app.use("/wishlist", WishlistRoutes);
 
 //Course detail
@@ -90,6 +92,10 @@ app.use("/course", CourseDetailRoutes);
 
 //admin
 app.use("/admin", AdminRoutes);
+
+app.use('*', (req, res, next) => {
+  res.render('errors/404', { layout: 'errors' });
+});
 
 // error handling middleware
 app.use(globalErrorHandler);

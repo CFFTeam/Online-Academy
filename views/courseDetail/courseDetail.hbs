@@ -27,7 +27,7 @@
           </div>
         </div>
         <p
-          style="color: black; font-weight: 400; font-size: 1.7rem; font-style: italic;"
+          style="color: black; font-weight: 400; font-size: 1.2rem; font-style: italic;"
         >Last updated {{dateUpdate}}</p>
         <h1
           style="color: black; font-weight: 700; font-size: 3.5rem;"
@@ -196,7 +196,7 @@
     </div>
     <div class="content-ins">
       <div class="content-ins-s">
-        <p style="font-weight: 400;">
+        <p style="font-weight: 400; font-size: 1.5rem;">
           Hi, I'm Jonas! I have been identified as one of Udemy's Top
           Instructors and all my premium courses have earned the best-selling
           status for outstanding performance and student satisfaction. I'm a
@@ -275,7 +275,7 @@
       </div>
       <div class="star-chart">
         <p>1 stars</p>
-        <div class="progress" style="width: 45%; height: 2rem;">
+        <div class="progress" style="width: 45%;">
           <div
             class="progress-bar"
             style="width:1.2%; background: #F59F00;"
@@ -312,10 +312,10 @@
               />
             {{/if}}
             <p
-              style="color: black; font-weight: 400; margin: 0;"
+              style="color: black; font-weight: 500; margin: 0;"
             >{{getThreeLastComment.0.user.name}}
-              -
-              {{getThreeLastComment.0.created}}</p>
+              - posted in 
+              {{getThreeLastComment.0.update}}</p>
           </div>
         </div>
         {{{getThreeLastComment.0.content}}}
@@ -343,10 +343,10 @@
               />
             {{/if}}
             <p
-              style="color: black; font-weight: 400; margin: 0;"
+              style="color: black; font-weight: 500; margin: 0;"
             >{{getThreeLastComment.1.user.name}}
-              -
-              {{getThreeLastComment.1.created}}</p>
+              - posted in
+              {{getThreeLastComment.1.update}}</p>
           </div>
         </div>
         {{{getThreeLastComment.1.content}}}
@@ -374,10 +374,10 @@
               />
             {{/if}}
             <p
-              style="color: black; font-weight: 400; margin: 0;"
+              style="color: black; font-weight: 500; margin: 0;"
             >{{getThreeLastComment.2.user.name}}
-              -
-              {{getThreeLastComment.2.created}}</p>
+              - posted in
+              {{getThreeLastComment.2.update}}</p>
           </div>
         </div>
         {{{getThreeLastComment.2.content}}}
@@ -410,9 +410,63 @@
     </div>
 
   </div>
+
+  </div>
+        <div class="course-list">
+        <h1>Most views</h1>
+        <div class="course-list-wrapper">
+            <div
+                id="carouselMostView"
+                class="carousel slide course-ls"
+                data-bs-ride="false"
+            >
+                <div class="carousel-inner">
+                    {{#each mostviewCourse}}
+                        {{!-- {{course_name}} --}}
+                        <div class="carousel-item">
+                            {{> courseCard this }}
+                        </div>
+                    {{/each}}
+                </div>
+                <button
+                    class="carousel-control-prev"
+                    type="button"
+                >
+                    <i class="fa-solid fa-chevron-left"></i>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button
+                    class="carousel-control-next"
+                    type="button"
+                >
+                    <i class="fa-solid fa-chevron-right"></i>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <script>
+            const carouselWidthMostView = $("#carouselMostView.carousel.slide.course-ls > .carousel-inner")[0].scrollWidth;
+            const cardWidthMostView = $("#carouselMostView.carousel.slide.course-ls > .carousel-inner > .carousel-item").width() + 20;
+            let scrollPositionMostView = 0;
+
+            $("#carouselMostView.carousel.slide.course-ls .carousel-control-next").on("click", function () {
+                if (scrollPositionMostView < (carouselWidthMostView - cardWidthMostView * 4)) {
+                    scrollPositionMostView += cardWidthMostView;
+                    $("#carouselMostView.carousel.slide.course-ls > .carousel-inner").animate({ scrollLeft: scrollPositionMostView }, 500); //scroll left
+                }
+            });
+            $("#carouselMostView.carousel.slide.course-ls .carousel-control-prev").on("click", function () {
+                if (scrollPositionMostView > 0) {
+                    scrollPositionMostView -= cardWidthMostView;
+                    $("#carouselMostView.carousel.slide.course-ls > .carousel-inner").animate({ scrollLeft: scrollPositionMostView }, 500);
+                }
+            });
+        </script>
+        
   <div class="modal" id="allCmt">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
+        <h1>All comments</h1>
           {{#each courseRating.reviews}}
         <div class="comment-info">
             <div class="rating-point-under">
@@ -429,9 +483,9 @@
                     style="padding-bottom: 0.5rem;"
                   /></p>
                 <p
-                  style="color: black; font-weight: 400; margin: 0;"
+                  style="color: black; font-weight: 500; margin: 0;"
                 >{{this.user.name}}
-                  -
+                  - posted in
                   {{this.created}}</p>
               </div>
             </div>

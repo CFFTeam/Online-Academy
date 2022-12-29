@@ -36,6 +36,7 @@ const courseSchema = new mongoose.Schema({
   }
 });
 
+courseSchema.index({ name: "text", description: "text", category: "text", subcategory: "text", author: "text" }, { default_language: "none" });
 const Course = mongoose.model("course", courseSchema);
 
 export default Course;
