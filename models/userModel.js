@@ -19,6 +19,10 @@ const userSchema = new mongoose.Schema({
     type: Array,
     default: []
   },
+  wishlist: {
+    type: Array,
+    default: []
+  },
   facebookId: String,
   googleId: String,
   githubId: String,
@@ -49,7 +53,7 @@ const userSchema = new mongoose.Schema({
   }
 });
 
-userSchema.pre('save', async function(next) {
+userSchema.pre('save', async function (next) {
   // Only run this function if password was actually modified
   if (!this.isModified('password')) return next();
 
@@ -59,7 +63,7 @@ userSchema.pre('save', async function(next) {
   next();
 });
 
-userSchema.pre('save', function(next) {
+userSchema.pre('save', function (next) {
   if (!this.isModified('password') || this.isNew) return next();
 
   this.passwordChangedAt = Date.now() - 1000;
@@ -67,7 +71,7 @@ userSchema.pre('save', function(next) {
 });
 
 
-userSchema.methods.correctPassword = async function(
+userSchema.methods.correctPassword = async function (
   candidatePassword,
   userPassword
 ) {

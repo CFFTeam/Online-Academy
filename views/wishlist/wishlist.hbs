@@ -12,23 +12,131 @@
   <main>
     {{! course item }}
 
-
   </main>
   <script>
-    $(".wishlist > header > .menu > .option3").click(function(){
-      $(".wishlist > header > .menu > .option3").addClass("wishlistMenuChosen")
-      $(".wishlist > header > .menu > .option1").removeClass("wishlistMenuChosen")
-    })
-    $(".wishlist > header > .menu > .option1").click(function(){
-      $(".wishlist > header > .menu > .option1").addClass("wishlistMenuChosen")
-      $(".wishlist > header > .menu > .option3").removeClass("wishlistMenuChosen")
-    })
 
     const addItem=(item,index)=>{
-      $("main").append(``)
+      $("main").append(`
+      <div class="course-card">
+    <i class="fa-regular fa-heart icon"></i>
+    <div class="course-card-overlay">
+        <a class="button-cs" href="${item.slug}">More Details</a>
+    </div>
+    <img
+        src="${item.img}"
+        class="course-card-img"
+        alt="course-img"
+    />
+    {{#if course_status}}
+    <div class="status {{course_status}}">{{course_status}}</div>
+    {{/if}}
+    <div class="card-main">
+        <h1 class="card-heading">${item.name}</h1>
+        <div class="card-author" title="{{course_author}}">
+            <i class="fa-solid fa-user-pen"></i>
+            <span>${item.author}</span>
+        </div>
+        <div class="card-details-ls">
+            <div class="card-details-ls-icon">
+                <span><b>${item.rate}</b></span>
+                <span><i
+                        class="fa-regular fa-eye"
+                    ></i></span>
+                <span><i
+                        class="fa-solid fa-tag"
+                    ></i></span>
+            </div>
+            <div class="card-details-ls-content">
+                <div class="card-details-ls-item">
+                    <span class="flex g-0">
+                    {{#if (gt course_rate 0)}}
+                        {{#if (gte course_rate 1)}}
+                        <i class="fa-solid fa-star"></i>
+                        {{else}}
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        {{/if}}
+                    {{else}}
+                        <i class="fa-regular fa-star"></i>
+                    {{/if}}
+                    
+                    {{#if (gt course_rate 1)}}
+                        {{#if (gte course_rate 2)}}
+                        <i class="fa-solid fa-star"></i>
+                        {{else}}
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        {{/if}}
+                    {{else}}
+                        <i class="fa-regular fa-star"></i>
+                    {{/if}}
+
+                    {{#if (gt course_rate 2)}}
+                        {{#if (gte course_rate 3)}}
+                        <i class="fa-solid fa-star"></i>
+                        {{else}}
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        {{/if}}
+                    {{else}}
+                        <i class="fa-regular fa-star"></i>
+                    {{/if}}
+
+                    {{#if (gt course_rate 3)}}
+                        {{#if (gte course_rate 4)}}
+                        <i class="fa-solid fa-star"></i>
+                        {{else}}
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        {{/if}}
+                    {{else}}
+                        <i class="fa-regular fa-star"></i>
+                    {{/if}}
+
+                    {{#if (gt course_rate 4)}}
+                        {{#if (gte course_rate 5)}}
+                        <i class="fa-solid fa-star"></i>
+                        {{else}}
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        {{/if}}
+                    {{else}}
+                        <i class="fa-regular fa-star"></i>
+                    {{/if}}
+                    </span>
+                    <small>(${item.numReview})</small>
+                </div>
+                <div>
+                    <small>${item.view} views</small>
+                </div>
+                <div>
+                    <small>${item.category}</small>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span class="card-price">
+                <div class="position-relative">
+                {{#if course_sale}}
+                    <span class="remove-line"></span>
+                {{/if}}
+                    <i class="fa-solid fa-dollar"></i>
+                    <span class="price-number">${item.price}</span>
+                </div>
+                {{#if course_sale}}
+                    <i class="fa-solid fa-arrow-right"></i>
+                    <b class="sale-number">
+                        <i class="fa-solid fa-dollar"></i>
+                        <span>{{course_sale}}</span>
+                    </b>
+                {{/if}}
+            </span>
+            <span class="card-clock">
+                <i class="fa-regular fa-clock"></i>
+                <span>${item.date}</span>
+            </span>
+        </div>
+    </div>
+</div>`)
     }
 
     const itemList =JSON.parse(`{{{courses}}}`)
+    console.log(itemList)
     itemList.forEach(addItem)
 
   </script>

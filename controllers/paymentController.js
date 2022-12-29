@@ -27,8 +27,8 @@ export const shoppingCartPage = catchAsync(async (req, res, next) => {
         img: courses.img,
         rate: courseDetails.avg_rating,
         numReview: courseDetails.num_reviews,
-        author: courses.author,
         view: courseDetails.viewer,
+        author: courses.author,
         date: courses.date.slice(0, courses.date.indexOf("T")),
         price: courses.price
       });
