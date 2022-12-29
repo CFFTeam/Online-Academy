@@ -3,8 +3,8 @@
         <span class="title">Curriculum</span>
         <div class="mode">
             <a href="/preview">Preview</a>
-            <a href="/add-course-description">Description</a>
-            <a href="/add-course-content" class="active">Content</a>
+            <a href="/instructor/add-course-description">Description</a>
+            <a href="/instructor/add-course-content" class="active">Content</a>
         </div>
     </div>
     <div class="section">
@@ -140,7 +140,13 @@
         alert("Your change was saved successfully...");
         window.location.replace("http://localhost:5000/instructor/add-course-content/?course={{course_id}}");
     }
-    if ("{{message}}" !== "success" && "{{message}}" != "") {
+    else if ("{{message}}" == "You need to add your course description first. Please try again!")
+    {
+        alert("{{message}}");
+        window.location.replace("http://localhost:5000/instructor/add-course-description");
+    }
+    // if failed
+    else if ("{{message}}" != "success" && ("{{message}}" != "")) {
         alert("{{message}}");
         window.location.replace("http://localhost:5000/instructor/add-course-content/?course={{course_id}}");
     }

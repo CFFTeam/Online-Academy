@@ -1,0 +1,154 @@
+/* curriculum */
+.course-description
+{
+    margin-left: 10rem;
+    width: 70%;
+}
+
+.curriculum
+{
+    margin-top: 5rem;
+    padding: 1rem 2rem;
+    font-size: 1.6rem;
+    min-height: 5rem;
+    box-shadow: 0 0 10px rgba(0,0,0,20%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Montserrat;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #00A551;
+}
+
+.mode {
+    display: flex;
+    gap: 3rem;
+    font-family: Montserrat;
+    font-size: 1.8rem;
+}
+
+.mode a 
+{
+    color: #000;
+    font-weight: 700;
+    padding: 0.5rem 1.6rem;
+    text-decoration: none;
+    border-radius: 7px;
+    border: 1px solid #343a40;
+}
+
+.mode a:hover {
+    color: #fff;
+    background-color: #2FC397;
+    border: 1px solid transparent;
+}
+
+.mode .active
+{
+ border: 2px solid transparent;
+ color: #fff;
+ background-color: #2FC397;
+}
+
+
+.mode .active:hover
+{
+    border: 2px solid transparent;
+    color: #fff;
+    background-color: #2FC397;
+}
+
+/* select > option 
+{
+    color: black;
+} */
+
+form.description-form
+{
+    margin-top: 4rem;
+    width: 100%;
+    background-color:#fff9db;
+    box-shadow: 0 0 10px rgba(0,0,0,20%);
+    padding: 0rem 2rem;
+}
+
+.form-group-description
+  {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  
+  .form-group-description label {
+    color: #000;
+    font-weight: 700;
+  }
+  
+  .form-group-description input, .form-group-description select {
+    width: 90%;
+    border-radius: 10px;
+    height: 3.6rem;
+    padding: 0rem 1.5rem;
+    background-color: #f4f4f4;
+    border: none;
+    outline: none;
+    color: #868E96;
+    font-weight: 500;
+  }
+
+  .form-group-description input
+  {
+    color: black;
+  }
+
+  .form-group-description input::placeholder, .form-group-description select > option:first-child
+  {
+    color: #868E96;
+  }
+
+  select > option { color: black;}
+
+  .form-group-description textarea {
+    padding: 1rem;
+    border: none;
+    box-shadow: 0 0 10px rgba(0,0,0,20%);
+    resize: none;
+    border: none;
+    outline: none;
+  }
+
+
+
+form > .course-information
+{
+    display: flex;
+    width: 100%;
+}
+
+form > .course-information > div.form-group-description
+{
+    width: 100%;
+}
+
+form > .course-information > div.form-group-description > input
+{
+    outline: none;
+}
+
+.form-group-description > .course-pricing-info
+{
+    display: flex;
+    gap: 3em;
+}
+
+#txtCoursePricingCurrency
+{
+    width: 40%;
+}
+
+#txtCoursePricingAmount
+{
+    width: 40%;
+}
