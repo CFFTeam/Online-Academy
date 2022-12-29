@@ -54,7 +54,7 @@
                 <hr />
                 <a class="link" href="/user-profile"><i class="fa-solid fa-user"></i> <span>Edit profile</span></a>
                 <a class="link" href="#courses"><i class="fa-solid fa-film"></i> <span>My courses</span></a>
-                <a class="link" href="#wishlist"><i class="fa-regular fa-heart"></i> <span>Wishlist</span></a>
+                <a class="link" href="/wishlist"><i class="fa-regular fa-heart"></i> <span>Wish list</span></a>
                 <a class="link" href="/account/signout"><i class="fa-solid fa-sign-out"></i> <span>Sign out</span></a>
             </div>
         </div>
@@ -83,7 +83,7 @@
             <a class="sidebar-item" href="/account/signup">Register</a>
             {{/if}}
             <hr />
-            <b class="heading">Courses</b>
+            <a class="heading" href="/courses">Courses</a>
             <div class="sidebar-group"></div>
             <hr />
             <b class="heading">More from Academy</b>
@@ -196,7 +196,7 @@
         .append(`<a class="sidebar-item-profile" href="#courses"><i class="fa-solid fa-film"></i><span>My courses</span></a>`);
 
         $(`nav.navbar > #sidebar-open ~ .sidebar > .sidebar-main > .view-group`)
-        .append(`<a class="sidebar-item-profile" href="#wishlist"><i class="fa-solid fa-heart"></i><span>Wish list</span></a>`);
+        .append(`<a class="sidebar-item-profile" href="/wishlist"><i class="fa-solid fa-heart"></i><span>Wish list</span></a>`);
 
         $(`nav.navbar > #sidebar-open ~ .sidebar > .sidebar-main > .view-group`)
         .append(`<a class="sidebar-item-profile" href="/account/signout"><i class="fa-solid fa-sign-out"></i><span>Sign out</span></a>`);
