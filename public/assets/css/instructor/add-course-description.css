@@ -71,6 +71,7 @@ form.description-form
     /* background-color:#fff9db; */
     box-shadow: 0 0 10px rgba(0,0,0,20%);
     padding: 0rem 4rem;
+    height: 150rem;
 }
 
 .form-group-description
@@ -161,7 +162,7 @@ form > .course-information > div.form-group-description > input
 .course-short-description-image > .form-group-description:nth-child(2) > label.course-image
 {
   /* background-color: aqua; */
-  height: 23rem;
+  height: 20rem;
   box-shadow: 0 0 10px rgba(0,0,0,20%);
   padding: 1.5rem;
 }
@@ -172,7 +173,6 @@ form > .course-information > div.form-group-description > input
   display: flex;
   gap: 2rem;
   text-align: center;
-  
 }
 
 .course-short-description-image > .form-group-description:nth-child(2) > label.course-image > .upload-file > .upload-file-message
@@ -193,4 +193,25 @@ form > .course-information > div.form-group-description > input
   font-weight: 500;
   text-align: justify;
   width: 60%;
+}
+
+
+div.save_description  > button
+{
+    width: 40%;
+    margin-top: 6rem;
+    padding: 0.5rem 8rem;
+    color: #fff;
+    background-color: #00A551;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: all 0.1s ease-in-out;
+}
+
+div.save_description > button:hover
+{
+    border: 2px solid #00A551;
+    background-color: transparent;
+    color: #00A551;
 }
