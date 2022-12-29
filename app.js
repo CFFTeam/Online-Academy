@@ -84,6 +84,9 @@ app.use("/instructor", InstructorRoutes);
 app.use("/payment", PaymentRoutes);
 app.use("/user-profile", auth_middleware, UserProfileRoutes);
 app.use("/wishlist", WishlistRoutes);
+app.use('*', (req, res, next) => {
+  res.render('errors/404', { layout: 'errors' });
+});
 
 //Course detail
 app.use("/course", CourseDetailRoutes);
