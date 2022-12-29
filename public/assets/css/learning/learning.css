@@ -1,0 +1,27 @@
+.course-learning {
+    display: flex;
+    height: 100vh;
+}
+
+.course-learning > .course-contents {
+    width: 75vw;
+}
+
+.course-learning > .course-lectures {
+    border-left: 1px solid #E6E6E6;
+    width: 25vw;
+}
+
+.course-learning > .course-lectures > .lecture-heading {
+    background-color: #F5F5F5;
+    border-bottom: 1px solid #E6E6E6;
+    padding: 1rem;
+}
+
+.course-learning > .course-lectures > .lecture-heading > .title {
+    color: #38AF7D;
+}
+
+.course-learning + .footer {
+    margin-top: 0rem;
+}

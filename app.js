@@ -81,7 +81,7 @@ app.use("/courses", CoursesRoutes);
 app.use('/auth', PassportRoutes);
 app.use("/account", UserRoutes);
 app.use("/instructor", InstructorRoutes);
-app.use("/payment", PaymentRoutes);
+app.use("/payment", auth_middleware, PaymentRoutes);
 app.use("/user-profile", auth_middleware, UserProfileRoutes);
 app.use("/wishlist", WishlistRoutes);
 

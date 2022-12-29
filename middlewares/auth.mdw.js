@@ -5,5 +5,6 @@ export default function auth(req, res, next) {
     return res.redirect('/account/login');
   }
   res.locals.loginby = req.session.passport ? 'socials' : 'local';
+
   next();
 }
