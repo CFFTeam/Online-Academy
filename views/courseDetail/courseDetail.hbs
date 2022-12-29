@@ -410,6 +410,59 @@
     </div>
 
   </div>
+
+  </div>
+        <div class="course-list">
+        <h1>Most views</h1>
+        <div class="course-list-wrapper">
+            <div
+                id="carouselMostView"
+                class="carousel slide course-ls"
+                data-bs-ride="false"
+            >
+                <div class="carousel-inner">
+                    {{#each mostviewCourse}}
+                        {{!-- {{course_name}} --}}
+                        <div class="carousel-item">
+                            {{> courseCard this }}
+                        </div>
+                    {{/each}}
+                </div>
+                <button
+                    class="carousel-control-prev"
+                    type="button"
+                >
+                    <i class="fa-solid fa-chevron-left"></i>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button
+                    class="carousel-control-next"
+                    type="button"
+                >
+                    <i class="fa-solid fa-chevron-right"></i>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <script>
+            const carouselWidthMostView = $("#carouselMostView.carousel.slide.course-ls > .carousel-inner")[0].scrollWidth;
+            const cardWidthMostView = $("#carouselMostView.carousel.slide.course-ls > .carousel-inner > .carousel-item").width() + 20;
+            let scrollPositionMostView = 0;
+
+            $("#carouselMostView.carousel.slide.course-ls .carousel-control-next").on("click", function () {
+                if (scrollPositionMostView < (carouselWidthMostView - cardWidthMostView * 4)) {
+                    scrollPositionMostView += cardWidthMostView;
+                    $("#carouselMostView.carousel.slide.course-ls > .carousel-inner").animate({ scrollLeft: scrollPositionMostView }, 500); //scroll left
+                }
+            });
+            $("#carouselMostView.carousel.slide.course-ls .carousel-control-prev").on("click", function () {
+                if (scrollPositionMostView > 0) {
+                    scrollPositionMostView -= cardWidthMostView;
+                    $("#carouselMostView.carousel.slide.course-ls > .carousel-inner").animate({ scrollLeft: scrollPositionMostView }, 500);
+                }
+            });
+        </script>
+        
   <div class="modal" id="allCmt">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
