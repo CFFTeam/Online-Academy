@@ -53,8 +53,8 @@
                 </div>
                 <hr />
                 <a class="link" href="/user-profile"><i class="fa-solid fa-user"></i> <span>Edit profile</span></a>
-                <a class="link" href="#courses"><i class="fa-solid fa-film"></i> <span>My courses</span></a>
-                <a class="link" href="/wishlist"><i class="fa-regular fa-heart"></i> <span>Wish list</span></a>
+                <a class="link" href="/my-courses"><i class="fa-solid fa-film"></i> <span>My courses</span></a>
+                <a class="link" href="/wishlist"><i class="fa-regular fa-heart"></i> <span>Wishlist</span></a>
                 <a class="link" href="/account/logout"><i class="fa-solid fa-sign-out"></i> <span>Sign out</span></a>
             </div>
         </div>
@@ -193,7 +193,7 @@
         .append(`<a class="sidebar-item-profile" href="/user-profile"><i class="fa-solid fa-user-circle"></i><span>Edit profile</span></a>`);
 
         $(`nav.navbar > #sidebar-open ~ .sidebar > .sidebar-main > .view-group`)
-        .append(`<a class="sidebar-item-profile" href="#courses"><i class="fa-solid fa-film"></i><span>My courses</span></a>`);
+        .append(`<a class="sidebar-item-profile" href="/my-courses"><i class="fa-solid fa-film"></i><span>My courses</span></a>`);
 
         $(`nav.navbar > #sidebar-open ~ .sidebar > .sidebar-main > .view-group`)
         .append(`<a class="sidebar-item-profile" href="/wishlist"><i class="fa-solid fa-heart"></i><span>Wish list</span></a>`);

@@ -7,8 +7,7 @@ import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import mongoose from "mongoose";
 import Course from "../models/courseModel.js";
-import e from "express";
-
+import Category from "../models/categoryModel.js";
 
 export const getMyCourses = function (req,res,next) {
     //res.render('instructor/my-courses.hbs');
@@ -131,12 +130,28 @@ export const getMyCourses = function (req,res,next) {
 });
 }
 
-export const addCourseDescription = (req,res) => {
-}
+export const renderCourseDescription = catchAsync(async (req,res) => {
+    const Categories = await Category.find({}).lean();
+    res.render('instructor/addCourseDescription', {
+        layout: "instructor",
+        categories: Categories,
+        js_categories: JSON.stringify(Categories)
+        },
+    );
+});
 
-export const renderCourseContent = async (req,res) => {
+export const renderCourseContent = catchAsync(async (req,res) => {
+    res.locals.handlebars = "instructor/addCourseContent";
+    res.locals.layout = "instructor.hbs";
     // if haven't registered course yet
-    if (!req.query.course) res.redirect('/instructor/my-courses');
+    if (!req.query.course) {
+        return res.render('instructor/addCourseContent',{
+            layout: res.locals.layout,
+            message: "You need to add your course description first. Please try again!"
+        });
+        //res.redirect('/instructor/add-course-description');
+    }
+   
     const course = await Course.findById({_id: req.query.course}).lean();
     const thisCourseLectures = await Course.findById({_id: req.query.course}).select('lectures');
     const course_id = req.query.course;
@@ -176,7 +191,7 @@ export const renderCourseContent = async (req,res) => {
             title: foundLesson.title,
         },
     });
-}
+});
 
 
 export const editCourseContent = catchAsync(async(req,res,next) => {

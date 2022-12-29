@@ -1,0 +1,85 @@
+<div class = "course-description">
+     <div class="curriculum">
+        <span class="title">Curriculum</span>
+        <div class="mode">
+            <a href="/instructor/preview">Preview</a>
+            <a href="/instructor/add-course-description" class="active">Description</a>
+            <a href="/instructor/add-course-content">Content</a>
+        </div>
+    </div>  
+    <form class = "description-form">
+        <div class = "course-information course-title-subtitle">
+            <div class="form-group-description">
+                <label for="txtCourseTitle" class="course-title">Course Title</label>
+                <input name="lecture_title" type="text" id="txtCourseTitle" placeholder="Enter your course title"
+                    value="{{#if course.title}}{{course.title}}{{/if}}" />
+            </div>
+          <div class="form-group-description">
+                <label for="txtCourseSubTitle" class="course-language">Select language</label>
+                <select name="course_subtitle" id="txtCourseLanguage"  placeholder="Enter your course title">
+                    <option value="" disabled selected hidden>Enter your language</option>
+                    <option value="Vietnamese">Vietnamese</option>
+                    <option value="English">English</option>
+                    <option value="Chinese">Chinese</option>
+                    <option value="Spanish">Spanish</option>
+                    <option value="France">France</option>
+                </select>
+            </div>
+        </div>
+        <div class = "course-information course-language-category">
+            <div class="form-group-description">
+                <label for="txtCourseSubTitle" class="course-category">Select course category</label>
+                 <select name="course_subtitle" id="txtCourseCategory">
+                    {{!-- <option value="" disabled selected hidden>Choose course category</option> --}}
+                    {{#each this.categories}}
+                        <option value='{{title}}'>{{title}}</option>
+                    {{/each}}
+                </select>
+            </div>
+             <div class="form-group-description">
+                <label for="txtCourseSubTitle" class="course-sub-category">Select course sub-category</label>
+                <select name="course_subtitle" id="txtCourseSubCategory">
+                    <option value="" disabled selected hidden>Choose course sub-category</option>
+                    <option value="Vietnamese">Mobile Development</option>
+                    <option value="English">Web Development</option>
+                    <option value="Chinese">Game Development</option>
+                    <option value="Spanish">Artificial Intelligence</option>
+                </select>
+            </div>
+        </div>
+        <div class = "course-information course-pricing-promotionCode">
+            <div class="form-group-description">
+                <label for="txtCourseSubTitle" class="course-pricing">Pricing</label>
+                <div class = "course-pricing-info">
+                    <select name="course_subtitle" id="txtCoursePricingCurrency">
+                        <option value="" disabled selected hidden>Select currency</option>
+                        <option value="Vietnamese">VND</option>
+                        <option value="English">USD</option>
+                    </select>
+                    <input id="txtCoursePricingAmount" type="text" name = "price_amount" placeholder="Enter price">
+                </div>
+                
+            </div>
+             <div class="form-group-description">
+                <label for="txtCourseSubTitle" class="course-sub-category">Promotion code (optional)</label>
+                <input name="lecture_title" type="text" id="txtCourseTitle" placeholder="Enter your promotion code"/>
+            </div>
+        </div>
+        
+    </form>
+</div>
+
+<script>
+    // display message
+    
+</script>
+{{!-- const categories = JSON.parse(`{{{this.js_categories}}}`);
+    $('#txtCourseCategory').change(() => {
+        console.log("event value: ", $(this).find(":selected").val());
+        const subCategory = categories.filter((category) => category.title ===  this.value);
+        console.log(subCategory);
+    }) --}}
+   
+
+    {{!-- console.log(categories); --}}
+    {{!-- console.log('test: ', $('#txtCourseCategory').val()); --}}
