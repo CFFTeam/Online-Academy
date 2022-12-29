@@ -134,9 +134,9 @@ export const renderCourseDescription = catchAsync(async (req,res) => {
     const Categories = await Category.find({}).lean();
     res.render('instructor/addCourseDescription', {
         layout: "instructor",
-        categories: Categories,
+        categoryList: Categories,
         js_categories: JSON.stringify(Categories)
-        },
+        }
     );
 });
 
@@ -164,7 +164,7 @@ export const renderCourseContent = catchAsync(async (req,res) => {
        my_url = temp_url.replace(`&lesson=${lesson_id}`, "");
     }
     let foundLesson = {
-        title: "",
+        title: ""
     };
     let section_found = {};
     if (req.query.lesson) {
@@ -188,8 +188,8 @@ export const renderCourseContent = catchAsync(async (req,res) => {
         course_id: course_id,
         section_id: section_id,
         lesson: {
-            title: foundLesson.title,
-        },
+            title: foundLesson.title
+        }
     });
 });
 
@@ -208,7 +208,7 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
     })   
     const upload = multer({ storage: storage });
     upload.single('videoUploadFile')(req,res, async (err) => {
-        if (err) { console.error(err);}
+        if (err) console.error(err);
         else {
             const course = await Course.findById({_id: req.query.course}).lean(); // find course
             const thisCourseLectures = await Course.findById({_id: req.query.course}).select('lectures');

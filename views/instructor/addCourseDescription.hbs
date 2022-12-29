@@ -17,12 +17,12 @@
           <div class="form-group-description">
                 <label for="txtCourseSubTitle" class="course-language">Select language</label>
                 <select name="course_subtitle" id="txtCourseLanguage"  placeholder="Enter your course title">
-                    <option value="" disabled selected hidden>Enter your language</option>
+                    {{!-- <option value="" disabled selected hidden>Enter your language</option>
                     <option value="Vietnamese">Vietnamese</option>
                     <option value="English">English</option>
                     <option value="Chinese">Chinese</option>
                     <option value="Spanish">Spanish</option>
-                    <option value="France">France</option>
+                    <option value="France">France</option> --}}
                 </select>
             </div>
         </div>
@@ -30,8 +30,8 @@
             <div class="form-group-description">
                 <label for="txtCourseSubTitle" class="course-category">Select course category</label>
                  <select name="course_subtitle" id="txtCourseCategory">
-                    {{!-- <option value="" disabled selected hidden>Choose course category</option> --}}
-                    {{#each this.categories}}
+                    <option value="" disabled selected hidden>Choose course category</option>
+                    {{#each this.categoryList}}
                         <option value='{{title}}'>{{title}}</option>
                     {{/each}}
                 </select>
@@ -71,9 +71,21 @@
 
 <script>
     // display message
+    const categories = JSON.parse(`{{{this.js_categories}}}`);
+
+    $('#txtCourseCategory').change(() => {
+        const categoryVal = $('#txtCourseCategory').find(":selected").val();
+        const Category = categories.find((category) => category.title === categoryVal);
+        $('#txtCourseSubCategory').children().remove();
+
+        $('#txtCourseSubCategory').append(`<option value="" disabled selected hidden>Choose course sub-category</option>`);
+        Category.subcategories.forEach((subcategory) => {
+            $('#txtCourseSubCategory').append(`<option value='${subcategory.content}'>${subcategory.content}</option>`);
+        });
+    });
     
 </script>
-{{!-- const categories = JSON.parse(`{{{this.js_categories}}}`);
+    {{!-- const categories = JSON.parse(`{{{this.js_categories}}}`);
     $('#txtCourseCategory').change(() => {
         console.log("event value: ", $(this).find(":selected").val());
         const subCategory = categories.filter((category) => category.title ===  this.value);
