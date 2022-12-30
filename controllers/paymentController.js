@@ -17,12 +17,12 @@ export const shoppingCartPage = catchAsync(async (req, res, next) => {
 
   if (shoppingCart && shoppingCart.length > 0) {
     for (const sc of shoppingCart) {
-      const courses = await Course.findOne({ _id: sc.course_id });
+      const courses = await Course.findOne({ _id: sc.course_id }).lean();
       const courseDetails = await CourseDetails.findOne({ course_id: sc.course_id });
-
 
       course.push({
         id: sc._id,
+        discount: courses.sale,
         name: courses.name,
         img: courses.img,
         rate: courseDetails.avg_rating,
