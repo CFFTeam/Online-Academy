@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "nodemon server.js -e js,hbs,css,svg",
-    "crawler": "node devtools/crawler",
+    "eject-courses": "node devtools/execute courses --eject",
+    "eject-courses-details": "node devtools/execute courses-details --eject",
     "test": "node test.js"
   },
   "author": "CFF",

@@ -1,6 +1,6 @@
 <div
   class="card border-0"
-  style="width:95%; justify-content: center; margin-left:3.3rem;"
+  style="width:98%; justify-content: center; margin: 2rem auto; background: none;"
 >
 
   <div class="card-header border-0 bg-white pt-0 px-0">
@@ -38,7 +38,7 @@
     {{#each this.categories}}
       <tr>
         <td class="id">{{_id}}</td>
-        <td class="name">{{title}}</td>
+        <td class="name" >{{title}}</td>
         <td>{{courses}}</td>
         <td>{{students}}</td>
 
@@ -102,6 +102,5 @@
     type:'text', name:'title', class:"editname", value: content, }
     ).val(content)).append($("<input>", { type:'submit', class:"butname", value:"Save" })) 
     $(this).siblings('.name').text('').append(form); } });
-  </script>
   </script>
 </div>

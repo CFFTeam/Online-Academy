@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import fs from 'fs';
 import courseModel from '../models/courseModel.js';
+import courseDetailsModel from '../models/courseDetailsModel.js';
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -20,8 +21,20 @@ const scripts = {
 
             courseModel.deleteMany()
             .then(() => console.log('courses: eject successfully'))
-            .catch(err => console.log(err));
+            .catch(err => console.log(err))
+            .finally(() => mongoose.connection.close());
 
+        }
+    },
+    'courses-details': {
+        '--import': () => {
+        },
+        '--eject': () => {
+
+            courseDetailsModel.deleteMany()
+            .then(() => console.log('courses details: eject successfully'))
+            .catch(err => console.log(err))
+            .finally(() => mongoose.connection.close());
         }
     }
 };
