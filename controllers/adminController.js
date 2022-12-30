@@ -69,6 +69,16 @@ export const renderCoursesByCategories = catchAsync(async (req, res) => {
   });
 });
 
+export const editCourses = catchAsync(async (req, res) => {
+  console.log(req.params.id);
+  console.log("edit");
+  const updateCourses= await Course.updateOne(
+    { _id: req.params.id },
+    { sale: req.body.sale }
+  ).lean();
+  res.redirect("/admin/courses");
+});
+
 export const deleteCourses = catchAsync(async (req, res) => {
   const deleteCourses = await Course.deleteOne({ _id: req.params.id }).lean();
   res.redirect("/admin/courses");

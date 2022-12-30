@@ -1,6 +1,6 @@
 <div
   class="card border-0"
-  style="width:95%; justify-content: center; margin-left:3.3rem;"
+  style="width:98%; justify-content: center; margin: 2rem auto;"
 >
 
   <div class="card-header border-0 bg-white pt-0 px-0">
@@ -12,52 +12,60 @@
         <input class="input1" type="text" placeholder="Search any courses" />
       </label>
     </div>
-    <div class="dropdown pt-5">
-      <button
-        type="button"
-        class="btn btn-success dropdown-toggle"
-        data-toggle="dropdown"
-        style="background-color: #00A551; font-size: 1.6rem; font-weight: 600; padding: 1rem;"
-      >
-        Select category
-      </button>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="/admin/courses">All categories</a>
-        {{#each this.category}}
-          <a
-            class="dropdown-item"
-            href="/admin/courses/category?slug={{slug}}"
-          >{{title}}</a>
-        {{/each}}
+      <div class="dropdown">
+        <button
+          type="button"
+          class="btn btn-success dropdown-toggle"
+          data-toggle="dropdown"
+          style="background-color: #00A551; font-size: 1.6rem; font-weight: 600; padding: 0.5rem 1rem; "
+        >
+          Select category
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/admin/courses">All categories</a>
+          {{#each this.category}}
+            <a
+              class="dropdown-item"
+              href="/admin/courses/category?slug={{slug}}"
+            >{{title}}</a>
+          {{/each}} 
+        </div>
       </div>
+
+
     </div>
 
   </div>
-  <table id="course" class="cor">
+  <table id="course" class="cor" style="width: 98%; margin: 1rem auto;">
 
-      <tr class="none-shawdow">
+      <tr class="none-shawdow" style="border-radius: 10px;">
         <th>ID</th>
         <th>Category</th>
-        <th style="padding-right: 10rem;">Course name</th>
-        <th style="width: 1rem;"></th>
-        <th style="width: 1rem;"></th>
+        <th>Course name</th>
+        <th>Coupon</th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
 
       {{#each this.courses}}
         <tr>
           <td class="id">{{_id}}</td>
-          <td class="name">{{category}}</td>
-          <td class="name">{{name}}</td>
-
+          <td >{{category}}</td>
+          <td >{{name}}</td>
+          <td class="sale">{{sale}}</td>
+          <td class="edit" style="text-align: center; padding: 0 0.2rem; ">
+            <img src="/assets/svg/admin/coupon.svg" alt="coupon-icon" />
+          </td>
           <td
-            style="text-align: center; padding: 0 1rem;"
+            style="text-align: center; padding: 0 0.2rem;"
             data-toggle="modal"
             data-target="#myModal"
           >
             <img src="/assets/svg/admin/info.svg" alt="info-icon" />
           </td>
 
-          <td class="delete" style="text-align: center; padding: 0 1rem;">
+          <td class="delete" style="text-align: center; padding: 0;">
             <a href="/admin/courses/delete/{{_id}}">
               <img src="/assets/svg/admin/delete.svg" alt="delete-icon" />
             </a>
@@ -68,7 +76,7 @@
 
   </table>
 
-  <div class="modal" id="myModal">
+    <div class="modal" id="myModal">
     <div
       class="modal-dialog"
       style="top: 50% !important; transform: translateY(-70%) !important"
@@ -76,14 +84,9 @@
       <div class="modal-content">
 
         <!-- Modal Header -->
-        <div class="modal-header" style="border:none; padding: 1rem 0 0 1rem;">
-          <h4
-            style="color:#00A551; font-weight: 700;margin: 0.5rem;"
-          >Detail</h4>
-        </div>
 
         <!-- Modal body -->
-        <div class="modal-body" style="margin: 0 auto 1rem auto; padding: 0;">
+        <div class="modal-body" style="margin: 3rem auto 1rem auto; padding: 0;">
           <table class="not">
             <tr>
               <td><b>ID: </b></td>
@@ -125,5 +128,17 @@
       </div>
     </div>
   </div>
-
+  <script>
+    $('#course').on('click','.edit',function() { 
+      const id=$(this).siblings('.id').text();
+    if($(this).siblings('.sale').find('input').length){
+    $(this).siblings('.sale').text($(this).siblings('.sale').find('input').val());
+    } 
+    else { var content=$(this).siblings('.sale').text(); 
+    var actionURL="courses/edit/"+id; 
+    var form=$("<form/>", { method: 'POST',action: actionURL, style: 'margin: 0; padding: 0', } ).append($("<input>", {
+    type:'text', name:'sale', class:"editsale", value: content, }
+    ).val(content))
+    $(this).siblings('.sale').text('').append(form); } });
+  </script>
 </div>

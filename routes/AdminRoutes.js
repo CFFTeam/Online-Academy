@@ -11,6 +11,7 @@ router.get("/categories/delete/:id",adminController.deleteCategories);
 router.route("/courses").get(adminController.renderCourses).post(adminController.renderCoursesByCategories);
 router.route("/courses/category").get(adminController.renderCoursesByCategories);
 router.route("/courses/delete/:id").get(adminController.deleteCourses);
+router.post("/courses/edit/:id", adminController.editCourses);
 
 //Teachers
 router.route("/teachers").get(adminController.renderTeachers).post(adminController.addTeachers);
