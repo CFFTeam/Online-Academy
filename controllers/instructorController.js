@@ -7,6 +7,7 @@ import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import mongoose from "mongoose";
 import Course from "../models/courseModel.js";
+import CourseDetail from "../models/courseDetailsModel.js";
 import Category from "../models/categoryModel.js";
 
 
@@ -34,6 +35,13 @@ export const getSales = async (req, res, next) => {
         sidebar: "sales"
     });
 }
+export const getPreview = async (req, res, next) => {
+    res.render('instructor/others', {
+        layout: "instructor",
+        sidebar: "my-course"
+    });
+}
+
 export const getInstructorProfile = async (req, res, next) => {
 }
 
@@ -161,15 +169,82 @@ export const getMyCourses = function (req,res,next) {
 
 export const getCourseDescription = catchAsync(async (req,res) => {
     const Categories = await Category.find({}).lean();
+    let thisCourse = {};
+    if (req.query.course)
+    {
+        thisCourse = await Course.findOne({_id: req.query.course}).lean();
+    }
     res.render('instructor/addCourseDescription', {
         layout: "instructor",
         categoryList: Categories,
         js_categories: JSON.stringify(Categories),
         url: req.originalUrl,
+        course_id: thisCourse._id,
+        course: thisCourse,
         sidebar: "my-course"
         },
     );
 });
+
+
+export const editCourseDescription = catchAsync(async (req,res) => {
+    res.locals.handlebars = "instructor/addCourseDescription";
+    res.locals.layout = "instructor.hbs";
+    // config storage
+    const storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+        cb(null, `./public/tmp/my-uploads`)
+        },
+        filename: function (req, file, cb) {
+        cb(null, file.originalname);
+        }
+    })   
+    const upload = multer({ storage: storage });
+    upload.single('courseImageFile')(req,res, async (err) => {
+        if (err) console.error(err);
+        else {
+          // if haven't registered course yet => create new one
+            if (!req.query.course) {
+                const newCourse = await Course.create({
+                    name: req.body.course_title,
+                    details: req.body.full_description,
+                    description: req.body.short_description,
+                    currency: req.body.price_currency,
+                    price: req.body.price_amount,
+                    sale: 0,
+                    finish: 0,
+                    category: req.body.course_category,
+                    subcategory: [req.body.course_sub_category],
+                    date: new Date().toJSON(),
+                    lectures: {
+                        total: 0,
+                        duration: "",
+                        sections: []
+                    }
+                })
+                await CourseDetail.create({
+                    course_id: newCourse._id,
+                    viewer: 0,
+                    avg_rating: 0,
+                    num_reviews: 0,
+                    reviews: []
+                })
+                return res.render('instructor/addCourseDescription',{
+                    layout: res.locals.layout,
+                    course_id: newCourse._id,
+                    message: "success",
+                    sidebar: "my-course"
+                });
+            }
+          // if registered course => edit course description
+            else {
+                console.log("already have this course");
+            }
+        }
+    });
+    
+});
+
 
 export const getCourseContent = catchAsync(async (req,res) => {
     res.locals.handlebars = "instructor/addCourseContent";
@@ -181,7 +256,6 @@ export const getCourseContent = catchAsync(async (req,res) => {
             message: "You need to add your course description first. Please try again!",
             sidebar: "my-course"
         });
-        //res.redirect('/instructor/add-course-description');
     }
    
     const course = await Course.findById({_id: req.query.course}).lean();
@@ -378,52 +452,3 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
         }
     })
 });
-
-
-// const lectures_empty = {
-//     sections: [
-//     ]
-// };
-// const lectures = {
-//     sections: [
-//         {
-//             title: "Section 1", 
-//             lessons:[
-//                 {
-//                     title: "About the course"
-//                 },
-//                 {
-//                     title: "What You'll Get in This Course"
-//                 },
-//                 {
-//                     title: "Download the course syllabus"
-//                 },
-//                 {
-//                     title: "Prepare your workspace"
-//                 }
-//             ]
-//         },
-//         {
-//             title: "Section 2",
-//             lessons:[
-//                 {
-//                     title: "About the course"
-//                 },
-//                 {
-//                     title: "What You'll Get in This Course"
-//                 },
-//                 {
-//                     title: "Download the course syllabus"
-//                 },
-//                 {
-//                     title: "Prepare your workspace"
-//                 }
-//             ]
-//         },
-//         {
-//             title: "Section 3",
-//             lessons:[
-//             ]
-//         }
-//     ]
-// };

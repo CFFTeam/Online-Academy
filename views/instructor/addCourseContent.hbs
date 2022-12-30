@@ -3,29 +3,12 @@
         <span class="title">Curriculum</span>
         <div class="mode">
             <a href="/preview">Preview</a>
-            <a href="/instructor/add-course-description">Description</a>
+            <a href="/instructor/add-course-description/?course={{course_id}}">Description</a>
             <a href="/instructor/add-course-content" class="active">Content</a>
         </div>
     </div>
     <div class="section">
         {{#each this.sections}}
-        {{!-- <div class="section-heading">
-            <div class="section-title">
-                <form id="txtSectionForm" action="{{../url}}&section={{this._id}}" method="post">
-                    <input type="text" class="txtSectionTitle" name="section_title" value="{{this.title}}">
-                    <input type="submit" hidden />
-                </form>
-            </div>
-            <form action="{{../url}}&section={{this._id}}" class="edit-section-content" method="post">
-                <button name="requestAction" value="delete_section"
-                    class="delete-section-btn"
-                    type="submit"><img src="/assets/svg/instructor/garbage.svg" alt="delete-btn"></button>
-                <button name="requestAction" value="save_section" class="save-section-btn" type="button"><img
-                        src="/assets/svg/instructor/save-btn.svg" alt="save-btn"></button>
-                <a  class="edit-section-btn"><img
-                        src="/assets/svg/instructor/edit-section.svg" alt="edit-btn"></a>
-            </form>
-        </div> --}}
          <form class="section-heading" action="{{../url}}&section={{this._id}}" method = "post">
             <div class="section-title">
                 <input type="text" class="txtSectionTitle" name="section_title" value="{{this.title}}">

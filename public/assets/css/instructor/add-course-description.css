@@ -195,23 +195,47 @@ form > .course-information > div.form-group-description > input
   width: 60%;
 }
 
+div.save_description
+{
+  display: flex;
+  justify-content: center;
+  gap: 8rem;
+}
+
 
 div.save_description  > button
 {
-    width: 40%;
+
+    width: 25%;
     margin-top: 6rem;
     padding: 0.5rem 8rem;
     color: #fff;
-    background-color: #00A551;
     border: 2px solid transparent;
     border-radius: 12px;
     font-weight: 500;
     transition: all 0.1s ease-in-out;
 }
 
-div.save_description > button:hover
+div.save_description  > button:nth-child(1)
+{
+  background-color: #00A551;
+}
+
+div.save_description > button:nth-child(1):hover
 {
     border: 2px solid #00A551;
     background-color: transparent;
     color: #00A551;
+}
+
+div.save_description  > button:nth-child(2)
+{
+  background-color: red;
+}
+
+div.save_description > button:nth-child(2):hover
+{
+    border: 2px solid red;
+    background-color: transparent;
+    color: red;
 }

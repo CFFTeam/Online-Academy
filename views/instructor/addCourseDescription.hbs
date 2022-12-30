@@ -4,21 +4,21 @@
         <div class="mode">
             <a href="/instructor/preview">Preview</a>
             <a href="/instructor/add-course-description" class="active">Description</a>
-            <a href="/instructor/add-course-content">Content</a>
+            <a href="/instructor/add-course-content/?course={{course_id}}">Content</a>
         </div>
     </div>  
-    <form class = "description-form">
+    <form class = "description-form" enctype="multipart/form-data" method = "post">
         {{!-- course title and course subtitle --}}
         <div class = "course-information course-title-subtitle">
             <div class="form-group-description">
                 <label for="txtCourseTitle" class="course-title">Course Title</label>
                 <input name="course_title" type="text" id="txtCourseTitle" placeholder="Enter your course title"
-                    value="{{#if course.title}}{{course.title}}{{/if}}" />
+                    value="{{#if course.name}}{{course.name}}{{/if}}" />
             </div>
           <div class="form-group-description">
                 <label for="txtCourseLanguage" class="course-language">Select language</label>
                 <select name="course_language" id="txtCourseLanguage"  placeholder="Enter your course title">
-                    <option value="" disabled selected hidden>Choose your language</option>
+                    <option value="" disabled selected hidden>{{#if course.name}}English{{else}}Choose your language{{/if}}</option>
                     <option value="Vietnamese">Vietnamese</option>
                     <option value="English">English</option>
                     <option value="Chinese">Chinese</option>
@@ -32,7 +32,7 @@
             <div class="form-group-description">
                 <label for="txtCourseCategory" class="course-category">Select course category</label>
                  <select name="course_category" id="txtCourseCategory">
-                    <option value="" disabled selected hidden>Choose course category</option>
+                    <option value="" disabled selected hidden>{{#if course.category}}{{course.category}}{{else}}Choose course category{{/if}}</option>
                     {{#each this.categoryList}}
                         <option value='{{title}}'>{{title}}</option>
                     {{/each}}
@@ -41,7 +41,12 @@
              <div class="form-group-description">
                 <label for="txtCourseSubCategory" class="course-sub-category">Select course sub-category</label>
                 <select name="course_sub_category" id="txtCourseSubCategory">
-                    <option value="" disabled selected hidden>Choose course sub-category</option>
+                    <option value="" disabled selected hidden>
+                        {{#if course.subcategory}}
+                        {{#each course.subcategory}}{{this}}{{/each}}
+                        {{else}}Choose course sub-category
+                        {{/if}}</option>
+                    {{!-- <option value="" disabled selected hidden>Choose course sub-category</option> --}}
                     <option value="Vietnamese">Mobile Development</option>
                     <option value="English">Web Development</option>
                     <option value="Chinese">Game Development</option>
@@ -55,11 +60,11 @@
                 <label class="course-pricing">Pricing</label>
                 <div class = "course-pricing-info">
                     <select name="price_currency" id="txtCoursePricingCurrency">
-                        <option value="" disabled selected hidden>Select currency</option>
-                        <option value="Vietnamese">VND</option>
-                        <option value="English">USD</option>
+                        <option value="" disabled selected hidden>{{#if course.currency}}{{course.currency}}{{else}}Select currency{{/if}}</option>
+                        <option value="VND">VND</option>
+                        <option value="USD">USD</option>
                     </select>
-                    <input id="txtCoursePricingAmount" type="text" name = "price_amount" placeholder="Enter price">
+                    <input id="txtCoursePricingAmount" type="text" name = "price_amount" placeholder="Enter price" value = "{{#if course.price}}{{course.price}}{{/if}}">
                 </div>
             </div>
              <div class="form-group-description">
@@ -71,7 +76,7 @@
         <div class = "course-information course-short-description-image">
             <div class = "form-group-description">
                 <label for="txtCourseShortDescription" class="short-description">Short description</label>
-                <textarea name="short_description" id="shortDescription" rows="3" placeholder="Describe briefly your course........"></textarea>
+                <textarea name="short_description" id="shortDescription" rows="3" placeholder="Describe briefly your course........">{{#if course.description}}{{course.description}}{{/if}}</textarea>
             </div>
             <div class = "form-group-description">
                 <label for="uploadImage" class="">Course Image</label>
@@ -85,24 +90,31 @@
                         <p style = "margin-top: 1rem;">Upload your course image here. It must meet our course image quality standard to be accepted. Important guidelines: 750x422 pixels; .jpg, .jpeg, .gif; or .png no text on the image.</p>
                     </div>
                 </label>
-                 <input name="courseImage" id="courseImageFile" type="file" style="display: none;">
+                 <input name="courseImageFile" id="courseImageFile" type="file" style="display: none;">
             </div>
         </div>
         {{!-- full description (details) --}}
         <div class = "course-information course-full-description">
             <div class = "form-group-description">
                 <label for="txtFullDescription" style="margin-bottom: 1rem;">Full description</label>
-                <textarea name="" id="txtFullDescription" cols="30" rows="30" style = "font-family: Montserrat;">Enter your full description here...</textarea>
+                <textarea name="full_description" id="txtFullDescription" cols="30" rows="30" style = "font-family: Montserrat;">{{#if course.details}}{{course.details}}{{else}}Enter your full description here...{{/if}}</textarea>
             </div>
         </div>
         {{!-- SAVE button --}}
         <div class ="save_description" style = "text-align: center;">
-            <button type="submit">SAVE</button>
+            <button type="submit" name = "requestActionInDescription" value = "save_course_description">SAVE</button>
+            <button type="submit" name = "requestActionInDescription" value = "delete_course_description">DELETE</button>
         </div>
     </form>
 </div>
 
 <script>
+    // display message 
+    if ("{{message}}" == "success")
+    {
+        alert("Your course was added successfully...");
+        window.location.replace("http://localhost:5000/instructor/add-course-description/?course={{course_id}}");
+    }
     // display subcategory
     const categories = JSON.parse(`{{{this.js_categories}}}`);
 
@@ -124,13 +136,4 @@
     })
     
 </script>
-    {{!-- const categories = JSON.parse(`{{{this.js_categories}}}`);
-    $('#txtCourseCategory').change(() => {
-        console.log("event value: ", $(this).find(":selected").val());
-        const subCategory = categories.filter((category) => category.title ===  this.value);
-        console.log(subCategory);
-    }) --}}
    
-
-    {{!-- console.log(categories); --}}
-    {{!-- console.log('test: ', $('#txtCourseCategory').val()); --}}
