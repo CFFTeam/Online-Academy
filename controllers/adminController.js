@@ -72,9 +72,12 @@ export const renderCoursesByCategories = catchAsync(async (req, res) => {
 export const editCourses = catchAsync(async (req, res) => {
   console.log(req.params.id);
   console.log("edit");
+
+  console.log( typeof Number(req.body.sale));
+
   const updateCourses= await Course.updateOne(
     { _id: req.params.id },
-    { sale: req.body.sale }
+    { sale: Number(req.body.sale) }
   ).lean();
   res.redirect("/admin/courses");
 });
