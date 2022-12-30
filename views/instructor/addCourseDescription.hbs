@@ -47,7 +47,7 @@
                 <select style = "{{#if course.name}}color: black;{{course.name}}{{/if}}" name="course_sub_category" id="txtCourseSubCategory">
                     <option value="" disabled selected hidden>
                         {{#if course.subcategory}}
-                        {{#each course.subcategory}}{{this}}{{/each}}
+                        {{#each course.subcategory}}{{this}} {{/each}}
                         {{else}}Choose course sub-category
                         {{/if}}</option>
                     {{!-- <option value="" disabled selected hidden>Choose course sub-category</option> --}}
@@ -125,6 +125,16 @@
         alert("Your change was saved successfully...");
         window.location.replace("http://localhost:5000/instructor/add-course-description/?course={{course_id}}");
     }
+    else if ("{{message}}" == "successDeleted")
+    {
+        alert("Your course was deleted successfully...");
+        window.location.replace("http://localhost:5000/instructor/add-course-description");
+    }
+    else if ("{{message}}" != "successAdded" && "{{message}}" != "successSaved" && "{{message}}" != "")  { // failed
+        alert("{{message}}");
+        window.location.replace("http://localhost:5000/instructor/add-course-description");
+    }
+  
     // display subcategory
     const categories = JSON.parse(`{{{this.js_categories}}}`);
 
@@ -146,4 +156,9 @@
     })
     
 </script>
-   
+     {{!-- else if ("{{message}}" != "") // failed
+    {
+        alert("{{message}}");
+        console.log("{{message}}");
+        window.location.replace("http://localhost:5000/instructor/add-course-description");
+    } --}}

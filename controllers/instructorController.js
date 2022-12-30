@@ -187,9 +187,7 @@ export const getCourseDescription = catchAsync(async (req,res) => {
 });
 
 
-export const editCourseDescription = catchAsync(async (req,res) => {
-    res.locals.handlebars = "instructor/addCourseDescription";
-    res.locals.layout = "instructor.hbs";
+export const editCourseDescription = catchAsync(async (req,res, next) => {
     // config storage
     const storage = multer.diskStorage({
         destination: function (req, file, cb) {
@@ -201,10 +199,30 @@ export const editCourseDescription = catchAsync(async (req,res) => {
     })   
     const upload = multer({ storage: storage });
     upload.single('courseImageFile')(req,res, async (err) => {
+        res.locals.handlebars = "instructor/addCourseDescription";
+        res.locals.layout = "instructor.hbs";
         if (err) console.error(err);
         else {
           // if haven't registered course yet => create new one
             if (!req.query.course) {
+                const foundCourse = await Course.findOne({name: req.body.course_title});
+                // if this course title already exists
+                if (foundCourse) {
+                    return res.render(res.locals.handlebars, {
+                        layout: res.locals.layout,
+                        message: "This course already exists. Please choose a different course.",
+                        sidebar: "my-course"
+                    });
+                }
+                // if user delete empty course
+                if (req.body.requestActionInDescription == "delete_course_description") {
+                    return res.render(res.locals.handlebars, {
+                        layout: res.locals.layout,
+                        message: "You can not delete an empty course.",
+                        sidebar: "my-course"
+                    });
+                }
+                // create new course
                 const newCourse = await Course.create({
                     name: req.body.course_title,
                     details: req.body.full_description,
@@ -262,6 +280,13 @@ export const editCourseDescription = catchAsync(async (req,res) => {
                 });
                }
                else if (req.body.requestActionInDescription == "delete_course_description") { // delete 
+                await Course.deleteOne({_id: req.query.course});
+                // delete course_id in my_course ..... coding later
+                return res.render('instructor/addCourseDescription',{
+                    layout: res.locals.layout,
+                    message: "successDeleted",
+                    sidebar: "my-course"
+                });
                }
             }
         }
