@@ -18,11 +18,20 @@
     text-decoration: none;
 }
 
+.my-side-bar a:hover
+{
+    color: #00A551;
+}
+
 .my-side-bar a:active
 {
     color: #00A551;
 }
-    
+
+.my-side-bar a.active
+{
+    color: #00A551;
+}
 
 .my-side-bar a
 {

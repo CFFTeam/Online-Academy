@@ -1,11 +1,13 @@
 <div class = "my-side-bar">
-    <a href="/dashboard"><img src="/assets/svg/instructor/dashboard.svg" alt="dashboard">Dashboard</a>
-    <a href="/my-courses"><img src="/assets/svg/instructor/mycourse.svg" alt="mycourse">My Courses</a>
-    <a href="/enrolled-courses"><img src="/assets/svg/instructor/enrolledcourse.svg" alt="enrolled-course">Enrolled Course</a>
-    <a href="/watch-history"><img src="/assets/svg/instructor/watchhistory.svg" alt="watch-history">Watch History</a>
-    <a href="/sales"><img src="/assets/svg/instructor/sale.svg" alt="sale">Sales</a>
-    <a href="/my-profile"><img src="/assets/svg/instructor/profile.svg" alt="profile">Profile</a>
+    <a class = "{{#if (eq sidebar "dash-board")}}active{{/if}}" href="/instructor/dashboard"><img src="/assets/svg/instructor/dashboard.svg" alt="dashboard">Dashboard</a>
+    <a class = "{{#if (eq sidebar "my-course")}}active{{/if}}" href="/instructor/my-courses"><img src="/assets/svg/instructor/mycourse.svg" alt="my-courses">My Courses</a>
+    <a class = "{{#if (eq sidebar "enrolled-courses")}}active{{/if}}" href="/instructor/enrolled-courses"><img src="/assets/svg/instructor/enrolledcourse.svg" alt="enrolled-course">Enrolled Courses</a>
+    <a class = "{{#if (eq sidebar "watch-history")}}active{{/if}}" href="/instructor/watch-history"><img src="/assets/svg/instructor/watchhistory.svg" alt="watch-history">Watch History</a>
+    <a class = "{{#if (eq sidebar "sales")}}active{{/if}}" href="/instructor/sales"><img src="/assets/svg/instructor/sale.svg" alt="sale">Sales</a>
+    <a class = "{{#if (eq sidebar "user-profile")}}active{{/if}}" href="/instructor/my-profile"><img src="/assets/svg/instructor/profile.svg" alt="profile">Profile</a>
     <span class= "go-to">GO TO</span>
-    <a href="/home"><img src="/assets/svg/instructor/home.svg" alt="home">Home</a>
+    <a href="/instructor/my-courses"><img src="/assets/svg/instructor/home.svg" alt="home">Home</a>
 </div>
 
+
+{{!-- class = "{{#if (eq my_url }}{{/if}} --}}
