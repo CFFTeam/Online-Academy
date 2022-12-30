@@ -36,6 +36,145 @@ body {
     color: white;
 }
 
+.checkbox-cs {
+    font: 2.2rem/1.4 "RobotoDraft", sans-serif;
+}
+
+.checkbox-cs > input[type="checkbox"].checkbox-input-cs {
+    display: none;
+    height: 0;
+    width: 0;
+}
+
+.checkbox-cs > input[type="checkbox"].checkbox-input-cs + label {
+    position: relative;
+    display: flex;
+    align-items: center;
+    color: #E5FFE4;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.23, 1);
+}
+
+.checkbox-cs > input[type="checkbox"].checkbox-input-cs + label > span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1em;
+    height: 1em;
+    background: rgba(82, 248, 171, 0.1);
+    border: .2rem solid #5FEA86;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 250ms cubic-bezier(0.4, 0, 0.23, 1);
+}
+
+.checkbox-cs > input[type="checkbox"].checkbox-input-cs + label:hover,
+input[type="checkbox"].checkbox-input-cs:focus + label {
+    color: #E5FFE4;
+}
+
+.checkbox-cs > input[type="checkbox"].checkbox-input-cs + label:hover > span,
+input[type="checkbox"].checkbox-input-cs:focus + label > span {
+    background: rgba(82, 248, 171, 0.1);
+}
+
+.checkbox-cs > input[type="checkbox"].checkbox-input-cs:checked + label > span {
+    border: 0.5em solid #E5FFE4;
+    -webkit-animation: shrink-bounce 200ms cubic-bezier(0.4, 0, 0.23, 1);
+    animation: shrink-bounce 200ms cubic-bezier(0.4, 0, 0.23, 1);
+}
+
+.checkbox-cs > input[type="checkbox"].checkbox-input-cs:checked + label > span:before {
+    content: "";
+    position: absolute;
+    top: .54em;
+    left: .15em;
+    border-right: 2.5px solid transparent;
+    border-bottom: 2.5px solid transparent;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -webkit-transform-origin: 0% 100%;
+    transform-origin: 0% 100%;
+    -webkit-animation: checkbox-check 125ms 250ms cubic-bezier(0.4, 0, 0.23, 1)
+        forwards;
+    animation: checkbox-check 125ms 250ms cubic-bezier(0.4, 0, 0.23, 1) forwards;
+}
+
+@-webkit-keyframes shrink-bounce {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    33% {
+        -webkit-transform: scale(0.85);
+        transform: scale(0.85);
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes shrink-bounce {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    33% {
+        -webkit-transform: scale(0.85);
+        transform: scale(0.85);
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@-webkit-keyframes checkbox-check {
+    0% {
+        width: 0;
+        height: 0;
+        border-color: #1DEC32;
+        -webkit-transform: translate3d(0, 0, 0) rotate(45deg);
+        transform: translate3d(0, 0, 0) rotate(45deg);
+    }
+    33% {
+        width: 0.35em;
+        height: 0;
+        -webkit-transform: translate3d(0, 0, 0) rotate(45deg);
+        transform: translate3d(0, 0, 0) rotate(45deg);
+    }
+    100% {
+        width: 0.35em;
+        height: 0.6em;
+        border-color: #1DEC32;
+        -webkit-transform: translate3d(0, -0.5em, 0) rotate(45deg);
+                transform: translate3d(0, -0.5em, 0) rotate(45deg);
+    }
+}
+
+@keyframes checkbox-check {
+    0% {
+        width: 0;
+        height: 0;
+        border-color: #1DEC32;
+        -webkit-transform: translate3d(0, 0, 0) rotate(45deg);
+        transform: translate3d(0, 0, 0) rotate(45deg);
+    }
+    33% {
+        width: 0.35em;
+        height: 0;
+        -webkit-transform: translate3d(0, 0, 0) rotate(45deg);
+        transform: translate3d(0, 0, 0) rotate(45deg);
+    }
+    100% {
+        width: 0.35em;
+        height: 0.6em;
+        border-color: #1DEC32;
+        -webkit-transform: translate3d(0, -0.65em, 0) rotate(45deg);
+                transform: translate3d(0, -0.65em, 0) rotate(45deg);
+    }
+}
+
 .course-card {
     position: relative;   
     display: inline-block;
