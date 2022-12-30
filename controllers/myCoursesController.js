@@ -13,6 +13,8 @@ export const myCoursesPage = catchAsync(async (req, res) => {
   if (user) {
     for (const m of user.myCourses) {
       const course = await Course.findOne({ _id: m });
+      // console.log(course);
+
       courses.push({
         id: m,
         slug: course.slug,

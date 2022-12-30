@@ -168,15 +168,22 @@
 
         
         const itemList = JSON.parse(`{{{course}}}`)
-        
+
         let total = 0;
+        let discount = 0;
         for(let i=0;i<itemList.length;i++){
           total+=parseFloat(itemList[i].price);
+          discount += parseFloat(itemList[i].discount);
         }
         if(total>0){
-         $(".price > .value").text("$"+total)
-         $(".total > .value").text("$"+(total+5))
+         $(".price > .value").text("$"+(Math.round(total * 100) / 100))
+         $(".total > .value").text("$"+(Math.round((total+5-discount) * 100) / 100))
         }
+        //(0%) - $0.00
+        if(discount>0){
+          $(".discount >.value").text("("+(Math.round((discount/total) * 10000) / 100)+"%) - $"+(Math.round(discount * 100) / 100))
+        }
+        
         itemList.forEach(addItem);
         
         let deleteForm = document.forms['deleteItem']
