@@ -58,23 +58,23 @@ export const renderCourseDetail = catchAsync(async (req, res) => {
     })
     .lean();
 
+  for (let i = 0; i < getCourseRating.reviews.length; i++){
+    getCourseRating.reviews[i]["update"] = getCourseRating.reviews[i].created.slice(
+      0,
+      10
+    );
+    getCourseRating.reviews[i]["integerPart"] = Array(Math.floor(getCourseRating.reviews[i].rating)).fill('0');
+    getCourseRating.reviews[i]["isRemainder"] =
+    getCourseRating.reviews[i].rating -
+        Math.floor(getCourseRating.reviews[i].rating) !==
+      0;
+    }
+
   const getThreeLastComment = getCourseRating.reviews.slice(
     getCourseRating.reviews.length - 3,
     getCourseRating.reviews.length
   );
-  for (let i = 0; i < getThreeLastComment.length; i++) {
-    getThreeLastComment[i]["update"] = getThreeLastComment[i].created.slice(
-      0,
-      10
-    );
-    getThreeLastComment[i]["integerPart"] = Math.floor(
-      getThreeLastComment[i].rating
-    );
-    getThreeLastComment[i]["isRemainder"] =
-      getThreeLastComment[i].rating -
-        Math.floor(getThreeLastComment[i].rating) !==
-      0;
-  }
+
 
   const mostviewCourse = await loadhotCourse(getCourse.category);
 

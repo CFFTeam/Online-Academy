@@ -33,8 +33,9 @@
           style="color: black; font-weight: 700; font-size: 3.5rem;"
         >{{courseDetail.price}} $</h1>
         <div class="order">
-          <form action="#">
-            <input type="submit" value="Add to cart" class="add-to-cart" />
+          <form action="/payment" method="post">
+            <input hidden name='course_id' value='{{courseDetail.course_id}}'/>
+            <input type="submit" class="add-to-cart" value="Add to cart"/>
           </form>
           <form action="#">
             <input type="submit" value="Buy now" class="buy-now" />
@@ -84,11 +85,11 @@
     <div class="modal" id="myModal">
       <div
         class="modal-dialog modal-xl"
-        style="top: 50% !important; transform: translateY(-60%) !important;"
+        style="top: 50% !important; transform: translateY(-55%) !important;"
       >
-        <div class="modal-content">
+        <div class="modal-content" style="padding: 0;">
           <iframe
-            height="700px"
+            height="650px"
             src="https://www.youtube.com/embed/K4TOrB7at0Y"
           > </iframe>
         </div>
@@ -290,98 +291,39 @@
         <button data-toggle="modal" data-target="#allCmt">View more</button>
       </div>
 
-      <div class="comment-info">
-        <div class="rating-point-under">
-          <img
-            src={{getThreeLastComment.0.user.avatar}}
-            style="width: 6rem; height: 6rem;"
-          />
-          <div class="star-point-under">
-            {{#times getThreeLastComment.0.integerPart}}
-              <img
-                src="/assets/svg/course/star.svg"
-                alt="star-icon"
-                style="padding-bottom: 0.5rem;"
-              />
-            {{/times}}
-            {{#if getThreeLastComment.0.isRemainder}}
-              <img
-                src="/assets/svg/course/haft-star.svg"
-                alt="haft-star-icon"
-                style="padding-bottom: 0.5rem;"
-              />
-            {{/if}}
-            <p
-              style="color: black; font-weight: 500; margin: 0;"
-            >{{getThreeLastComment.0.user.name}}
-              - posted in 
-              {{getThreeLastComment.0.update}}</p>
+      {{#each this.getThreeLastComment}}
+        <div class="comment-info">
+          <div class="rating-point-under">
+            <img
+              src={{this.user.avatar}}
+              style="width: 6rem; height: 6rem;"
+            />
+            <div class="star-point-under">
+              {{#each this.integerPart}}
+                <img
+                  src="/assets/svg/course/star.svg"
+                  alt="star-icon"
+                  style="padding-bottom: 0.5rem;"
+                />
+              {{/each}}
+              {{#if this.isRemainder}}
+                <img
+                  src="/assets/svg/course/haft-star.svg"
+                  alt="haft-star-icon"
+                  style="padding-bottom: 0.5rem;"
+                />
+              {{/if}}
+              <p
+                style="color: black; font-weight: 500; margin: 0;"
+              >{{this.user.name}}
+                - posted in 
+                {{this.update}}</p>
+            </div>
           </div>
+          {{{this.content}}}
         </div>
-        {{{getThreeLastComment.0.content}}}
-      </div>
+      {{/each}}
 
-      <div class="comment-info">
-        <div class="rating-point-under">
-          <img
-            src={{getThreeLastComment.1.user.avatar}}
-            style="width: 6rem; height: 6rem;"
-          />
-          <div class="star-point-under">
-            {{#times getThreeLastComment.1.integerPart}}
-              <img
-                src="/assets/svg/course/star.svg"
-                alt="star-icon"
-                style="padding-bottom: 0.5rem;"
-              />
-            {{/times}}
-            {{#if getThreeLastComment.1.isRemainder}}
-              <img
-                src="/assets/svg/course/haft-star.svg"
-                alt="haft-star-icon"
-                style="padding-bottom: 0.5rem;"
-              />
-            {{/if}}
-            <p
-              style="color: black; font-weight: 500; margin: 0;"
-            >{{getThreeLastComment.1.user.name}}
-              - posted in
-              {{getThreeLastComment.1.update}}</p>
-          </div>
-        </div>
-        {{{getThreeLastComment.1.content}}}
-      </div>
-
-      <div class="comment-info">
-        <div class="rating-point-under">
-          <img
-            src={{getThreeLastComment.2.user.avatar}}
-            style="width: 6rem; height: 6rem;"
-          />
-          <div class="star-point-under">
-            {{#times getThreeLastComment.2.integerPart}}
-              <img
-                src="/assets/svg/course/star.svg"
-                alt="star-icon"
-                style="padding-bottom: 0.5rem;"
-              />
-            {{/times}}
-            {{#if getThreeLastComment.2.isRemainder}}
-              <img
-                src="/assets/svg/course/haft-star.svg"
-                alt="haft-star-icon"
-                style="padding-bottom: 0.5rem;"
-              />
-            {{/if}}
-            <p
-              style="color: black; font-weight: 500; margin: 0;"
-            >{{getThreeLastComment.2.user.name}}
-              - posted in
-              {{getThreeLastComment.2.update}}</p>
-          </div>
-        </div>
-        {{{getThreeLastComment.2.content}}}
-      </div>
 
       <form method="POST" action="#">
         <div class="comment-info">
@@ -408,89 +350,96 @@
       </form>
 
     </div>
-
   </div>
 
-  </div>
-        <div class="course-list">
-        <h1>Most views</h1>
-        <div class="course-list-wrapper">
-            <div
-                id="carouselMostView"
-                class="carousel slide course-ls"
-                data-bs-ride="false"
-            >
-                <div class="carousel-inner">
-                    {{#each mostviewCourse}}
-                        {{!-- {{course_name}} --}}
-                        <div class="carousel-item">
-                            {{> courseCard this }}
-                        </div>
-                    {{/each}}
-                </div>
-                <button
-                    class="carousel-control-prev"
-                    type="button"
-                >
-                    <i class="fa-solid fa-chevron-left"></i>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button
-                    class="carousel-control-next"
-                    type="button"
-                >
-                    <i class="fa-solid fa-chevron-right"></i>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </div>
-        <script>
-            const carouselWidthMostView = $("#carouselMostView.carousel.slide.course-ls > .carousel-inner")[0].scrollWidth;
-            const cardWidthMostView = $("#carouselMostView.carousel.slide.course-ls > .carousel-inner > .carousel-item").width() + 20;
-            let scrollPositionMostView = 0;
+    <div class="course-list">
+      <h1>Most views</h1>
+      <div class="course-list-wrapper">
+          <div
+              id="carouselMostView"
+              class="carousel slide course-ls"
+              data-bs-ride="false"
+          >
+              <div class="carousel-inner">
+                  {{#each mostviewCourse}}
+                      {{!-- {{course_name}} --}}
+                      <div class="carousel-item">
+                          {{> courseCard this }}
+                      </div>
+                  {{/each}}
+              </div>
+              <button
+                  class="carousel-control-prev"
+                  type="button"
+              >
+                  <i class="fa-solid fa-chevron-left"></i>
+                  <span class="visually-hidden">Previous</span>
+              </button>
+              <button
+                  class="carousel-control-next"
+                  type="button"
+              >
+                  <i class="fa-solid fa-chevron-right"></i>
+                  <span class="visually-hidden">Next</span>
+              </button>
+          </div>
+      </div>
+      <script>
+          const carouselWidthMostView = $("#carouselMostView.carousel.slide.course-ls > .carousel-inner")[0].scrollWidth;
+          const cardWidthMostView = $("#carouselMostView.carousel.slide.course-ls > .carousel-inner > .carousel-item").width() + 20;
+          let scrollPositionMostView = 0;
 
-            $("#carouselMostView.carousel.slide.course-ls .carousel-control-next").on("click", function () {
-                if (scrollPositionMostView < (carouselWidthMostView - cardWidthMostView * 4)) {
-                    scrollPositionMostView += cardWidthMostView;
-                    $("#carouselMostView.carousel.slide.course-ls > .carousel-inner").animate({ scrollLeft: scrollPositionMostView }, 500); //scroll left
-                }
-            });
-            $("#carouselMostView.carousel.slide.course-ls .carousel-control-prev").on("click", function () {
-                if (scrollPositionMostView > 0) {
-                    scrollPositionMostView -= cardWidthMostView;
-                    $("#carouselMostView.carousel.slide.course-ls > .carousel-inner").animate({ scrollLeft: scrollPositionMostView }, 500);
-                }
-            });
-        </script>
-        
+          $("#carouselMostView.carousel.slide.course-ls .carousel-control-next").on("click", function () {
+              if (scrollPositionMostView < (carouselWidthMostView - cardWidthMostView * 4)) {
+                  scrollPositionMostView += cardWidthMostView;
+                  $("#carouselMostView.carousel.slide.course-ls > .carousel-inner").animate({ scrollLeft: scrollPositionMostView }, 500); //scroll left
+              }
+          });
+          $("#carouselMostView.carousel.slide.course-ls .carousel-control-prev").on("click", function () {
+              if (scrollPositionMostView > 0) {
+                  scrollPositionMostView -= cardWidthMostView;
+                  $("#carouselMostView.carousel.slide.course-ls > .carousel-inner").animate({ scrollLeft: scrollPositionMostView }, 500);
+              }
+          });
+      </script>
+    </div>
+
+
   <div class="modal" id="allCmt">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <h1>All comments</h1>
           {{#each courseRating.reviews}}
-        <div class="comment-info">
-            <div class="rating-point-under">
-              <img
-                src={{this.user.avatar}}
-                style="width: 6rem; height: 6rem;"
-              />
-              <div class="star-point-under">
-                <p>
-                  {{this.rating}}
+            <div class="comment-info">
+                <div class="rating-point-under">
                   <img
-                    src="/assets/svg/course/star.svg"
-                    alt="star-icon"
-                    style="padding-bottom: 0.5rem;"
-                  /></p>
-                <p
-                  style="color: black; font-weight: 500; margin: 0;"
-                >{{this.user.name}}
-                  - posted in
-                  {{this.created}}</p>
-              </div>
+                    src={{this.user.avatar}}
+                    style="width: 6rem; height: 6rem;"
+                  />
+                  <div class="star-point-under">
+              {{#each this.integerPart}}
+                <img
+                  src="/assets/svg/course/star.svg"
+                  alt="star-icon"
+                  style="padding-bottom: 0.5rem;"
+                />
+              {{/each}}
+              {{#if this.isRemainder}}
+                <img
+                  src="/assets/svg/course/haft-star.svg"
+                  alt="haft-star-icon"
+                  style="padding-bottom: 0.5rem;"
+                />
+              {{/if}}
+                    <p
+                      style="color: black; font-weight: 500; margin: 0;"
+                    >{{this.user.name}}
+                      - posted in
+                      {{this.update}}</p>
+                  </div>
+                </div>
+                {{{this.content}}}
             </div>
-            {{{this.content}}}
-        </div>
           {{/each}}
       </div>
     </div>
