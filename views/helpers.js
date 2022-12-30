@@ -21,4 +21,7 @@ export default {
     for (var i = from; i < to; i += incr) accum += block.fn(i);
     return accum;
   },
+  format_date(date) {
+    return date.slice(0,10);
+  }
 };

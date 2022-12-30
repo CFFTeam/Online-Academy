@@ -23,20 +23,20 @@
          No data found!
       </div>
       {{else}}
-        {{#each this.course_list}}
+        {{#each this.courseList}}
         <tr>
-        <th scope="row">{{id}}</th>
-        <td>{{title}}</td>
+        <th scope="row">{{index}}</th>
+        <td>{{name}}</td>
         <td>{{category}}</td>
-        <td><span class = "dollar">{{price.currency}}</span>{{price.amount}}</td>
-        <td>{{date_released}}</td>
+        <td><span class = "dollar">$</span>{{price}}</td>
+        <td>{{format_date date}}</td>
         {{#if finish}}
           <td style = "text-align: right;"><img src="/assets/svg/instructor/finish.svg" alt="finish"></td>
           {{else}}
            <td style = "text-align: right;"><img src="/assets/svg/instructor/unfinished.svg" alt="finish"></td>
         {{/if}}
-        <td style = "text-align: right;"><button class = "edit-btn"><img src="/assets/svg/instructor/edit.svg" alt="edit"></button></td>
-        <td style = "text-align: right;"><button class = "delete-btn"><img src="/assets/svg/instructor/delete.svg" alt="delete"></button></td>
+        <td style = "text-align: right;"><a class = "edit-btn"><img src="/assets/svg/instructor/edit.svg" alt="edit"></a></td>
+        <td style = "text-align: right;"><a class = "delete-btn"><img src="/assets/svg/instructor/delete.svg" alt="delete"></a></td>
         </tr>
         {{/each}}
     {{/if}}

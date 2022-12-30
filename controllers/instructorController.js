@@ -46,123 +46,19 @@ export const getInstructorProfile = async (req, res, next) => {
 }
 
 
-export const getMyCourses = function (req,res,next) {
-    const list = [
-        {
-            id: 1,
-            title: "The Complete 2023 Web Development Bootcamp",
-            category: "Web Development",
-            price: {
-                currency: "$",
-                amount: "99"
-            },
-            date_released: "2022-12-31",
-            finish: 1
-        },
-        {
-            id: 2,
-            title: "The Complete 2023 Web Development Bootcamp",
-            category: "Web Development",
-            price: {
-                currency: "$",
-                amount: "99"
-            },
-            date_released: "2022-12-31",
-            finish: 0
-        },
-        {
-            id: 3,
-            title: "The Complete 2023 Web Development Bootcamp",
-            category: "Web Development",
-            price: {
-                currency: "$",
-                amount: "99"
-            },
-            date_released: "2022-12-31",
-            finish: 1
-        },
-        {
-            id: 4,
-            title: "The Complete 2023 Web Development Bootcamp",
-            category: "Web Development",
-            price: {
-                currency: "$",
-                amount: "99"
-            },
-            date_released: "2022-12-31",
-            finish: 0
-        },
-        {
-            id: 5,
-            title: "The Complete 2023 Web Development Bootcamp",
-            category: "Web Development",
-            price: {
-                currency: "$",
-                amount: "99"
-            },
-            date_released: "2022-12-31",
-            finish: 1
-        },
-        {
-            id: 6,
-            title: "The Complete 2023 Web Development Bootcamp",
-            category: "Web Development",
-            price: {
-                currency: "$",
-                amount: "99"
-            },
-            date_released: "2022-12-31",
-            finish: 0
-        },
-        {
-            id: 7,
-            title: "The Complete 2023 Web Development Bootcamp",
-            category: "Web Development",
-            price: {
-                currency: "$",
-                amount: "99"
-            },
-            date_released: "2022-12-31",
-            finish: 1
-        },
-        {
-            id: 8,
-            title: "The Complete 2023 Web Development Bootcamp",
-            category: "Web Development",
-            price: {
-                currency: "$",
-                amount: "99"
-            },
-            date_released: "2022-12-31",
-            finish: 1
-        },
-        {
-            id: 9,
-            title: "The Complete 2023 Web Development Bootcamp",
-            category: "Web Development",
-            price: {
-                currency: "$",
-                amount: "99"
-            },
-            date_released: "2022-12-31",
-            finish: 0
-        },
-        {
-            id: 10,
-            title: "The Complete 2023 Web Development Bootcamp",
-            category: "Web Development",
-            price: {
-                currency: "$",
-                amount: "99"
-            },
-            date_released: "2022-12-31",
-            finish: 1
-        }
-    ]
+export const getMyCourses = async function (req,res,next) {
+    let courseList = [];
+    let index = 1;
+    for (const course_id of res.locals.authUser.myCourses) {
+        const thisCourse = await Course.findOne({_id: course_id}).lean();
+        thisCourse.index = index;
+        courseList.push(thisCourse);
+        index++;
+    }
     res.render('instructor/myCourses', {
         layout: "instructor",
-        course_list: list,
-        empty: list.length === 0,
+        courseList: courseList,
+        empty: courseList.length === 0,
         sidebar: "my-course"
     });
 }
@@ -501,3 +397,118 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
         }
     })
 });
+
+
+
+// const list = [
+//     {
+//         id: 1,
+//         title: "The Complete 2023 Web Development Bootcamp",
+//         category: "Web Development",
+//         price: {
+//             currency: "$",
+//             amount: "99"
+//         },
+//         date_released: "2022-12-31",
+//         finish: 1
+//     },
+//     {
+//         id: 2,
+//         title: "The Complete 2023 Web Development Bootcamp",
+//         category: "Web Development",
+//         price: {
+//             currency: "$",
+//             amount: "99"
+//         },
+//         date_released: "2022-12-31",
+//         finish: 0
+//     },
+//     {
+//         id: 3,
+//         title: "The Complete 2023 Web Development Bootcamp",
+//         category: "Web Development",
+//         price: {
+//             currency: "$",
+//             amount: "99"
+//         },
+//         date_released: "2022-12-31",
+//         finish: 1
+//     },
+//     {
+//         id: 4,
+//         title: "The Complete 2023 Web Development Bootcamp",
+//         category: "Web Development",
+//         price: {
+//             currency: "$",
+//             amount: "99"
+//         },
+//         date_released: "2022-12-31",
+//         finish: 0
+//     },
+//     {
+//         id: 5,
+//         title: "The Complete 2023 Web Development Bootcamp",
+//         category: "Web Development",
+//         price: {
+//             currency: "$",
+//             amount: "99"
+//         },
+//         date_released: "2022-12-31",
+//         finish: 1
+//     },
+//     {
+//         id: 6,
+//         title: "The Complete 2023 Web Development Bootcamp",
+//         category: "Web Development",
+//         price: {
+//             currency: "$",
+//             amount: "99"
+//         },
+//         date_released: "2022-12-31",
+//         finish: 0
+//     },
+//     {
+//         id: 7,
+//         title: "The Complete 2023 Web Development Bootcamp",
+//         category: "Web Development",
+//         price: {
+//             currency: "$",
+//             amount: "99"
+//         },
+//         date_released: "2022-12-31",
+//         finish: 1
+//     },
+//     {
+//         id: 8,
+//         title: "The Complete 2023 Web Development Bootcamp",
+//         category: "Web Development",
+//         price: {
+//             currency: "$",
+//             amount: "99"
+//         },
+//         date_released: "2022-12-31",
+//         finish: 1
+//     },
+//     {
+//         id: 9,
+//         title: "The Complete 2023 Web Development Bootcamp",
+//         category: "Web Development",
+//         price: {
+//             currency: "$",
+//             amount: "99"
+//         },
+//         date_released: "2022-12-31",
+//         finish: 0
+//     },
+//     {
+//         id: 10,
+//         title: "The Complete 2023 Web Development Bootcamp",
+//         category: "Web Development",
+//         price: {
+//             currency: "$",
+//             amount: "99"
+//         },
+//         date_released: "2022-12-31",
+//         finish: 1
+//     }
+// ]
