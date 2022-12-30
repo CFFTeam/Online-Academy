@@ -11,7 +11,7 @@ const courseSchema = new mongoose.Schema({
   sale: { type: String },
   finish: { type: Number },
   category: { type: String },
-  subcategory: [{ type: String }],
+  subcategory: [String],
   details: { type: String },
   date: { type: String },
   lectures: {
