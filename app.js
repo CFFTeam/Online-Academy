@@ -94,7 +94,8 @@ app.use("/course", CourseDetailRoutes);
 app.use("/admin", AdminRoutes);
 
 app.use('*', (req, res, next) => {
-  res.render('errors/404', { layout: 'errors' });
+  res.locals.handlebars = 'errors/404';
+  res.render(res.locals.handlebars, { layout: 'errors' });
 });
 
 // error handling middleware

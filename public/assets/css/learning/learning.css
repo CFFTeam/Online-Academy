@@ -8,18 +8,128 @@
 }
 
 .course-learning > .course-lectures {
-    border-left: 1px solid #E6E6E6;
+    border-left: 1px solid #e6e6e6;
     width: 25vw;
 }
 
 .course-learning > .course-lectures > .lecture-heading {
-    background-color: #F5F5F5;
-    border-bottom: 1px solid #E6E6E6;
-    padding: 1rem;
+    padding: 3rem 5rem;
 }
 
 .course-learning > .course-lectures > .lecture-heading > .title {
-    color: #38AF7D;
+    display: block;
+    color: #38af7d;
+    stroke: #45c790;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.course-learning > .course-lectures > .lecture-heading > .progress-bar-group {
+    margin-top: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.course-learning
+    > .course-lectures
+    > .lecture-heading
+    > .progress-bar-group
+    > .progress-bar-status {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #777777;
+}
+
+.course-learning
+    > .course-lectures
+    > .lecture-heading
+    > .progress-bar-group
+    > .progress-bar {
+    height: 0.25rem;
+    overflow: hidden;
+    background-color: #f3f3f3;
+}
+
+.course-learning
+    > .course-lectures
+    > .lecture-heading
+    > .progress-bar-group
+    > .progress-bar
+    > .progress-bar-fill {
+    background-color: #00c24e;
+    height: 0.25rem;
+    width: 5%;
+}
+
+.course-learning > .course-lectures > .course-lectures-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.6rem;
+    height: 100%;
+    margin: 0rem 3rem;
+    padding: 1rem 0rem;
+    border-top: 0.1rem solid #ededed;
+    overflow-y: auto;
+}
+
+.course-learning
+    > .course-lectures
+    > .course-lectures-list
+    > .course-lectures-item {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 0rem 0.5rem;
+}
+
+.course-learning
+    > .course-lectures
+    > .course-lectures-list
+    > .course-lectures-item
+    > .section-heading {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.course-learning
+    > .course-lectures
+    > .course-lectures-list
+    > .course-lectures-item
+    > .section-heading
+    > .section-title {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    gap: 0.8rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.course-learning
+    > .course-lectures
+    > .course-lectures-list
+    > .course-lectures-item
+    > .section-heading
+    > .section-title
+    > .section-index {
+    font-size: 1.8rem;
+    line-height: 1.4em;
+}
+
+.course-learning
+    > .course-lectures
+    > .course-lectures-list
+    > .course-lectures-item
+    > .section-heading
+    > .section-title
+    > .section-name {
+    line-height: 1.8em;
 }
 
 .course-learning + .footer {

@@ -5,11 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ERROR</title>
+    {{#if (eq handlebars "errors/404")}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" style="text/css" />
+    <link rel="stylesheet" href="/assets/css/errors/404.css" />
+    {{else}}
     <link rel="stylesheet" href="/assets/css/errors/500.css" />
+    {{/if}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.1.1/gsap.min.js"></script>
 </head>
 <body>
     {{{body}}}
+    {{#if (eq handlebars "errors/404")}}
+    <script src="/assets/js/errors/404.js"></script>
+    {{else}}
     <script src="/assets/js/errors/500.js"></script>
     <script>console.error(`{{{stack_error}}}`);</script>
+    {{/if}}
 </body>
 </html>

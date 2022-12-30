@@ -9,8 +9,36 @@ import mongoose from "mongoose";
 import Course from "../models/courseModel.js";
 import Category from "../models/categoryModel.js";
 
+
+export const getDashboard = async (req, res, next) => {
+    res.render('instructor/others', {
+        layout: "instructor",
+        sidebar: "dash-board"
+    });
+}
+export const getEnrolledCourses = async (req, res, next) => {
+    res.render('instructor/others', {
+        layout: "instructor",
+        sidebar: "enrolled-courses"
+    });
+}
+export const getWatchHistory = async (req, res, next) => {
+    res.render('instructor/others', {
+        layout: "instructor",
+        sidebar: "watch-history"
+    });
+}
+export const getSales = async (req, res, next) => {
+    res.render('instructor/others', {
+        layout: "instructor",
+        sidebar: "sales"
+    });
+}
+export const getInstructorProfile = async (req, res, next) => {
+}
+
+
 export const getMyCourses = function (req,res,next) {
-    //res.render('instructor/my-courses.hbs');
     const list = [
         {
             id: 1,
@@ -126,28 +154,32 @@ export const getMyCourses = function (req,res,next) {
     res.render('instructor/myCourses', {
         layout: "instructor",
         course_list: list,
-        empty: list.length === 0
-});
+        empty: list.length === 0,
+        sidebar: "my-course"
+    });
 }
 
-export const renderCourseDescription = catchAsync(async (req,res) => {
+export const getCourseDescription = catchAsync(async (req,res) => {
     const Categories = await Category.find({}).lean();
     res.render('instructor/addCourseDescription', {
         layout: "instructor",
         categoryList: Categories,
-        js_categories: JSON.stringify(Categories)
-        }
+        js_categories: JSON.stringify(Categories),
+        url: req.originalUrl,
+        sidebar: "my-course"
+        },
     );
 });
 
-export const renderCourseContent = catchAsync(async (req,res) => {
+export const getCourseContent = catchAsync(async (req,res) => {
     res.locals.handlebars = "instructor/addCourseContent";
     res.locals.layout = "instructor.hbs";
     // if haven't registered course yet
     if (!req.query.course) {
         return res.render('instructor/addCourseContent',{
             layout: res.locals.layout,
-            message: "You need to add your course description first. Please try again!"
+            message: "You need to add your course description first. Please try again!",
+            sidebar: "my-course"
         });
         //res.redirect('/instructor/add-course-description');
     }
@@ -189,7 +221,8 @@ export const renderCourseContent = catchAsync(async (req,res) => {
         section_id: section_id,
         lesson: {
             title: foundLesson.title
-        }
+        },
+        sidebar: "my-course"
     });
 });
 
@@ -226,7 +259,8 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                 return res.render('instructor/addCourseContent', {
                     layout: "instructor",
                     course_id: req.query.course,
-                    message: "success"
+                    message: "success",
+                    sidebar: "my-course"
                 })
             }
              // if user edit  section
@@ -240,7 +274,8 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                 return res.render('instructor/addCourseContent', {
                     layout: "instructor",
                     course_id: req.query.course,
-                    message: "success"
+                    message: "success",
+                    sidebar: "my-course"
                 })
             }
             // if user delete section
@@ -253,7 +288,8 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                 return res.render('instructor/addCourseContent', {
                     layout: "instructor",
                     course_id: req.query.course,
-                    message: "success"
+                    message: "success",
+                    sidebar: "my-course"
                 })
             }
             // if user edit course content
@@ -275,7 +311,8 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                     return res.render('instructor/addCourseContent', {
                         layout: "instructor",
                         course_id: req.query.course,
-                        message: "success"
+                        message: "success",
+                        sidebar: "my-course"
                     })
                 }
                 // if user add new lessons
@@ -300,7 +337,8 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                         return res.render('instructor/addCourseContent', {
                             layout: "instructor",
                             course_id: req.query.course,
-                            message: "This lesson already exists. Please choose a different lesson title."
+                            message: "This lesson already exists. Please choose a different lesson title.",
+                            sidebar: "my-course"
                         })
                     }
                     thisSection.lessons.push(newLesson);
@@ -309,7 +347,8 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                     return res.render('instructor/addCourseContent', {
                         layout: "instructor",
                         course_id: req.query.course,
-                        message: "success"
+                        message: "success",
+                        sidebar: "my-course"
                     })
                 }
                
@@ -327,7 +366,8 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                 return res.render('instructor/addCourseContent', {
                     layout: "instructor",
                     course_id: req.query.course,
-                    message: "success"
+                    message: "success",
+                    sidebar: "my-course"
                 })
             }
              // if user finish the course
