@@ -6,7 +6,7 @@ import catchAsync from "../utilities/catchAsync.js";
 
 
 export const shoppingCartPage = catchAsync(async (req, res, next) => {
-  res.locals.handlebars = "payment/shoppingCart";
+  res.locals.handlebars = "payment/payment";
 
   let shoppingCart = null;
   let course = []
@@ -17,8 +17,8 @@ export const shoppingCartPage = catchAsync(async (req, res, next) => {
 
   if (shoppingCart && shoppingCart.length > 0) {
     for (const sc of shoppingCart) {
-      const courses = await Course.findOne({ _id: sc.course_id }).lean();
-      const courseDetails = await CourseDetails.findOne({ course_id: sc.course_id }).lean();
+      const courses = await Course.findOne({ _id: sc.course_id });
+      const courseDetails = await CourseDetails.findOne({ course_id: sc.course_id });
 
 
       course.push({
