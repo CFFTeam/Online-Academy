@@ -41,11 +41,10 @@ export const handleLoginForm = catchAsync(async (req, res, next) => {
     phoneNumber: foundUser.phoneNumber,
     birthday: foundUser.birthday,
     address: foundUser.address,
-    active: foundUser.active
+    active: foundUser.active,
+    myCourses: foundUser.myCourses,
   }
-
-  // const url = req.session.retUrl || '/';
-  // res.redirect(url);
+  if (foundUser.role === 'instructor') return res.redirect('/instructor/my-courses');
   res.render("auth/login.hbs", { layout: "auth.hbs", message: "success" });
 });
 
