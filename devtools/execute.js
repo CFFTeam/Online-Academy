@@ -21,7 +21,8 @@ const scripts = {
 
             courseModel.deleteMany()
             .then(() => console.log('courses: eject successfully'))
-            .catch(err => console.log(err));
+            .catch(err => console.log(err))
+            .finally(() => mongoose.connection.close());
 
         }
     },
@@ -32,8 +33,8 @@ const scripts = {
 
             courseDetailsModel.deleteMany()
             .then(() => console.log('courses details: eject successfully'))
-            .catch(err => console.log(err));
-
+            .catch(err => console.log(err))
+            .finally(() => mongoose.connection.close());
         }
     }
 };
