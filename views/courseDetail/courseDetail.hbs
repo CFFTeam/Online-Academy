@@ -34,7 +34,7 @@
         >{{courseDetail.price}} $</h1>
         <div class="order">
           <form action="/payment" method="post">
-            <input hidden name='course_id' value='{{courseDetail.course_id}}'/>
+            <input hidden name='course_id' value='{{courseRating.course_id}}'/>
             <input type="submit" class="add-to-cart" value="Add to cart"/>
           </form>
           <form action="#">

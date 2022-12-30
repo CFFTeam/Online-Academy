@@ -18,7 +18,7 @@ export const shoppingCartPage = catchAsync(async (req, res, next) => {
   if (shoppingCart && shoppingCart.length > 0) {
     for (const sc of shoppingCart) {
       const courses = await Course.findOne({ _id: sc.course_id }).lean();
-      const courseDetails = await CourseDetails.findOne({ course_id: sc.course_id }).lean();
+      const courseDetails = await CourseDetails.findOne({ course_id: sc.course_id });
 
 
       course.push({
@@ -41,7 +41,7 @@ export const shoppingCartPage = catchAsync(async (req, res, next) => {
 
 export const updateShoppingCart = catchAsync(async (req, res, next) => {
   if (req.body.deleteItem == "delete") {
-    await ShoppingCart.deleteOne({ _id: req.body.id }).lean();
+    await ShoppingCart.deleteOne({ _id: req.body.id });
     res.locals.cart_number = res.locals.cart_number - 1;
   }
   else if (req.body.deleteItem == "checkout") {
@@ -49,11 +49,11 @@ export const updateShoppingCart = catchAsync(async (req, res, next) => {
       const shoppingCart = Object.values(await ShoppingCart.find({ user_id: res.locals.authUser._id }));
       if (shoppingCart && shoppingCart.length > 0) {
         for (const sc of shoppingCart) {
-          const user = await User.findOne({ _id: res.locals.authUser._id }).lean();
+          const user = await User.findOne({ _id: res.locals.authUser._id });
           await User.updateOne(
             { _id: sc.user_id },
             { myCourses: [...user.myCourses, sc.course_id] })
-          await ShoppingCart.deleteOne({ _id: sc._id }).lean();
+          await ShoppingCart.deleteOne({ _id: sc._id });
         }
       }
     }
@@ -66,13 +66,13 @@ export const updateShoppingCart = catchAsync(async (req, res, next) => {
       return res.redirect(`${backURL}?message=Please login to continue}`);
 
     const shopping_cart = { course_id: course_id, user_id: res.locals.authUser._id };
-    const prev_course = await ShoppingCart.findOne(shopping_cart).lean();
+    const prev_course = await ShoppingCart.findOne(shopping_cart);
 
     if (prev_course) {
       return res.redirect(`${backURL}?message=Course already in cart`);
     }
 
-    await ShoppingCart.create(shopping_cart).lean();
+    await ShoppingCart.create(shopping_cart);
 
     return res.redirect(`${backURL}?message=Course added to cart`);
   }
