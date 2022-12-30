@@ -47,6 +47,7 @@ export const getInstructorProfile = async (req, res, next) => {
 
 
 export const getMyCourses = async function (req,res,next) {
+
     let courseList = [];
     let index = 1;
     for (const course_id of res.locals.authUser.myCourses) {
@@ -400,115 +401,93 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
 
 
 
-// const list = [
-//     {
-//         id: 1,
-//         title: "The Complete 2023 Web Development Bootcamp",
-//         category: "Web Development",
-//         price: {
-//             currency: "$",
-//             amount: "99"
-//         },
-//         date_released: "2022-12-31",
-//         finish: 1
-//     },
-//     {
-//         id: 2,
-//         title: "The Complete 2023 Web Development Bootcamp",
-//         category: "Web Development",
-//         price: {
-//             currency: "$",
-//             amount: "99"
-//         },
-//         date_released: "2022-12-31",
-//         finish: 0
-//     },
-//     {
-//         id: 3,
-//         title: "The Complete 2023 Web Development Bootcamp",
-//         category: "Web Development",
-//         price: {
-//             currency: "$",
-//             amount: "99"
-//         },
-//         date_released: "2022-12-31",
-//         finish: 1
-//     },
-//     {
-//         id: 4,
-//         title: "The Complete 2023 Web Development Bootcamp",
-//         category: "Web Development",
-//         price: {
-//             currency: "$",
-//             amount: "99"
-//         },
-//         date_released: "2022-12-31",
-//         finish: 0
-//     },
-//     {
-//         id: 5,
-//         title: "The Complete 2023 Web Development Bootcamp",
-//         category: "Web Development",
-//         price: {
-//             currency: "$",
-//             amount: "99"
-//         },
-//         date_released: "2022-12-31",
-//         finish: 1
-//     },
-//     {
-//         id: 6,
-//         title: "The Complete 2023 Web Development Bootcamp",
-//         category: "Web Development",
-//         price: {
-//             currency: "$",
-//             amount: "99"
-//         },
-//         date_released: "2022-12-31",
-//         finish: 0
-//     },
-//     {
-//         id: 7,
-//         title: "The Complete 2023 Web Development Bootcamp",
-//         category: "Web Development",
-//         price: {
-//             currency: "$",
-//             amount: "99"
-//         },
-//         date_released: "2022-12-31",
-//         finish: 1
-//     },
-//     {
-//         id: 8,
-//         title: "The Complete 2023 Web Development Bootcamp",
-//         category: "Web Development",
-//         price: {
-//             currency: "$",
-//             amount: "99"
-//         },
-//         date_released: "2022-12-31",
-//         finish: 1
-//     },
-//     {
-//         id: 9,
-//         title: "The Complete 2023 Web Development Bootcamp",
-//         category: "Web Development",
-//         price: {
-//             currency: "$",
-//             amount: "99"
-//         },
-//         date_released: "2022-12-31",
-//         finish: 0
-//     },
-//     {
-//         id: 10,
-//         title: "The Complete 2023 Web Development Bootcamp",
-//         category: "Web Development",
-//         price: {
-//             currency: "$",
-//             amount: "99"
-//         },
-//         date_released: "2022-12-31",
-//         finish: 1
-//     }
-// ]
+    // const list = [
+    //     {
+    //         index: 1,
+    //         name: "MERN Stack Real Time Chat App - React , Node , Socket IO",
+    //         category: "Web Development",
+    //         price: "209",
+    //         date: "2022-12-31",
+    //         finish: 1
+    //     },
+    //     {
+    //         index: 2,
+    //         name: "React - The Complete Guide (incl Hooks, React Router, Redux)",
+    //         category: "Web Development",
+    //         price: "99",
+    //         date: "2022-12-31",
+    //         finish: 0
+    //     },
+    //     {
+    //         index: 3,
+    //         name: "React - The Complete Guide (incl Hooks, React Router, Redux)",
+    //         category: "Web Development",
+    //         price: "150",
+    //         date: "2022-12-31",
+    //         finish: 1
+    //     },
+    //     {
+    //         index: 4,
+    //         name: "React - The Complete Guide (incl Hooks, React Router, Redux)",
+    //         category: "Web Development",
+    //         price: "80",
+    //         date: "2022-12-31",
+    //         finish: 0
+    //     },
+    //     {
+    //         index: 5,
+    //         name: "The Complete 2023 Web Development Bootcamp",
+    //         category: "Web Development",
+    //         price: "90",
+    //         date: "2022-12-31",
+    //         finish: 1
+    //     },
+    //     {
+    //         index: 6,
+    //         name: "The Complete 2023 Web Development Bootcamp",
+    //         category: "Web Development",
+    //         price: "90",
+    //         date: "2022-12-31",
+    //         finish: 1
+    //     },
+    //     {
+    //         index: 7,
+    //         name: "The Complete 2023 Web Development Bootcamp",
+    //         category: "Web Development",
+    //         price: "90",
+    //         date: "2022-12-31",
+    //         finish: 1
+    //     },
+    //     {
+    //         index: 8,
+    //         name: "The Complete 2023 Web Development Bootcamp",
+    //         category: "Web Development",
+    //         price: "90",
+    //         date: "2022-12-31",
+    //         finish: 1
+    //     },
+    //     {
+    //         index: 9,
+    //         name: "The Complete 2023 Web Development Bootcamp",
+    //         category: "Web Development",
+    //         price: "90",
+    //         date: "2022-12-31",
+    //         finish: 1
+    //     },
+    //     {
+    //         index: 10,
+    //         name: "The Complete 2023 Web Development Bootcamp",
+    //         category: "Web Development",
+    //         price: "90",
+    //         date: "2022-12-31",
+    //         finish: 1
+    //     },
+    //     {
+    //         index: 11,
+    //         name: "The Complete 2023 Web Development Bootcamp",
+    //         category: "Web Development",
+    //         price: "90",
+    //         date: "2022-12-31",
+    //         finish: 1
+    //     }
+    // ]
