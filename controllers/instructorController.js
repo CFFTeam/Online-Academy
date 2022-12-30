@@ -47,7 +47,6 @@ export const getInstructorProfile = async (req, res, next) => {
 
 
 export const getMyCourses = async function (req,res,next) {
-
     let courseList = [];
     let index = 1;
     for (const course_id of res.locals.authUser.myCourses) {
@@ -130,6 +129,7 @@ export const editCourseDescription = catchAsync(async (req,res, next) => {
                     finish: 0,
                     category: req.body.course_category,
                     subcategory: [req.body.course_sub_category],
+                    author: res.locals.authUser.name,
                     date: new Date().toJSON(),
                     lectures: {
                         total: 0,
