@@ -17,8 +17,12 @@
             </div>
           <div class="form-group-description">
                 <label for="txtCourseLanguage" class="course-language">Select language</label>
-                <select name="course_language" id="txtCourseLanguage"  placeholder="Enter your course title">
-                    <option value="" disabled selected hidden>{{#if course.name}}English{{else}}Choose your language{{/if}}</option>
+                <select style = "{{#if course.name}}color: black;{{course.name}}{{/if}}" name="course_language" id="txtCourseLanguage"  placeholder="Enter your course title">
+                    {{#if course.name}}
+                     <option class = "black-text" value="" disabled selected hidden>English</option>
+                     {{else}}
+                     <option value="" disabled selected hidden>Choose your language</option>
+                    {{/if}}
                     <option value="Vietnamese">Vietnamese</option>
                     <option value="English">English</option>
                     <option value="Chinese">Chinese</option>
@@ -31,7 +35,7 @@
         <div class = "course-information course-language-category">
             <div class="form-group-description">
                 <label for="txtCourseCategory" class="course-category">Select course category</label>
-                 <select name="course_category" id="txtCourseCategory">
+                 <select style = "{{#if course.name}}color: black;{{course.name}}{{/if}}" name="course_category" id="txtCourseCategory">
                     <option value="" disabled selected hidden>{{#if course.category}}{{course.category}}{{else}}Choose course category{{/if}}</option>
                     {{#each this.categoryList}}
                         <option value='{{title}}'>{{title}}</option>
@@ -40,7 +44,7 @@
             </div>
              <div class="form-group-description">
                 <label for="txtCourseSubCategory" class="course-sub-category">Select course sub-category</label>
-                <select name="course_sub_category" id="txtCourseSubCategory">
+                <select style = "{{#if course.name}}color: black;{{course.name}}{{/if}}" name="course_sub_category" id="txtCourseSubCategory">
                     <option value="" disabled selected hidden>
                         {{#if course.subcategory}}
                         {{#each course.subcategory}}{{this}}{{/each}}
@@ -59,7 +63,7 @@
             <div class="form-group-description">
                 <label class="course-pricing">Pricing</label>
                 <div class = "course-pricing-info">
-                    <select name="price_currency" id="txtCoursePricingCurrency">
+                    <select style = "{{#if course.name}}color: black;{{course.name}}{{/if}}" name="price_currency" id="txtCoursePricingCurrency">
                         <option value="" disabled selected hidden>{{#if course.currency}}{{course.currency}}{{else}}Select currency{{/if}}</option>
                         <option value="VND">VND</option>
                         <option value="USD">USD</option>
@@ -105,14 +109,20 @@
             <button type="submit" name = "requestActionInDescription" value = "save_course_description">SAVE</button>
             <button type="submit" name = "requestActionInDescription" value = "delete_course_description">DELETE</button>
         </div>
+     {{!-- <input name="requestActionInDescription" value = "save_course_description" type="submit" hidden > --}}
     </form>
 </div>
 
 <script>
     // display message 
-    if ("{{message}}" == "success")
+    if ("{{message}}" == "successAdded")
     {
         alert("Your course was added successfully...");
+        window.location.replace("http://localhost:5000/instructor/add-course-description/?course={{course_id}}");
+    }
+    else if ("{{message}}" == "successSaved")
+    {
+        alert("Your change was saved successfully...");
         window.location.replace("http://localhost:5000/instructor/add-course-description/?course={{course_id}}");
     }
     // display subcategory

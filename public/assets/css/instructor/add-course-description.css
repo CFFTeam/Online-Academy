@@ -239,3 +239,9 @@ div.save_description > button:nth-child(2):hover
     background-color: transparent;
     color: red;
 }
+
+
+.black-text
+{
+  color: #000;
+}

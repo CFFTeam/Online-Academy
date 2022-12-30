@@ -232,13 +232,37 @@ export const editCourseDescription = catchAsync(async (req,res) => {
                 return res.render('instructor/addCourseDescription',{
                     layout: res.locals.layout,
                     course_id: newCourse._id,
-                    message: "success",
+                    message: "successAdded",
                     sidebar: "my-course"
                 });
             }
           // if registered course => edit course description
             else {
-                console.log("already have this course");
+                if (req.body.requestActionInDescription == "save_course_description") { // save course description
+                const thisCourse = await Course.findOne({_id: req.query.course});
+                let subcategory = [];
+                if (req.body.course_sub_category !== null && req.body.course_sub_category !== undefined) {
+                    subcategory = [...thisCourse.subcategory, req.body.course_sub_category];
+                }
+                else subcategory = [...thisCourse.subcategory];
+                await Course.findByIdAndUpdate(req.query.course, {
+                    name: req.body.course_title,
+                    details: req.body.full_description,
+                    description: req.body.short_description,
+                    currency: req.body.price_currency,
+                    price: req.body.price_amount,
+                    category: req.body.course_category,
+                    subcategory: subcategory 
+                })
+                return res.render('instructor/addCourseDescription',{
+                    layout: res.locals.layout,
+                    course_id: req.query.course,
+                    message: "successSaved",
+                    sidebar: "my-course"
+                });
+               }
+               else if (req.body.requestActionInDescription == "delete_course_description") { // delete 
+               }
             }
         }
     });
