@@ -87,7 +87,7 @@ input[type="checkbox"].checkbox-input-cs:focus + label > span {
     content: "";
     position: absolute;
     top: .54em;
-    left: .15em;
+    left: .16em;
     border-right: 2.5px solid transparent;
     border-bottom: 2.5px solid transparent;
     -webkit-transform: rotate(45deg);
