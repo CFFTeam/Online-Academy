@@ -1,9 +1,14 @@
+
+*{
+    font-family: Montserrat;
+}
 .nav-item:hover {
     background: #E7FFF3;
     border-left: 0.4rem solid #00A551;
     cursor: pointer;
     
 }
+
 
 .nav-item h2:hover {
     color: #00A551;
@@ -18,7 +23,7 @@
     color: #00A551;
 }
 .icon {
-    fill: #ABABAB
+    fill: #ABABAB;
 }
 
 .nav-item:hover .icon {

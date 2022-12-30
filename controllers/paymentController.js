@@ -18,7 +18,7 @@ export const shoppingCartPage = catchAsync(async (req, res, next) => {
   if (shoppingCart && shoppingCart.length > 0) {
     for (const sc of shoppingCart) {
       const courses = await Course.findOne({ _id: sc.course_id }).lean();
-      const courseDetails = await CourseDetails.findOne({ course_id: sc.course_id }).lean();
+      const courseDetails = await CourseDetails.findOne({ course_id: sc.course_id });
 
 
       course.push({
@@ -31,7 +31,7 @@ export const shoppingCartPage = catchAsync(async (req, res, next) => {
         author: courses.author,
         date: courses.date.slice(0, courses.date.indexOf("T")),
         price: courses.price
-      });
+      }).lean();
     }
   }
 
