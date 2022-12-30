@@ -6,7 +6,7 @@ import catchAsync from "../utilities/catchAsync.js";
 
 
 export const shoppingCartPage = catchAsync(async (req, res, next) => {
-  res.locals.handlebars = "payment/shoppingCart";
+  res.locals.handlebars = "payment/payment";
 
   let shoppingCart = null;
   let course = []
