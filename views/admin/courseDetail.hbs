@@ -1,0 +1,64 @@
+<div
+  class="card border-0"
+  style="width:98%; justify-content: center; margin: 2rem auto;"
+>
+
+  <h1 style="font-weight:700; margin-bottom: 3rem;">Course Detail</h1>
+  <img src={{course.img}} style="max-width: 50%; height: auto; margin: 1rem auto;"/>
+  <table class="not" style="border-spacing: 0 1rem; width: 50%; margin: 1rem auto;">
+    <tr>
+      <td><b>ID: </b></td>
+      <td>{{course._id}}</td>
+    </tr>
+    <tr>
+      <td><b>Name:</b></td>
+      <td>{{course.name}}</td>
+    </tr>
+    <tr>
+      <td><b>Category: </b></td>
+      <td>{{course.category}}</td>
+    </tr>
+    <tr>
+      <td><b>Subcategory: </b></td>
+      <td>{{course.subcategory}}</td>
+    </tr>
+    <tr>
+      <td><b>Price:</b> </td>
+      <td>{{course.price}} $</td>
+    </tr>
+    <tr>
+      <td><b>Discount:</b> </td>
+      <td>{{course.sale}} $</td>
+    </tr>
+    <tr>
+      <td><b>Viewers:</b> </td>
+      <td>{{courseDetail.viewer}} </td>
+    </tr>
+    <tr>
+      <td><b>Number reviews:</b> </td>
+      <td>{{courseDetail.num_reviews}} </td>
+    </tr>
+    <tr>
+      <td><b>Rate:</b> </td>
+      <td
+        style="display: flex; align-items: center; gap: 1rem;"
+      >
+        {{#each courseDetail.integerPart}}
+          <div>
+            <img src="/assets/svg/admin/star.svg" alt="star-icon" />
+          </div>
+        {{/each}}
+        {{#if courseDetail.isRemainder}}
+          <div>
+            <img src="/assets/svg/admin/haft-star.svg" alt="star-icon" />
+          </div>
+        {{/if}}
+        <div style="font-size: 1.5rem; font-weight: 500;">{{courseDetail.avg_rating}}</div>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Date updated:</b> </td>
+      <td>{{course.date}} </td>
+    </tr>
+  </table>
+</div>

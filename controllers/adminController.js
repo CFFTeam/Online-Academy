@@ -1,5 +1,6 @@
 import catchAsync from "../utilities/catchAsync.js";
 import Course from "../models/courseModel.js";
+import CourseDetail from "../models/courseDetailsModel.js";
 import Category from "../models/categoryModel.js";
 
 import url from "url";
@@ -82,8 +83,23 @@ export const editCourses = catchAsync(async (req, res) => {
   res.redirect("/admin/courses");
 });
 
+export const viewMoreCourse = catchAsync(async (req, res) => {
+  const course= await Course.findOne({ _id: req.params.id }).lean();
+  const courseDetail = await CourseDetail.findOne({ course_id: req.params.id }).lean();
+  courseDetail["integerPart"] = Array(Math.floor(courseDetail.avg_rating)).fill('0');
+  courseDetail["isRemainder"] = courseDetail.avg_rating - Math.floor(courseDetail.avg_rating) !==0;
+  course.date = course.date.slice(0,10);
+  res.render("admin/courseDetail.hbs", {
+    course: course,
+    courseDetail: courseDetail,
+    layout: "admin.hbs",
+  });
+});
+
+
 export const deleteCourses = catchAsync(async (req, res) => {
-  const deleteCourses = await Course.deleteOne({ _id: req.params.id }).lean();
+  await Course.deleteOne({ _id: req.params.id }).lean();
+  await CourseDetail.deleteOne({ course_id: req.params.id }).lean();
   res.redirect("/admin/courses");
 });
 

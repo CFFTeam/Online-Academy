@@ -57,18 +57,19 @@
           <td class="edit" style="text-align: center; padding: 0 0.2rem; ">
             <img src="/assets/svg/admin/coupon.svg" alt="coupon-icon" />
           </td>
-          <td
-            style="text-align: center; padding: 0 0.2rem;"
-            data-toggle="modal"
-            data-target="#myModal"
-          >
-            <img src="/assets/svg/admin/info.svg" alt="info-icon" />
+          <td class="viewmore" style="text-align: center; padding: 0;">
+            <a href="/admin/courses/viewmore/{{_id}}">
+              <img src="/assets/svg/admin/info.svg" alt="more-icon" />
+            </a>
           </td>
 
           <td class="delete" style="text-align: center; padding: 0;">
-            <a href="/admin/courses/delete/{{_id}}">
-              <img src="/assets/svg/admin/delete.svg" alt="delete-icon" />
-            </a>
+            <form action="/admin/courses/delete/{{_id}}" method="post">
+              <button type="submit" style="border: none;">
+                <img src="/assets/svg/admin/delete.svg" alt="delete-icon" />
+              </button>
+            </form>
+
           </td>
 
         </tr>
@@ -76,58 +77,6 @@
 
   </table>
 
-    <div class="modal" id="myModal">
-    <div
-      class="modal-dialog"
-      style="top: 50% !important; transform: translateY(-70%) !important"
-    >
-      <div class="modal-content">
-
-        <!-- Modal Header -->
-
-        <!-- Modal body -->
-        <div class="modal-body" style="margin: 3rem auto 1rem auto; padding: 0;">
-          <table class="not">
-            <tr>
-              <td><b>ID: </b></td>
-              <td>1 </td>
-            </tr>
-            <tr>
-              <td><b>Name:</b></td>
-              <td>Python beginner to master </td>
-            </tr>
-            <tr>
-              <td><b>Category: </b></td>
-              <td>Web App Development </td>
-            </tr>
-            <tr>
-              <td><b>Teacher:</b> </td>
-              <td>Jonas Schema </td>
-            </tr>
-            <tr>
-              <td><b>Student quantity</b>: </td>
-              <td>172.867</td>
-            </tr>
-            <tr>
-              <td><b>Rate:</b> </td>
-              <td
-                style="display: flex; align-items: center; justify-content: space-between;"
-              >
-                <div>4.7</div>
-                {{#times 5}}
-                  <div>
-                    <img src="/assets/svg/admin/star.svg" alt="star-icon" />
-                  </div>
-                {{/times}}
-                <div>(15.279)</div>
-              </td>
-            </tr>
-          </table>
-        </div>
-
-      </div>
-    </div>
-  </div>
   <script>
     $('#course').on('click','.edit',function() { 
       const id=$(this).siblings('.id').text();
