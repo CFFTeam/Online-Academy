@@ -49,9 +49,11 @@
         {{#if isEmpty}}
 
           <td style="text-align: center; padding: 0 1rem;">
-            <a href="categories/delete/{{_id}}">
-              <img src="/assets/svg/admin/delete.svg" alt="delete-icon" />
-            </a>
+            <form action="/admin/categories/delete/{{_id}}" method="post">
+              <button type="submit" style="border: none;">
+                <img src="/assets/svg/admin/delete.svg" alt="delete-icon" />
+              </button>
+            </form>
           </td>
         {{else}}
           <td
