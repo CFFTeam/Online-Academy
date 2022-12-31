@@ -284,7 +284,7 @@ export const editCourseDescription = catchAsync(async (req, res, next) => {
                     sidebar: "my-course"
                 });
             }
-            // if registered course => edit course description
+          // if registered course => edit course description
             else {
                 if (req.body.requestActionInDescription == "save_course_description") {
                     // save course description
@@ -315,25 +315,20 @@ export const editCourseDescription = catchAsync(async (req, res, next) => {
                         sidebar: "my-course"
                     });
                 }
- else if (
-                    req.body.requestActionInDescription ==
-                    "delete_course_description"
-                ) {
-                    // delete
-                    // delete this course
+                else if (req.body.requestActionInDescription == "delete_course_description") { // delete this course
                     await Course.deleteOne({ _id: req.query.course });
                     // delete course_id in course detail
                     await CourseDetail.deleteOne({
                         course_id: req.query.course
                     });
                     // delete course_id in my_course field
-                    // const thisInstructor = await User.findOne({_id: res.locals.authUser._id});
-                    // const myCourses = thisInstructor.myCourses;
-                    // const newCourseList = myCourses.filter((course_id) => {
-                    //     return course_id != req.query.course;
-                    // })
-                    // thisInstructor.myCourses = newCourseList;
-                    // await thisInstructor.save();
+                    const thisInstructor = await User.findOne({_id: res.locals.authUser._id});
+                    const myCourses = thisInstructor.myCourses;
+                    const newCourseList = myCourses.filter((course_id) => {
+                        return course_id != req.query.course;
+                    })
+                    thisInstructor.myCourses = newCourseList;
+                    await thisInstructor.save();
                     res.locals.authUser.myCourses = newCourseList;
                     return res.render("instructor/addCourseDescription", {
                         layout: res.locals.layout,
@@ -424,9 +419,7 @@ export const editCourseContent = catchAsync(async (req, res, next) => {
                 remove: /[*+~.()'"!:@]/g
             });
 
-            if (
-                !fs.existsSync(`public/courses/${course_slug}/${lesson_slug}`)
-            ) {
+            if (!fs.existsSync(`public/courses/${course_slug}/${lesson_slug}`)) {
                 fs.mkdirSync(`public/courses/${course_slug}/${lesson_slug}`);
             }
 
@@ -452,10 +445,8 @@ export const editCourseContent = catchAsync(async (req, res, next) => {
     upload.single("videoUploadFile")(req, res, async (err) => {
         if (err) console.error(err);
         else {
-            const course = req.course; // find course
-            const thisCourseLectures = await Course.findById({
-                _id: req.query.course
-            }).select("lectures");
+            const course = req.course// find course
+            const thisCourseLectures = await Course.findById({_id: req.query.course}).select('lectures');
             // if user add new section
             if (req.query.section == "") {
                 let thisCourseSections = thisCourseLectures.lectures.sections;
@@ -474,13 +465,11 @@ export const editCourseContent = catchAsync(async (req, res, next) => {
                     sidebar: "my-course"
                 });
             }
-            // if user edit  section
-            else if (req.body.requestActionInSection == "save_section") {
-                let thisSection = thisCourseLectures.lectures.sections.filter(
-                    (section) => {
-                        return section._id.toString() === req.query.section;
-                    }
-                );
+             // if user edit  section
+            else if (req.body.requestActionInSection  == 'save_section') {
+                let thisSection = thisCourseLectures.lectures.sections.filter((section) => {
+                    return section._id.toString() === req.query.section;
+                });
                 thisSection = thisSection[0]; // get section out of an array
                 thisSection.title = req.body.section_title;
                 await thisCourseLectures.save();
@@ -589,7 +578,7 @@ export const editCourseContent = catchAsync(async (req, res, next) => {
                     });
                 }
             }
- else if (req.body.requestAction === "delete_lesson") {
+            else if (req.body.requestAction === "delete_lesson") {
                 // if user delete a lesson
                 let thisSection = thisCourseLectures.lectures.sections.filter(
                     (section) => {
@@ -621,9 +610,7 @@ export const editCourseContent = catchAsync(async (req, res, next) => {
                     sidebar: "my-course"
                 });
             }
-            return res.redirect(
-                `/instructor/add-course-content/?course=${course._id}`
-            );
+            return res.redirect(`/instructor/add-course-content/?course=${course._id}`);
         }
     });
 });
