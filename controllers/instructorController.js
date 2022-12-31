@@ -10,6 +10,8 @@ import Course from "../models/courseModel.js";
 import CourseDetail from "../models/courseDetailsModel.js";
 import Category from "../models/categoryModel.js";
 import User from "../models/userModel.js";
+import fs from "fs";
+import slugify from "slugify";
 
 export const getDashboard = async (req, res, next) => {
     res.render('instructor/others', {
@@ -181,14 +183,24 @@ export const editCourseDescription = catchAsync(async (req,res, next) => {
     // config storage
     const storage = multer.diskStorage({
         destination: function (req, file, cb) {
-        cb(null, `./public/tmp/my-uploads`)
+            console.log("destination");
+        const slug_name = slugify(req.body.course_title,{
+            lower: true,
+            locale: "vi",
+        });
+        fs.mkdirSync(slug_name);
+        cb(null, `public/${slug_name}`)
+        console.log("request: ", req);
         },
         filename: function (req, file, cb) {
+            console.log("filename");
         cb(null, file.originalname);
+        console.log("file original name: ", file.originalname);
         }
     })   
     const upload = multer({ storage: storage });
     upload.single('courseImageFile')(req,res, async (err) => {
+        console.log("single");
         res.locals.handlebars = "instructor/addCourseDescription";
         res.locals.layout = "instructor.hbs";
         if (err) console.error(err);
@@ -213,6 +225,10 @@ export const editCourseDescription = catchAsync(async (req,res, next) => {
                     });
                 }
                 // create new course
+                const slug_name = slugify(req.body.course_title,{
+                    lower: true,
+                    locale: "vi",
+                });
                 const newCourse = await Course.create({
                     name: req.body.course_title,
                     details: req.body.full_description,
@@ -232,6 +248,7 @@ export const editCourseDescription = catchAsync(async (req,res, next) => {
                         sections: []
                     }
                 })
+                req.newCourse = newCourse;
                 // create course detail based on course id
                 await CourseDetail.create({
                     course_id: newCourse._id,
@@ -241,10 +258,10 @@ export const editCourseDescription = catchAsync(async (req,res, next) => {
                     reviews: []
                 })
                 // add new course_id in my_course field
-                const thisInstructor = await User.findOne({_id: res.locals.authUser._id});
-                thisInstructor.myCourses.push(newCourse._id);
-                await thisInstructor.save();
-                res.locals.authUser.myCourses = thisInstructor.myCourses;
+                // const thisInstructor = await User.findOne({_id: res.locals.authUser._id});
+                // thisInstructor.myCourses.push(newCourse._id);
+                // await thisInstructor.save();
+                // res.locals.authUser.myCourses = thisInstructor.myCourses;
                 return res.render('instructor/addCourseDescription',{
                     layout: res.locals.layout,
                     course_id: newCourse._id,
@@ -283,13 +300,13 @@ export const editCourseDescription = catchAsync(async (req,res, next) => {
                 // delete course_id in course detail
                 await CourseDetail.deleteOne({course_id: req.query.course});
                 // delete course_id in my_course field
-                const thisInstructor = await User.findOne({_id: res.locals.authUser._id});
-                const myCourses = thisInstructor.myCourses;
-                const newCourseList = myCourses.filter((course_id) => {
-                    return course_id != req.query.course;
-                })
-                thisInstructor.myCourses = newCourseList;
-                await thisInstructor.save();
+                // const thisInstructor = await User.findOne({_id: res.locals.authUser._id});
+                // const myCourses = thisInstructor.myCourses;
+                // const newCourseList = myCourses.filter((course_id) => {
+                //     return course_id != req.query.course;
+                // })
+                // thisInstructor.myCourses = newCourseList;
+                // await thisInstructor.save();
                 res.locals.authUser.myCourses = newCourseList;
                 return res.render('instructor/addCourseDescription',{
                     layout: res.locals.layout,
