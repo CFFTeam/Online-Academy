@@ -21,5 +21,8 @@ export default {
     for (var i = from; i < to; i += incr) accum += block.fn(i);
     return accum;
   },
-  sum: (v1, v2) => v1 + v2
+  sum: (v1, v2) => v1 + v2,
+  format_date(date) {
+    return date.slice(0,10);
+  }
 };

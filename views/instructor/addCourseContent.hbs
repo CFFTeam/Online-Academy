@@ -128,6 +128,11 @@
         alert("{{message}}");
         window.location.replace("http://localhost:5000/instructor/add-course-description");
     }
+    else if ("{{message}}" == "finish")
+    {
+        alert("Congratulations! You finally finished this course and you can update later whatever you want.");
+        window.location.replace("http://localhost:5000/instructor/add-course-content/?course={{course_id}}");
+    }
     // if failed
     else if ("{{message}}" != "success" && ("{{message}}" != "")) {
         alert("{{message}}");

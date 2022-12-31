@@ -5,11 +5,10 @@
     box-shadow: 0 0 5px rgba(0,0,0,20%);
     width: 75%;
     margin-left: 7.5rem;
-
 }
 
 .custom-table> tbody {
-    display:block;
+    display: block;
     height: 40rem;
     overflow:auto;
 }
@@ -47,12 +46,12 @@ tbody::-webkit-scrollbar {
 .table th, .table td {
   font-size: 1.6rem;
   font-family: Montserrat;
+  text-align: left;
 }
 
 .table td {
   font-weight: 500;
 }
-
 
 
 .table-striped>tbody>tr:nth-child(odd)>td, 
@@ -71,13 +70,6 @@ tbody::-webkit-scrollbar {
  {
     border: none;
  }
-
- /*  status */
- .table > tbody > tr > td > img
- {
-    margin-left: 1.2rem;
- }
-
 
 
  .my-course .heading
@@ -118,4 +110,56 @@ tbody::-webkit-scrollbar {
  .my-course .heading button
  {
     border: none;
+ }
+
+ td.title 
+ {
+   width: 55rem;
+   max-width: 55rem;
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
+ }
+
+ td.category 
+ {
+   width: 20rem;
+ }
+
+ td.price, th.price-heading
+ {
+   width: 10rem;
+ }
+
+ td.date, th.date-heading
+ {
+   width: 13rem;
+ }
+
+ td.status {
+   width: 8rem;
+   text-align: center;
+ }
+
+ td.edit-btn
+ {
+   text-align: left;
+   margin-right: auto;
+ }
+ 
+ th.index
+ {
+   width: 3rem;
+ }
+
+ 
+ th.title-heading
+ {
+   width: 55rem;
+   text-align: left;
+ }
+
+ th.category-heading 
+ {
+   width: 20rem;
  }

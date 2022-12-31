@@ -1,4 +1,4 @@
-<div class="card border-0" style="width:95%; justify-content: center; margin-left:3.3rem;">
+<div class="card border-0" style="width:98%; justify-content: center; margin: 2rem auto;">
 
   <div class="card-header border-0 bg-white pt-0 px-0">
     <div
@@ -32,9 +32,11 @@
         </td>
 
         <td style="text-align: center; padding: 0 1rem;">
-          <a href="students/ban/{{_id}}">
-            <img src="/assets/svg/admin/ban.svg" alt="ban-icon" />
-          </a>
+          <form action="/admin/students/ban/{{_id}}" method="post">
+            <button type="submit" style="border: none;">
+              <img src="/assets/svg/admin/ban.svg" alt="ban-icon" />
+            </button>
+          </form>
         </td>
 
         <td
@@ -46,9 +48,11 @@
         </td>
 
         <td class="delete" style="text-align: center; padding: 0 1rem;">
-          <a href="/admin/students/delete/{{_id}}">
-            <img src="/assets/svg/admin/delete.svg" alt="delete-icon" />  
-          </a>
+          <form action="/admin/students/delete/{{_id}}" method="post">
+            <button type="submit" style="border: none;">
+              <img src="/assets/svg/admin/delete.svg" alt="delete-icon" />
+            </button>
+          </form>
         </td>
       </tr>
     {{/each}}

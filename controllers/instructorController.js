@@ -9,7 +9,9 @@ import mongoose from "mongoose";
 import Course from "../models/courseModel.js";
 import CourseDetail from "../models/courseDetailsModel.js";
 import Category from "../models/categoryModel.js";
-
+import User from "../models/userModel.js";
+import fs from "fs";
+import slugify from "slugify";
 
 export const getDashboard = async (req, res, next) => {
     res.render('instructor/others', {
@@ -46,123 +48,113 @@ export const getInstructorProfile = async (req, res, next) => {
 }
 
 
-export const getMyCourses = function (req,res,next) {
-    const list = [
-        {
-            id: 1,
-            title: "The Complete 2023 Web Development Bootcamp",
-            category: "Web Development",
-            price: {
-                currency: "$",
-                amount: "99"
-            },
-            date_released: "2022-12-31",
-            finish: 1
-        },
-        {
-            id: 2,
-            title: "The Complete 2023 Web Development Bootcamp",
-            category: "Web Development",
-            price: {
-                currency: "$",
-                amount: "99"
-            },
-            date_released: "2022-12-31",
-            finish: 0
-        },
-        {
-            id: 3,
-            title: "The Complete 2023 Web Development Bootcamp",
-            category: "Web Development",
-            price: {
-                currency: "$",
-                amount: "99"
-            },
-            date_released: "2022-12-31",
-            finish: 1
-        },
-        {
-            id: 4,
-            title: "The Complete 2023 Web Development Bootcamp",
-            category: "Web Development",
-            price: {
-                currency: "$",
-                amount: "99"
-            },
-            date_released: "2022-12-31",
-            finish: 0
-        },
-        {
-            id: 5,
-            title: "The Complete 2023 Web Development Bootcamp",
-            category: "Web Development",
-            price: {
-                currency: "$",
-                amount: "99"
-            },
-            date_released: "2022-12-31",
-            finish: 1
-        },
-        {
-            id: 6,
-            title: "The Complete 2023 Web Development Bootcamp",
-            category: "Web Development",
-            price: {
-                currency: "$",
-                amount: "99"
-            },
-            date_released: "2022-12-31",
-            finish: 0
-        },
-        {
-            id: 7,
-            title: "The Complete 2023 Web Development Bootcamp",
-            category: "Web Development",
-            price: {
-                currency: "$",
-                amount: "99"
-            },
-            date_released: "2022-12-31",
-            finish: 1
-        },
-        {
-            id: 8,
-            title: "The Complete 2023 Web Development Bootcamp",
-            category: "Web Development",
-            price: {
-                currency: "$",
-                amount: "99"
-            },
-            date_released: "2022-12-31",
-            finish: 1
-        },
-        {
-            id: 9,
-            title: "The Complete 2023 Web Development Bootcamp",
-            category: "Web Development",
-            price: {
-                currency: "$",
-                amount: "99"
-            },
-            date_released: "2022-12-31",
-            finish: 0
-        },
-        {
-            id: 10,
-            title: "The Complete 2023 Web Development Bootcamp",
-            category: "Web Development",
-            price: {
-                currency: "$",
-                amount: "99"
-            },
-            date_released: "2022-12-31",
-            finish: 1
+export const getMyCourses = async function (req,res,next) {
+    //     const courseList = [
+    //     {
+    //         index: 1,
+    //         name: "MERN Stack Real Time Chat App - React , Node , Socket IO",
+    //         category: "Web Development",
+    //         price: "209",
+    //         date: "2022-12-31",
+    //         finish: 1
+    //     },
+    //     {
+    //         index: 2,
+    //         name: "React - The Complete Guide (incl Hooks, React Router, Redux)",
+    //         category: "Web Development",
+    //         price: "99",
+    //         date: "2022-12-31",
+    //         finish: 0
+    //     },
+    //     {
+    //         index: 3,
+    //         name: "React - The Complete Guide (incl Hooks, React Router, Redux)",
+    //         category: "Web Development",
+    //         price: "150",
+    //         date: "2022-12-31",
+    //         finish: 1
+    //     },
+    //     {
+    //         index: 4,
+    //         name: "React - The Complete Guide (incl Hooks, React Router, Redux)",
+    //         category: "Web Development",
+    //         price: "80",
+    //         date: "2022-12-31",
+    //         finish: 0
+    //     },
+    //     {
+    //         index: 5,
+    //         name: "The Complete 2023 Web Development Bootcamp",
+    //         category: "Web Development",
+    //         price: "90",
+    //         date: "2022-12-31",
+    //         finish: 1
+    //     },
+    //     {
+    //         index: 6,
+    //         name: "The Complete 2023 Web Development Bootcamp",
+    //         category: "Web Development",
+    //         price: "90",
+    //         date: "2022-12-31",
+    //         finish: 1
+    //     },
+    //     {
+    //         index: 7,
+    //         name: "The Complete 2023 Web Development Bootcamp",
+    //         category: "Web Development",
+    //         price: "90",
+    //         date: "2022-12-31",
+    //         finish: 1
+    //     },
+    //     {
+    //         index: 8,
+    //         name: "The Complete 2023 Web Development Bootcamp",
+    //         category: "Web Development",
+    //         price: "90",
+    //         date: "2022-12-31",
+    //         finish: 1
+    //     },
+    //     {
+    //         index: 9,
+    //         name: "The Complete 2023 Web Development Bootcamp",
+    //         category: "Web Development",
+    //         price: "90",
+    //         date: "2022-12-31",
+    //         finish: 1
+    //     },
+    //     {
+    //         index: 10,
+    //         name: "The Complete 2023 Web Development Bootcamp",
+    //         category: "Web Development",
+    //         price: "90",
+    //         date: "2022-12-31",
+    //         finish: 1
+    //     },
+    //     {
+    //         index: 11,
+    //         name: "The Complete 2023 Web Development Bootcamp",
+    //         category: "Web Development",
+    //         price: "90",
+    //         date: "2022-12-31",
+    //         finish: 1
+    //     }
+    // ]
+    let courseList = [];
+    let index = 1;
+    if (res.locals.authUser.myCourses.length > 0) {
+        for (const course_id of res.locals.authUser.myCourses) {
+            const thisCourse = await Course.findOne({_id: course_id}).lean();
+            if (thisCourse) {
+                thisCourse.index = index;
+                courseList.push(thisCourse);
+                index++;
+            }
         }
-    ]
+    }
     res.render('instructor/myCourses', {
         layout: "instructor",
-        course_list: list,
-        empty: list.length === 0,
+        courseList: courseList,
+        empty: courseList.length === 0,
         sidebar: "my-course"
     });
 }
@@ -187,24 +179,56 @@ export const getCourseDescription = catchAsync(async (req,res) => {
 });
 
 
-export const editCourseDescription = catchAsync(async (req,res) => {
-    res.locals.handlebars = "instructor/addCourseDescription";
-    res.locals.layout = "instructor.hbs";
+export const editCourseDescription = catchAsync(async (req,res, next) => {
     // config storage
     const storage = multer.diskStorage({
         destination: function (req, file, cb) {
-        cb(null, `./public/tmp/my-uploads`)
+            console.log("destination");
+        const slug_name = slugify(req.body.course_title,{
+            lower: true,
+            locale: "vi",
+        });
+        fs.mkdirSync(slug_name);
+        cb(null, `public/${slug_name}`)
+        console.log("request: ", req);
         },
         filename: function (req, file, cb) {
+            console.log("filename");
         cb(null, file.originalname);
+        console.log("file original name: ", file.originalname);
         }
     })   
     const upload = multer({ storage: storage });
     upload.single('courseImageFile')(req,res, async (err) => {
+        console.log("single");
+        res.locals.handlebars = "instructor/addCourseDescription";
+        res.locals.layout = "instructor.hbs";
         if (err) console.error(err);
         else {
           // if haven't registered course yet => create new one
             if (!req.query.course) {
+                const foundCourse = await Course.findOne({name: req.body.course_title});
+                // if this course title already exists
+                if (foundCourse) {
+                    return res.render(res.locals.handlebars, {
+                        layout: res.locals.layout,
+                        message: "This course already exists. Please choose a different course.",
+                        sidebar: "my-course"
+                    });
+                }
+                // if user delete empty course
+                if (req.body.requestActionInDescription == "delete_course_description") {
+                    return res.render(res.locals.handlebars, {
+                        layout: res.locals.layout,
+                        message: "You can not delete an empty course.",
+                        sidebar: "my-course"
+                    });
+                }
+                // create new course
+                const slug_name = slugify(req.body.course_title,{
+                    lower: true,
+                    locale: "vi",
+                });
                 const newCourse = await Course.create({
                     name: req.body.course_title,
                     details: req.body.full_description,
@@ -215,6 +239,8 @@ export const editCourseDescription = catchAsync(async (req,res) => {
                     finish: 0,
                     category: req.body.course_category,
                     subcategory: [req.body.course_sub_category],
+                    // author: res.locals.authUser.name,
+                    author: "Khoa Nguyen",
                     date: new Date().toJSON(),
                     lectures: {
                         total: 0,
@@ -222,6 +248,8 @@ export const editCourseDescription = catchAsync(async (req,res) => {
                         sections: []
                     }
                 })
+                req.newCourse = newCourse;
+                // create course detail based on course id
                 await CourseDetail.create({
                     course_id: newCourse._id,
                     viewer: 0,
@@ -229,6 +257,11 @@ export const editCourseDescription = catchAsync(async (req,res) => {
                     num_reviews: 0,
                     reviews: []
                 })
+                // add new course_id in my_course field
+                // const thisInstructor = await User.findOne({_id: res.locals.authUser._id});
+                // thisInstructor.myCourses.push(newCourse._id);
+                // await thisInstructor.save();
+                // res.locals.authUser.myCourses = thisInstructor.myCourses;
                 return res.render('instructor/addCourseDescription',{
                     layout: res.locals.layout,
                     course_id: newCourse._id,
@@ -262,6 +295,24 @@ export const editCourseDescription = catchAsync(async (req,res) => {
                 });
                }
                else if (req.body.requestActionInDescription == "delete_course_description") { // delete 
+                // delete this course
+                await Course.deleteOne({_id: req.query.course});
+                // delete course_id in course detail
+                await CourseDetail.deleteOne({course_id: req.query.course});
+                // delete course_id in my_course field
+                // const thisInstructor = await User.findOne({_id: res.locals.authUser._id});
+                // const myCourses = thisInstructor.myCourses;
+                // const newCourseList = myCourses.filter((course_id) => {
+                //     return course_id != req.query.course;
+                // })
+                // thisInstructor.myCourses = newCourseList;
+                // await thisInstructor.save();
+                res.locals.authUser.myCourses = newCourseList;
+                return res.render('instructor/addCourseDescription',{
+                    layout: res.locals.layout,
+                    message: "successDeleted",
+                    sidebar: "my-course"
+                });
                }
             }
         }
@@ -470,7 +521,15 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
             }
              // if user finish the course
             else if (req.body.requestAction === "finish") {
-                // coding later...
+                const thisCourse = await Course.findById(req.query.course);
+                thisCourse.finish = 1;
+                await thisCourse.save();
+                return res.render('instructor/addCourseContent', {
+                    layout: "instructor",
+                    course_id: req.query.course,
+                    message: "finish",
+                    sidebar: "my-course"
+                })
             }
             return res.redirect(`/instructor/add-course-content/?course=${course._id}`);
         }

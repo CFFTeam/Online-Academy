@@ -8,7 +8,9 @@
     cursor: pointer;
     
 }
-
+.row{
+    margin: 0;
+}
 
 .nav-item h2:hover {
     color: #00A551;
@@ -99,6 +101,17 @@
     margin: 0;
 }
 
+.editsale {
+    height: 3.5rem;
+    width: 7rem;
+    border: 1px solid #ABABAB;
+    box-shadow: none;
+    padding-left: 1rem;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin: 0;
+}
+
 .newcat::placeholder {
     color: 808080;
     font-size: 1.5rem;
@@ -145,7 +158,6 @@
     border-collapse: collapse;
     width: 100%;
     border-spacing: 0 1rem;
-    border-radius: 5px;
     margin-top: 1rem;
 }
 
@@ -159,7 +171,6 @@ tr:nth-child(odd) {
     background-color: #e9ecef;
 }
 
-
 .cor th {
     padding-top: 12px;
     padding-bottom: 12px;
@@ -168,12 +179,40 @@ tr:nth-child(odd) {
     color: white;
 }
 
+.head-d-c{
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 3rem;
+}
+
+.coupon-but{
+    margin: 0;
+    border: 1px solid #00A551;
+    font-weight: 600;
+    border-radius: 5px;
+    padding: 0.6rem 1rem;
+    color: #00A551;
+    font-size: 1.5rem;
+}
+
+.coupon-but:hover{
+    background: #e9ecef;
+    cursor: pointer;
+}
+
 .svs {
     margin: 0 0.8rem;
 }
 
-.none-shadow {
+.none-shawdow {
     box-shadow: none;
+    
+}
+
+.none-shawdow th{
+    padding: 0.8rem;
 }
 
 .center {

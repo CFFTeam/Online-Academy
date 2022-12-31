@@ -7,36 +7,36 @@
 <table class="table table-striped custom-table">
   <thead>
      <tr>
-      <th width = "2.7%" scope="col" >#</th>
-      <th width = "47.3%" scope="col" >Title</th>
-      <th width = "19%" scope="col" >Category</th>
-      <th width = "5.4%" scope="col">Price</th>
-      <th width = "12%" scope="col">Released</th>
-      <th width = "5%" scope="col">Status</th>
-      <th></th>
-      <th ></th>
+      <th class = "index-heading" scope="col" >#</th>
+      <th class = "title-heading" scope="col" >Title</th>
+      <th class = "category-heading" scope="col" >Category</th>
+      <th class = "price-heading" scope="col">Price</th>
+      <th class = "date-heading" scope="col">Released</th>
+      <th class = "status-heading" scope="col">Status</th>
+      <th class = "edit-heading" style="visibility: hidden;">Edit</th>
     </tr>
   </thead>
   <tbody>
     {{#if this.empty}}
-      <div class="card-body">
-         No data found!
-      </div>
+      <tr style = "height: 100%;">
+         <td style = "text-align: left; font-size: 2rem;"> 
+            No data found!
+         </td>
+      </tr>
       {{else}}
-        {{#each this.course_list}}
+        {{#each this.courseList}}
         <tr>
-        <th scope="row">{{id}}</th>
-        <td>{{title}}</td>
-        <td>{{category}}</td>
-        <td><span class = "dollar">{{price.currency}}</span>{{price.amount}}</td>
-        <td>{{date_released}}</td>
+        <th class = "index" scope="row">{{index}}</th>
+        <td class = "title">{{name}}</td>
+        <td class = "category">{{category}}</td>
+        <td class = "price"><span class = "dollar">$</span>{{price}}</td>
+        <td class = "date" >{{format_date date}}</td>
         {{#if finish}}
-          <td style = "text-align: right;"><img src="/assets/svg/instructor/finish.svg" alt="finish"></td>
+          <td class = "status"><img src="/assets/svg/instructor/finish.svg" alt="finish"></td>
           {{else}}
-           <td style = "text-align: right;"><img src="/assets/svg/instructor/unfinished.svg" alt="finish"></td>
+           <td class = "status"><img src="/assets/svg/instructor/unfinished.svg" alt="finish"></td>
         {{/if}}
-        <td style = "text-align: right;"><button class = "edit-btn"><img src="/assets/svg/instructor/edit.svg" alt="edit"></button></td>
-        <td style = "text-align: right;"><button class = "delete-btn"><img src="/assets/svg/instructor/delete.svg" alt="delete"></button></td>
+        <td class = "edit-btn"><a href = "/instructor/add-course-description/?course={{_id}}" class = "edit-btn"><img src="/assets/svg/instructor/edit-course.svg" alt="edit"></a></td>
         </tr>
         {{/each}}
     {{/if}}
