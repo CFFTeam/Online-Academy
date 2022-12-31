@@ -255,8 +255,8 @@ export const editCourseDescription = catchAsync(async (req, res, next) => {
                     finish: 0,
                     category: req.body.course_category,
                     subcategory: [req.body.course_sub_category],
-                    // author: res.locals.authUser.name,
-                    author: "Khoa Nguyen",
+                    author: res.locals.authUser.name,
+                    // author: "Khoa Nguyen",
                     date: new Date().toJSON(),
                     lectures: {
                         total: 0,
@@ -273,10 +273,10 @@ export const editCourseDescription = catchAsync(async (req, res, next) => {
                     reviews: []
                 });
                 // add new course_id in my_course field
-                // const thisInstructor = await User.findOne({_id: res.locals.authUser._id});
-                // thisInstructor.myCourses.push(newCourse._id);
-                // await thisInstructor.save();
-                // res.locals.authUser.myCourses = thisInstructor.myCourses;
+                const thisInstructor = await User.findOne({_id: res.locals.authUser._id});
+                thisInstructor.myCourses.push(newCourse._id);
+                await thisInstructor.save();
+                res.locals.authUser.myCourses = thisInstructor.myCourses;
                 return res.render("instructor/addCourseDescription", {
                     layout: res.locals.layout,
                     course_id: newCourse._id,
@@ -286,25 +286,19 @@ export const editCourseDescription = catchAsync(async (req, res, next) => {
             }
             // if registered course => edit course description
             else {
-                if (
-                    req.body.requestActionInDescription ==
-                    "save_course_description"
-                ) {
+                if (req.body.requestActionInDescription == "save_course_description") {
                     // save course description
                     const thisCourse = await Course.findOne({
                         _id: req.query.course
                     });
                     let subcategory = [];
-                    if (
-                        req.body.course_sub_category !== null &&
-                        req.body.course_sub_category !== undefined
-                    ) {
+                    if ( req.body.course_sub_category !== null && req.body.course_sub_category !== undefined) {
                         subcategory = [
                             ...thisCourse.subcategory,
                             req.body.course_sub_category
                         ];
                     }
- else subcategory = [...thisCourse.subcategory];
+                    else subcategory = [...thisCourse.subcategory];
                     await Course.findByIdAndUpdate(req.query.course, {
                         name: req.body.course_title,
                         details: req.body.full_description,
