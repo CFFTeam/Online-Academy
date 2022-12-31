@@ -21,4 +21,5 @@ export default {
     for (var i = from; i < to; i += incr) accum += block.fn(i);
     return accum;
   },
+  sum: (v1, v2) => v1 + v2
 };

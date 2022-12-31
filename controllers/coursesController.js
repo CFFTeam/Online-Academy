@@ -9,12 +9,26 @@ const loadBestSeller = async () => {
     return allcourses.map(course => course.course_id.toString());
 };
 
-const loadCourses = async (find_by = {}, sort_by, offset = 1, limit = 10) => {
+const loadCourses = async (find_by = {}, sort_by, offset = 0, limit = 10) => {
 
     const skip = (offset - 1) * limit;
 
-    if (sort_by === 'default') sort_by = '-viewer';
-    if (sort_by === 'rating') sort_by = '-avg_rating';
+    const sort_query = {};
+
+    if (sort_by === 'default') {
+        sort_query.viewer = -1; 
+        sort_query.course_id = 1;
+    }
+    
+    if (sort_by === 'rating') {
+        sort_query.avg_rating = -1; 
+        sort_query.course_id = 1;
+    }
+
+    if (sort_by === 'price') {
+        sort_query.price = 1; 
+        sort_query._id = 1;
+    }
 
     const bestseller = await loadBestSeller();
 
@@ -22,11 +36,11 @@ const loadCourses = async (find_by = {}, sort_by, offset = 1, limit = 10) => {
     const allcourses_id = allcourses.map(course => course._id);
 
     const courses = (sort_by === 'price') 
-    ? await courseModel.find(find_by).select('-lectures.sections')
-    .sort(sort_by).collation({ locale: 'en', numericOrdering: true })
-    .skip(skip).limit(limit).lean()
+    ? await courseModel.find(find_by)
+    .sort(sort_query).collation({ locale: 'en', numericOrdering: true })
+    .limit(limit).skip(skip).lean()
     : await courseDetailsModel.find({ course_id: { $in: allcourses_id } }).select('-reviews')
-    .sort(sort_by).collation({ locale: 'en', numericOrdering: true })
+    .sort(sort_query).collation({ locale: 'en', numericOrdering: true })
     .skip(skip).limit(limit).lean()
 
     const newcourse = [];

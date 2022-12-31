@@ -44,6 +44,10 @@
     {{#if (eq handlebars "learning/course_learning")}}
     <link rel="stylesheet" href="/assets/css/learning/learning.css" type="text/css" />
     {{/if}}
+
+    {{#if (eq handlebars "learning/course_learning")}}
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.3/plyr.css" type="text/css"  />
+    {{/if}}
 </head>
 <body>
     {{> navbar }}
@@ -64,5 +68,8 @@
     }
 }
 </script>
+{{#if (eq handlebars "learning/course_learning")}}
+<script src="https://cdn.plyr.io/3.7.3/plyr.polyfilled.js"></script>
+{{/if}}
 </body>
 </html>
