@@ -348,8 +348,15 @@ export const editCourseDescription = catchAsync(async (req, res, next) => {
                     subcategory = [...thisCourse.subcategory, req.body.course_sub_category];
                 }
                 else subcategory = [...thisCourse.subcategory];
+
+                const course_img = await Course.findOne({_id: req.query.course}).lean();
+
+                const newImg = course_img.img.replace(slugify(course_img.name, { lower: true, locale: 'vi', remove: /[*+~.()'"!:@]/g }), slugify(req.body.course_title, { lower: true, locale: "vi", remove: /[*+~.()'"!:@]/g }))
+
                 await Course.findByIdAndUpdate(req.query.course, {
                     name: req.body.course_title,
+                    img: req.file && req.file.path ? req.file.path.replace('public\\', '').replaceAll('\\', '/') : newImg,
+                    slug: `/course/${slugify(req.body.course_title,{ lower: true, locale: "vi", remove: /[*+~.()'"!:@]/g })}`,
                     details: req.body.full_description,
                     description: req.body.short_description,
                     currency: req.body.price_currency,
@@ -357,6 +364,11 @@ export const editCourseDescription = catchAsync(async (req, res, next) => {
                     category: req.body.course_category,
                     subcategory: subcategory 
                 })
+
+                if (!fs.existsSync('public/'+newImg.substring(0, newImg.lastIndexOf('/'))))
+                    fs.renameSync('public/' + course_img.img.substring(0, course_img.img.lastIndexOf('/')), 'public/'+newImg.substring(0, newImg.lastIndexOf('/')));
+                else 
+                    fs.rmSync('public/'+course_img.img.substring(0, course_img.img.lastIndexOf('/')), { recursive: true });
                 return res.render('instructor/addCourseDescription',{
                     layout: res.locals.layout,
                     course_id: req.query.course,
