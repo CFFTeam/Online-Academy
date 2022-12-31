@@ -9,7 +9,7 @@ import mongoose from "mongoose";
 import Course from "../models/courseModel.js";
 import CourseDetail from "../models/courseDetailsModel.js";
 import Category from "../models/categoryModel.js";
-
+import User from "../models/userModel.js";
 
 export const getDashboard = async (req, res, next) => {
     res.render('instructor/others', {
@@ -47,13 +47,107 @@ export const getInstructorProfile = async (req, res, next) => {
 
 
 export const getMyCourses = async function (req,res,next) {
+    //     const courseList = [
+    //     {
+    //         index: 1,
+    //         name: "MERN Stack Real Time Chat App - React , Node , Socket IO",
+    //         category: "Web Development",
+    //         price: "209",
+    //         date: "2022-12-31",
+    //         finish: 1
+    //     },
+    //     {
+    //         index: 2,
+    //         name: "React - The Complete Guide (incl Hooks, React Router, Redux)",
+    //         category: "Web Development",
+    //         price: "99",
+    //         date: "2022-12-31",
+    //         finish: 0
+    //     },
+    //     {
+    //         index: 3,
+    //         name: "React - The Complete Guide (incl Hooks, React Router, Redux)",
+    //         category: "Web Development",
+    //         price: "150",
+    //         date: "2022-12-31",
+    //         finish: 1
+    //     },
+    //     {
+    //         index: 4,
+    //         name: "React - The Complete Guide (incl Hooks, React Router, Redux)",
+    //         category: "Web Development",
+    //         price: "80",
+    //         date: "2022-12-31",
+    //         finish: 0
+    //     },
+    //     {
+    //         index: 5,
+    //         name: "The Complete 2023 Web Development Bootcamp",
+    //         category: "Web Development",
+    //         price: "90",
+    //         date: "2022-12-31",
+    //         finish: 1
+    //     },
+    //     {
+    //         index: 6,
+    //         name: "The Complete 2023 Web Development Bootcamp",
+    //         category: "Web Development",
+    //         price: "90",
+    //         date: "2022-12-31",
+    //         finish: 1
+    //     },
+    //     {
+    //         index: 7,
+    //         name: "The Complete 2023 Web Development Bootcamp",
+    //         category: "Web Development",
+    //         price: "90",
+    //         date: "2022-12-31",
+    //         finish: 1
+    //     },
+    //     {
+    //         index: 8,
+    //         name: "The Complete 2023 Web Development Bootcamp",
+    //         category: "Web Development",
+    //         price: "90",
+    //         date: "2022-12-31",
+    //         finish: 1
+    //     },
+    //     {
+    //         index: 9,
+    //         name: "The Complete 2023 Web Development Bootcamp",
+    //         category: "Web Development",
+    //         price: "90",
+    //         date: "2022-12-31",
+    //         finish: 1
+    //     },
+    //     {
+    //         index: 10,
+    //         name: "The Complete 2023 Web Development Bootcamp",
+    //         category: "Web Development",
+    //         price: "90",
+    //         date: "2022-12-31",
+    //         finish: 1
+    //     },
+    //     {
+    //         index: 11,
+    //         name: "The Complete 2023 Web Development Bootcamp",
+    //         category: "Web Development",
+    //         price: "90",
+    //         date: "2022-12-31",
+    //         finish: 1
+    //     }
+    // ]
     let courseList = [];
     let index = 1;
-    for (const course_id of res.locals.authUser.myCourses) {
-        const thisCourse = await Course.findOne({_id: course_id}).lean();
-        thisCourse.index = index;
-        courseList.push(thisCourse);
-        index++;
+    if (res.locals.authUser.myCourses.length > 0) {
+        for (const course_id of res.locals.authUser.myCourses) {
+            const thisCourse = await Course.findOne({_id: course_id}).lean();
+            if (thisCourse) {
+                thisCourse.index = index;
+                courseList.push(thisCourse);
+                index++;
+            }
+        }
     }
     res.render('instructor/myCourses', {
         layout: "instructor",
@@ -129,7 +223,8 @@ export const editCourseDescription = catchAsync(async (req,res, next) => {
                     finish: 0,
                     category: req.body.course_category,
                     subcategory: [req.body.course_sub_category],
-                    author: res.locals.authUser.name,
+                    // author: res.locals.authUser.name,
+                    author: "Khoa Nguyen",
                     date: new Date().toJSON(),
                     lectures: {
                         total: 0,
@@ -137,6 +232,7 @@ export const editCourseDescription = catchAsync(async (req,res, next) => {
                         sections: []
                     }
                 })
+                // create course detail based on course id
                 await CourseDetail.create({
                     course_id: newCourse._id,
                     viewer: 0,
@@ -144,6 +240,11 @@ export const editCourseDescription = catchAsync(async (req,res, next) => {
                     num_reviews: 0,
                     reviews: []
                 })
+                // add new course_id in my_course field
+                const thisInstructor = await User.findOne({_id: res.locals.authUser._id});
+                thisInstructor.myCourses.push(newCourse._id);
+                await thisInstructor.save();
+                res.locals.authUser.myCourses = thisInstructor.myCourses;
                 return res.render('instructor/addCourseDescription',{
                     layout: res.locals.layout,
                     course_id: newCourse._id,
@@ -177,8 +278,19 @@ export const editCourseDescription = catchAsync(async (req,res, next) => {
                 });
                }
                else if (req.body.requestActionInDescription == "delete_course_description") { // delete 
+                // delete this course
                 await Course.deleteOne({_id: req.query.course});
-                // delete course_id in my_course ..... coding later
+                // delete course_id in course detail
+                await CourseDetail.deleteOne({course_id: req.query.course});
+                // delete course_id in my_course field
+                const thisInstructor = await User.findOne({_id: res.locals.authUser._id});
+                const myCourses = thisInstructor.myCourses;
+                const newCourseList = myCourses.filter((course_id) => {
+                    return course_id != req.query.course;
+                })
+                thisInstructor.myCourses = newCourseList;
+                await thisInstructor.save();
+                res.locals.authUser.myCourses = newCourseList;
                 return res.render('instructor/addCourseDescription',{
                     layout: res.locals.layout,
                     message: "successDeleted",
@@ -392,102 +504,17 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
             }
              // if user finish the course
             else if (req.body.requestAction === "finish") {
-                // coding later...
+                const thisCourse = await Course.findById(req.query.course);
+                thisCourse.finish = 1;
+                await thisCourse.save();
+                return res.render('instructor/addCourseContent', {
+                    layout: "instructor",
+                    course_id: req.query.course,
+                    message: "finish",
+                    sidebar: "my-course"
+                })
             }
             return res.redirect(`/instructor/add-course-content/?course=${course._id}`);
         }
     })
 });
-
-
-
-    // const list = [
-    //     {
-    //         index: 1,
-    //         name: "MERN Stack Real Time Chat App - React , Node , Socket IO",
-    //         category: "Web Development",
-    //         price: "209",
-    //         date: "2022-12-31",
-    //         finish: 1
-    //     },
-    //     {
-    //         index: 2,
-    //         name: "React - The Complete Guide (incl Hooks, React Router, Redux)",
-    //         category: "Web Development",
-    //         price: "99",
-    //         date: "2022-12-31",
-    //         finish: 0
-    //     },
-    //     {
-    //         index: 3,
-    //         name: "React - The Complete Guide (incl Hooks, React Router, Redux)",
-    //         category: "Web Development",
-    //         price: "150",
-    //         date: "2022-12-31",
-    //         finish: 1
-    //     },
-    //     {
-    //         index: 4,
-    //         name: "React - The Complete Guide (incl Hooks, React Router, Redux)",
-    //         category: "Web Development",
-    //         price: "80",
-    //         date: "2022-12-31",
-    //         finish: 0
-    //     },
-    //     {
-    //         index: 5,
-    //         name: "The Complete 2023 Web Development Bootcamp",
-    //         category: "Web Development",
-    //         price: "90",
-    //         date: "2022-12-31",
-    //         finish: 1
-    //     },
-    //     {
-    //         index: 6,
-    //         name: "The Complete 2023 Web Development Bootcamp",
-    //         category: "Web Development",
-    //         price: "90",
-    //         date: "2022-12-31",
-    //         finish: 1
-    //     },
-    //     {
-    //         index: 7,
-    //         name: "The Complete 2023 Web Development Bootcamp",
-    //         category: "Web Development",
-    //         price: "90",
-    //         date: "2022-12-31",
-    //         finish: 1
-    //     },
-    //     {
-    //         index: 8,
-    //         name: "The Complete 2023 Web Development Bootcamp",
-    //         category: "Web Development",
-    //         price: "90",
-    //         date: "2022-12-31",
-    //         finish: 1
-    //     },
-    //     {
-    //         index: 9,
-    //         name: "The Complete 2023 Web Development Bootcamp",
-    //         category: "Web Development",
-    //         price: "90",
-    //         date: "2022-12-31",
-    //         finish: 1
-    //     },
-    //     {
-    //         index: 10,
-    //         name: "The Complete 2023 Web Development Bootcamp",
-    //         category: "Web Development",
-    //         price: "90",
-    //         date: "2022-12-31",
-    //         finish: 1
-    //     },
-    //     {
-    //         index: 11,
-    //         name: "The Complete 2023 Web Development Bootcamp",
-    //         category: "Web Development",
-    //         price: "90",
-    //         date: "2022-12-31",
-    //         finish: 1
-    //     }
-    // ]

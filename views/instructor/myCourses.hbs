@@ -18,9 +18,11 @@
   </thead>
   <tbody>
     {{#if this.empty}}
-      <div class="card-body">
-         No data found!
-      </div>
+      <tr style = "height: 100%;">
+         <td style = "text-align: left; font-size: 2rem;"> 
+            No data found!
+         </td>
+      </tr>
       {{else}}
         {{#each this.courseList}}
         <tr>
