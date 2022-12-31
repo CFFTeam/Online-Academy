@@ -278,6 +278,11 @@ export const editCourseDescription = catchAsync(async (req, res, next) => {
                 await thisInstructor.save();
                 res.locals.authUser.myCourses = thisInstructor.myCourses;
                 return res.render("instructor/addCourseDescription", {
+                const thisInstructor = await User.findOne({_id: res.locals.authUser._id});
+                thisInstructor.myCourses.push(newCourse._id);
+                await thisInstructor.save();
+                res.locals.authUser.myCourses = thisInstructor.myCourses;
+                return res.render('instructor/addCourseDescription',{
                     layout: res.locals.layout,
                     course_id: newCourse._id,
                     message: "successAdded",
@@ -336,6 +341,49 @@ export const editCourseDescription = catchAsync(async (req, res, next) => {
                         sidebar: "my-course"
                     });
                 }
+                if (req.body.requestActionInDescription == "save_course_description") { // save course description
+                const thisCourse = await Course.findOne({_id: req.query.course});
+                let subcategory = [];
+                if (req.body.course_sub_category !== null && req.body.course_sub_category !== undefined) {
+                    subcategory = [...thisCourse.subcategory, req.body.course_sub_category];
+                }
+                else subcategory = [...thisCourse.subcategory];
+                await Course.findByIdAndUpdate(req.query.course, {
+                    name: req.body.course_title,
+                    details: req.body.full_description,
+                    description: req.body.short_description,
+                    currency: req.body.price_currency,
+                    price: req.body.price_amount,
+                    category: req.body.course_category,
+                    subcategory: subcategory 
+                })
+                return res.render('instructor/addCourseDescription',{
+                    layout: res.locals.layout,
+                    course_id: req.query.course,
+                    message: "successSaved",
+                    sidebar: "my-course"
+                });
+               }
+               else if (req.body.requestActionInDescription == "delete_course_description") { // delete 
+                // delete this course
+                await Course.deleteOne({_id: req.query.course});
+                // delete course_id in course detail
+                await CourseDetail.deleteOne({course_id: req.query.course});
+                // delete course_id in my_course field
+                const thisInstructor = await User.findOne({_id: res.locals.authUser._id});
+                const myCourses = thisInstructor.myCourses;
+                const newCourseList = myCourses.filter((course_id) => {
+                    return course_id != req.query.course;
+                })
+                thisInstructor.myCourses = newCourseList;
+                await thisInstructor.save();
+                res.locals.authUser.myCourses = newCourseList;
+                return res.render('instructor/addCourseDescription',{
+                    layout: res.locals.layout,
+                    message: "successDeleted",
+                    sidebar: "my-course"
+                });
+               }
             }
         }
     });
