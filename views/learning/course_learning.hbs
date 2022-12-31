@@ -15,14 +15,16 @@
             </div>
         </div>
         <div class="watch_course">
-            <div class="plyr__video-embed" style="width: 100%; height: 500px" id="player">
-            <iframe
-                src='{{watch_info.video}}?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1'
+            {{!-- <div class="plyr__video-embed" style="width: 100%; height: 500px" id="player"> --}}
+            <video id="player" playsinline controls
+                
                 allowfullscreen
                 allowtransparency
                 allow="autoplay"
-            ></iframe>
-            </div>
+            >
+                 <source src='/{{watch_info.video}}' type="video/mp4" />
+            </video>
+            {{!-- </div> --}}
         </div>
     </div>
     <div class="course-lectures">
