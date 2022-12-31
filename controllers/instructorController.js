@@ -259,10 +259,10 @@ export const editCourseDescription = catchAsync(async (req,res, next) => {
                     reviews: []
                 })
                 // add new course_id in my_course field
-                // const thisInstructor = await User.findOne({_id: res.locals.authUser._id});
-                // thisInstructor.myCourses.push(newCourse._id);
-                // await thisInstructor.save();
-                // res.locals.authUser.myCourses = thisInstructor.myCourses;
+                const thisInstructor = await User.findOne({_id: res.locals.authUser._id});
+                thisInstructor.myCourses.push(newCourse._id);
+                await thisInstructor.save();
+                res.locals.authUser.myCourses = thisInstructor.myCourses;
                 return res.render('instructor/addCourseDescription',{
                     layout: res.locals.layout,
                     course_id: newCourse._id,
@@ -301,13 +301,13 @@ export const editCourseDescription = catchAsync(async (req,res, next) => {
                 // delete course_id in course detail
                 await CourseDetail.deleteOne({course_id: req.query.course});
                 // delete course_id in my_course field
-                // const thisInstructor = await User.findOne({_id: res.locals.authUser._id});
-                // const myCourses = thisInstructor.myCourses;
-                // const newCourseList = myCourses.filter((course_id) => {
-                //     return course_id != req.query.course;
-                // })
-                // thisInstructor.myCourses = newCourseList;
-                // await thisInstructor.save();
+                const thisInstructor = await User.findOne({_id: res.locals.authUser._id});
+                const myCourses = thisInstructor.myCourses;
+                const newCourseList = myCourses.filter((course_id) => {
+                    return course_id != req.query.course;
+                })
+                thisInstructor.myCourses = newCourseList;
+                await thisInstructor.save();
                 res.locals.authUser.myCourses = newCourseList;
                 return res.render('instructor/addCourseDescription',{
                     layout: res.locals.layout,
