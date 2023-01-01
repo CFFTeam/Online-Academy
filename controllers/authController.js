@@ -110,7 +110,8 @@ export const handleOTPForm = catchAsync(async (req, res, next, err) => {
         await User.create({
           email,
           name,
-          password
+          password,
+          wishlist: []
         });
         msg = "success-sign-up";
       }
