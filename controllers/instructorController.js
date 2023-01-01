@@ -188,6 +188,7 @@ export const editCourseDescription = catchAsync(async (req,res) => {
                     lower: true,
                     locale: "vi", remove: /[*+~.()'"!:@]/g
                 });
+                
                 const file_path = `public/courses/${slug_name}`;
                 
                 if (!fs.existsSync(file_path))
