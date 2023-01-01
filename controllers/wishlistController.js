@@ -34,3 +34,9 @@ export const wishlistPage = catchAsync(async (req, res) => {
   res.render(res.locals.handlebars, { courses: JSON.stringify(courses) });
 
 });
+
+export const favorite = catchAsync(async (req, res) => {
+  res.locals.handlebars = "favorite/favorite";
+
+  res.redirect('home/home');
+});

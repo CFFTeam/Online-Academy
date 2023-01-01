@@ -86,7 +86,7 @@ app.use("/instructor",auth_middleware,InstructorRoutes);
 app.use("/payment", auth_middleware, PaymentRoutes);
 app.use("/user-profile", auth_middleware, UserProfileRoutes);
 app.use("/my-courses", MyCoursesRoutes);
-app.use("/wishlist", WishlistRoutes);
+app.use("/wishlist", auth_middleware, WishlistRoutes);
 
 //Course detail
 app.use("/course", CourseDetailRoutes);

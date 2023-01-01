@@ -1,5 +1,9 @@
 <div class="course-card">
-    <i class="fa-regular fa-heart icon"></i>
+    <form action="/wishlist/:{{course_id}}" method="post">
+        <buton type="submit">
+            <i class="fa-regular fa-heart icon"></i>
+        </buton>
+    </form>
     <div class="course-card-overlay">
         <a class="button-cs" href="{{course_slug}}">More Details</a>
     </div>
