@@ -178,7 +178,7 @@ export const getCourseDescription = catchAsync(async (req,res) => {
 });
 
 
-export const editCourseDescription = catchAsync(async (req,res, next) => {
+export const editCourseDescription = catchAsync(async (req,res) => {
     // config storage
     const storage = multer.diskStorage({
         destination: async function (req, file, cb) {
@@ -258,8 +258,8 @@ export const editCourseDescription = catchAsync(async (req,res, next) => {
                     finish: 0,
                     category: req.body.course_category,
                     subcategory: [req.body.course_sub_category],
-                    // author: res.locals.authUser.name,
-                    author: "Khoa Nguyen",
+                    author: res.locals.authUser.name,
+                    // author: "Khoa Nguyen",
                     date: new Date().toJSON(),
                     lectures: {
                         total: 0,
@@ -517,7 +517,6 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                     console.log(req.file);
                     foundLesson.video = (req.file && req.file.path) ? `/${req.file.path.replace('public\\', '').replaceAll('\\', '/')}` : foundLesson.video;
                     await thisCourseLectures.save();
-                    //return res.redirect(`/instructor/add-course-content/?course=${course._id}`);
                     return res.render('instructor/addCourseContent', {
                         layout: "instructor",
                         course_id: req.query.course,
