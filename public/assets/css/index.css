@@ -204,16 +204,24 @@ input[type="checkbox"].checkbox-input-cs:focus + label > span {
     background-color: #007ea5;
 }
 
-.course-card > .icon {
+.course-card > .formPost {
     position: absolute;
     right: 1rem;
     top: 1rem;
     color: white;
     font-size: 1.8rem;
-    z-index: 2;
+    z-index: 2; 
 }
 
-.course-card > .icon:hover { 
+.course-card > .formPost > .but{
+    border: none;
+
+}
+.course-card > .formPost > .but > .icon{
+    color: white;
+}
+
+.course-card > .formPost > .but > .icon:hover { 
     color: rgb(255, 96, 242);
 }
 
