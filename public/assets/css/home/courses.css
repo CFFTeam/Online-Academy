@@ -38,6 +38,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(26rem, 1fr));
     justify-items: center;
+    align-items: flex-start;
     gap: 3rem;
     width: min(85vw, 85%);
 }
