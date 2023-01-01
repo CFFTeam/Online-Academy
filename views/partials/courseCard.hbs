@@ -1,5 +1,8 @@
+<form action="/wishlist/:{{course_id}}" method="post" name="addToWishlist">
+
+</form>
 <div class="course-card">
-    <i class="fa-regular fa-heart icon"></i>
+    <i id="heart" class="fa-regular fa-heart icon"></i>
     <div class="course-card-overlay">
         <a class="button-cs" href="{{course_slug}}">More Details</a>
     </div>
@@ -113,4 +116,11 @@
             </span>
         </div>
     </div>
+    <script>
+        let wishlistForm = document.forms['addToWishlist']
+        $("#heart").on("click",(event)=>{
+            wishlistForm.submit();
+            console.log("clickkkkkkkk")
+        })
+    </script>
 </div>
