@@ -250,6 +250,8 @@ input[type="checkbox"].checkbox-input-cs:focus + label > span {
     display: block;
     margin-bottom: 1.5rem;
     width: 100%;
+    height: 100%;
+    overflow: hidden;
     scale: 1.1;
 }
 
