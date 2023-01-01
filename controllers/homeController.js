@@ -26,7 +26,9 @@ const loadhotCourse = async () => {
             course_img: course.img,
             course_description: course.description,
             course_duration: course.lectures.duration,
-            course_lessons: course.lectures.total
+            course_lessons: course.lectures.total,
+            course_id: course._id
+
         }
         newcourse.push(new_hot_course);
     }
@@ -56,7 +58,8 @@ const loadNewestCourse = async () => {
             course_img: course.img,
             course_description: course.description,
             course_duration: course.lectures.duration,
-            course_lessons: course.lectures.total
+            course_lessons: course.lectures.total,
+            course_id: course._id
         }
         newcourse.push(newest_course);
     }
