@@ -80,3 +80,5 @@ export const updateShoppingCart = catchAsync(async (req, res, next) => {
   if (req.body.deleteItem == "delete" || req.body.deleteItem == "checkout")
     shoppingCartPage(req, res, next)
 })
+
+
