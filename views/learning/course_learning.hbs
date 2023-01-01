@@ -15,14 +15,9 @@
             </div>
         </div>
         <div class="watch_course">
-            <div class="plyr__video-embed" style="width: 100%; height: 500px" id="player">
-            <iframe
-                src='{{watch_info.video}}?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1'
-                allowfullscreen
-                allowtransparency
-                allow="autoplay"
-            ></iframe>
-            </div>
+            <video style="width: 100%; height: 500px" id="player">
+                <source src='{{watch_info.video}}'></source>
+            </video>
         </div>
     </div>
     <div class="course-lectures">
@@ -85,7 +80,11 @@
         let $container = $('.course-learning > .course-lectures > .course-lectures-list');
 
         const section = parseInt('{{watch_info.section}}');
-        const lesson = '{{watch_info.lesson}}';
+        const lesson = '{{{watch_info.url}}}';
+
+        $(".course-learning > .course-lectures > .course-lectures-list > .course-lectures-item > .section-content > .lesson-item > .lesson-item-content > .lesson-item-title").click((event) => {
+            localStorage.setItem('plyr_current_watch', $(event.currentTarget).val().split("?")[0]);
+        });
 
         $(".course-learning > .course-lectures > .course-lectures-list > .course-lectures-item > .hidden-section-content").change((event) =>{
             if ($(event.currentTarget).is(':checked') === true)
@@ -98,7 +97,7 @@
             $(`#section-content-${section - 1}`).prop('checked', true);
             
             if (lesson !== '') {
-                let $lesson = $(`#section-content-${section - 1}`).parent().find(`.lesson-item a[href*="${lesson}"]`);
+                let $lesson = $(`#section-content-${section - 1}`).parent().find(`.lesson-item a[href="${lesson}?section={{{watch_info.section}}}"]`);
                 $lesson.addClass('active');
 
                 setTimeout(() => {
@@ -126,5 +125,48 @@
                 'fullscreen',
             ]
         });
+
+        const timerLoading = setInterval(async () => {
+            if (player.duration) {
+
+                player.currentTime = JSON.parse(localStorage.getItem('plyr_video__current'))['{{{watch_info.current_lesson}}}'];
+                player.muted = false;
+
+                player.on('playing', () => {
+                    localStorage.setItem('plyr_video__current', JSON.stringify({
+                        ...JSON.parse(localStorage.getItem('plyr_video__current')),
+                        '{{{watch_info.current_lesson}}}': player.currentTime
+                    }));
+                });
+
+                player.on('pause', () => {
+                    localStorage.setItem('plyr_video__current', JSON.stringify({
+                        ...JSON.parse(localStorage.getItem('plyr_video__current')),
+                        '{{{watch_info.current_lesson}}}': player.currentTime
+                    }));
+                });
+
+                clearInterval(timerLoading);
+            }
+        }, 0);
+
+        player.on('error', () => clearInterval(timerLoading));
+
+        $(window).on("beforeunload", () => { 
+            localStorage.setItem('plyr_video__current', JSON.stringify({
+                ...JSON.parse(localStorage.getItem('plyr_video__current')),
+                '{{{watch_info.current_lesson}}}': player.currentTime
+            }));
+        });
+
+        const currentPage = '{{{watch_info.url}}}';
+        const currentWatch = localStorage.getItem('plyr_current_watch', '{{{watch_info.url}}}');
+
+        if (currentWatch && currentWatch !== currentPage) {
+            window.location.replace(currentWatch);
+        }
+        else if (!currentWatch || !currentWatch.trim()) {
+            localStorage.setItem('plyr_current_watch', currentPage);
+        }
     });
 </script>
