@@ -181,28 +181,45 @@ export const getCourseDescription = catchAsync(async (req,res) => {
 export const editCourseDescription = catchAsync(async (req,res, next) => {
     // config storage
     const storage = multer.diskStorage({
-        destination: function (req, file, cb) {
-            const slug_name = slugify(req.body.course_title,{
-                lower: true,
-                locale: "vi", remove: /[*+~.()'"!:@]/g
-            });
+        destination: async function (req, file, cb) {
+            if (!req.query.course) {
 
-            const file_path = `public/courses/${slug_name}`;
-            
-            if (!fs.existsSync(file_path))
-                fs.mkdirSync(file_path);
-            
-            cb(null, file_path)
+                const slug_name = slugify(req.body.course_title, {
+                    lower: true,
+                    locale: "vi", remove: /[*+~.()'"!:@]/g
+                });
+                
+                const file_path = `public/courses/${slug_name}`;
+                
+                if (!fs.existsSync(file_path))
+                    fs.mkdirSync(file_path);
+                
+                cb(null, file_path)
+            }
+            else {
+                const course = await Course.findById({_id: req.query.course}).lean();
+                const file_path = `public/${course.img.substring(0, course.img.lastIndexOf('/'))}`;
+                req.filename = course.img.substring(course.img.lastIndexOf('/') + 1, course.img.length);
+                
+                cb(null, file_path)
+            }
         },
         filename: function (req, file, cb) {
             const file_ext = file.originalname.substring(file.originalname.lastIndexOf('.'), file.originalname.length).split('.')[1];
-            const slug_name = slugify(req.body.course_title,{
-                lower: true,
-                locale: "vi", remove: /[*+~.()'"!:@]/g
-            });
-            cb(null, `${slug_name}.${file_ext}`);
+            if (!req.query.course) {
+                const slug_name = slugify(req.body.course_title, {
+                    lower: true,
+                    locale: "vi", remove: /[*+~.()'"!:@]/g
+                });
+                cb(null, `${slug_name}.${file_ext}`);
+            }
+            else {
+                const only_filename = req.filename.substring(0, req.filename.lastIndexOf('.'));
+                cb(null, `${only_filename}.${file_ext}`);
+            }
         }
-    })   
+    });
+       
     const upload = multer({ storage: storage });
     upload.single('courseImageFile')(req,res, async (err) => {
         res.locals.handlebars = "instructor/addCourseDescription";
@@ -231,7 +248,7 @@ export const editCourseDescription = catchAsync(async (req,res, next) => {
                 // create new course
                 const newCourse = await Course.create({
                     name: req.body.course_title,
-                    img: req.file.path.replace('public\\', '').replaceAll('\\', '/'),
+                    img: `/${req.file.path.replace('public\\', '').replaceAll('\\', '/')}`,
                     details: req.body.full_description,
                     slug: `/course/${slugify(req.body.course_title,{ lower: true, locale: "vi", remove: /[*+~.()'"!:@]/g })}`,
                     description: req.body.short_description,
@@ -280,14 +297,9 @@ export const editCourseDescription = catchAsync(async (req,res, next) => {
                 }
                 else subcategory = [...thisCourse.subcategory];
 
-                const course_img = await Course.findOne({_id: req.query.course}).lean();
-
-                const newImg = course_img.img.replace(slugify(course_img.name, { lower: true, locale: 'vi', remove: /[*+~.()'"!:@]/g }), slugify(req.body.course_title, { lower: true, locale: "vi", remove: /[*+~.()'"!:@]/g }))
-
                 await Course.findByIdAndUpdate(req.query.course, {
                     name: req.body.course_title,
-                    img: req.file && req.file.path ? req.file.path.replace('public\\', '').replaceAll('\\', '/') : newImg,
-                    slug: `/course/${slugify(req.body.course_title,{ lower: true, locale: "vi", remove: /[*+~.()'"!:@]/g })}`,
+                    img: (req.file && req.file.path) ? req.file.path.replace('public\\', '/').replaceAll('\\', '/') : thisCourse.img,
                     details: req.body.full_description,
                     description: req.body.short_description,
                     currency: req.body.price_currency,
@@ -296,10 +308,6 @@ export const editCourseDescription = catchAsync(async (req,res, next) => {
                     subcategory: subcategory 
                 })
 
-                if (!fs.existsSync('public/'+newImg.substring(0, newImg.lastIndexOf('/'))))
-                    fs.renameSync('public/' + course_img.img.substring(0, course_img.img.lastIndexOf('/')), 'public/'+newImg.substring(0, newImg.lastIndexOf('/')));
-                else 
-                    fs.rmSync('public/'+course_img.img.substring(0, course_img.img.lastIndexOf('/')), { recursive: true });
                 return res.render('instructor/addCourseDescription',{
                     layout: res.locals.layout,
                     course_id: req.query.course,
@@ -395,22 +403,48 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
     // config storage
     const storage = multer.diskStorage({
         destination: async function(req, file, cb) {
-            req.course = await Course.findById({_id: req.query.course}).lean();
+            if (!req.query.lesson && req.query.section) {
 
-            const lesson_slug = slugify(req.body.lecture_title, {lower: true, locale: 'vi', remove: /[*+~.()'"!:@]/g});
-            const course_slug = slugify(req.course.name, {lower: true, locale: 'vi', remove: /[*+~.()'"!:@]/g});
-
-            if (!fs.existsSync(`public/courses/${course_slug}/${lesson_slug}`)) {
-                fs.mkdirSync(`public/courses/${course_slug}/${lesson_slug}`);
+                req.course = await Course.findById({_id: req.query.course}).lean();
+                
+                const lesson_slug = slugify(req.body.lecture_title, {lower: true, locale: 'vi', remove: /[*+~.()'"!:@]/g});
+                const course_slug = req.course.slug.replace('/course/', '/courses/');
+                
+                if (!fs.existsSync(`public/courses/${course_slug}/${lesson_slug}`)) {
+                    fs.mkdirSync(`public${course_slug}/${lesson_slug}`);
+                }
+                
+                cb(null, `public${course_slug}/${lesson_slug}`)
             }
-            
-            cb(null, `public/courses/${course_slug}/${lesson_slug}`)
+            else if (req.query.lesson) {
+                let foundLesson = {}; // find that lesson
+                req.thisCourseLectures = await Course.findById({_id: req.query.course}).select('lectures');
+                req.thisCourseLectures.lectures.sections.forEach(section => {
+                    const queryLessons = section.lessons.filter(lesson => {
+                        return lesson._id.toString() === req.query.lesson;
+                    });
+                    if (queryLessons[0]) {
+                        foundLesson = queryLessons[0];
+                        return;
+                    }
+                })
+                const file_path = foundLesson.video.substring(0, foundLesson.video.lastIndexOf('/'));
+                req.filepath = `public${file_path}`;
+                req.filename = foundLesson.video.substring(foundLesson.video.lastIndexOf('/'), foundLesson.video.length);
+                cb(null, `public${file_path}`);
+            }
         },
         filename: function (req, file, cb) {
             const file_ext = file.originalname.substring(file.originalname.lastIndexOf('.'), file.originalname.length).split('.')[1];
-            const lesson_slug = slugify(req.body.lecture_title, {lower: true, locale: 'vi', remove: /[*+~.()'"!:@]/g});
+            if (!req.query.lesson && req.query.section) {
+                const lesson_slug = slugify(req.body.lecture_title, {lower: true, locale: 'vi', remove: /[*+~.()'"!:@]/g});
 
-            cb(null, `${lesson_slug}.${file_ext}`);
+                cb(null, `${lesson_slug}.${file_ext}`);
+            }
+            else if (req.query.lesson) {
+                const only_name = req.filename.substring(0, req.filename.lastIndexOf('.'));
+                cb(null, `${only_name}.${file_ext}`);
+            }
         }
     })   
     const upload = multer({ storage: storage });
@@ -418,7 +452,7 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
         if (err) console.error(err);
         else {
             const course = req.course// find course
-            const thisCourseLectures = await Course.findById({_id: req.query.course}).select('lectures');
+            const thisCourseLectures = (req.thisCourseLectures) ? req.thisCourseLectures : await Course.findById({_id: req.query.course}).select('lectures');
             // if user add new section
             if (req.query.section == "") {
                 let thisCourseSections = thisCourseLectures.lectures.sections;
@@ -480,6 +514,8 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                         }
                     })
                     if (req.body.lecture_title != "") foundLesson.title = req.body.lecture_title;
+                    console.log(req.file);
+                    foundLesson.video = (req.file && req.file.path) ? `/${req.file.path.replace('public\\', '').replaceAll('\\', '/')}` : foundLesson.video;
                     await thisCourseLectures.save();
                     //return res.redirect(`/instructor/add-course-content/?course=${course._id}`);
                     return res.render('instructor/addCourseContent', {
@@ -500,7 +536,7 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                         title: req.body.lecture_title,
                         resources: [],
                         url: `${course.slug}/learn/lecture/${lecture_slug}`,
-                        video: req.file.path.replace('public\\', '').replaceAll('\\', '/'),
+                        video: `/${req.file.path.replace('public\\', '').replaceAll('\\', '/')}`,
                         preview: "",
                         _id: new mongoose.Types.ObjectId()
                     }
