@@ -72,7 +72,7 @@ const loadNewestCourse = async (myCourses, myWishCourses) => {
 }
 
 export const load_my_courses = catchAsync(async (req, res, next) => {
-    if (req.session.auth || req.session.passport) {
+    if (res.locals.auth || res.locals.passport) {
         const my_courses = await User.findOne({ author: res.locals.authUser._id }).select('myCourses').lean();
         req.myCourses = my_courses.myCourses;
     }
@@ -89,10 +89,10 @@ export const loadMyWishCourse = catchAsync(async (req, res, next) => {
 
 export const homePage = catchAsync(async (req, res) => {
     res.locals.handlebars = 'home/home';
-    const mostviewCourse = await loadhotCourse(req.myWishCourses);
+    const mostviewCourse = await loadhotCourse(req.myCourses, req.myWishCourses);
     const hotCourse = mostviewCourse.slice(0, 4);
 
-    const newestCourse = await loadNewestCourse(req.myWishCourses);
+    const newestCourse = await loadNewestCourse(req.myCourses, req.myWishCourses);
 
     res.render('home/home', { hotCourse, mostviewCourse, newestCourse });
 });
