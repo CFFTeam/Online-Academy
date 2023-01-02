@@ -186,6 +186,7 @@ export const handleNewPasswordForm = catchAsync(async (req, res, next) => {
 // log out
 export const logout = catchAsync(async (req, res, next) => {
   req.session.auth = false;
+  req.session.passport = null; 
   req.session.authUser = null;
   const url = req.headers.referer || '/';
   res.redirect(url);
