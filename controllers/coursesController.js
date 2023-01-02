@@ -39,7 +39,7 @@ const loadCourses = async (myCourses, find_by = {}, sort_by, offset = 0, limit =
     const courses = (sort_by === 'price') 
     ? await courseModel.find(find_by)
     .sort(sort_query).collation({ locale: 'en', numericOrdering: true })
-    .limit(limit).skip(skip).lean()
+    .skip(skip).limit(limit).lean()
     : await courseDetailsModel.find({ course_id: { $in: allcourses_id } }).select('-reviews')
     .sort(sort_query).collation({ locale: 'en', numericOrdering: true })
     .skip(skip).limit(limit).lean()
@@ -84,7 +84,7 @@ const getPageList = (totalPage) => {
 
         for (let i = Math.min(totalPage - 4, 4); i >= 1; i--)
             pageList.push(totalPage - i + 1);
-        }
+    }
     else 
         for (let i = 2; i <= totalPage; i++)
             pageList.push(i);
@@ -98,7 +98,7 @@ export const coursesPage = catchAsync(async (req, res) => {
 
     const find_by = req.find_by;
 
-    const limit = 10;
+    const limit = 1;
     const offset = res.locals.page;
 
     const results = await loadCourses(req.myCourses, find_by, res.locals.sort_by, offset, limit);
@@ -107,8 +107,11 @@ export const coursesPage = catchAsync(async (req, res) => {
     const totalPage = results.total_pages;
 
     const pageList = getPageList(totalPage);
-    
-    res.render(res.locals.handlebars, { courses, pageList: pageList });
+
+    const prev_page = +offset - 1 > 0 ? +offset - 1 : false;
+    const next_page = +offset + 1 <= totalPage ? +offset + 1 : false;
+
+    res.render(res.locals.handlebars, { courses, pageList: pageList, prev_page: prev_page, next_page: next_page });
 });
 
 export const loadCategory = catchAsync(async (req, res, next) => { 
