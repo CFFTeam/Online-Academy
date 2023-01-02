@@ -133,8 +133,9 @@ export const handleCmt = catchAsync(async (req, res) => {
 
   if (res.locals && res.locals.authUser) {
     user = await User.findOne({ _id: res.locals.authUser._id }).lean();
-    
     let getCourseDetail = await courseDetail.findOne({ course_id: req.body.course_id }).lean();
+    let getTotalReviews = getCourseDetail.num_reviews;
+    getTotalReviews = getTotalReviews + 1;
     let getReviews = getCourseDetail.reviews;
     const getCmt = {
       content: req.body.textcmt,
@@ -150,7 +151,7 @@ export const handleCmt = catchAsync(async (req, res) => {
     getReviews.push(getCmt);
     await courseDetail.updateOne(
       { course_id: req.body.course_id },
-      { reviews: [...getReviews]}
+      { reviews: [...getReviews], num_reviews: getTotalReviews}
     )
     const url = req.headers.referer;
     console.log(url);
