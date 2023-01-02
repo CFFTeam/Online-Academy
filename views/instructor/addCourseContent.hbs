@@ -58,6 +58,15 @@
             <button name="requestAction" value="finish" class="finish-btn">FINISH THE COURSE</button>
         </form>
     </div>
+    <div class="page-group">
+        {{#each pageList}}
+            {{#if (eq this "...")}}
+            <span class="page-items">{{this}}</span>
+            {{else}}
+            <a class="page-items{{#if (eq ../page this)}} active{{/if}}" href="?course={{../course_id}}&page={{this}}">{{this}}</a>
+            {{/if}}
+        {{/each}}
+    </div>
 </div>
 {{!-- backdrop --}}
 <div class="{{#if lesson.title}}show {{/if}}{{#if section_id}}show {{/if}}backdrop"></div>
@@ -121,7 +130,7 @@
     // display message when user upload file
     if ("{{message}}" == "success") {
         alert("Your change was saved successfully...");
-        window.location.replace("http://localhost:5000/instructor/add-course-content/?course={{course_id}}");
+        window.location.replace("http://localhost:5000/instructor/add-course-content/?course={{course_id}}&page={{page}}");
     }
     else if ("{{message}}" == "You need to add your course description first. Please try again!")
     {
@@ -131,12 +140,12 @@
     else if ("{{message}}" == "finish")
     {
         alert("Congratulations! You finally finished this course and you can update later whatever you want.");
-        window.location.replace("http://localhost:5000/instructor/add-course-content/?course={{course_id}}");
+        window.location.replace("http://localhost:5000/instructor/add-course-content/?course={{course_id}}&page={{page}}");
     }
     // if failed
     else if ("{{message}}" != "success" && ("{{message}}" != "")) {
         alert("{{message}}");
-        window.location.replace("http://localhost:5000/instructor/add-course-content/?course={{course_id}}");
+        window.location.replace("http://localhost:5000/instructor/add-course-content/?course={{course_id}}&page={{page}}");
     }
 </script>
 

@@ -539,3 +539,36 @@ a:hover {
     outline-color: #adb5bd;
     width: 70%;
 }
+
+/* pagination */
+
+.course-content > .page-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 5rem;
+}
+
+.course-content > .page-group > .page-items {
+    height: 4rem;
+    width: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: .5rem;
+    font-weight: 600;
+    box-shadow: 0rem 0rem .4rem 0rem rgba(0, 0, 0, 0.15);
+    transition: all .15s ease-in-out;
+}
+
+.course-content > .page-group > .page-items:hover,
+.course-content > .page-group > .page-items.active:hover {
+    color: white;
+    background-color: rgb(51, 117, 79);
+}
+
+.course-content > .page-group > .page-items.active {
+    color: white;
+    background-color: rgb(55, 158, 98);
+}
