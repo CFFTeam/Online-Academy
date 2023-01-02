@@ -1,9 +1,10 @@
 import courseModel from "../models/courseModel.js";
+import User from '../models/userModel.js';
 import courseDetailsModel from "../models/courseDetailsModel.js";
 import { fixDateFormat, fixNumberFormat } from "../utilities/fixFormat.js";
 import catchAsync from "../utilities/catchAsync.js";
 
-const loadhotCourse = async () => {
+const loadhotCourse = async (myCourses) => { 
     const hotCourses = await courseDetailsModel.find().select('-reviews').sort('-viewer').limit(10).lean();
     const newcourse = [];
 
@@ -27,7 +28,8 @@ const loadhotCourse = async () => {
             course_description: course.description,
             course_duration: course.lectures.duration,
             course_lessons: course.lectures.total,
-            course_id: course._id
+            course_id: course._id,
+            my_courses: (myCourses && myCourses.includes(course._id.toString())) ? true : false
 
         }
         newcourse.push(new_hot_course);
@@ -35,7 +37,7 @@ const loadhotCourse = async () => {
     return newcourse;
 }
 
-const loadNewestCourse = async () => {
+const loadNewestCourse = async (myCourses) => {
     const newestViewCourse = await courseModel.find().select('-lectures.sections').sort('-date').limit(10).lean();
     const newcourse = [];
     
@@ -59,20 +61,29 @@ const loadNewestCourse = async () => {
             course_description: course.description,
             course_duration: course.lectures.duration,
             course_lessons: course.lectures.total,
-            course_id: course._id
+            course_id: course._id,
+            my_courses: (myCourses && myCourses.includes(course._id.toString())) ? true : false
         }
         newcourse.push(newest_course);
     }
     return newcourse;
 }
 
+export const load_my_courses = catchAsync(async (req, res, next) => {
+    if (req.session.auth || req.session.passport) {
+        const my_courses = await User.findOne({ author: res.locals.authUser._id }).select('myCourses').lean();
+        req.myCourses = my_courses.myCourses;
+    }
+    next();
+});
+
 export const homePage = catchAsync(async (req, res) => {
     res.locals.handlebars = 'home/home';
 
-    const mostviewCourse = await loadhotCourse();
+    const mostviewCourse = await loadhotCourse(req.myCourses);
     const hotCourse = mostviewCourse.slice(0, 4);
     
-    const newestCourse = await loadNewestCourse();
+    const newestCourse = await loadNewestCourse(req.myCourses);
 
     res.render('home/home', { hotCourse, mostviewCourse, newestCourse });
 });

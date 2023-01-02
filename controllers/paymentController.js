@@ -66,10 +66,16 @@ export const updateShoppingCart = catchAsync(async (req, res, next) => {
       return res.redirect(`${backURL}?message=Please login to continue}`);
     }
     const shopping_cart = { course_id: course_id, user_id: res.locals.authUser._id };
-    const prev_course = await ShoppingCart.findOne(shopping_cart);
+    const prev_course = await ShoppingCart.findOne(shopping_cart).lean();
+
+    const my_courses = await User.findOne({ _id: res.locals.authUser._id }).lean();
 
     if (prev_course) {
       return res.redirect(`${backURL}?message=Course already in cart`);
+    }
+    
+    if (my_courses) {
+      return res.redirect(`${backURL}?message=Course already in my courses`);
     }
 
     await ShoppingCart.create(shopping_cart);

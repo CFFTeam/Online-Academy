@@ -7,6 +7,9 @@
     </form>
     <div class="course-card-overlay">
         <a class="button-cs" href="{{course_slug}}">More Details</a>
+        {{#if my_courses}}
+        <a class="button-cs learning" href="{{course_slug}}/learn/lecture">Learn Now</a>
+        {{/if}}
     </div>
     <img
         src="{{course_img}}"
