@@ -74,9 +74,9 @@ export const updateShoppingCart = catchAsync(async (req, res, next) => {
       return res.redirect(`${backURL}?message=Course already in cart`);
     }
     
-    if (Object.values(my_courses).length > 0) {
-      return res.redirect(`${backURL}?message=Course already in my courses`);
-    }
+    // if (Object.values(my_courses).length > 0) {
+    //   return res.redirect(`${backURL}?message=Course already in my courses`);
+    // }
 
     await ShoppingCart.create(shopping_cart);
 
