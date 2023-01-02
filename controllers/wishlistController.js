@@ -36,7 +36,7 @@ export const wishlistPage = catchAsync(async (req, res) => {
 });
 
 export const favorite = catchAsync(async (req, res) => {
-  let user = null;
+  let user=null;
   if (res.locals && res.locals.authUser) {
     user = await User.findOne({ _id: res.locals.authUser._id }).lean();
   }

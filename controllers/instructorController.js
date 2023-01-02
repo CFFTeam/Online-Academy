@@ -182,6 +182,7 @@ export const editCourseDescription = catchAsync(async (req,res) => {
     // config storage
     const storage = multer.diskStorage({
         destination: async function (req, file, cb) {
+            req.hasFile = true;
             if (!req.query.course) {
 
                 const slug_name = slugify(req.body.course_title, {
@@ -229,6 +230,14 @@ export const editCourseDescription = catchAsync(async (req,res) => {
           // if haven't registered course yet => create new one
             if (!req.query.course) {
                 const foundCourse = await Course.findOne({name: req.body.course_title});
+                // if user does not upload file
+                if (!req.hasFile) {
+                    return res.render(res.locals.handlebars, {
+                        layout: res.locals.layout,
+                        message: "You need to upload your image.",
+                        sidebar: "my-course"
+                    });
+                }
                 // if this course title already exists
                 if (foundCourse) {
                     return res.render(res.locals.handlebars, {
@@ -403,6 +412,7 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
     // config storage
     const storage = multer.diskStorage({
         destination: async function(req, file, cb) {
+            req.hasFile = true;
             if (!req.query.lesson && req.query.section) {
 
                 req.course = await Course.findById({_id: req.query.course}).lean();
@@ -526,6 +536,14 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                 }
                 // if user add new lessons
                 else if (req.query.section) { // user add new lessons
+                    if (!req.hasFile) {
+                        return res.render('instructor/addCourseContent', {
+                            layout: "instructor",
+                            course_id: req.query.course,
+                            message: "You must add video of this lesson. Try again later!",
+                            sidebar: "my-course"
+                        })
+                    }
                     let thisSection = thisCourseLectures.lectures.sections.filter((section) => {
                         return section._id.toString() === req.query.section;
                     });
