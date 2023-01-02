@@ -77,14 +77,33 @@
 
 <script>
     $(document).ready(() => {
-        let $container = $('.course-learning > .course-lectures > .course-lectures-list');
+        const currentCourse = `{{{watch_info.current_course}}}`;
+        const currentLesson = `{{{watch_info.url}}}`;
+        const currentWatch = JSON.parse(localStorage.getItem('plyr_current_watch')) || {};
+        const currentWatchCourse = Object.keys(currentWatch).length > 0 ? currentWatch[currentCourse] : null;
 
-        const section = parseInt('{{watch_info.section}}');
-        const lesson = '{{{watch_info.url}}}';
+        if (currentWatch && currentWatchCourse && currentWatchCourse !== currentLesson) {
+            window.location.replace(currentWatchCourse);
+        }
+        else if (!currentWatch || !currentWatchCourse) {
+            localStorage.setItem('plyr_current_watch', JSON.stringify({
+                ...currentWatch,
+                [currentCourse]: currentLesson
+            }));
+        }
 
         $(".course-learning > .course-lectures > .course-lectures-list > .course-lectures-item > .section-content > .lesson-item > .lesson-item-content > .lesson-item-title").click((event) => {
-            localStorage.setItem('plyr_current_watch', $(event.currentTarget).val().split("?")[0]);
+            localStorage.setItem('plyr_current_watch', JSON.stringify({
+                ...currentWatch,
+                [currentCourse]: $(event.currentTarget).val().split("?")[0]
+            }));
         });
+
+
+        let $container = $('.course-learning > .course-lectures > .course-lectures-list');
+
+        const section = parseInt(`{{watch_info.section}}`);
+        const lesson = `{{{watch_info.url}}}`;
 
         $(".course-learning > .course-lectures > .course-lectures-list > .course-lectures-item > .hidden-section-content").change((event) =>{
             if ($(event.currentTarget).is(':checked') === true)
@@ -129,7 +148,7 @@
         const timerLoading = setInterval(async () => {
             if (player.duration) {
 
-                player.currentTime = JSON.parse(localStorage.getItem('plyr_video__current'))['{{{watch_info.current_lesson}}}'];
+                player.currentTime = JSON.parse(localStorage.getItem('plyr_video__current'))[`{{{watch_info.current_lesson}}}`];
                 player.muted = false;
 
                 player.on('playing', () => {
@@ -158,15 +177,5 @@
                 '{{{watch_info.current_lesson}}}': player.currentTime
             }));
         });
-
-        const currentPage = '{{{watch_info.url}}}';
-        const currentWatch = localStorage.getItem('plyr_current_watch', '{{{watch_info.url}}}');
-
-        if (currentWatch && currentWatch !== currentPage) {
-            window.location.replace(currentWatch);
-        }
-        else if (!currentWatch || !currentWatch.trim()) {
-            localStorage.setItem('plyr_current_watch', currentPage);
-        }
     });
 </script>

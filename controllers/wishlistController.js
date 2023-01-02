@@ -41,12 +41,12 @@ export const favorite = catchAsync(async (req, res) => {
     user = await User.findOne({ _id: res.locals.authUser._id }).lean();
   }
   let courses = user.wishlist;
-  if(courses.includes(req.params.id)===false){
+  if (courses.includes(req.params.id) === false) {
     courses.push(req.params.id);
   }
   await User.updateOne(
     { _id: res.locals.authUser._id },
-    {wishlist: [...courses]}
+    { wishlist: [...courses] }
   )
   res.redirect('/');
 });

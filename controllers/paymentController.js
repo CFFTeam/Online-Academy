@@ -60,17 +60,23 @@ export const updateShoppingCart = catchAsync(async (req, res, next) => {
   }
   else {
     const  {course_id}  = req.body;
-    const backURL = req.headers.referer;
+    const backURL = req.headers.referer.split('?')[0];
 
     if (!res.locals.auth){
       return res.redirect(`${backURL}?message=Please login to continue}`);
     }
     const shopping_cart = { course_id: course_id, user_id: res.locals.authUser._id };
-    const prev_course = await ShoppingCart.findOne(shopping_cart);
+    const prev_course = await ShoppingCart.findOne(shopping_cart).lean();
+
+    const my_courses = await User.findOne({ _id: res.locals.authUser._id }).lean();
 
     if (prev_course) {
       return res.redirect(`${backURL}?message=Course already in cart`);
     }
+    
+    // if (Object.values(my_courses).length > 0) {
+    //   return res.redirect(`${backURL}?message=Course already in my courses`);
+    // }
 
     await ShoppingCart.create(shopping_cart);
 

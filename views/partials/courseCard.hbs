@@ -2,11 +2,14 @@
 <div class="course-card">
     <form action="/wishlist/{{course_id}}" method="post" name="addToWishlist" class="formPost">
         <button type="submit" class="but">
-            <i class="fa-regular fa-heart icon"></i>
+            <i class="{{myWishCourses}} fa-regular fa-heart icon"></i>
         </button>
     </form>
     <div class="course-card-overlay">
         <a class="button-cs" href="{{course_slug}}">More Details</a>
+        {{#if my_courses}}
+        <a class="button-cs learning" href="{{course_slug}}/learn/lecture">Learn Now</a>
+        {{/if}}
     </div>
     <img
         src="{{course_img}}"
@@ -118,4 +121,5 @@
             </span>
         </div>
     </div>
+
 </div>

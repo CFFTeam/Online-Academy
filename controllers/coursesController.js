@@ -1,5 +1,6 @@
 import categoryModel from "../models/categoryModel.js";
 import courseModel from "../models/courseModel.js";
+import User from "../models/userModel.js";
 import courseDetailsModel from "../models/courseDetailsModel.js";
 import { fixDateFormat, fixNumberFormat } from "../utilities/fixFormat.js";
 import catchAsync from "../utilities/catchAsync.js";
@@ -9,7 +10,7 @@ const loadBestSeller = async () => {
     return allcourses.map(course => course.course_id.toString());
 };
 
-const loadCourses = async (find_by = {}, sort_by, offset = 0, limit = 10) => {
+const loadCourses = async (myCourses, find_by = {}, sort_by, offset = 0, limit = 10) => {
 
     const skip = (offset - 1) * limit;
 
@@ -63,7 +64,8 @@ const loadCourses = async (find_by = {}, sort_by, offset = 0, limit = 10) => {
             course_img: course.img,
             course_description: course.description,
             course_duration: course.lectures.duration,
-            course_lessons: course.lectures.total
+            course_lessons: course.lectures.total,
+            my_courses: myCourses && myCourses.includes(course._id.toString()) ? true : false
         }
 
         newcourse.push(newest_course);
@@ -99,13 +101,12 @@ export const coursesPage = catchAsync(async (req, res) => {
     const limit = 10;
     const offset = res.locals.page;
 
-    const results = await loadCourses(find_by, res.locals.sort_by, offset, limit);
+    const results = await loadCourses(req.myCourses, find_by, res.locals.sort_by, offset, limit);
 
     const courses = results.courses;
     const totalPage = results.total_pages;
 
     const pageList = getPageList(totalPage);
-
     
     res.render(res.locals.handlebars, { courses, pageList: pageList });
 });
@@ -138,6 +139,14 @@ export const loadCategory = catchAsync(async (req, res, next) => {
             req.find_by.subcategory = { $in: [subcategoryName] };
     }
 
+    next();
+});
+
+export const load_my_courses = catchAsync(async (req, res, next) => {
+    if (req.session.auth || req.session.passport) {
+        const my_courses = await User.findOne({ author: res.locals.authUser._id }).select('myCourses').lean();
+        req.myCourses = my_courses.myCourses;
+    }
     next();
 });
 

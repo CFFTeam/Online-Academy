@@ -50,7 +50,8 @@ export const loadCourse = catchAsync(async (req, res, next) => {
         lesson_name: course_lessons.title,
         video: course_lessons.video,
         current_lesson: Buffer.from(lesson_url).toString('base64'),
-        url: lesson_url
+        url: lesson_url,
+        current_course: slug_course
     }
 
     next();
