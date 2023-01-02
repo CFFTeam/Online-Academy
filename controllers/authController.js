@@ -111,6 +111,7 @@ export const handleOTPForm = catchAsync(async (req, res, next, err) => {
           email,
           name,
           password,
+          myCourses: [],
           wishlist: []
         });
         msg = "success-sign-up";
