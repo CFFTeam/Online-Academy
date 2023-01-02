@@ -76,9 +76,11 @@ width: 100%;
   margin-top: -4px;
 }
 .userProfile > .body > .card > .icons {
-  width: 13rem;
+  width: 14rem;
   height: 3rem;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .userProfile > .body > .card > .icons > img {
