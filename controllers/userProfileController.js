@@ -83,7 +83,7 @@ export const updateProfilePage = catchAsync(async (req, res, next) => {
     if (foundUser && foundUser.email == req.body.email && foundUser._id != res.locals.authUser._id) return next(new Error("This email already exists. Please try again."));
 
     // check gender
-    const gender = ['Nam', 'Nữ', 'Khác'];
+    const gender = ['Male', 'Female', 'Other'];
     if (!gender.includes(user.sex)) return next(new Error('Giới tính không tồn tại'));
 
     await user.save();
