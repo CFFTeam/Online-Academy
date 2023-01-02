@@ -42,7 +42,7 @@ export const handleLoginForm = catchAsync(async (req, res, next) => {
     birthday: foundUser.birthday,
     address: foundUser.address,
     active: foundUser.active,
-    myCourses: foundUser.myCourses,
+    myCourses: foundUser.myCourses
   }
   if (foundUser.role === 'instructor') return res.redirect('/instructor/my-courses');
   res.render("auth/login.hbs", { layout: "auth.hbs", message: "success" });
@@ -186,13 +186,10 @@ export const handleNewPasswordForm = catchAsync(async (req, res, next) => {
 // log out
 export const logout = catchAsync(async (req, res, next) => {
   req.session.auth = false;
+  req.session.passport = null; 
   req.session.authUser = null;
   const url = req.headers.referer || '/';
   res.redirect(url);
 });
 
 
-// export const signup = (req, res) => {};
-// export const forgotPassword = (req, res) => {};
-// export const resetPassword = (req, res) => {};
-// export const updatePassword = (req, res) => {};
