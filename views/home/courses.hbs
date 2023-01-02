@@ -21,6 +21,9 @@
         {{/each}}
     </div>
     <div class="page-group">
+        {{#if prev_page}}
+            <a class="page-items" href="?{{#if ../q}}q={{../q}}&{{/if}}{{#if ../sort_by}}sort_by={{../sort_by}}&{{/if}}page={{prev_page}}"><i class="fa-solid fa-chevron-left"></i></a>
+        {{/if}}
         {{#each pageList}}
             {{#if (eq this "...")}}
             <span class="page-items">{{this}}</span>
@@ -28,5 +31,8 @@
             <a class="page-items{{#if (eq ../page this)}} active{{/if}}" href="?{{#if ../q}}q={{../q}}&{{/if}}{{#if ../sort_by}}sort_by={{../sort_by}}&{{/if}}page={{this}}">{{this}}</a>
             {{/if}}
         {{/each}}
+        {{#if next_page}}
+            <a class="page-items" href="?{{#if ../q}}q={{../q}}&{{/if}}{{#if ../sort_by}}sort_by={{../sort_by}}&{{/if}}page={{next_page}}"><i class="fa-solid fa-chevron-right"></i></a>
+        {{/if}}
     </div>
 </div>

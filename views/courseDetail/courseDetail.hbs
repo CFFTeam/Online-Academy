@@ -33,13 +33,42 @@
           style="color: black; font-weight: 700; font-size: 3.5rem;"
         >{{courseDetail.price}} $</h1>
         <div class="order">
-          <form action="/payment" method="post">
-            <input hidden name='course_id' value='{{courseRating.course_id}}'/>
-            <input type="submit" class="add-to-cart" value="Add to cart"/>
-          </form>
-          <form action="#">
-            <input type="submit" value="Buy now" class="buy-now" />
-          </form>
+          {{#if isExist}}
+            <p style="padding: 1rem 4.5rem; color: #00A551; border: 2px solid #00A551; font-weight: 700; font-size: 1.8rem; margin-top: 1rem;">Owned</p>
+          {{else}}
+            {{#if (and auth authUser)}}
+              <form id="add-to-cart" action="/payment" method="post">
+                <input hidden name='course_id' value='{{courseRating.course_id}}'/>
+                <input type="submit" class="add-to-cart" value="Add to cart"/>
+              </form>
+              <form id="buynow" method="post" action="{{courseDetail.slug}}/buynow">
+                <input hidden name='course_id' value='{{courseRating.course_id}}'/>
+                <input type="submit" value="Buy now" class="buy-now" />
+              </form>
+              {{else}}
+                <form id="without-add-to-cart" action="/payment" method="post">
+                  <input hidden name='course_id' value='{{courseRating.course_id}}'/>
+                  <input type="submit" class="add-to-cart" value="Add to cart"/>
+                </form>
+                <form id="withoutlogin" method="post" action="{{courseDetail.slug}}/buynow">
+                  <input type="submit" value="Buy now" class="buy-now" />
+                </form>
+            {{/if}}
+            <script>
+              $("#buynow").on("click",(event)=>{
+                alert("Payment successfully!");
+              })
+              $("#withoutlogin").on("click",(event)=>{
+                alert("Please log in to buy course");
+              })
+              $("#add-to-cart").on("click",(event)=>{
+                alert("Add to cart successfully!");
+              })
+              $("#without-add-to-cart").on("click",(event)=>{
+                alert("Please log in to buy course");
+              })
+            </script>
+          {{/if}}
         </div>
       </div>
     </div>
@@ -50,7 +79,7 @@
         src="/assets/svg/course/play.svg"
         alt="play-button"
         data-toggle="modal"
-        data-target="#myModal"
+        data-target="#introModal"
         class="play"
       />
 
@@ -82,23 +111,28 @@
       </div>
     </div>
 
-    <div class="modal" id="myModal">
+    <div class="modal fade" id="introModal" role="dialog" aria-labelledby="myModal" aria-hidden="true">
       <div
         class="modal-dialog modal-xl"
         style="top: 50% !important; transform: translateY(-55%) !important;"
       >
-        <div class="modal-content" style="padding: 0;">
-          <iframe
-            height="650px"
-            src="https://www.youtube.com/embed/K4TOrB7at0Y"
-          > </iframe>
+        <div class="modal-content" style="padding: 0; margin: 0;">
+          <video class=".vid" controls>
+            <source src={{courseDetail.lectures.sections.0.lessons.0.video}} type="video/mp4">
+          </video>
         </div>
       </div>
     </div>
+    <script>
+      $('#introModal').on('hide.bs.modal', function(e) {
+        this.querySelector('video').pause();
+      })
+    </script>
   </div>
+  
 
   <div class="course-preview">
-    <div class="heading-cp">\
+    <div class="heading-cp">
       <h1>Course Preview</h1>
     </div>
     <div class="content-cp">
@@ -109,9 +143,9 @@
             {{courseDetail.lectures.total}}
             lectures -
             {{courseDetail.lectures.duration}}</p>
-          <a href="#" class="all-sections">View all sections</a>
+          <a href="{{courseDetail.lectures.sections.0.lessons.0.url}}" class="all-sections">View all sections</a>
         </div>
-        <a href="#" class="link-video">
+        <a href="#" class="link-video" data-toggle="modal" data-target="#intro-0">
           <div class="section-video" style="margin-top: 3rem;">
             <img src={{courseDetail.img}} style="height: 8rem;" />
             <div class="header-content">
@@ -120,8 +154,24 @@
             </div>
           </div>
         </a>
-
-        <a href="#" class="link-video">
+        <div class="modal fade" id="intro-0" role="dialog" aria-labelledby="intro-0l" aria-hidden="true">
+          <div
+            class="modal-dialog modal-xl"
+            style="top: 50% !important; transform: translateY(-55%) !important;"
+          >
+            <div class="modal-content" style="padding: 0; margin: 0;">
+              <video class=".vid" controls>
+                <source src={{courseDetail.lectures.sections.0.lessons.0.video}} type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+        <script>
+          $('#intro-0').on('hide.bs.modal', function(e) {
+            this.querySelector('video').pause();
+          })
+        </script>
+        <a href="#" class="link-video"  data-toggle="modal" data-target="#intro-1">
           <div class="section-video">
             <img src={{courseDetail.img}} style="height: 8rem;" />
             <div class="header-content">
@@ -130,7 +180,20 @@
             </div>
           </div>
         </a>
-        <a href="#" class="link-video">
+        <div class="modal fade" id="intro-1" role="dialog" aria-labelledby="intro-1" aria-hidden="true">
+          <div
+            class="modal-dialog modal-xl"
+            style="top: 50% !important; transform: translateY(-55%) !important;"
+          >
+            <div class="modal-content" style="padding: 0; margin: 0;">
+              <video class=".vid" controls>
+                <source src={{courseDetail.lectures.sections.1.lessons.1.video}} type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <a href="#" class="link-video"  data-toggle="modal" data-target="#intro-2">
           <div class="section-video">
             <img src={{courseDetail.img}} style="height: 8rem;" />
             <div class="header-content">
@@ -139,7 +202,19 @@
             </div>
           </div>
         </a>
-        <a href="#" class="link-video">
+        <div class="modal fade" id="intro-2" role="dialog" aria-labelledby="intro-2" aria-hidden="true">
+          <div
+            class="modal-dialog modal-xl"
+            style="top: 50% !important; transform: translateY(-55%) !important;"
+          >
+            <div class="modal-content" style="padding: 0; margin: 0;">
+              <video class=".vid" controls>
+                <source src={{courseDetail.lectures.sections.2.lessons.1.video}} type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+        <a href="#" class="link-video" data-toggle="modal" data-target="#intro-3">
           <div class="section-video">
             <img src={{courseDetail.img}} style="height: 8rem;" />
             <div class="header-content">
@@ -148,7 +223,19 @@
             </div>
           </div>
         </a>
-        <a href="#" class="link-video">
+        <div class="modal fade" id="intro-3" role="dialog" aria-labelledby="intro-3" aria-hidden="true">
+          <div
+            class="modal-dialog modal-xl"
+            style="top: 50% !important; transform: translateY(-55%) !important;"
+          >
+            <div class="modal-content" style="padding: 0; margin: 0;">
+              <video class=".vid" controls>
+                <source src={{courseDetail.lectures.sections.2.lessons.1.video}} type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+        <a href="#" class="link-video" data-toggle="modal" data-target="#intro-4">
           <div class="section-video">
             <img src={{courseDetail.img}} style="height: 8rem;" />
             <div class="header-content">
@@ -157,6 +244,32 @@
             </div>
           </div>
         </a>
+        <div class="modal fade" id="intro-4" role="dialog" aria-labelledby="intro-4" aria-hidden="true">
+          <div
+            class="modal-dialog modal-xl"
+            style="top: 50% !important; transform: translateY(-55%) !important;"
+          >
+            <div class="modal-content" style="padding: 0; margin: 0;">
+              <video class=".vid" controls>
+                <source src={{courseDetail.lectures.sections.4.lessons.1.video}} type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+        <script>
+          $('#intro-1').on('hide.bs.modal', function(e) {
+            this.querySelector('video').pause();
+          })
+          $('#intro-2').on('hide.bs.modal', function(e) {
+            this.querySelector('video').pause();
+          })
+          $('#intro-3').on('hide.bs.modal', function(e) {
+            this.querySelector('video').pause();
+          })
+          $('#intro-4').on('hide.bs.modal', function(e) {
+            this.querySelector('video').pause();
+          })
+        </script>
       </div>
     </div>
   </div>
@@ -325,17 +438,16 @@
       {{/each}}
 
 
-      <form method="POST" action="#">
-        <div class="comment-info">
+      <form method="POST" action="{{courseDetail.slug}}/cmt" class="comment-info">
           <div class="rating-point-under">
             <img src={{courseDetail.img}} style="height: 6rem; width: 6rem;" />
             <div class="star-point-under">
-              <select name="5 stars">
-                <option value="5 stars">5 stars</option>
-                <option value="4 stars">4 stars</option>
-                <option value="3 stars">3 stars</option>
-                <option value="2 stars">2 stars</option>
-                <option value="1 stars">1 stars</option>
+              <select name="ratingcmt">
+                <option value="5">5 stars</option>
+                <option value="4">4 stars</option>
+                <option value="3">3 stars</option>
+                <option value="2">2 stars</option>
+                <option value="1">1 stars</option>
               </select>
             </div>
           </div>
@@ -343,10 +455,10 @@
             type="text"
             class="input-comment"
             placeholder="Enter your comment"
+            name="textcmt"
           />
-
+          <input hidden name='course_id' value='{{courseRating.course_id}}'/>
           <input type="submit" value="Post" class="button-submit" />
-        </div>
       </form>
 
     </div>
