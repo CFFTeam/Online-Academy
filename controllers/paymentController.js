@@ -60,7 +60,7 @@ export const updateShoppingCart = catchAsync(async (req, res, next) => {
   }
   else {
     const  {course_id}  = req.body;
-    const backURL = req.headers.referer;
+    const backURL = req.headers.referer.split('?')[0];
 
     if (!res.locals.auth){
       return res.redirect(`${backURL}?message=Please login to continue}`);
