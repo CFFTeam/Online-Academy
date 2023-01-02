@@ -193,7 +193,3 @@ export const logout = catchAsync(async (req, res, next) => {
 });
 
 
-// export const signup = (req, res) => {};
-// export const forgotPassword = (req, res) => {};
-// export const resetPassword = (req, res) => {};
-// export const updatePassword = (req, res) => {};
