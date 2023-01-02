@@ -36,20 +36,17 @@ export const wishlistPage = catchAsync(async (req, res) => {
 });
 
 export const favorite = catchAsync(async (req, res) => {
-  console.log(req.params.id);
-  console.log(res.locals.authUser._id);
-  let user=null;
+  let user = null;
   if (res.locals && res.locals.authUser) {
     user = await User.findOne({ _id: res.locals.authUser._id }).lean();
   }
   let courses = user.wishlist;
-  if(courses.includes(req.params.id)===false){
+  if (courses.includes(req.params.id) === false) {
     courses.push(req.params.id);
   }
-  console.log(courses);
   await User.updateOne(
     { _id: res.locals.authUser._id },
-    {wishlist: [...courses]}
+    { wishlist: [...courses] }
   )
   res.redirect('/');
 });

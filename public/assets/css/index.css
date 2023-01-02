@@ -225,6 +225,10 @@ input[type="checkbox"].checkbox-input-cs:focus + label > span {
     color: rgb(255, 96, 242);
 }
 
+.course-card > .formPost > .but > .chosen { 
+    color: rgb(255, 96, 242);
+}
+
 .course-card > .course-card-overlay {
     position: absolute;
     display: flex;

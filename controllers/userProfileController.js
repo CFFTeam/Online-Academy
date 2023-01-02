@@ -57,34 +57,34 @@ export const updateProfilePage = catchAsync(async (req, res, next) => {
       user.sex === '' ||
       user.birthday === ''
     ) {
-      return next(new Error('Thông tin bạn nhập không hợp lệ!', 400));
+      return next(new Error('Please provide all fields!', 400));
     }
 
     // check valid name
     const regex =
       /^([A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ]|[a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ])*(?:[ ][A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)*$/g;
 
-    if (!regex.exec(user.name)) return next(new Error('Họ và tên không hợp lệ', 400));
+    if (!regex.exec(user.name)) return next(new Error('Your name is not valid', 400));
 
     // check birthday
     const regex_b =
       /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/g;
-    if (!regex_b.exec(user.birthday)) return next(new Error('Ngày sinh không hợp lệ', 400));
+    if (!regex_b.exec(user.birthday)) return next(new Error('Your birthday is not valid', 400));
 
     // check phone number
     const regex_p = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
-    if (!regex_p.exec(user.phoneNumber)) return next(new Error('Số điện thoại không hợp lệ', 400));
+    if (!regex_p.exec(user.phoneNumber)) return next(new Error('Your phone number is not valid', 400));
 
     // check name & address length
     if (user.name.length >= 50 || user.address.length >= 50)
-      return next(new Error('Thông tin user quá dài. Vui lòng nhập ít hơn 50 kí tự.'));
+      return next(new Error('User information is too long. Please enter less than 50 characters'));
 
     const foundUser = await User.findOne({ email: req.body.email });
     if (foundUser && foundUser.email == req.body.email && foundUser._id != res.locals.authUser._id) return next(new Error("This email already exists. Please try again."));
 
     // check gender
     const gender = ['Male', 'Female', 'Other'];
-    if (!gender.includes(user.sex)) return next(new Error('Giới tính không tồn tại'));
+    if (!gender.includes(user.sex)) return next(new Error('Sex does not exist'));
 
     await user.save();
 
