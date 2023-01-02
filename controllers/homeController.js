@@ -72,8 +72,8 @@ const loadNewestCourse = async (myCourses, myWishCourses) => {
 }
 
 export const load_my_courses = catchAsync(async (req, res, next) => {
-    if (res.locals.auth || res.locals.passport) {
-        const my_courses = await User.findOne({ author: res.locals.authUser._id }).select('myCourses').lean();
+    if (req.session.auth || req.session.passport) {
+        const my_courses = await User.findOne({ _id: res.locals.authUser._id }).select('myCourses').lean();
         req.myCourses = my_courses.myCourses;
     }
     next();
