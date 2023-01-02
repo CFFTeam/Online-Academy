@@ -110,7 +110,8 @@ export const handleOTPForm = catchAsync(async (req, res, next, err) => {
         await User.create({
           email,
           name,
-          password
+          password,
+          wishlist: []
         });
         msg = "success-sign-up";
       }
@@ -185,13 +186,10 @@ export const handleNewPasswordForm = catchAsync(async (req, res, next) => {
 // log out
 export const logout = catchAsync(async (req, res, next) => {
   req.session.auth = false;
+  req.session.passport = null; 
   req.session.authUser = null;
   const url = req.headers.referer || '/';
   res.redirect(url);
 });
 
 
-// export const signup = (req, res) => {};
-// export const forgotPassword = (req, res) => {};
-// export const resetPassword = (req, res) => {};
-// export const updatePassword = (req, res) => {};
