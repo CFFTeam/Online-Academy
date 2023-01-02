@@ -88,7 +88,7 @@ export const updateProfilePage = catchAsync(async (req, res, next) => {
 
     await user.save();
 
-    res.render("userProfile/userProfile", { user: user, page: 'editform' });
+    res.render("userProfile/userProfile", { user: user, page: 'editform', messages: "profile success" });
   }
   else if (submitForm == "editPassword") {
     res.locals.handlebars = "userProfile/userProfile";
