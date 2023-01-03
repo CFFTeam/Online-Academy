@@ -13,6 +13,23 @@ import User from "../models/userModel.js";
 import fs from "fs";
 import slugify from "slugify";
 
+const getPageList = (totalPage) => {
+    const pageList = [1];
+    if (totalPage > 10) {
+        for (let i = 2; i <= Math.min(totalPage, 4); i++)
+            pageList.push(i);
+        
+        pageList.push("...");
+
+        for (let i = Math.min(totalPage - 4, 4); i >= 1; i--)
+            pageList.push(totalPage - i + 1);
+        }
+    else 
+        for (let i = 2; i <= totalPage; i++)
+            pageList.push(i);
+    return pageList;
+};
+
 export const getDashboard = async (req, res, next) => {
     res.render('instructor/others', {
         layout: "instructor",
@@ -380,7 +397,6 @@ export const getCourseContent = catchAsync(async (req,res) => {
     if (req.query.lesson) {
         thisCourseLectures.lectures.sections.forEach(section => {
             const queryLessons = section.lessons.filter(lesson => {
-               
                 return lesson._id.toString() === req.query.lesson;
             });
             if (queryLessons[0]) {
@@ -390,13 +406,26 @@ export const getCourseContent = catchAsync(async (req,res) => {
         })
         await thisCourseLectures.save();
     }
+    // Pagination sections
+    const page = req.query.page * 1 || 1;
+    const limit = 2;
+    const sections = course.lectures.sections.slice((page - 1) * limit, page * limit);
+    const nPages = Math.ceil(course.lectures.sections.length / limit);
+    const pageList = getPageList(nPages);
+    const prev_page = +page - 1 > 0 ? +page - 1 : false;
+    const next_page = +page + 1 <= nPages ? +page + 1 : false;
     res.render('instructor/addCourseContent', {
         layout: "instructor",
-        sections: course.lectures.sections,
+        // sections: course.lectures.sections,
+        sections: sections,
         sections_empty: true,
         url: my_url,
         course_id: course_id,
         section_id: section_id,
+        pageList: pageList,
+        page: page,
+        prev_page: prev_page,
+        next_page: next_page,
         lesson: {
             title: foundLesson.title
         },
@@ -423,7 +452,6 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                 if (!fs.existsSync(`public/courses/${course_slug}/${lesson_slug}`)) {
                     fs.mkdirSync(`public${course_slug}/${lesson_slug}`);
                 }
-                
                 cb(null, `public${course_slug}/${lesson_slug}`)
             }
             else if (req.query.lesson) {
@@ -461,9 +489,10 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
     upload.single('videoUploadFile')(req,res, async (err) => {
         if (err) console.error(err);
         else {
-            const course = req.course// find course
+            const course = req.course ? req.course : await Course.findById({_id: req.query.course}).lean();
             const thisCourseLectures = (req.thisCourseLectures) ? req.thisCourseLectures : await Course.findById({_id: req.query.course}).select('lectures');
             // if user add new section
+            const limit = 2; // limit sections
             if (req.query.section == "") {
                 let thisCourseSections = thisCourseLectures.lectures.sections;
                 const newSection = {
@@ -473,10 +502,12 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                     lessons: []
                 }
                 thisCourseSections.push(newSection);
+                const nPages = Math.ceil(thisCourseSections.length / limit); // also last pages
                 await thisCourseLectures.save();
                 return res.render('instructor/addCourseContent', {
                     layout: "instructor",
                     course_id: req.query.course,
+                    page: nPages,
                     message: "success",
                     sidebar: "my-course"
                 })
@@ -492,6 +523,7 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                 return res.render('instructor/addCourseContent', {
                     layout: "instructor",
                     course_id: req.query.course,
+                    page: req.query.page,
                     message: "success",
                     sidebar: "my-course"
                 })
@@ -499,13 +531,20 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
             // if user delete section
             else if (req.body.requestActionInSection  == "delete_section") {
                 const newSectionArray = thisCourseLectures.lectures.sections.filter((section) => {
+                    section.lessons.forEach((lesson) => {
+                        const folderPath = `public${lesson.video.substring(0,lesson.video.lastIndexOf('/'))}`;
+                        fs.rmSync(folderPath, { recursive: true});
+                    })
                     return section._id.toString() !== req.query.section;
                 })
+                const nPagesCurrent = Math.ceil(newSectionArray.length / limit);
+                const page = nPagesCurrent < req.query.page ? Math.max(nPagesCurrent,1) : req.query.page;
                 thisCourseLectures.lectures.sections = newSectionArray;
                 await thisCourseLectures.save();
                 return res.render('instructor/addCourseContent', {
                     layout: "instructor",
                     course_id: req.query.course,
+                    page: page,
                     message: "success",
                     sidebar: "my-course"
                 })
@@ -530,6 +569,7 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                     return res.render('instructor/addCourseContent', {
                         layout: "instructor",
                         course_id: req.query.course,
+                        page: req.query.page,
                         message: "success",
                         sidebar: "my-course"
                     })
@@ -540,6 +580,7 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                         return res.render('instructor/addCourseContent', {
                             layout: "instructor",
                             course_id: req.query.course,
+                            page: req.query.page,
                             message: "You must add video of this lesson. Try again later!",
                             sidebar: "my-course"
                         })
@@ -558,23 +599,24 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                         _id: new mongoose.Types.ObjectId()
                     }
                     const foundLesson = thisSection.lessons.filter((lesson) => {
-                        return lesson.title.toString() === newLesson.title.toString();
+                        return lesson.url.toString() === newLesson.url.toString();
                     });
                     // if this lesson's title existed
                     if(foundLesson.length > 0) {
                         return res.render('instructor/addCourseContent', {
                             layout: "instructor",
                             course_id: req.query.course,
+                            page: req.query.page,
                             message: "This lesson already exists. Please choose a different lesson title.",
                             sidebar: "my-course"
                         })
                     }
                     thisSection.lessons.push(newLesson);
                     await thisCourseLectures.save();
-                    //return res.redirect(`/instructor/add-course-content/?course=${course._id}`);
                     return res.render('instructor/addCourseContent', {
                         layout: "instructor",
                         course_id: req.query.course,
+                        page: req.query.page,
                         message: "success",
                         sidebar: "my-course"
                     })
@@ -587,6 +629,10 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                 });
                 thisSection = thisSection[0]; // get section out of an array
                 const newLessonArray = thisSection.lessons.filter((lesson) => {
+                    if (lesson._id.toString() == req.query.lesson) {
+                        const folderPath = `public${lesson.video.substring(0,lesson.video.lastIndexOf('/'))}`;
+                        fs.rmSync(folderPath, { recursive: true});
+                    }
                     return lesson._id.toString() !== req.query.lesson;
                 })
                 thisSection.lessons = newLessonArray;
@@ -594,6 +640,7 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                 return res.render('instructor/addCourseContent', {
                     layout: "instructor",
                     course_id: req.query.course,
+                    page: req.query.page,
                     message: "success",
                     sidebar: "my-course"
                 })
@@ -606,6 +653,7 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                 return res.render('instructor/addCourseContent', {
                     layout: "instructor",
                     course_id: req.query.course,
+                    page: req.query.page,
                     message: "finish",
                     sidebar: "my-course"
                 })

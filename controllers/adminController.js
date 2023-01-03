@@ -2,12 +2,17 @@ import catchAsync from "../utilities/catchAsync.js";
 import Course from "../models/courseModel.js";
 import CourseDetail from "../models/courseDetailsModel.js";
 import Category from "../models/categoryModel.js";
+import User from "../models/userModel.js";
+
 
 import url from "url";
 
 //-----------------Categories--------------
 export const renderCategories = catchAsync(async (req, res) => {
   const category = await Category.find().lean();
+  for(let i=0; i<category.length; i++){
+    category[i]['isEmpty'] =  category[i].lectures.length == 0? true : false;
+  }
   res.render("admin/categories.hbs", {
     categories: category,
     layout: "admin.hbs",
@@ -24,8 +29,6 @@ export const addCategories = catchAsync(async (req, res) => {
 });
 
 export const editCategories = catchAsync(async (req, res) => {
-  console.log(req.params.id);
-  console.log("edit");
   const updateCategoryData = await Category.updateOne(
     { _id: req.params.id },
     { title: req.body.title }
@@ -34,8 +37,6 @@ export const editCategories = catchAsync(async (req, res) => {
 });
 
 export const deleteCategories = catchAsync(async (req, res) => {
-  console.log(req.params.id);
-  console.log("delete");
   const deleteCategoryData = await Category.deleteOne({
     _id: req.params.id,
   }).lean();
@@ -71,11 +72,6 @@ export const renderCoursesByCategories = catchAsync(async (req, res) => {
 });
 
 export const editCourses = catchAsync(async (req, res) => {
-  console.log(req.params.id);
-  console.log("edit");
-
-  console.log( typeof Number(req.body.sale));
-
   const updateCourses= await Course.updateOne(
     { _id: req.params.id },
     { sale: Number(req.body.sale) }
@@ -105,117 +101,87 @@ export const deleteCourses = catchAsync(async (req, res) => {
 
 //-------------------Teacher------------------------
 export const renderTeachers = catchAsync(async (req, res) => {
-  //const allTeachers = await Teacher.find().lean();
-  const a = [
-    {
-      _id: 1,
-      name: "Jonas Schmedtmann",
-    },
-    {
-      _id: 1,
-      name: "Jonas Schmedtmann",
-    },
-    {
-      _id: 1,
-      name: "Jonas Schmedtmann",
-    },
-    {
-      _id: 1,
-      name: "Jonas Schmedtmann",
-    },
-
-    {
-      _id: 1,
-      name: "Jonas Schmedtmann",
-    },
-    {
-      _id: 1,
-      name: "Jonas Schmedtmann",
-    },
-  ];
-  const allCategories = await Category.find().lean();
+  const allTeachers = await User.find({role: "instructor"}).lean();
   res.render("admin/teachers.hbs", {
-    teachers: a,
-    category: allCategories,
+    teachers: allTeachers,
     layout: "admin.hbs",
   });
 });
 
 export const addTeachers = catchAsync(async (req, res) => {
-  //const allTeachers = await Teacher.find().lean();
+  await User.create({
+    email: req.body.email,
+    name: req.body.name,
+    password: req.body.password,
+    role: "instructor",
+    myCourses: []
+  })
   res.redirect("/admin/teachers");
 });
 
+export const notExistTeachers = catchAsync(async (req, res) => {
+  console.log(req.query.email);
+  const teacher = await User.find({email: req.query.email}).lean();
+  console.log(teacher);
+
+  if(teacher.length===0){
+    return res.json(true);
+  }
+  else res.json(false);
+});
+
 export const editTeachers = catchAsync(async (req, res) => {
-  //const allTeachers = await Teacher.find().lean();
+  await User.updateOne(
+    {_id: req.params.id}, 
+    {name: req.body.title}
+  ).lean();
   res.redirect("/admin/teachers");
 });
 
 export const banTeachers = catchAsync(async (req, res) => {
-  //const allTeachers = await Teacher.find().lean();
+  const getUser = await User.findOne({_id: req.params.id}).lean();
+  let banStatus=getUser.active;
+  await User.updateOne(
+    {_id: req.params.id}, 
+    {active: !banStatus}
+  ).lean();
   res.redirect("/admin/teachers");
 });
 
 export const deleteTeachers = catchAsync(async (req, res) => {
-  //const allTeachers = await Teacher.find().lean();
+  await User.deleteOne({_id: req.params.id}).lean();
   res.redirect("/admin/teachers");
 });
 
 
 //-------------------Student------------------------
 export const renderStudents = catchAsync(async (req, res) => {
-  //const allStudents = await Student.find().lean();
-  const a = [
-    {
-      _id: 1,
-      name: "Jonas Schmedtmann",
-    },
-    {
-      _id: 1,
-      name: "Jonas Schmedtmann",
-    },
-    {
-      _id: 1,
-      name: "Jonas Schmedtmann",
-    },
-    {
-      _id: 1,
-      name: "Jonas Schmedtmann",
-    },
-
-    {
-      _id: 1,
-      name: "Jonas Schmedtmann",
-    },
-    {
-      _id: 1,
-      name: "Jonas Schmedtmann",
-    },
-  ];
-  const allCategories = await Category.find().lean();
+  const allStudents = await User.find({role: "user"}).lean();
   res.render("admin/students.hbs", {
-    students: a,
-    category: allCategories,
+    students: allStudents,
     layout: "admin.hbs",
   });
 });
 
-export const addStudents = catchAsync(async (req, res) => {
-  //const allTeachers = await Teacher.find().lean();
-  res.redirect("/admin/students");
-});
-
 export const editStudents = catchAsync(async (req, res) => {
-  //const allTeachers = await Teacher.find().lean();
+  await User.updateOne(
+    {_id: req.params.id}, 
+    {name: req.body.title}
+  ).lean();
   res.redirect("/admin/students");
 });
 
 export const banStudents = catchAsync(async (req, res) => {
-  //const allTeachers = await Teacher.find().lean();
+  const getUser = await User.findOne({_id: req.params.id}).lean();
+  let banStatus=getUser.active;
+  await User.updateOne(
+    {_id: req.params.id}, 
+    {active: !banStatus}
+  ).lean();
   res.redirect("/admin/students");
 });
 
 export const deleteStudents = catchAsync(async (req, res) => {
-  //const allTeachers = await Teacher.find().lean();
+  await User.deleteOne({_id: req.params.id}).lean();
   res.redirect("/admin/students");
 });

@@ -28,7 +28,8 @@
     <tr class="none-shawdow">
       <th>ID</th>
       <th>Name</th>
-      <th style="width: 1rem;"></th>
+      <th>Email</th>
+      <th>Active</th>
       <th style="width: 1rem;"></th>
       <th style="width: 1rem;"></th>
       <th style="width: 1rem;"></th>
@@ -37,27 +38,28 @@
     {{#each this.teachers}}
       <tr>
         <td class="id">{{_id}}</td>
-        <td class="name">{{name}}</td>
-
+        <td class="name" style="padding-right: 10rem;">{{name}}</td>
+        <td class="email" style="padding-right: 10rem;">{{email}}</td>
+        <td class="active"  style="padding-right: 10rem;">
+          {{#if active}}
+            Active
+            {{else}}
+              Inactive
+          {{/if}}</td>
         <td class="edit" style="text-align: center; padding: 0 1rem;">
           <img src="/assets/svg/admin/edit.svg" alt="edit-icon" />
         </td>
 
-        <td style="text-align: center; padding: 0 1rem;">
-          <a href="students/ban/{{_id}}">
-            <img src="/assets/svg/admin/ban.svg" alt="ban-icon" />
-          </a>
+        <td style="text-align: center; padding: 0 0.5rem;">
+          <form action="/admin/teachers/ban/{{_id}}" method="post">
+            <button type="submit" style="border: none;">
+              <img src="/assets/svg/admin/ban.svg" alt="ban-icon" />
+            </button>
+          </form>
         </td>
 
-        <td
-          style="text-align: center; padding: 0 1rem;"
-          data-toggle="modal"
-          data-target="#myModal"
-        >
-          <img src="/assets/svg/admin/info.svg" alt="info-icon" />
-        </td>
 
-        <td class="delete" style="text-align: center; padding: 0 1rem;">
+        <td class="delete" style="text-align: center; padding: 0 0.2rem;">
           <form action="/admin/teachers/delete/{{_id}}" method="post">
             <button type="submit" style="border: none;">
               <img src="/assets/svg/admin/delete.svg" alt="delete-icon" />
@@ -69,68 +71,11 @@
 
   </table>
 
-  <div class="modal" id="myModal">
-    <div
-      class="modal-dialog"
-      style="top: 50% !important; transform: translateY(-70%) !important"
-    >
-      <div class="modal-content">
-
-        <!-- Modal Header -->
-        <div class="modal-header" style="border:none; padding: 1rem 0 0 1rem;">
-          <h1
-            style="color:#00A551; font-weight: 700;margin: 0.5rem;"
-          >Detail</h1>
-        </div>
-
-        <!-- Modal body -->
-        <div class="modal-body" style="margin: 0 auto 1rem auto; padding: 0;">
-          <table class="not">
-            <tr>
-              <td><b>ID: </b></td>
-              <td>1 </td>
-            </tr>
-            <tr>
-              <td><b>Name:</b></td>
-              <td>Python beginner to master </td>
-            </tr>
-            <tr>
-              <td><b>Category: </b></td>
-              <td>Web App Development </td>
-            </tr>
-            <tr>
-              <td><b>Teacher:</b> </td>
-              <td>Jonas Schema </td>
-            </tr>
-            <tr>
-              <td><b>Student quantity</b>: </td>
-              <td>172.867</td>
-            </tr>
-            <tr>
-              <td><b>Rate:</b> </td>
-              <td
-                style="display: flex; align-items: center; justify-content: space-between;"
-              >
-                <div>4.7</div>
-                {{#times 5}}
-                  <div>
-                    <img src="/assets/svg/admin/star.svg" alt="star-icon" />
-                  </div>
-                {{/times}}
-                <div>(15.279)</div>
-              </td>
-            </tr>
-          </table>
-        </div>
-
-      </div>
-    </div>
-  </div>
 
   <div class="modal" id="addTeacher">
     <div
       class="modal-dialog"
-      style="top: 50% !important; transform: translateY(-60%) !important"
+      style="top: 50% !important; transform: translateY(-80%) !important"
     >
       <div class="modal-content">
 
@@ -145,54 +90,74 @@
           class="modal-body"
           style="margin: 1rem 1.5rem 1rem 1.5rem; padding: 0;"
         >
-          <form method="post" style="margin: 0;">
+          <form id="modalAdd" method="post" style="margin: 0;">
 
             <p style="margin-bottom: 0.3rem; font-weight: 600;">Name</p>
             <input
-              style="width: 100%; padding: 0.5rem; height: 2.2rem; margin-bottom: 0.5rem;"
+              id="nameAdd"
+              name="name"
+              style="width: 100%; padding: 0.5rem; height: 3rem; margin-bottom: 0.5rem;"
             />
 
             <p style="margin-bottom: 0.3rem; font-weight: 600;">Email</p>
             <input
-              style="width: 100%; padding: 0.5rem; height: 2.2rem; margin-bottom: 0.5rem;"
+              id="emailAdd"
+              name="email"
+              style="width: 100%; padding: 0.5rem; height: 3rem; margin-bottom: 0.5rem;"
             />
 
             <p style="margin-bottom: 0.3rem; font-weight: 600;">Password</p>
             <input
-              style="width: 100%; padding: 0.5rem; height: 2.2rem; margin-bottom: 0.5rem;"
+              id="passwordAdd"
+              name="password"
+              style="width: 100%; padding: 0.5rem;  height: 3rem; margin-bottom: 0.5rem;"
             />
-
-            <p style="margin-bottom: 0.3rem; font-weight: 600;">Introduction</p>
-            <textarea
-              style="width: 100%; padding: 0.5rem; height: 7rem; margin-bottom: 0.5rem; resize:none; border-radius: 5px; border: none; box-shadow: 2px 2px 8px #888888;"
-            ></textarea>
 
             <button
               class="but"
-              data-toggle="modal"
-              data-target="#addTeacher"
+              type="submit"
               style="margin: 1rem auto 0 auto; display: block;"
             >
               <p style="margin: 0;">Save</p>
             </button>
-
           </form>
+          
+            <script>
+
+              $('#modalAdd').on('submit',function(e) { 
+                e.preventDefault();
+                const email=$('#emailAdd').val();
+                const name=$('#nameAdd').val();
+                const password=$('#passwordAdd').val();
+                if(email.length===0 || name.length===0 || password.length===0){
+                  alert('Invalid data');
+                  return;
+                }
+                $.getJSON(`/admin/teachers/not-exist?email=${email}`, function(data){
+                  if(data===false){
+                    alert('Email existed in database');
+                  }
+                  else{
+                    $('#modalAdd').off('submit').submit();
+                  }
+                });
+              });
+            </script>
         </div>
       </div>
     </div>
   </div>
 
   <script>
-    $('#teacher').on('click','.edit',function() { const
-    id=$(this).siblings('.id').text();
+    $('#teacher').on('click','.edit',function() { 
+      const id=$(this).siblings('.id').text();
     if($(this).siblings('.name').find('input').length){
-    $(this).siblings('.name').text($(this).siblings('.name').find('input').val());
-    } else { var content=$(this).siblings('.name').text(); var
-    actionURL="teachers/edit/"+id; var form=$("<form/>", { method:
-    'POST',action: actionURL, style: 'margin: 0; padding: 0', }
-    ).append($("<input>", { type:'text', name:'title', class:"editname", value:
-    content, } ).val(content)).append($("<input>", { type:'submit',
-    class:"butname", value:"Save" }))
-    $(this).siblings('.name').text('').append(form); } });
+      $(this).siblings('.name').text($(this).siblings('.name').find('input').val());
+    } 
+    else { 
+      var content=$(this).siblings('.name').text(); 
+      var actionURL="teachers/edit/"+id; var form=$("<form/>",{ method: 'POST',action: actionURL, style: 'margin: 0; padding: 0', }).append($("<input>", { type:'text', name:'title', class:"editname", value:content, } ).val(content));
+      $(this).siblings('.name').text('').append(form); 
+    } });
   </script>
 </div>
