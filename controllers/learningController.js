@@ -39,7 +39,7 @@ export const loadCourse = catchAsync(async (req, res, next) => {
     section_numer = (section_numer) ? section_numer : 1;
 
     const course_section = course.lectures.sections[section_numer - 1];
-    const course_lessons = (founded_lessons) ? founded_lessons : course_section.lessons.find(lesson => lesson.url === lesson_url);
+    const course_lessons = (founded_lessons) ? founded_lessons : course_section.lessons.find(lesson => lesson.url === lesson_url) || null;
 
     if (!course_lessons || !slug_lesson_name) { 
         return res.redirect(`${course_section.lessons[0].url}?section=${section_numer}`);
@@ -54,7 +54,8 @@ export const loadCourse = catchAsync(async (req, res, next) => {
         video: course_lessons.video,
         current_lesson: Buffer.from(lesson_url).toString('base64'),
         url: lesson_url,
-        current_course: slug_course
+        current_course: slug_course,
+        course_sections: JSON.stringify(course.lectures.sections)
     }
 
     next();

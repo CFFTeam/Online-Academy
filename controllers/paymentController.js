@@ -35,6 +35,7 @@ export const shoppingCartPage = catchAsync(async (req, res, next) => {
     }
   }
 
+  res.locals.cart_number = shoppingCart && shoppingCart.length > 0 ? shoppingCart.length : 0;
 
   res.render("payment/payment", { course: JSON.stringify(course) });
 });
@@ -42,7 +43,6 @@ export const shoppingCartPage = catchAsync(async (req, res, next) => {
 export const updateShoppingCart = catchAsync(async (req, res, next) => {
   if (req.body.deleteItem == "delete") {
     await ShoppingCart.deleteOne({ _id: req.body.id });
-    res.locals.cart_number = res.locals.cart_number - 1;
   }
   else if (req.body.deleteItem == "checkout") {
     if (res.locals && res.locals.authUser) {

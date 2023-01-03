@@ -60,6 +60,10 @@ if (mode === "--courses") {
                     newCourse.subcategory = courseObj.primary_subcategory.title;
                     newCourse.date = courseObj.created;
 
+                    const folder_path = `public/courses/${courseObj.url.replace('/course/', '')}`;
+
+                    fs.mkdirSync(folder_path);
+
                     const options2 = {
                         uri: `https://www.udemy.com/api-2.0/course-landing-components/${course_id.trim()}/me/?components=curriculum_context`,
                         headers: {
@@ -107,7 +111,17 @@ if (mode === "--courses") {
                                 duration: sduration,
                                 lessons: []
                             };
+
+                            const section_name = slugify(section.title, {
+                                lower: true,
+                                locale: 'vi',
+                                strict: true
+                            });
+
+                            const section_path = path.join(folder_path, section_name);
     
+                            fs.mkdirSync(section_path);
+
                             section.items.forEach(lession => { 
                                 let lduration = "";
                                 if (lession.content_summary.split(':').length === 3) {
@@ -123,8 +137,13 @@ if (mode === "--courses") {
     
                                 const slug = slugify(lession.title, {
                                     lower: true,    
-                                    locale: 'vi'
-                                  });
+                                    locale: 'vi',
+                                    strict: true
+                                });
+
+                                const lesson_path = path.join(section_path, `.gitkeep`);
+                                
+                                fs.copyFileSync('public/courses/.gitkeep', lesson_path);
                                 
                                 const newlession = {
                                     title: lession.title,
@@ -132,7 +151,7 @@ if (mode === "--courses") {
                                     resourses: [],
                                     preview: `${lession.learn_url.replaceAll('learn', 'preview').substring(0, lession.learn_url.replaceAll('learn', 'preview').lastIndexOf('/'))}/${slug}`,
                                     url: `${lession.learn_url.substring(0, lession.learn_url.lastIndexOf('/'))}/${slug}`,
-                                    video: ""
+                                    video: "http://videostreamsv.000webhostapp.com/test.mp4"
                                 };
     
                                 newsection.lessons.push(newlession);

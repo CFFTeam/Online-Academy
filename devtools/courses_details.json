@@ -1,0 +1,3688 @@
+[{
+  "_id": {
+    "$oid": "63b42ababa113f9ad97e28be"
+  },
+  "course_id": "63b4279cce0cd31e2ed3cfaa",
+  "viewer": 227868,
+  "avg_rating": 4.6,
+  "num_reviews": 56442,
+  "reviews": [
+    {
+      "content": "<p>This course is a pretty good app for beginners but I would like to learn more about automation testing, app architecture for building real applications</p>",
+      "rating": 5,
+      "like": 85,
+      "dislike": 7,
+      "created": "2022-12-17T21:38:29-08:00",
+      "user": {
+        "name": "Do Thanh Tuan",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42ababa113f9ad97e28bf"
+      }
+    },
+    {
+      "content": "<p>The course was very detailed and does provide a solid foundation for beginners to explore flutter, even further. Unlike many other courses which I have taken, this course deals with the practical knowledge that one would require in a work environment. After finishing this course, I feel comfortable to take up on a new project and hopefully do well at it.</p>",
+      "rating": 4.5,
+      "like": 19,
+      "dislike": 1,
+      "created": "2022-11-23T05:10:27-08:00",
+      "user": {
+        "name": "Linescripts Softwares Pvt Ltd",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42ababa113f9ad97e28c0"
+      }
+    },
+    {
+      "content": "<p>I think this course is for someone who already have some prior knowledge of flutter may be very basic, but overall course is really awesome and it really teaches everything in depth most importantly, it more focused on performance and best approach, but at the same time multiple possible possible ways of doing the same thing.  Thanks Max</p>",
+      "rating": 5,
+      "like": 79,
+      "dislike": 7,
+      "created": "2022-11-19T07:05:19-08:00",
+      "user": {
+        "name": "Noorus Khan",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42ababa113f9ad97e28c1"
+      }
+    },
+    {
+      "content": "<p>Max does a nice job of getting the points across.  I'm looking forward to seeing some of the later, more advanced topics updated to a more current version of Flutter.</p>",
+      "rating": 5,
+      "like": 61,
+      "dislike": 6,
+      "created": "2022-11-14T16:29:24-08:00",
+      "user": {
+        "name": "David Anderson",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/7287208_0efe_2.jpg"
+      },
+      "_id": {
+        "$oid": "63b42ababa113f9ad97e28c2"
+      }
+    },
+    {
+      "content": "<p>Yes it was good match. It contains all the knowledge for a beginner to reach to the stage to work on live projects in Flutter.</p>",
+      "rating": 4.5,
+      "like": 30,
+      "dislike": 1,
+      "created": "2022-12-22T23:49:47-08:00",
+      "user": {
+        "name": "Paras Bakrania",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42ababa113f9ad97e28c3"
+      }
+    },
+    {
+      "content": "<p>Good content, Max a very good way to explain how flutter works.<br>Something intresting about this course that let you understand the functionality behind what we are building not just building widget and copying what the instructor is doing and see the results.</p>\n\n<p>Many lectures of the course need to be updated to the newer version of flutter this made me struggle a little bit to get the same results.</p>",
+      "rating": 4,
+      "like": 29,
+      "dislike": 5,
+      "created": "2022-09-29T10:37:56-07:00",
+      "user": {
+        "name": "Karam Yakoub Agha",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42ababa113f9ad97e28c4"
+      }
+    },
+    {
+      "content": "<p>I learned a lot about Flutter & Dart Development in this course, however I believe that it could be better! I have also completed Max's Web Dev course and I really enjoy his method of teaching, but for this particular course especially in the later sections, it is often difficult to follow along because a lot of the code doesn't fully work anymore, often to the point that it is distracting me from the primary goal of learning to develop apps with Flutter. Thankfully, there are a lot of people who are of great help in the Q&A sections that helped me complete this course to the end. I do believe Max will be updating this course in the near future though, so I will be looking forward to that!</p>",
+      "rating": 3,
+      "like": 70,
+      "dislike": 9,
+      "created": "2022-12-20T18:46:39-08:00",
+      "user": {
+        "name": "Ralph Dela Rama",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42ababa113f9ad97e28c5"
+      }
+    },
+    {
+      "content": "<p>so out of date course i wasted more time solving error more than the time i spend on learning !</p>",
+      "rating": 1,
+      "like": 29,
+      "dislike": 7,
+      "created": "2022-11-24T03:07:04-08:00",
+      "user": {
+        "name": "Mahmoud",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42ababa113f9ad97e28c6"
+      }
+    },
+    {
+      "content": "<p>As I just finished the course I must admit that overall I'm pretty disappointed mostly due to the course not being updated and having to fix so much code that was presented in order to get anything to work.  I understand that some of this is good practice but the entire second half of the course was waaaaay outdated.</p>\n\n<p>My time could have been better spent.  FWIW, I have been a software engineer for over 20 years and was here to learn Flutter as I have a project coming up where Flutter may be the way we go.  I have over 12 years as an iOS developer and architect so I come in at a pretty high level.  </p>\n\n<p>One of the man concerns we have with Flutter is how often it changes and many of those changes can really break existing code.  Be careful with your upgrades!</p>\n\n<p>That's my main complaint. I'm sure this was a great course two or three years ago and if it gets a true update (to version 3.x of Flutter), then it would be 5 stars.  </p>\n\n<p>Thanks.</p>",
+      "rating": 3,
+      "like": 50,
+      "dislike": 6,
+      "created": "2022-12-06T16:18:02-08:00",
+      "user": {
+        "name": "Curtis Dunne",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42ababa113f9ad97e28c7"
+      }
+    },
+    {
+      "content": "<p>More than Expected.<br>Max is a well talent instructor. He moves from topic to a another with strategy in mind., I have to skip some chapter and go directly to later one, it was bad idea. The material is accumulated to build the knowledge.<br>one more thing , I came with high understanding of OOP , I thing if Max can make a dedicated OOP course in Dart all the Students will understand the concept of Flutter & Dart more effectively.</p>\n\n<p>Finally , I would recommend this fantastic course to any one.<br>Thank You Max.</p>",
+      "rating": 5,
+      "like": 46,
+      "dislike": 2,
+      "created": "2022-10-22T01:56:35-07:00",
+      "user": {
+        "name": "Ahmed Maher",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42ababa113f9ad97e28c8"
+      }
+    },
+    {
+      "content": "<p>I bought this course on Udemy in 2019 when I was interested in flutter. I did not view a single video. The other course I bought is not as explicit and detailed as this. I can only berate myself for not going through this course. Would have become an expert 3yrs ago. Kudos to Max.<br>Already planning to get his CleanCode and NodeJS courses after mastering flutter.</p>",
+      "rating": 5,
+      "like": 6,
+      "dislike": 4,
+      "created": "2022-10-24T11:03:18-07:00",
+      "user": {
+        "name": "Babatunde Adisa",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42ababa113f9ad97e28c9"
+      }
+    },
+    {
+      "content": "<p>Wie gewohnt ein wirklich toller Kurs. Ich dürfte schon mehrere Kurse von Max durchgehen und lernen und bin immer wieder begeistert. Von mir daher 5 Sterne!</p>",
+      "rating": 5,
+      "like": 41,
+      "dislike": 1,
+      "created": "2022-11-17T11:32:37-08:00",
+      "user": {
+        "name": "Stevenbreuer@Gmx.de",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42ababa113f9ad97e28ca"
+      }
+    },
+    {
+      "content": "<p>pros: big amount of material, lots of information<br>cons: to mutch outdated information, especcialy 13 unit, and null safety during all coure. <br>That is why 2,5 stars. When 13 unit is up-to-dated I'll change the score to 5 stars.</p>",
+      "rating": 2.5,
+      "like": 56,
+      "dislike": 1,
+      "created": "2022-10-31T03:46:02-07:00",
+      "user": {
+        "name": "Oleksandr Tykhorskyi",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42ababa113f9ad97e28cb"
+      }
+    },
+    {
+      "content": "<p>confusing <br>in so many lecture the instructor is rewrite the code with poor exploitation</p>\n\n<p>i think he not do his best <br>i advice you the follow with other course</p>",
+      "rating": 2,
+      "like": 0,
+      "dislike": 9,
+      "created": "2022-12-18T15:34:25-08:00",
+      "user": {
+        "name": "Mohammad Khalid Saleh",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42ababa113f9ad97e28cc"
+      }
+    },
+    {
+      "content": "<p>With Flutter 3 almost out, the course starts to require a refresh on some syntax/API and all the newer *Button(s) (although they are mentioned in a lot of lectures).</p>\n\n<p>To make the course even better, I would also focus on testing widgets/apps (unit and integration tests) and general architecture patterns.</p>",
+      "rating": 3.5,
+      "like": 18,
+      "dislike": 10,
+      "created": "2022-11-04T01:56:59-07:00",
+      "user": {
+        "name": "Nicola Dal Maso",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42ababa113f9ad97e28cd"
+      }
+    },
+    {
+      "content": "<p>The instructor has a great knowledge on the subject. I can follow the course just fine. The content is great, but might be difficult for those who doesn't have any programming background. The only thing that makes me rate it 4-star is that this course is still using the old version of Flutter and Dart. I would like to see new widgets that comes with newer version of Flutter being introduced in this course. Maybe you should consider to update.</p>",
+      "rating": 4,
+      "like": 61,
+      "dislike": 1,
+      "created": "2022-08-29T02:44:04-07:00",
+      "user": {
+        "name": "Johannes",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42ababa113f9ad97e28ce"
+      }
+    },
+    {
+      "content": "<p>Cant follow along using newest version of flutter, spending way to much time trying to make work instead of following along and learning.</p>",
+      "rating": 2.5,
+      "like": 77,
+      "dislike": 10,
+      "created": "2022-12-29T19:21:29-08:00",
+      "user": {
+        "name": "Joshua Padilla",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42ababa113f9ad97e28cf"
+      }
+    },
+    {
+      "content": "<p>Thank you Max!! Loved this course, very well structured with thorough & clear explanation!!!</p>",
+      "rating": 5,
+      "like": 58,
+      "dislike": 9,
+      "created": "2022-12-30T00:22:38-08:00",
+      "user": {
+        "name": "Aditi",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42ababa113f9ad97e28d0"
+      }
+    },
+    {
+      "content": "<p>J'ai adoré! J'ai commencé à développer récemment et je suis entré directement dans le bain avec Flutter, et ce cours est juste au top!<br>ça part des choses les plus basiques à des outils très avancés en passant par l'utilisation d'API avec Firebase.<br>Je recommande ce cours!</p>",
+      "rating": 5,
+      "like": 40,
+      "dislike": 5,
+      "created": "2022-11-08T12:21:55-08:00",
+      "user": {
+        "name": "Abbas Zamat",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42ababa113f9ad97e28d1"
+      }
+    },
+    {
+      "content": "<p>It is a great course, but I have several small objections:</p>\n\n<p>1. There is a difference between arguments and parameters. Parameters are formal, arguments are concrete objects/values.</p>\n\n<p>2. *Of course* it is better to write:</p>\n\n<p>bool b = false;</p>\n\n<p>than</p>\n\n<p>var b = false;</p>\n\n<p>var should be used only when absolutely necessary.</p>",
+      "rating": 5,
+      "like": 49,
+      "dislike": 2,
+      "created": "2022-10-14T09:45:57-07:00",
+      "user": {
+        "name": "Marina Mijatovic",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42ababa113f9ad97e28d2"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b42b4f27cc2eef00990327"
+  },
+  "course_id": "63b427b304799c69ada4c0b3",
+  "viewer": 905814,
+  "avg_rating": 4.7,
+  "num_reviews": 15630,
+  "reviews": [
+    {
+      "content": "<p>It was a very rich and educative course. I appreciate the effort  Jonas put in every of his course.</p>",
+      "rating": 5,
+      "like": 69,
+      "dislike": 3,
+      "created": "2022-12-21T12:56:42-08:00",
+      "user": {
+        "name": "Chigozie Okeke",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42b4f27cc2eef00990328"
+      }
+    },
+    {
+      "content": "<p>The course is better than I expected. However, there are many node packages were out of date that cause me some time to figure out the proper syntax to use.</p>",
+      "rating": 4.5,
+      "like": 88,
+      "dislike": 8,
+      "created": "2022-11-16T20:25:44-08:00",
+      "user": {
+        "name": "William Tran",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42b4f27cc2eef00990329"
+      }
+    },
+    {
+      "content": "<p>Awesome! I’ve just completed the whole course and it is amazing. Certainly there are some lectures that need to be updated because there have been a lot of changes since they were recorded. However, finding the way through these (not planned) challenges have probe to be a great learning experience and most of all this is the closest you will get to face real life web dev challenges. Totally recommended!</p>",
+      "rating": 5,
+      "like": 73,
+      "dislike": 3,
+      "created": "2022-10-26T13:16:57-07:00",
+      "user": {
+        "name": "César Muñoz",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/14973028_154e.jpg"
+      },
+      "_id": {
+        "$oid": "63b42b4f27cc2eef0099032a"
+      }
+    },
+    {
+      "content": "<p>I’ve seen lots of tutorials but I haven’t seen any that interest me enough to want to see the end even when it’s so long. It’s detailed and good for beginners</p>",
+      "rating": 5,
+      "like": 88,
+      "dislike": 10,
+      "created": "2022-10-24T01:00:32-07:00",
+      "user": {
+        "name": "TheAfricanDREAM Network",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42b4f27cc2eef0099032b"
+      }
+    },
+    {
+      "content": "<p>I love all Jonas' courses. Great teacher who always takes the time to explain how things work under the hood, which is great for mastering the fundamentals.</p>",
+      "rating": 5,
+      "like": 90,
+      "dislike": 5,
+      "created": "2022-09-16T08:00:43-07:00",
+      "user": {
+        "name": "Peter Faucella",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42b4f27cc2eef0099032c"
+      }
+    },
+    {
+      "content": "<p>This course is totally abandoned. </p>\n\n<p>The latest replies I've seen from Jonas or any of the tutors are like 2 years old.</p>\n\n<p>Jonas is REALLY bad at naming stuff and commenting his code. Also, he is really lazy: makes many mistakes in some videos and, instead of recording them again, he just tries to go around it by creating notes. I would not mind if these mistakes were rare, but they are everywhere.</p>\n\n<p>Jonas is far from being a good developer and even farther from being a good teacher.</p>\n\n<p>I definitely do not recommend this course.</p>",
+      "rating": 1,
+      "like": 77,
+      "dislike": 2,
+      "created": "2022-12-04T13:43:57-08:00",
+      "user": {
+        "name": "Henriquebzn",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42b4f27cc2eef0099032d"
+      }
+    },
+    {
+      "content": "<p>Jonas is a good teacher, but this course is deprecated and yet it is advertised as for 2023.  This is not honest advertising, as it's become very clear by looking at the comments on sections where I ran into major issues because things simply weren't working the same way as the instructor showed, that many of these lessons are at least 2 years old, and seemingly more than that.  Beyond that, the course material is organized in a different file structure than Jonas', which has led to hours of frustration.  That being said, the course is more in depth than you find most places, and covers really a lot of material.  I can't say it wasn't worth the purchase, but I really think this needs some work, and the labeling is not good.</p>",
+      "rating": 3,
+      "like": 39,
+      "dislike": 7,
+      "created": "2022-11-26T14:13:57-08:00",
+      "user": {
+        "name": "Riparian",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42b4f27cc2eef0099032e"
+      }
+    },
+    {
+      "content": "<p>This course was great in getting my feet wet with node.js backend development.</p>\n\n<p>Points for improvement would be:<br>1. Better solution for constant refactoring and still wanting to keep old code/comments for reference without file becoming a hot mess.<br>2. Adding two-factor authentication as a baseline (with sync) as most places use it nowadays.<br>3. Discuss Google/Facebook APIs etc. for signing user up since they are very commonplace.</p>",
+      "rating": 4.5,
+      "like": 100,
+      "dislike": 3,
+      "created": "2022-11-19T13:13:12-08:00",
+      "user": {
+        "name": "Dave Phillips",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42b4f27cc2eef0099032f"
+      }
+    },
+    {
+      "content": "<p>As an experienced developer with some experience in Node.js I was still able to learn a lot in this course and took my skills to the next level. Thanks to Jonas, I am now able to realize the project ideas I already had in mind: secure, fast and scaleable applications will no be a problem anymore!</p>",
+      "rating": 4.5,
+      "like": 36,
+      "dislike": 2,
+      "created": "2022-12-19T20:25:31-08:00",
+      "user": {
+        "name": "Jason Bladt",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/30478040_73a1.jpg"
+      },
+      "_id": {
+        "$oid": "63b42b4f27cc2eef00990330"
+      }
+    },
+    {
+      "content": "<p>I signed up for this course 3 years after it was offered. In computer years that would be akin to using Snow Leopard or Windows 98. Once I tried implementing Mapbox and Stripe, everything flew out the window. Errors after errors. Bad request, cross-origin problems, can't create a Stripe Session, etc. It is very frustrating to spend 70-80 hours following along with an app taught by an excellent instructor only to see it fail at the finish line. I have purchased many Udemy courses and on a whole they have all be great and a bargain at any price. Jonad knows his s@@t better than anyone else on the platform. My critique is more about web-development in general than the course or instructor. Imagine the English or French language changing every 18 months. How would we communicate with anyone? It's Babel in the true sense of the word. Three years ago the app worked and students were satisfied. But for a new coder in 2022, taking a web development course will require an equally long JEST debugging class because nothing works as expected. This is like college before auto-save was a word function. You'd spend hours on a thesis, term paper, what have you. Have a momentary power surge and everything you worked on was lost. Web development, React, Next,  Redux, Python, these are all unique and syntax specific computer programming languages. Forget to close a template literal or miss a comma and your work crashes. I learned many things but not how to fix the never ending list of JS errors. I have been invited to the restaurant, shown the menu, but not allowed to eat. M</p>",
+      "rating": 4.5,
+      "like": 100,
+      "dislike": 10,
+      "created": "2022-11-10T02:30:39-08:00",
+      "user": {
+        "name": "Martin Dixon",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42b4f27cc2eef00990331"
+      }
+    },
+    {
+      "content": "<p>I am really disappointed. The content desperately needs to be updated. Many of the sections shows things that are outdated. Too many issues with the code, a lot of deprecated things.</p>",
+      "rating": 2,
+      "like": 38,
+      "dislike": 3,
+      "created": "2022-11-16T03:58:35-08:00",
+      "user": {
+        "name": "Dimo Dimov",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42b4f27cc2eef00990332"
+      }
+    },
+    {
+      "content": "<p>Really appreciate Jonas to make this tutorial. As Beginner  for node js this tutorial is very helpful to get clear on node js, express js and also mongo BD. Really happy with this tutorial .</p>",
+      "rating": 5,
+      "like": 99,
+      "dislike": 8,
+      "created": "2022-11-24T03:38:33-08:00",
+      "user": {
+        "name": "Nikhil Sompura",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/211415808_8895.jpg"
+      },
+      "_id": {
+        "$oid": "63b42b4f27cc2eef00990333"
+      }
+    },
+    {
+      "content": "<p>Great course.<br>The only problem -> One giant project with no mini-do-it-yourself sections <br>So for me it was just to copy & paste what jonas said and try to understand.</p>\n\n<p>In the javaScript course there was a lot of challenges and mini-do-it-yourself sections so the learning curve was much better.</p>",
+      "rating": 4,
+      "like": 11,
+      "dislike": 1,
+      "created": "2022-12-15T09:17:10-08:00",
+      "user": {
+        "name": "Yotam Lin",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42b4f27cc2eef00990334"
+      }
+    },
+    {
+      "content": "<p>I completed the course using Typescript. This is one of those courses that has so much good information, you will probably review it many times as you build your own projects. Thanks Jonas! Great course!<br>Bryon</p>",
+      "rating": 5,
+      "like": 83,
+      "dislike": 1,
+      "created": "2022-11-25T13:17:05-08:00",
+      "user": {
+        "name": "Bryon Smith",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/12782246_ef25_5.jpg"
+      },
+      "_id": {
+        "$oid": "63b42b4f27cc2eef00990335"
+      }
+    },
+    {
+      "content": "<p>Till section 12 everything was good as the last course I took with Jonas. But from this definitely has not been updated since 2019 and mostly does not work with the way that Jonas code</p>",
+      "rating": 2.5,
+      "like": 46,
+      "dislike": 9,
+      "created": "2022-11-30T08:12:17-08:00",
+      "user": {
+        "name": "Dor Bezalel",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42b4f27cc2eef00990336"
+      }
+    },
+    {
+      "content": "<p>Deeply intense course. I got lost quite a few times and it was frustrating but the reward was learning how to solve problems. Admittedly, I leaned heavily on the Q&A sections to get the answer. For the most part, my fellow classmates provided some great solutions that I could actually learn from. I actually like it this way so that I'm not being spoon-fed the answer. This course really made me think. <br>Thanks Jonas</p>",
+      "rating": 5,
+      "like": 5,
+      "dislike": 8,
+      "created": "2022-10-13T13:20:30-07:00",
+      "user": {
+        "name": "Charles Evelyn",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42b4f27cc2eef00990337"
+      }
+    },
+    {
+      "content": "<p>Coming from non IT background, It was quite challenging initially but I trust Jonas and team blindly and guess what I have become more confident in web-development, improved my logic building and many more things. Every bit of this course is very well explained and implemented thoroughly. Thank you so much Jonas and team for your time and effort. It really means a lot to me.</p>",
+      "rating": 5,
+      "like": 5,
+      "dislike": 3,
+      "created": "2022-09-25T04:43:47-07:00",
+      "user": {
+        "name": "Kamlesh Lohar",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42b4f27cc2eef00990338"
+      }
+    },
+    {
+      "content": "<p>Wow, seriously.  I learned so much in this course.  I've taken all of Jonas' courses and have been impressed in each one.  I look forward to more current technologies, hopefully he releases more soon.</p>",
+      "rating": 5,
+      "like": 13,
+      "dislike": 9,
+      "created": "2022-10-23T17:30:32-07:00",
+      "user": {
+        "name": "Larry Gray",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42b4f27cc2eef00990339"
+      }
+    },
+    {
+      "content": "<p>This SHOULD be a 5 star course, the project is interesting, the instructor is relatively easy to follow (though jumping around within the code having just typed a line you are trying to keep up with an understand is not helpful) and in terms of difficulty it has a good learning curve from basics to advanced.</p>\n\n<p>However, it is severely let down by the age of the software versions, often using major versions many numbers out of date and with it the entire syntax becoming deprecated in places. To say that this was a headache is putting it mildly.</p>\n\n<p>A students job during these courses is to understand the processes and functions being implemented, but having student tied in knots to make simple functions work is counter-productive.</p>\n\n<p>There are students with questions 2 years or older in the Q&A that are left unanswered and those being responded to would really have helped smooth out a lot of these issues. </p>\n\n<p>All in all I am glad to have this one out of the way but now feel like I need to find another course in order to see just how much has sunk in as expected in areas where I felt like I was putting out fires to make the code work.</p>",
+      "rating": 2,
+      "like": 9,
+      "dislike": 3,
+      "created": "2022-10-21T04:13:48-07:00",
+      "user": {
+        "name": "Leigh Godson",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42b4f27cc2eef0099033a"
+      }
+    },
+    {
+      "content": "<p>Really honest review:  I have completed the course and it wasn't easy tbh. I have taken other courses of Jonas before this and they were too good. Now I am not sure if I can say that for this one because I am sure Jonas is good teacher, and you get to learn a lot of things in this course. The only issue why I gave 3.5/5 is the course needs to be updated. There were so many places in between the course where Jonas's code wasn't working for me (because of the changes in packages in updates) and I wasted so much hours trying to fix them. It was really frustrating tbh. Also QnA section is dead, Assistants don't reply to our queries, thanks to students who are there to help, they are saving so much of our time. So I will say it's high time now Jonas should update his course, it's been 3 years, there are so many bugs in the course.</p>",
+      "rating": 3.5,
+      "like": 49,
+      "dislike": 4,
+      "created": "2022-08-11T01:12:29-07:00",
+      "user": {
+        "name": "Lovish Kamboj",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/78626146_0725.jpg"
+      },
+      "_id": {
+        "$oid": "63b42b4f27cc2eef0099033b"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b42bcb25fe25870c3631bb"
+  },
+  "course_id": "63b4282683be56df91902cd9",
+  "viewer": 5903,
+  "avg_rating": 4.7,
+  "num_reviews": 296,
+  "reviews": [
+    {
+      "content": "<p>Good for beginners, refresher for old hands, and pleasant for KK followers. For those totally new to statistics and want to understand more they should get a text book and work through more in depth examples and return to the various sections here, and for probability KK's course on probability.</p>",
+      "rating": 5,
+      "like": 85,
+      "dislike": 2,
+      "created": "2022-11-18T11:42:03-08:00",
+      "user": {
+        "name": "Michael Fox",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42bcb25fe25870c3631bc"
+      }
+    },
+    {
+      "content": "<p>This was a great course. Krista does a great job of explaining the math behind the theory. She and Jose make a great team. I took Jose's course \"2022 Python for Machine Learning and Data Science\" and I wish that I had taken this course before that one as it would have made the math sections of that course a little less intimidating for me. <br>One small point: I had no trouble hearing and understanding Krista, but I found that I had to crank my headphone volume all the way up to hear Jose. I tried using the English captions, but that obscured part of the screen, so I turned them off. <br>All in all, great course. Highly recommended!!</p>",
+      "rating": 5,
+      "like": 71,
+      "dislike": 5,
+      "created": "2022-11-09T13:00:34-08:00",
+      "user": {
+        "name": "Frederick Lenihan",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42bcb25fe25870c3631bd"
+      }
+    },
+    {
+      "content": "<p>The course is providing a good overview of fundamental concepts that I haven't touched since my undergraduate days...some 35 years ago.</p>",
+      "rating": 4,
+      "like": 72,
+      "dislike": 4,
+      "created": "2022-11-03T20:12:21-07:00",
+      "user": {
+        "name": "Mr Jeffrey M Malone",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42bcb25fe25870c3631be"
+      }
+    },
+    {
+      "content": "<p>I have no doubt that this course is top-notch. and that many students will benefit greatly by it.  I would disagree with the statement that the course is right for someone with 'basic math skills'.  My situation is fairly unique, in that I am retired, no longer have ambitions of full time employment, and I just want to write better Python, maybe for the occasional paying project, but basically as a hobby.  My goal with this course is to not be totally lost, armed with a data science cheat sheet.  I might suggest that you advise 'basic math and algebra skills' as a prerequisite, and perhaps (LOL) 'the willingness to learn a foreign language.'  If I walk away with enough to build a block of code, with enough background to use google and a cheat sheet to get me there, then I'm happy.  I'm hoping to acquire sufficient background knowledge, with this course, to be able to do that.  I do think, however, that your course is better suited for someone seeking a higher threshold than I am.</p>",
+      "rating": 5,
+      "like": 51,
+      "dislike": 2,
+      "created": "2022-11-01T14:55:12-07:00",
+      "user": {
+        "name": "Terrence Toolin",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42bcb25fe25870c3631bf"
+      }
+    },
+    {
+      "content": "<p>Exactly what I was looking for - deepened my understanding of what can be done - and why - with R Studio etc.</p>",
+      "rating": 5,
+      "like": 17,
+      "dislike": 4,
+      "created": "2022-12-02T05:05:26-08:00",
+      "user": {
+        "name": "Mike Stiebing",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42bcb25fe25870c3631c0"
+      }
+    },
+    {
+      "content": "<p>I finished the course, took me two months to finish it understanding the concepts.</p>\n\n<p>The course is matching the expectation and I appreciate the effort both teachers are putting into slicing and dicing complex topics.</p>\n\n<p>On the other hand, I feel like the explanation quality is a bit skewed on the \"easy side\", while more complex demonstration or deep dive are dealt a bit lightly. But I can see this being a choice in order to avoid creating a repulsive course for early starters.</p>\n\n<p>As I wrote in the course I am having little problem grasping hand-writing of the teacher, but I can see this being very subjective.<br>Some of the exercises are bugged (but mostly solved in Q&A).</p>\n\n<p>In the end I am seeing an HUGE opportunity for a Math for Data Science part.2 with more complex topics and more depth with the same style, I really like the idea of focusing on the theory without jumping straight in into programming. I'll be in.</p>",
+      "rating": 5,
+      "like": 47,
+      "dislike": 9,
+      "created": "2022-11-02T13:58:32-07:00",
+      "user": {
+        "name": "Carlo Occhiena",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/85834486_c377.jpg"
+      },
+      "_id": {
+        "$oid": "63b42bcb25fe25870c3631c1"
+      }
+    },
+    {
+      "content": "<p>Have to revisit quartiles again and see the reasoning for quartiles.</p>",
+      "rating": 4,
+      "like": 80,
+      "dislike": 7,
+      "created": "2022-11-12T07:04:26-08:00",
+      "user": {
+        "name": "Aubrey Sonsini",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42bcb25fe25870c3631c2"
+      }
+    },
+    {
+      "content": "<p>Previously complex terms of Statistics couldn't be understood clearly whenever I studied, from others.  But these are explained in a very simple and crystal-clear way.</p>",
+      "rating": 5,
+      "like": 81,
+      "dislike": 8,
+      "created": "2022-11-09T17:06:32-08:00",
+      "user": {
+        "name": "Ravi Kumar Kadajari",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42bcb25fe25870c3631c3"
+      }
+    },
+    {
+      "content": "<p>It is good, but a little slow for me.  I am only through to number 9 so it is still early.</p>",
+      "rating": 4.5,
+      "like": 31,
+      "dislike": 1,
+      "created": "2022-11-04T11:46:47-07:00",
+      "user": {
+        "name": "James Giangrande",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42bcb25fe25870c3631c4"
+      }
+    },
+    {
+      "content": "<p>I have progressed almost 25% of the course and it has already exceeded my expectations. Krista delivers the content around Math perfectly and easy to understand. Thanks to Jose for this collaboration!</p>",
+      "rating": 5,
+      "like": 74,
+      "dislike": 1,
+      "created": "2022-11-29T15:06:11-08:00",
+      "user": {
+        "name": "Bhuvaneshwaran Srinivasan",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42bcb25fe25870c3631c5"
+      }
+    },
+    {
+      "content": "<p>Great course, but it would be great to see a linear Algebra with eigenvectors, to understand how PCA dimensional reduction works, plus a little bit about the computational geometry to understand SVM, and Lagrange multipliers. If you can, please add these topics, or create a Math for Data Science Masterclass second chapter that will include these parts ;)</p>",
+      "rating": 5,
+      "like": 94,
+      "dislike": 5,
+      "created": "2022-11-09T03:39:53-08:00",
+      "user": {
+        "name": "Suleyman Suleyman-zade",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/16043578_73cc.jpg"
+      },
+      "_id": {
+        "$oid": "63b42bcb25fe25870c3631c6"
+      }
+    },
+    {
+      "content": "<p>To this point, I am finding it a bit slow (I have run some videos at 1.25 speed), but well explained.  As I get into areas that I am less sure about I expect to appreciate the careful explanations more.</p>",
+      "rating": 4,
+      "like": 1,
+      "dislike": 5,
+      "created": "2022-12-07T12:13:27-08:00",
+      "user": {
+        "name": "Mrs Monica Backes",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42bcb25fe25870c3631c7"
+      }
+    },
+    {
+      "content": "<p>Simple and effective till now.</p>",
+      "rating": 5,
+      "like": 61,
+      "dislike": 6,
+      "created": "2022-11-18T22:17:08-08:00",
+      "user": {
+        "name": "Sunny Bhaveen Chandra",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42bcb25fe25870c3631c8"
+      }
+    },
+    {
+      "content": "<p>Amazing clear explanations, feels easier to understand because she has a \"beginners-mind\" approach, makes it very clear to understand complex lessons.  Thank you Ms King!</p>",
+      "rating": 5,
+      "like": 74,
+      "dislike": 2,
+      "created": "2022-12-27T10:11:06-08:00",
+      "user": {
+        "name": "Nestor Balce",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42bcb25fe25870c3631c9"
+      }
+    },
+    {
+      "content": "<p>It's good so far.  I hope the quiz questions later in the course show the workings.</p>",
+      "rating": 4,
+      "like": 17,
+      "dislike": 8,
+      "created": "2022-12-17T17:37:30-08:00",
+      "user": {
+        "name": "James Polanski",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42bcb25fe25870c3631ca"
+      }
+    },
+    {
+      "content": "<p>The maths is very well explained. I have never done this type of maths before It really has helped me clarify the mathematical processes and the purpose the maths we are covering. Great work!!</p>",
+      "rating": 5,
+      "like": 38,
+      "dislike": 0,
+      "created": "2022-11-08T22:39:55-08:00",
+      "user": {
+        "name": "Peter J Pavey",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42bcb25fe25870c3631cb"
+      }
+    },
+    {
+      "content": "<p>I love Jose's class! He is the best instructor among everyone else. I pretty much purchased most of his classes!  Look forward to learning more from him, thank you Jose!</p>",
+      "rating": 5,
+      "like": 75,
+      "dislike": 2,
+      "created": "2022-11-03T09:20:31-07:00",
+      "user": {
+        "name": "Ying Wang",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42bcb25fe25870c3631cc"
+      }
+    },
+    {
+      "content": "<p>A very clear and detailed explanation of every topic. I needed a review of statistics and probability, and this is perfect.</p>",
+      "rating": 5,
+      "like": 65,
+      "dislike": 5,
+      "created": "2022-12-01T09:15:43-08:00",
+      "user": {
+        "name": "James Reynolds",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42bcb25fe25870c3631cd"
+      }
+    },
+    {
+      "content": "<p>Krista went to the trouble of explaining the n-1 for sample variance.  Everyone else handwaves about why this seemingly \"voodoo\" correction is there, but she explained it in a way that was understandable.</p>",
+      "rating": 4.5,
+      "like": 57,
+      "dislike": 6,
+      "created": "2022-11-30T17:19:10-08:00",
+      "user": {
+        "name": "Steve Byrne",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42bcb25fe25870c3631ce"
+      }
+    },
+    {
+      "content": "<p>Much of this is review of material I have rarely used, so I I find it most helpful as I am considering work in data science where a fresh knowledge of the material would be so useful. And, I know from previewing the syllabus that some of the later material is really new for me. So, yeah, great stuff. The pacing and explanation is top notch!</p>",
+      "rating": 5,
+      "like": 48,
+      "dislike": 9,
+      "created": "2022-11-08T09:47:28-08:00",
+      "user": {
+        "name": "Jim Heath",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42bcb25fe25870c3631cf"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b42be67afb098a42d1b619"
+  },
+  "course_id": "63b4286587c45c53eac4cc96",
+  "viewer": 173521,
+  "avg_rating": 4.7,
+  "num_reviews": 30515,
+  "reviews": [
+    {
+      "content": "<p>This course covers all the things you need to start a react-native development. I am actually developing a react-native application at the moment which I've learned to built by reading documentations online. This course covers all the essentials which I wish I'd learned before I started my project.<br>Great for beginners and great for developers who have some experiences on react-native too, as the lecturer also explains in depth why certain things are implemented in a certain way.</p>",
+      "rating": 5,
+      "like": 79,
+      "dislike": 9,
+      "created": "2022-12-25T22:06:48-08:00",
+      "user": {
+        "name": "Wilhelmus Andrian Tanujaya",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42be67afb098a42d1b61a"
+      }
+    },
+    {
+      "content": "<p>i recommend this to all entry level , intermediate , and also expert. good explanation with practical</p>",
+      "rating": 5,
+      "like": 95,
+      "dislike": 5,
+      "created": "2022-12-13T01:30:04-08:00",
+      "user": {
+        "name": "Irfan ali",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42be67afb098a42d1b61b"
+      }
+    },
+    {
+      "content": "<p>Great course. I took Max' react course beforehand and this one was just as good as the react one. Good explanations with practice possibilities.</p>",
+      "rating": 5,
+      "like": 5,
+      "dislike": 1,
+      "created": "2022-10-22T14:40:00-07:00",
+      "user": {
+        "name": "Gero Walther",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42be67afb098a42d1b61c"
+      }
+    },
+    {
+      "content": "<p>A very detailed and comprehensive course on React Native. I had some difficulties the first time I took the course, which were related to outdated React Navigation modules. Fortunately the course was updated and even improved. <br>I got my money's worth out of this course and it benefited me greatly.</p>",
+      "rating": 4.5,
+      "like": 84,
+      "dislike": 8,
+      "created": "2022-10-07T11:33:23-07:00",
+      "user": {
+        "name": "Alan Pecenkovic",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/54484582_6a7b.jpg"
+      },
+      "_id": {
+        "$oid": "63b42be67afb098a42d1b61d"
+      }
+    },
+    {
+      "content": "<p>The creator of this course is very good at explaining procedures.  Great learning experience and a ton of content.  I couldn't get an item or two to work perfectly but I understand these things are difficult to maintain as dependencies change rapidly.</p>",
+      "rating": 4.5,
+      "like": 13,
+      "dislike": 9,
+      "created": "2022-12-17T12:37:19-08:00",
+      "user": {
+        "name": "Christian Daconta",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42be67afb098a42d1b61e"
+      }
+    },
+    {
+      "content": "<p>The updated course is worth your time and all concepts are well explained thanks Max</p>",
+      "rating": 4.5,
+      "like": 59,
+      "dislike": 2,
+      "created": "2022-08-17T18:29:57-07:00",
+      "user": {
+        "name": "Mrical",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42be67afb098a42d1b61f"
+      }
+    },
+    {
+      "content": "<p>I really wanted to like this course...<br>1. projects are uninteresting and unappealing, i know its not a design course, but he could have spend a bit more time on improving the style, and add animations.<br>2. the javascript used many times is not modern and very \"bulky\", not sure why he doesnt use modern javascript as he has a js course.<br>3. some topics are outdated, which didnt bother me that much as its part of tech, but he could have added a few written warnings and walkarounds.<br>4. lack of animations part, which can be very important in apps. <br>5. the code refactoring...it's quite confusing, the switch from local to database and leaving the previous code i think it was lazy. I consider that that part should have been a new small project and not try to push everything in one project...starting a project as its supposed to be its quite important in planning an app<br>6. the auth part just shows poor programming and lazyness...</p>",
+      "rating": 1.5,
+      "like": 27,
+      "dislike": 1,
+      "created": "2022-12-05T02:08:20-08:00",
+      "user": {
+        "name": "Aldo Casareto",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42be67afb098a42d1b620"
+      }
+    },
+    {
+      "content": "<p>Great course. Concepts are really well explained. I wish it would have taught how to make a sideways scrollable modal in a view or how to implement ads, but you learn a lot of the core React Native Components and how to implement Native Features. Definitely will recommend this course to others.</p>",
+      "rating": 5,
+      "like": 78,
+      "dislike": 6,
+      "created": "2022-12-12T10:00:55-08:00",
+      "user": {
+        "name": "Ronald Winkler",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42be67afb098a42d1b621"
+      }
+    },
+    {
+      "content": "<p>As always, this is a course from Max that exceeds all expectations!</p>\n\n<p>I definitely learnt a great deal from this and I recommend this course to anyone who is interested in learning cross-platform mobile development with React Native.</p>",
+      "rating": 5,
+      "like": 35,
+      "dislike": 5,
+      "created": "2022-11-24T22:28:02-08:00",
+      "user": {
+        "name": "Konstantin Krumin",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/99493760_2b36.jpg"
+      },
+      "_id": {
+        "$oid": "63b42be67afb098a42d1b622"
+      }
+    },
+    {
+      "content": "<p>PERFECT COURSE 100%,<br> i finished about 50% of it only in 5 days, the flowing of the sections is amazing following the steps is easy, Maxi explain each movement he do, it is clear that a team of experts work on together to construct that course in this way,  i hope they get the maximum benefit of it, they really DESERVE.</p>",
+      "rating": 5,
+      "like": 34,
+      "dislike": 6,
+      "created": "2022-11-20T12:55:25-08:00",
+      "user": {
+        "name": "Khaled B",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42be67afb098a42d1b623"
+      }
+    },
+    {
+      "content": "<p>Very Bad Explanation, instead of teaching us core topics he is just telling you to buy his other course but he can explain it within a few min. He is making too many components that are not needed because it doesn't make any sense. I am very disappointed and totally not recommended it if you are a beginner.</p>",
+      "rating": 1,
+      "like": 70,
+      "dislike": 6,
+      "created": "2022-12-03T02:52:28-08:00",
+      "user": {
+        "name": "Raihan Sk",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42be67afb098a42d1b624"
+      }
+    },
+    {
+      "content": "<p>Maximillian is a great teacher, I learned a ton. Repetition is key and this course really drills in the basics which is wonderful. Thank you!</p>",
+      "rating": 5,
+      "like": 52,
+      "dislike": 5,
+      "created": "2022-12-30T20:02:43-08:00",
+      "user": {
+        "name": "Danila Barton-Szabo",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42be67afb098a42d1b625"
+      }
+    },
+    {
+      "content": "<p>Really amazing! Going through this App course with the knowledge of React makes things easier!!</p>",
+      "rating": 5,
+      "like": 66,
+      "dislike": 3,
+      "created": "2022-11-22T22:49:46-08:00",
+      "user": {
+        "name": "Matsu Chen",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/157808070_3dbc_4.jpg"
+      },
+      "_id": {
+        "$oid": "63b42be67afb098a42d1b626"
+      }
+    },
+    {
+      "content": "<p>Amazing job in teaching this course. Projects are great and you have time to experiment and try by yourself</p>",
+      "rating": 5,
+      "like": 72,
+      "dislike": 4,
+      "created": "2022-11-29T04:29:24-08:00",
+      "user": {
+        "name": "Marco Giannone",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42be67afb098a42d1b627"
+      }
+    },
+    {
+      "content": "<p>Very good course, well constructed and easy to follow. Lecturer knows his stuff and is able to explain everything very clearly.</p>\n\n<p>Edited:<br>Was interested in the 1 star reviews and tbh I feel like they don't really make a lot of sense. I feel like this course has a lot of value and gives you a very good base to start you mobile development journey from. Ofcourse there are things that could be optimised and there were also things that I would have done or would have written differently, but that doens't mean it's a bad course.  <br>Programming is a very broad field that has so much information that may or may not be relevant to you and in this course you get a pretty good clear cut understanding of where and how to get started. </p>\n\n<p>Keep up the good work.</p>",
+      "rating": 4.5,
+      "like": 47,
+      "dislike": 9,
+      "created": "2022-12-03T13:47:26-08:00",
+      "user": {
+        "name": "Yoram Swiers",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42be67afb098a42d1b628"
+      }
+    },
+    {
+      "content": "<p>One of the best courses I enrolled at, Max you are a very dedicated developer. I can't thank you enough mate!</p>",
+      "rating": 5,
+      "like": 50,
+      "dislike": 2,
+      "created": "2022-11-26T12:40:36-08:00",
+      "user": {
+        "name": "Omar Zakaria",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42be67afb098a42d1b629"
+      }
+    },
+    {
+      "content": "<p>A practical course accompanied by in-depth explanations of the concepts. Very satisfied with the quality of the teaching.</p>",
+      "rating": 5,
+      "like": 51,
+      "dislike": 9,
+      "created": "2022-12-17T12:46:48-08:00",
+      "user": {
+        "name": "Mihai Rosu",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42be67afb098a42d1b62a"
+      }
+    },
+    {
+      "content": "<p>I had problems with understanding screen switching and react logic, I can't remember the logic clearly I just copy your logic how can I think the logics by myself?</p>",
+      "rating": 4,
+      "like": 80,
+      "dislike": 10,
+      "created": "2022-12-13T21:58:50-08:00",
+      "user": {
+        "name": "Ajij Hossain",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42be67afb098a42d1b62b"
+      }
+    },
+    {
+      "content": "<p>Very detailed and in-depth explanations of all the concepts.</p>",
+      "rating": 5,
+      "like": 77,
+      "dislike": 5,
+      "created": "2022-10-19T23:27:30-07:00",
+      "user": {
+        "name": "Sreejith Pattery",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42be67afb098a42d1b62c"
+      }
+    },
+    {
+      "content": "<p>The course has a great content with React Native, but I am a little bit confused with onChangeText + bind() method to make a new function that is the same as (changedValue) => inputChangedHandler('amount', changedValue). It is a bit more difficult to understand. But overall, it is great to know this approach!</p>",
+      "rating": 4.5,
+      "like": 35,
+      "dislike": 0,
+      "created": "2022-09-12T12:04:02-07:00",
+      "user": {
+        "name": "Phan Le Tai Nhan",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42be67afb098a42d1b62d"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b42c0e14ec2151c5e1478a"
+  },
+  "course_id": "63b42874e4a20a5c43577597",
+  "viewer": 17,
+  "avg_rating": 5,
+  "num_reviews": 2,
+  "reviews": [
+    {
+      "content": "<p>recommended for beginners</p>",
+      "rating": 5,
+      "like": 75,
+      "dislike": 3,
+      "created": "2022-11-11T14:40:43-08:00",
+      "user": {
+        "name": "Mohamed Bacha Frikha",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42c0e14ec2151c5e1478b"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b42c2d64927ea9309bd474"
+  },
+  "course_id": "63b42883d764bb40139dbf70",
+  "viewer": 95,
+  "avg_rating": 4.6,
+  "num_reviews": 7,
+  "reviews": [
+    {
+      "content": "<p>good</p>",
+      "rating": 5,
+      "like": 35,
+      "dislike": 2,
+      "created": "2022-12-23T01:01:57-08:00",
+      "user": {
+        "name": "Deva Kumar",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42c2d64927ea9309bd475"
+      }
+    },
+    {
+      "content": "<p>Nice concepts</p>",
+      "rating": 5,
+      "like": 81,
+      "dislike": 2,
+      "created": "2022-12-22T23:10:03-08:00",
+      "user": {
+        "name": "Jagadeesh Kumar",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/109008970_7859_2.jpg"
+      },
+      "_id": {
+        "$oid": "63b42c2d64927ea9309bd476"
+      }
+    },
+    {
+      "content": "<p>best cousre and the istructor is good at replaying the reponses</p>",
+      "rating": 5,
+      "like": 7,
+      "dislike": 9,
+      "created": "2022-12-19T08:30:35-08:00",
+      "user": {
+        "name": "RAGHAVENDRA B",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42c2d64927ea9309bd477"
+      }
+    },
+    {
+      "content": "<p>NICE</p>",
+      "rating": 5,
+      "like": 22,
+      "dislike": 6,
+      "created": "2022-12-10T07:17:05-08:00",
+      "user": {
+        "name": "Komati Reddy Saiyanand Reddy",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42c2d64927ea9309bd478"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b42c4ebd8b07405d9e8641"
+  },
+  "course_id": "63b428963e3c0c3b11c49b8b",
+  "viewer": 1,
+  "avg_rating": 0,
+  "num_reviews": 0,
+  "reviews": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b42c60e23d8b2769d4f321"
+  },
+  "course_id": "63b428a6d1255a2138f3be17",
+  "viewer": 1,
+  "avg_rating": 0,
+  "num_reviews": 0,
+  "reviews": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b42c7d8ea614d0cd060dea"
+  },
+  "course_id": "63b428b264d2c04c1f243fae",
+  "viewer": 668,
+  "avg_rating": 4.8,
+  "num_reviews": 76,
+  "reviews": [
+    {
+      "content": "<p>Nice explanation, have the right amount of examples and excercises for the topic and each video contains a summary with what you've learned, a good way to know your overall progress.</p>",
+      "rating": 5,
+      "like": 20,
+      "dislike": 4,
+      "created": "2022-12-27T12:03:11-08:00",
+      "user": {
+        "name": "Dario Acevedo",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42c7d8ea614d0cd060deb"
+      }
+    },
+    {
+      "content": "<p>Lazy Programmer's courses are amazing. Simple but still detailed explanations, easy to follow and he does an amazing job at challenging you to do things yourself. The course is broken up into beginner, intermediate, and advanced parts, which makes it easy for all students to follow along in spite of their level of experience. All of them were great!</p>",
+      "rating": 5,
+      "like": 21,
+      "dislike": 8,
+      "created": "2022-12-19T16:20:34-08:00",
+      "user": {
+        "name": "Karin Schenk",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42c7d8ea614d0cd060dec"
+      }
+    },
+    {
+      "content": "<p>The practical application lectures were really useful.</p>",
+      "rating": 5,
+      "like": 68,
+      "dislike": 4,
+      "created": "2022-11-19T10:47:05-08:00",
+      "user": {
+        "name": "Kagan Demir",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42c7d8ea614d0cd060ded"
+      }
+    },
+    {
+      "content": "<p>High - quality content explained through theory and code on practical examples (datasets). The way how everything was explained and structure is for praise. Full support for author to continue with good work and creating extraordinary contents. This course will impact on me to do further research of the topic of Naive Bayes and implement it practically.</p>",
+      "rating": 5,
+      "like": 73,
+      "dislike": 9,
+      "created": "2022-12-31T11:49:50-08:00",
+      "user": {
+        "name": "Dusan Perovic",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42c7d8ea614d0cd060dee"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b42c95d3ccef1aae631d99"
+  },
+  "course_id": "63b428c18229d1234caed2f6",
+  "viewer": 638,
+  "avg_rating": 4.8,
+  "num_reviews": 58,
+  "reviews": [
+    {
+      "content": "<p>I believe a lot of effort was put into this course, and it is sold for a reasonable price even though that one-time purchase gives you an unlimited amount of knowledge in a sense because this course never stops being updated</p>",
+      "rating": 5,
+      "like": 17,
+      "dislike": 6,
+      "created": "2022-12-17T16:34:27-08:00",
+      "user": {
+        "name": "Fatima Maher Shibli",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42c95d3ccef1aae631d9a"
+      }
+    },
+    {
+      "content": "<p>One of the best python courses in Udemy. The course is well organized, Step-by-Step approach with detailed explanations, and continuous improvement by adding new lessons. Great learning resources to implement in a real-world application.</p>",
+      "rating": 5,
+      "like": 95,
+      "dislike": 5,
+      "created": "2022-12-10T22:12:04-08:00",
+      "user": {
+        "name": "Cody Knight",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42c95d3ccef1aae631d9b"
+      }
+    },
+    {
+      "content": "<p>One of the best courses on udemy in learning python. I have saw a lot of courses about python but this one is the best I encountered and show indeed everything you need to know to master python..Not only just the language but also data analysis, machine learning, webapps, software, games. <br>The course is still ongoing so conclusion is..THIS IS THE ONLY COURSE YOU NEED TO BECOME A COLMPLETE PROFESSIONAL PYTHON DEVELOPER AND DATA ANALYST AND MACHINE LEARNING ENGINEER;</p>\n\n<p>NOTE:<br>The course is still ongoing and there will be addes more section weekly.</p>\n\n<p>the teacher is also very responsive and response very fast.</p>\n\n<p>The only downside is that I can only give it 5-stars..The course deserves a lot more then 5 stars :-)<br>so by this said..I give 5+++++++++++ stars :-)</p>",
+      "rating": 5,
+      "like": 31,
+      "dislike": 10,
+      "created": "2022-12-09T02:53:18-08:00",
+      "user": {
+        "name": "Patrick De Paepe",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42c95d3ccef1aae631d9c"
+      }
+    },
+    {
+      "content": "<p>I am beginning to think that oriental people have a talent for teaching. I have bought courses not only from this course but also from other oriental teachers and it is always explained in such a way that you not only understand it but also have a lot of fun. I have also bought courses from Mossen Hassan as well as from Zaid sabih which had nothing to do with Python and are more in the financial area but there it was also explained very well. Be that as it may. This course has made me really fun. And everyone who knows me knows that I learn a lot and am very critical. You can tell that he is really interested in explaining the subject matter to his students in an understandable way.  He takes the time to draw everything and explain it slowly and very precisely. My respect for people who focus on their students.</p>",
+      "rating": 5,
+      "like": 58,
+      "dislike": 2,
+      "created": "2022-12-04T13:59:02-08:00",
+      "user": {
+        "name": "Mo A.J.",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/186613254_34f0_21.jpg"
+      },
+      "_id": {
+        "$oid": "63b42c95d3ccef1aae631d9d"
+      }
+    },
+    {
+      "content": "<p>Interesting the baby steps we're taking.</p>",
+      "rating": 4,
+      "like": 77,
+      "dislike": 1,
+      "created": "2022-11-23T10:52:45-08:00",
+      "user": {
+        "name": "Ntuthuko",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42c95d3ccef1aae631d9e"
+      }
+    },
+    {
+      "content": "<p>Great experience to learn here and the mentor is charming.<br>I was stuck in my project and requested his help, he came forward immediately and did. Also, he added one lecture regarding that thing is really lovely gesture.</p>",
+      "rating": 5,
+      "like": 66,
+      "dislike": 5,
+      "created": "2022-12-29T18:26:14-08:00",
+      "user": {
+        "name": "Tanaji Holam",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42c95d3ccef1aae631d9f"
+      }
+    },
+    {
+      "content": "<p>The way he explains the concept is easy to understand.</p>",
+      "rating": 5,
+      "like": 13,
+      "dislike": 0,
+      "created": "2022-12-19T15:37:14-08:00",
+      "user": {
+        "name": "Mahinthan Mahalingam",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42c95d3ccef1aae631da0"
+      }
+    },
+    {
+      "content": "<p>Mohamed is experienced in many fields ,sure you will find this is an interesting course</p>",
+      "rating": 5,
+      "like": 0,
+      "dislike": 0,
+      "created": "2022-11-26T04:57:43-08:00",
+      "user": {
+        "name": "Ahmed Atef",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42c95d3ccef1aae631da1"
+      }
+    },
+    {
+      "content": "<p>It is convenient to hear, see, and learn, ... thanks. I enjoy learning during my free time ..</p>",
+      "rating": 5,
+      "like": 36,
+      "dislike": 8,
+      "created": "2022-12-29T06:19:17-08:00",
+      "user": {
+        "name": "Tutuko Prajogo",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42c95d3ccef1aae631da2"
+      }
+    },
+    {
+      "content": "<p>The Course is easy to follow and clear explanations.</p>",
+      "rating": 5,
+      "like": 69,
+      "dislike": 5,
+      "created": "2022-12-02T20:24:11-08:00",
+      "user": {
+        "name": "Lerato Mofubatha",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42c95d3ccef1aae631da3"
+      }
+    },
+    {
+      "content": "<p>really step by step, easy to understand</p>",
+      "rating": 5,
+      "like": 80,
+      "dislike": 1,
+      "created": "2022-11-27T03:46:36-08:00",
+      "user": {
+        "name": "Xdan",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42c95d3ccef1aae631da4"
+      }
+    },
+    {
+      "content": "<p>great</p>",
+      "rating": 5,
+      "like": 8,
+      "dislike": 9,
+      "created": "2022-12-20T13:51:02-08:00",
+      "user": {
+        "name": "Dohun Kwon",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42c95d3ccef1aae631da5"
+      }
+    },
+    {
+      "content": "<p>THE WAY PRESENTED.</p>",
+      "rating": 5,
+      "like": 2,
+      "dislike": 6,
+      "created": "2022-12-24T04:33:22-08:00",
+      "user": {
+        "name": "Thayananthan Edwin",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42c95d3ccef1aae631da6"
+      }
+    },
+    {
+      "content": "<p>easy and clear</p>",
+      "rating": 5,
+      "like": 93,
+      "dislike": 9,
+      "created": "2022-12-25T20:42:37-08:00",
+      "user": {
+        "name": "Pranoto Dj.",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42c95d3ccef1aae631da7"
+      }
+    },
+    {
+      "content": "<p>great</p>",
+      "rating": 4,
+      "like": 68,
+      "dislike": 6,
+      "created": "2022-11-27T17:02:08-08:00",
+      "user": {
+        "name": "mahmoud mellal",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42c95d3ccef1aae631da8"
+      }
+    },
+    {
+      "content": "<p>I have zero experience and I am able to easily follow along. Mouhammad does an amazing job to make it as simple as possible and all the additional resources and help he offers to ensure your success is amazing.</p>",
+      "rating": 5,
+      "like": 65,
+      "dislike": 4,
+      "created": "2023-01-01T06:42:49-08:00",
+      "user": {
+        "name": "Cheri van der Walt",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42c95d3ccef1aae631da9"
+      }
+    },
+    {
+      "content": "<p>the python part of course good. Problem with working with the editor. instructor doing things with editor not explained</p>",
+      "rating": 4,
+      "like": 5,
+      "dislike": 3,
+      "created": "2022-12-31T23:19:19-08:00",
+      "user": {
+        "name": "Bob Hill",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42c95d3ccef1aae631daa"
+      }
+    },
+    {
+      "content": "<p>so far amazing!</p>",
+      "rating": 4.5,
+      "like": 27,
+      "dislike": 10,
+      "created": "2022-12-31T02:57:53-08:00",
+      "user": {
+        "name": "Charles Mcclean",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42c95d3ccef1aae631dab"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b42cfa0221d29649e0f1a1"
+  },
+  "course_id": "63b428e09d7d9deda795f761",
+  "viewer": 12,
+  "avg_rating": 5,
+  "num_reviews": 1,
+  "reviews": [
+    {
+      "content": "<p>One of the most comprehensive, easy to follow and well structured courses on Udemy. This took my skills to the next level! This is by far the best resource I've found for learning data science.</p>",
+      "rating": 5,
+      "like": 91,
+      "dislike": 7,
+      "created": "2022-11-08T05:14:53-08:00",
+      "user": {
+        "name": "Zhao Sheng",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42cfa0221d29649e0f1a2"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b42d0ebb4ddc383ea57d30"
+  },
+  "course_id": "63b428ef44e1ad426406f5ca",
+  "viewer": 191635,
+  "avg_rating": 4.4,
+  "num_reviews": 22110,
+  "reviews": [
+    {
+      "content": "<p>The theory is well explained however, almost everything practical is outdated. The course had so many things that were unnecessarily complicated things added to itself, that weren't properly explained in my opinion. If you need to learn the basic theory of AI, this is something good. However, if you need anything that learns you how to implement it, or that learns you how the AI works (with numpy, rows, etc.) you definitely need a lot of preknowledge. I'm a bit disappointed with this course. Hence the two stars.</p>",
+      "rating": 2,
+      "like": 2,
+      "dislike": 8,
+      "created": "2022-12-23T04:28:50-08:00",
+      "user": {
+        "name": "Thijmen Graat",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d0ebb4ddc383ea57d31"
+      }
+    },
+    {
+      "content": "<p>It's pretty good, however it would be better if they provide a VM with the necessary environment to run the code from the exercises, (especially for DOOM). They should also cover some newer models such as transformer neural network, which is the same that has been used for training the new chatGPT from openAI. The programming exercises are really good if you try and implement your own code along side with the instructor without looking at the videos, but only listening to the audio of him explaining the reasoning behind the code. </p>\n\n<p>Overall, this course is pretty dope. Keep it up!</p>",
+      "rating": 4.5,
+      "like": 6,
+      "dislike": 9,
+      "created": "2022-11-21T05:18:08-08:00",
+      "user": {
+        "name": "Magnus Haxen",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d0ebb4ddc383ea57d32"
+      }
+    },
+    {
+      "content": "<p>Overall good code and examples, but more detailed explanations about code would be better.</p>",
+      "rating": 4,
+      "like": 34,
+      "dislike": 3,
+      "created": "2022-10-13T20:17:55-07:00",
+      "user": {
+        "name": "Leonid Fedorenchik",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d0ebb4ddc383ea57d33"
+      }
+    },
+    {
+      "content": "<p>The introduction gives a clear idea of the steps to take.<br>At the half-way point I am getting an idea of the possibilities of AI as it improves its decision-making as it iterates.</p>",
+      "rating": 5,
+      "like": 72,
+      "dislike": 4,
+      "created": "2022-10-12T06:16:47-07:00",
+      "user": {
+        "name": "Roger nunn",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d0ebb4ddc383ea57d34"
+      }
+    },
+    {
+      "content": "<p>I love this course, I just need to relearn and relearn about the courses. Thank you Kirill, Hadelin and teams!</p>",
+      "rating": 5,
+      "like": 47,
+      "dislike": 9,
+      "created": "2022-07-12T23:57:30-07:00",
+      "user": {
+        "name": "Syauqi Alfiandi",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d0ebb4ddc383ea57d35"
+      }
+    },
+    {
+      "content": "<p>The course was really Good. I just need to learn more because the coding was really hard for me as I just started to jump in to Technology Word.<br>I would like to thank Kirill, Hadelin and teams!</p>\n\n<p>Rana</p>",
+      "rating": 3.5,
+      "like": 14,
+      "dislike": 4,
+      "created": "2022-11-10T07:08:08-08:00",
+      "user": {
+        "name": "Rana Naser",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d0ebb4ddc383ea57d36"
+      }
+    },
+    {
+      "content": "<p>Door de accenten van de docenten is het voor no-natives lastig te volgen en de ondertiteling werkt daardoor ook niet.<br>Ook is het materiaal soms verouderd waardoor het soms lastig is om een bepaalde les te volgen / reproduceren.<br>Het motiveert niet echt om het dan vol te houden. Ook ben ik bezig met mijn \"eigen\" AI implementatie en daar zou ik graag wat vragen over willen stellen. Onderdelen die je lastig vind, wat verder uit te diepen. De opgegeven extra lesstof is niet voor iedereen zomaar te begrijpen en daardoor is deze cursus achteraf niet de meest verstandig voor mij.</p>",
+      "rating": 2.5,
+      "like": 78,
+      "dislike": 8,
+      "created": "2022-10-10T02:07:19-07:00",
+      "user": {
+        "name": "Gino Talamini",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d0ebb4ddc383ea57d37"
+      }
+    },
+    {
+      "content": "<p>the instructions for installation are out date. <br>it was hard to identify the correct program from the website advised.</p>",
+      "rating": 4,
+      "like": 40,
+      "dislike": 3,
+      "created": "2022-10-26T10:50:13-07:00",
+      "user": {
+        "name": "Victor Ordoñez",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d0ebb4ddc383ea57d38"
+      }
+    },
+    {
+      "content": "<p>The intuition lectures were really good, but I had a lot of trouble keeping up with the practical sessions. I think it's better to mention in advance that some prerequisite knowledge of pytorch and object-oriented programmed is highly recommended. Otherwise, it is just a code along project without really understanding what is happening.</p>",
+      "rating": 3,
+      "like": 30,
+      "dislike": 5,
+      "created": "2022-09-13T06:43:02-07:00",
+      "user": {
+        "name": "Ankit Majhi",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d0ebb4ddc383ea57d39"
+      }
+    },
+    {
+      "content": "<p>Not that easy to correlate the theoretical material with the practicle one, especially to whom is not familiar with torch package</p>",
+      "rating": 3,
+      "like": 95,
+      "dislike": 9,
+      "created": "2022-12-15T02:03:00-08:00",
+      "user": {
+        "name": "Eddie Barlev",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d0ebb4ddc383ea57d3a"
+      }
+    },
+    {
+      "content": "<p>#1  They need to update this.  Doom doesn't work?<br>#2  The theory is great, but some people enjoy the math behind everything.<br>#3  More coding and more examples (AND UPDATED EXAMPLES) would be great.</p>",
+      "rating": 2.5,
+      "like": 63,
+      "dislike": 3,
+      "created": "2022-08-28T18:50:41-07:00",
+      "user": {
+        "name": "Jason Grebe",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d0ebb4ddc383ea57d3b"
+      }
+    },
+    {
+      "content": "<p>i am still learning a lot, I cant wait to finish this course.</p>",
+      "rating": 4,
+      "like": 95,
+      "dislike": 2,
+      "created": "2022-12-30T01:12:31-08:00",
+      "user": {
+        "name": "Umar Alhaji Sani",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d0ebb4ddc383ea57d3c"
+      }
+    },
+    {
+      "content": "<p>Please, how do I get the files needed for lecture 15. Gitwolrd setup???<br>I don't see any link.</p>",
+      "rating": 3.5,
+      "like": 42,
+      "dislike": 1,
+      "created": "2022-12-26T13:49:49-08:00",
+      "user": {
+        "name": "Emmanuel Coker",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d0ebb4ddc383ea57d3d"
+      }
+    },
+    {
+      "content": "<p>Learning wise this course teaches what it intents to do. Course is a bit old though so Doom and Breakout do not work or require extra effort to get them to work. Course needs an update. Having recommendational readings is nice.</p>",
+      "rating": 3.5,
+      "like": 27,
+      "dislike": 6,
+      "created": "2022-06-29T05:53:01-07:00",
+      "user": {
+        "name": "Oğuz Kaan Araz",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d0ebb4ddc383ea57d3e"
+      }
+    },
+    {
+      "content": "<p>This course was a waste of my time and money.</p>\n\n<p>On the one hand, I had to search most of the concepts externally because I did not understand many things (and a lot of Q&A from other students were on the same line).</p>\n\n<p>Furthermore, most of the videos seems to be made only to fill out the course. It is too frustrating that topics that can be explained in 5 minutes are explained in 15 minutes repeating the same over and over again, leading to ambiguous explanations. Even instructors seem lost sometimes!</p>\n\n<p>On the other hand, I couldn't follow along the practical lessons due to installation problems. They use old versions of the libraries and it was impossible for me to install them after losing so much time trying.</p>\n\n<p>Finally, like in other courses of these instructors, Q&A is completely useless and all of the assistants seem bots that don't know how to answer any question.</p>\n\n<p>Obviously, I wasn't the only student with that problems because others had commented the same problems in the lessons. There are even questions with these problems asked years ago. So, it is a pity that this course was abandoned years ago.</p>\n\n<p>The good thing is that this is the last course of the AI collection that I bought from these instructors. I will try to stay away from their courses in the future.</p>",
+      "rating": 1,
+      "like": 83,
+      "dislike": 6,
+      "created": "2022-10-23T02:58:20-07:00",
+      "user": {
+        "name": "Pedro Rafael Tarancón Baeza",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d0ebb4ddc383ea57d3f"
+      }
+    },
+    {
+      "content": "<p>Theory is ok.<br>The practical section is the problem. It is a collection of videos explaining the code already written by the instructor.<br>If possible I would request a refund.</p>",
+      "rating": 2,
+      "like": 76,
+      "dislike": 0,
+      "created": "2022-09-25T13:48:45-07:00",
+      "user": {
+        "name": "Bruno",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d0ebb4ddc383ea57d40"
+      }
+    },
+    {
+      "content": "<p>The theory parts of the course were great but the coding part was basically non-existent. If you want to get started in the field of deep learning, go learn Tensorflow and take a course on that. This course should only be bought if you want to learn theory.</p>",
+      "rating": 3,
+      "like": 0,
+      "dislike": 5,
+      "created": "2022-06-11T13:32:46-07:00",
+      "user": {
+        "name": "Pretham Nandakumar",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d0ebb4ddc383ea57d41"
+      }
+    },
+    {
+      "content": "<p>It was a good experience. Lot of Information gained about AI. Thank you so much.</p>",
+      "rating": 4.5,
+      "like": 75,
+      "dislike": 4,
+      "created": "2022-09-27T08:18:12-07:00",
+      "user": {
+        "name": "Archana Bhat",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d0ebb4ddc383ea57d42"
+      }
+    },
+    {
+      "content": "<p>Don't want to be turned into a machine. I prefer human creativity + support of AI when appropriate. However, I want to stay in charge of the process.</p>",
+      "rating": 3,
+      "like": 94,
+      "dislike": 3,
+      "created": "2022-11-28T05:23:56-08:00",
+      "user": {
+        "name": "Josef David",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/7936796_2f2b_6.jpg"
+      },
+      "_id": {
+        "$oid": "63b42d0ebb4ddc383ea57d43"
+      }
+    },
+    {
+      "content": "<p>Amazing journey in the field of science and technology...</p>",
+      "rating": 3.5,
+      "like": 59,
+      "dislike": 4,
+      "created": "2022-09-16T01:55:35-07:00",
+      "user": {
+        "name": "Arsalan Habib",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d0ebb4ddc383ea57d44"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b42d26f2918322023f5cc8"
+  },
+  "course_id": "63b428fb0eceb22ec791b100",
+  "viewer": 354689,
+  "avg_rating": 4.7,
+  "num_reviews": 88112,
+  "reviews": [
+    {
+      "content": "<p>Took time to explain everything, best course for a both a beginner and someone who has one or two ideas about html and css already.</p>",
+      "rating": 5,
+      "like": 48,
+      "dislike": 8,
+      "created": "2022-12-22T05:10:05-08:00",
+      "user": {
+        "name": "Rapheal Omoyeni",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d26f2918322023f5cc9"
+      }
+    },
+    {
+      "content": "<p>Jonas teaches very well . He explains very topic in simple words and his projects are awesome</p>",
+      "rating": 4.5,
+      "like": 74,
+      "dislike": 9,
+      "created": "2022-12-09T10:52:28-08:00",
+      "user": {
+        "name": "Nitin Kaushal",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d26f2918322023f5cca"
+      }
+    },
+    {
+      "content": "<p>Terrific -- detailed, comprehensive, and easy to follow.</p>",
+      "rating": 5,
+      "like": 87,
+      "dislike": 6,
+      "created": "2022-11-10T18:55:50-08:00",
+      "user": {
+        "name": "D Austin",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d26f2918322023f5ccb"
+      }
+    },
+    {
+      "content": "<p>I am just on the lecture 16 of the first section, but I already feel that I have become another one. In ten minutes I get a bunch of skills, the lectures are very simple to understand, the practicing, the challenges...it´s all awesome. I should know about it before. I feel unable to explain how I´m loving and having fun on it.Thanks and, CONGRATULATIONS.</p>",
+      "rating": 5,
+      "like": 46,
+      "dislike": 6,
+      "created": "2022-09-20T15:00:01-07:00",
+      "user": {
+        "name": "Santos Fernando",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d26f2918322023f5ccc"
+      }
+    },
+    {
+      "content": "<p>Wow! what a journey. Jonas thanks for being a great & easy to understand teacher, amazing worlds are limited, Thanks :) Cant wait to start your JS Course</p>",
+      "rating": 5,
+      "like": 75,
+      "dislike": 3,
+      "created": "2022-11-18T06:15:43-08:00",
+      "user": {
+        "name": "Timothy Adelekan",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d26f2918322023f5ccd"
+      }
+    },
+    {
+      "content": "<p>I took a lot of bestselling courses on Udemy about web development, but those of Jonas are my favorite ones. He explains everything in a very understandable way, and the big Omnifood project is a fantastic way of practicing everything you learn.<br>I would recommend to everyone starting to learn web development.</p>",
+      "rating": 5,
+      "like": 54,
+      "dislike": 7,
+      "created": "2022-12-29T02:12:48-08:00",
+      "user": {
+        "name": "Andy Gillis",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/29665000_d1ef_2.jpg"
+      },
+      "_id": {
+        "$oid": "63b42d26f2918322023f5cce"
+      }
+    },
+    {
+      "content": "<p>Very nice presentation of the material. Clear and pleasant pronunciation and diction of the teacher. Respect to Jonas!</p>",
+      "rating": 5,
+      "like": 85,
+      "dislike": 7,
+      "created": "2022-12-14T02:59:57-08:00",
+      "user": {
+        "name": "Taras Zarytskyi",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d26f2918322023f5ccf"
+      }
+    },
+    {
+      "content": "<p>Wen i start this cours i had no much  knowledge about html and css but afer finishing with the cours i gain new skills and much experience about both all css and html .  Big thanks to teacher Jonas!</p>",
+      "rating": 5,
+      "like": 8,
+      "dislike": 1,
+      "created": "2022-12-08T03:19:17-08:00",
+      "user": {
+        "name": "Daouda Drame",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d26f2918322023f5cd0"
+      }
+    },
+    {
+      "content": "<p>So far the best web development course I've ever taken. Thank you Jonas! I highly recommend this course if you're trying to get into web development.</p>",
+      "rating": 5,
+      "like": 49,
+      "dislike": 3,
+      "created": "2022-12-16T12:26:30-08:00",
+      "user": {
+        "name": "Esteban Stalin Mena Baldera",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d26f2918322023f5cd1"
+      }
+    },
+    {
+      "content": "<p>This course was amazing, the teacher explains all the topics so clear and the more important the videos are short. I recommend it 100% and I'll go to do the advanced one. Thank you so much to take your time with the videos.</p>",
+      "rating": 5,
+      "like": 3,
+      "dislike": 8,
+      "created": "2022-12-06T17:59:35-08:00",
+      "user": {
+        "name": "Carlos Rendon",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d26f2918322023f5cd2"
+      }
+    },
+    {
+      "content": "<p>Jonas does such a great job applying theory to practical and efficient web development/design. Could not recommend more!!</p>",
+      "rating": 5,
+      "like": 58,
+      "dislike": 9,
+      "created": "2022-12-01T16:16:17-08:00",
+      "user": {
+        "name": "Chris Logan",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d26f2918322023f5cd3"
+      }
+    },
+    {
+      "content": "<p>This is a really amazing course where you will learn all you need to know to get a real world project done, and you will get the best of it if you finish it to the end. </p>\n\n<p>HINT (If you feel tired because of the duration, before you quit, go to the project section. I can assure you're going to love it). But I advise you to go step by step, skipping nothing.</p>\n\n<p>Once again, \"Nice Course\"</p>",
+      "rating": 5,
+      "like": 63,
+      "dislike": 9,
+      "created": "2022-12-12T12:53:46-08:00",
+      "user": {
+        "name": "Emmanuel Akinyode",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d26f2918322023f5cd4"
+      }
+    },
+    {
+      "content": "<p>This course takes a very different approach to HTML and CSS rather than showing us all the HTML and CSS properties and overloading us with information , this course teaches us exactly the amount of HTML and CSS properties needed to make a simple but very professional looking website... <br>My favorite part of this course is that it emphasizes practical hands-on learning rather than simply teaching theories.... </p>\n\n<p>In summary, it is the best course for learning HTML and CSS through practical application.</p>",
+      "rating": 5,
+      "like": 83,
+      "dislike": 10,
+      "created": "2022-11-06T08:22:08-08:00",
+      "user": {
+        "name": "Arnab Das",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/181617194_686a.jpg"
+      },
+      "_id": {
+        "$oid": "63b42d26f2918322023f5cd5"
+      }
+    },
+    {
+      "content": "<p>Jonas is a fantastic teacher, explaining everything clearly and in little detail. The teaching material is perfect both visually and vocally. His huge effort makes this course enjoyable from the very start to end!</p>",
+      "rating": 5,
+      "like": 82,
+      "dislike": 5,
+      "created": "2022-11-19T08:39:17-08:00",
+      "user": {
+        "name": "Kestutis Radavicius",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d26f2918322023f5cd6"
+      }
+    },
+    {
+      "content": "<p>!!!! Excellent course content!!! This course gave me the confidence to dream big and It gives me the most of solutions!!! Tricks mentioned the course are awesome.</p>",
+      "rating": 5,
+      "like": 70,
+      "dislike": 9,
+      "created": "2022-12-24T14:12:05-08:00",
+      "user": {
+        "name": "Shankarkumar Devarajan",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d26f2918322023f5cd7"
+      }
+    },
+    {
+      "content": "<p>The classes were great, language was understandable. it was nice to know everything. Teaching was so well, that I gained a lot of confidence.</p>",
+      "rating": 5,
+      "like": 24,
+      "dislike": 6,
+      "created": "2022-10-13T07:57:57-07:00",
+      "user": {
+        "name": "Redrowthu Rachana",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d26f2918322023f5cd8"
+      }
+    },
+    {
+      "content": "<p>I was thoroughly impressed with the quality and content. The instructor was skilled and knowledgeable in the subject matter, and did an excellent job of explaining complex concepts in a way that was easy to understand.</p>\n\n<p>One of the things I particularly appreciated about the course was the inclusion of practical examples. Rather than just discussing theories and ideas, the instructor provided real-world examples and case studies that helped to illustrate the concepts being taught. This made the material much more relevant and engaging, and helped me to better understand how the concepts could be applied in a practical setting.</p>\n\n<p>Overall, I would highly recommend this course to anyone looking to improve their skills and knowledge in the subject matter. It was well-organized, well-taught, and provided a wealth of valuable information. I feel confident that I will be able to apply what I learned in my professional life, and I am grateful for the opportunity to have taken such a high-quality course.</p>",
+      "rating": 4.5,
+      "like": 86,
+      "dislike": 6,
+      "created": "2022-12-24T02:09:58-08:00",
+      "user": {
+        "name": "Ravishankareddi Doddayarashi",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d26f2918322023f5cd9"
+      }
+    },
+    {
+      "content": "<p>This is the second Mr.Jonas course I have completed, and again I am pleased to confirm that Mr.Jonas is unique in explaining each concept in a clear and understandable way to everyone. Thank you very much Mr. Jonas, I will gladly study all your courses! Highly recommended</p>",
+      "rating": 5,
+      "like": 15,
+      "dislike": 10,
+      "created": "2022-09-21T11:15:45-07:00",
+      "user": {
+        "name": "Roberto Vaccarella",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d26f2918322023f5cda"
+      }
+    },
+    {
+      "content": "<p>Jonas is really great professor, goes into details and explains everything.</p>\n\n<p>p.s Moaning during some lections get's me by suprise every time and has me laughing so I can say that it was fun as well.I m gonna proceed with Jonas js course and ofcourse will proceed creating my own websites.</p>",
+      "rating": 5,
+      "like": 79,
+      "dislike": 8,
+      "created": "2022-12-22T11:02:45-08:00",
+      "user": {
+        "name": "Darko Jerkovic",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d26f2918322023f5cdb"
+      }
+    },
+    {
+      "content": "<p>Great course for anyone looking to get better at html/css with a structured course.</p>",
+      "rating": 5,
+      "like": 96,
+      "dislike": 2,
+      "created": "2022-12-09T02:35:59-08:00",
+      "user": {
+        "name": "Aijalon bode",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d26f2918322023f5cdc"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b42d3d622496923f4b5e7a"
+  },
+  "course_id": "63b429080cda972759946d6e",
+  "viewer": 6,
+  "avg_rating": 4,
+  "num_reviews": 1,
+  "reviews": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b42d598e54d232b2574a1d"
+  },
+  "course_id": "63b4291a9f712cb4ebfd68ad",
+  "viewer": 857343,
+  "avg_rating": 4.7,
+  "num_reviews": 249878,
+  "reviews": [
+    {
+      "content": "<p>Kurs, bir çok bilgiyi öğrenmemde bana rehberlik etti. Beni motive etti. <br>1 puanı kırmamamın nedeni bazı ders videoları güncel değil(çok az bir kısmı)</p>",
+      "rating": 4,
+      "like": 54,
+      "dislike": 3,
+      "created": "2022-12-13T09:22:46-08:00",
+      "user": {
+        "name": "İrfan Anık",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d598e54d232b2574a1e"
+      }
+    },
+    {
+      "content": "<p>This is a really good course to take if you are planning to be a web developer. Though some things aren't updated, but you can solve it anyway through the Q&A sections and through reading the documentations. I really love your \"Tip from Angela\" at the end of every lesson. Dr. Angela is really a good Instructor I would recommend this course.</p>",
+      "rating": 5,
+      "like": 70,
+      "dislike": 3,
+      "created": "2022-12-06T01:51:33-08:00",
+      "user": {
+        "name": "James David Duka",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d598e54d232b2574a1f"
+      }
+    },
+    {
+      "content": "<p>Surely, this course is: all-in-one-course which touched almost every topic of the web development, which I really gained a lot of skills from it.</p>",
+      "rating": 5,
+      "like": 54,
+      "dislike": 7,
+      "created": "2022-11-28T03:29:27-08:00",
+      "user": {
+        "name": "Muhammad Idris",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d598e54d232b2574a20"
+      }
+    },
+    {
+      "content": "<p>My name is Onu Princeley Toochukwu. I want to say a very big thank you to Udemy management and Dr Angela Yu. This course is one of the best decisions i have taken in my life. I must say that i have learnt so much, and i believe i have good basics to further my study on the path of fullstack development.  Dr Angela Yu is a wonderful person and a Teacher. The only negative in this course, is that some modules are outdated, but is not enough reason to rate it anything below 5stars...</p>",
+      "rating": 5,
+      "like": 55,
+      "dislike": 2,
+      "created": "2022-09-18T09:57:09-07:00",
+      "user": {
+        "name": "Onu Princeley Toochukwu",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d598e54d232b2574a21"
+      }
+    },
+    {
+      "content": "<p>Hey everybody! I will write a long review for you.<br> I juuuust managed to finish this bootcamp that i started a little bit less then 6 months ago.<br>My only preview experience was another Udemy Course, a free one, HTML + CSS 4hours, so basically no previous knowledge so you will find my review from this point of view.<br>First. My rating 1/5 Doesn't reflect the real value, is just a WARNING for you(future students), for Angela and her team. The course is shamefully outdated (it has 828547 participants!!!!, tons of money made!!!) in key chapters, BUT Angela is a very nice teacher, sweet person and sweet voice, gave us a lot, a lot of priceless informations and i totally recomand her, but i want to make a comparison. Year 2000 film camera vs 2022 DSLR cameras, the one in year 2000 was good at that time, but is not up to date to with the actual tehnologies and i will try to give you a preview of different chapters.<br>This course covered a lot of topics and in the same time i feel like we didn't made a deep learning in any of them. <br>I start with a comparison, the free course that i have made before gave me more infos then Angela in first 5 sections.<br>Then section 6. Bootstrap, sadly..it was outdated.<br>Also i feel like we didn't practiced enough to sediment the infos in bootstrap, javascript, jQuerry, <br>Section 21 Git also very outdated, lost few hours to figure out how to login<br>Section 25 SQL, we almost did nothing in it.<br>Section 33 React. She registered when was React 16.8, now is 18.1+ the syntax is diferent(ok, no big deal) but i gave up and coded like her in 16.8 otherwhise i had to lose a lot of time and focus changing at every leason, small details but will annoy you for sure.<br>I choose this bootcamp because had a lot of hours of it, what i saw in comments a lot of important things were not mentioned like other Hooks (we only learned useState), no flexbot, no grid.<br>Until section 33 the course was registered between 2018 and 2019.<br>What was updated for Year 2022 was only section 34-39 (Web3, BlockChain, Crypto Token/Coin, NFTs) that i feel had to be in a totally separate Course, sure it was in trend, the blockchain, crypto, nfts were exploding and was a good marketing thing (meanwhile at the end of 2022 everything is down ^.^). Anyway this chapters were very very very rushed, just few challanges , you just can watch her coding.</p>\n\n<p>Another important thing and i saw a lot of people writed in reviews: Sadly the front-end is not connected to back-end to really build a proper website! The concept is called MERN, look for it!</p>\n\n<p>A funny part is that i started a 2022 bootcamp and i finished a 2023 one =) great! <br>Again, WARNING! has nothing in it updated for 2022-2023 yet.<br>And another WARNING, watch out on Udemy style too. You cannot filter the reviews by date, they just put them \"random\"(or not) 6 months ago, 3 days ago, 2 years ago and so on, it would be great to sort them by the most recent, most upvoted, most recommanded, like in the course, but they specially made it like this to catch you.</p>\n\n<p>BUT overall i don't regret doing this course, i really got a lot of infos for very few euros.</p>",
+      "rating": 1,
+      "like": 39,
+      "dislike": 10,
+      "created": "2022-12-03T14:22:26-08:00",
+      "user": {
+        "name": "Silviu Eduard Chiriloaie",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d598e54d232b2574a22"
+      }
+    },
+    {
+      "content": "<p>Angela is an amazing teacher!</p>",
+      "rating": 4.5,
+      "like": 52,
+      "dislike": 7,
+      "created": "2022-12-26T07:33:20-08:00",
+      "user": {
+        "name": "Giorgos Athanasiadis",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d598e54d232b2574a23"
+      }
+    },
+    {
+      "content": "<p>Hi,<br>From being a non-it person and zero knowledge about coding to get paid internship as web developer after that getting full time job as full stack developer, This course has helped me a lot.<br>Thanks Dr. Angela Yu, You are my favorite instructor.</p>",
+      "rating": 5,
+      "like": 42,
+      "dislike": 1,
+      "created": "2022-12-28T21:59:02-08:00",
+      "user": {
+        "name": "Abhishek Kumar",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d598e54d232b2574a24"
+      }
+    },
+    {
+      "content": "<p>There is not enough explanation on the various topics. It is all somewhat rushed, and so many of the websites associated with the various \"follow along\" projects have been updated and look totally different. In other words, the course materials are outdated in a sense. I also hate how instead of just showing that instead of just showing the proper way to do something the first time, you'll re-type the code 3-4 four times as way of demonstrating how not to do it. It's best the incorrect ways of coding not even be in our memory to begin with, what she does is just waste a lot of time.</p>",
+      "rating": 2,
+      "like": 51,
+      "dislike": 4,
+      "created": "2022-12-01T11:46:14-08:00",
+      "user": {
+        "name": "Dakota Gordon",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d598e54d232b2574a25"
+      }
+    },
+    {
+      "content": "<p>I don't usually complain, future buyers please take note for your own sake. Let me break this down:</p>\n\n<p>5 stars <br>None of this course deserve 5 stars, Some free courses provide much better experience than this one.</p>\n\n<p>4 stars<br>Javascript, Jquery, React deserves 4 stars. it really help me a lot, better than some courses out there.</p>\n\n<p>3 stars</p>\n\n<p>2 stars</p>\n\n<p>1 stars</p>\n\n<p>deserve no stars</p>\n\n<p>I didn't pay only for html and css plus there are a lot of free resources that provides better formula and impact than this one.</p>\n\n<p>The backend segment was a fiasco, Nodejs and express is meh, helpful but not. again, there are other better free resources out there. I was so excited about learning sql but you won't learn much of it and you won't even use it. the api's, Mongodb and below is horrendous. Most of the course are SOOOOOOOO outdated that I couldn't even proceed without going through the documentation and trying to make sense of all the crazy jargons.</p>\n\n<p>If you think you can get a job after this course, well think again. I've gone through interviews and have to take different courses because this course couldn't even get me pass the minimum, you won't learn how to handle payments, you need to learn both sql and mongo if you are working on a project that requires both, and most of them do to separate vital and non-vital data.</p>\n\n<p>1 star is for : Awful, not what I expected at all. I would rate a negative if it's available. don't be fool by the date, please do not be fool by the date, I repeat do not be full by the date. PLEASE PLEASE pay a little bit more because this course is wasting more of your time than saving it.</p>\n\n<p>and if you want to buy on udemy, buy courses that won't evolve with time such as arts or languages.  tech and other stuff are changing so fast, so it's not worth saving a hundreds of dollars and losing hundred of hours.</p>\n\n<p>have a good one.</p>",
+      "rating": 1,
+      "like": 41,
+      "dislike": 1,
+      "created": "2022-12-05T12:40:39-08:00",
+      "user": {
+        "name": "Syed Abu Hanifah Bin Syed Azmi",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d598e54d232b2574a26"
+      }
+    },
+    {
+      "content": "<p>I have learnt so much and i'm happy with my purchase. I do not regret purchasing this course, it has been helpful and i'm still learning. I can not wait to start on the web3 course.</p>",
+      "rating": 5,
+      "like": 85,
+      "dislike": 4,
+      "created": "2022-10-31T06:41:33-07:00",
+      "user": {
+        "name": "Bugembe Gayle Cindy",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d598e54d232b2574a27"
+      }
+    },
+    {
+      "content": "<p>I wish I could leave less than 1 star, but that's not possible. The instructor hasn't bothered to update most of her her materials for at least 5 years, which is a HUGE problem in the ever-changing field of computers. Many of the lessons can't be completed because they're so out of date that its impossible to follow along. When she does update, it's only a change of website but doesn't actually include any instruction. She obviously only cares about the paycheck from the class and not teaching anyone real-time skills. DO NOT waste your money on this course unless you only want to learn about the computer technology from 2018 and nothing about today's technology.</p>",
+      "rating": 1,
+      "like": 82,
+      "dislike": 0,
+      "created": "2022-12-21T17:19:48-08:00",
+      "user": {
+        "name": "Robyn K Higley",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d598e54d232b2574a28"
+      }
+    },
+    {
+      "content": "<p>Very Out dated course, she is not updating course, like react latest version is 18.2 and in this course its  version 16.<br>similarly bootsrap etc</p>",
+      "rating": 1,
+      "like": 37,
+      "dislike": 5,
+      "created": "2022-10-02T03:43:13-07:00",
+      "user": {
+        "name": "Mr. Ankusha",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/146111920_0111.jpg"
+      },
+      "_id": {
+        "$oid": "63b42d598e54d232b2574a29"
+      }
+    },
+    {
+      "content": "<p>This course was overall absolutely amazing. I've learned more from this course than I did in almost 4 years of university. In my humble opinion, the web3 chapter could have been slightly better, however it was a very informative course. The instructor is explaining everything very very well.</p>",
+      "rating": 4,
+      "like": 99,
+      "dislike": 1,
+      "created": "2022-11-30T04:06:47-08:00",
+      "user": {
+        "name": "Rares Tincu",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d598e54d232b2574a2a"
+      }
+    },
+    {
+      "content": "<p>Angela has a wonderful way of teaching and explaining things.  She throws humor in the lessons and is a wonderful person.  I highly recommend this course if you have no knowledge of web development.  I would love to have recieved more details on some sections but the class was so cheap and filled with information it started a fire or thirst for more knowledge.</p>",
+      "rating": 5,
+      "like": 77,
+      "dislike": 1,
+      "created": "2022-11-28T20:10:06-08:00",
+      "user": {
+        "name": "Jason Spangler",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d598e54d232b2574a2b"
+      }
+    },
+    {
+      "content": "<p>As of Nov. 9 2022 I completed this course. </p>\n\n<p>Pros:<br>- It contains a wide range of topics from front-end to back-end. Now I have the confidence to build my own deployable and usable app from scratch.<br>- Angela is a good teacher and has made clear, vivid demonstrations. <br>- The examples and mini projects are well-designed.</p>\n\n<p>Cons: <br>- Should have more contents on back-end. They are relatively poor compared to front-end contents.<br>- Should provide clearer demonstration on Web3.<br>!!! A large portion of contents are outdated and caused a painful amount of confusion to my learning experience. <br>NOTE to new comers to this course: usually those outdated stuff have answers or corrections in the Q&A section, but if not, go to Google and StackOverflow. Take this as an exercise of dealing with similar frustrating conditions in the real-world. <br>However, the fact that this will happen at work doesn't mean it's okay to not providing students with what they were expecting when purchasing a course called \"web dev 2022\" instead of \"web dev 2019 + Web3 dev 2022\". Afterall, this course is a commercial product and students have rights as customers. That's why I'm only giving 2.5 stars despite of me listing so many pros. If I hear that this course is updated to what it should be, I'll immediately change my rating to 5 stars which it could have deserved.</p>",
+      "rating": 2.5,
+      "like": 60,
+      "dislike": 3,
+      "created": "2022-11-09T00:16:06-08:00",
+      "user": {
+        "name": "Ruoye Wang",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d598e54d232b2574a2c"
+      }
+    },
+    {
+      "content": "<p>This course is great!! Runs you down so many different technologies and I can't wait to apply want I learned to real life applications!</p>",
+      "rating": 5,
+      "like": 85,
+      "dislike": 5,
+      "created": "2022-11-28T22:04:46-08:00",
+      "user": {
+        "name": "Anibal Hernandez",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d598e54d232b2574a2d"
+      }
+    },
+    {
+      "content": "<p>Angela is one of the best people I have found who makes learning so much fun. I find her approach to teaching unique and engaging. I'm grateful that I have found this course. This course doesn't give you in-depth knowledge about any technologies but teaches a broader perspective of skills that are needed in the domain of web development. I recommend this course to those who are new to web development.</p>",
+      "rating": 5,
+      "like": 95,
+      "dislike": 9,
+      "created": "2022-11-21T10:57:19-08:00",
+      "user": {
+        "name": "Mohammed Mehran",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d598e54d232b2574a2e"
+      }
+    },
+    {
+      "content": "<p>If You want to Learn Web dev in on place , you reached to right place.This is the best course on internet that i found Till now.</p>",
+      "rating": 5,
+      "like": 49,
+      "dislike": 8,
+      "created": "2022-11-09T06:16:05-08:00",
+      "user": {
+        "name": "Akshraj Vanrajsinh Chavda",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d598e54d232b2574a2f"
+      }
+    },
+    {
+      "content": "<p>Very extended course! If you are a beginner and you want an introduction for web development this course is for you. Dr. Angela is the best with motivation and explanation for all concepts!</p>",
+      "rating": 4.5,
+      "like": 85,
+      "dislike": 6,
+      "created": "2022-12-16T05:52:21-08:00",
+      "user": {
+        "name": "Rassiel Mex Dzib",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d598e54d232b2574a30"
+      }
+    },
+    {
+      "content": "<p>It's a good course with a lot of projects! It feels outdated in certain areas which might get frustrating to search and implement the newer versions at each step of those modules.</p>",
+      "rating": 3,
+      "like": 7,
+      "dislike": 8,
+      "created": "2022-11-07T04:45:33-08:00",
+      "user": {
+        "name": "Rishabh shukla",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d598e54d232b2574a31"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b42d6e8b5d01fd898b5ca5"
+  },
+  "course_id": "63b4292757324f71f58f2217",
+  "viewer": 730998,
+  "avg_rating": 4.7,
+  "num_reviews": 162254,
+  "reviews": [
+    {
+      "content": "<p>Great course.  I did start from zero, just over a year ago (late 2020).   Now (late 2022), I just set up my first serverless site using vercel.  Built a scraping api that my page calls for content.  My next step is to package it all into one project using a compiler, which jonas runs through later on in the course.  Jonas, in case read these, do you have a course or recommend a course for setting up a back end using sql server?  Cheers.  Definitely recommend the course.</p>",
+      "rating": 5,
+      "like": 83,
+      "dislike": 4,
+      "created": "2022-11-02T19:32:52-07:00",
+      "user": {
+        "name": "Peter Casgar",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d6e8b5d01fd898b5ca6"
+      }
+    },
+    {
+      "content": "<p>This course has been the most exciting enlightenment in the area of not just Javascript but the programming world at large. Jonas takes his explanation to the next level. If there was an annual teaching award, I think Jonas deserves one.</p>",
+      "rating": 5,
+      "like": 50,
+      "dislike": 2,
+      "created": "2022-10-28T14:08:01-07:00",
+      "user": {
+        "name": "Chukwu Gospel Chidiebube",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d6e8b5d01fd898b5ca7"
+      }
+    },
+    {
+      "content": "<p>Indeed I feel great taking this course, its never a wasted adventure. The facilitator did justice to it and I look forward taking some of his other course.</p>",
+      "rating": 4.5,
+      "like": 75,
+      "dislike": 4,
+      "created": "2022-10-25T09:18:52-07:00",
+      "user": {
+        "name": "Emeaso",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d6e8b5d01fd898b5ca8"
+      }
+    },
+    {
+      "content": "<p>Length of course is sufficient enough to remark it a mega course. JS topics are covered in detail with proper practices. While last 2 projects have been a little over my head and hard to grasp at times, it stipulated me to hit harder on the matters, revisit stuff which I missed or totally got slipped off my head. I am heading to his node.js as the next pitstop.</p>",
+      "rating": 5,
+      "like": 8,
+      "dislike": 4,
+      "created": "2022-10-16T11:45:29-07:00",
+      "user": {
+        "name": "Erhan Ertem",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/181791956_999a.jpg"
+      },
+      "_id": {
+        "$oid": "63b42d6e8b5d01fd898b5ca9"
+      }
+    },
+    {
+      "content": "<p>Thanks Jonas - this course is really good for learning, not only JavaScript, but some great techniques and programming tricks and patterns.</p>\n\n<p>The attention to detail and putting in the extra value towards people actually having a full skill-set for applying to job vacancies, is much appreciated.<br>100% recommended course.</p>",
+      "rating": 5,
+      "like": 73,
+      "dislike": 6,
+      "created": "2022-12-06T08:03:14-08:00",
+      "user": {
+        "name": "Darren Kelly",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d6e8b5d01fd898b5caa"
+      }
+    },
+    {
+      "content": "<p>Tl;dr: This course is great, I highly recommend it for anyone either completely unfamiliar, or even with some experience, with JavaScript that wants a comprehensive foundation of knowledge that they can be confident will serve them well.</p>\n\n<p>Having just finished this course, I must say it is fantastic. I have been working with JavaScript professionally for two years in my role as a SysAdmin, creating automations for different business processes from automatically processing employee account lifecycles, (creating new accounts for on-boarding, keeping them up to date with info changes, and processing off-boarding) to keeping asset inventories up to date, and pushing commands to devices remotely (such as lock commands for lost devices). </p>\n\n<p>I've had to leverage different data types and structures, control operations/methods, and HTTP requests to various APIs quite a bit so felt fairly comfortable in my knowledge set, but was entirely self-taught via quite painful trial and error and spending hours and hours combing through documentation. Honestly, my knowledge and skills were rather patchwork and I was using some quite antiquated coding technique, so I decided to take this course to fill in a lot of gaps and develop a much more solid foundational understanding of JS, especially more modern ES6 features and techniques.</p>\n\n<p>This course absolutely delivered and is what I wished I had when I was first starting to hack together my first rudimentary JS scripts. Jonas, over the course, builds from the very basics of syntax through to teaching how to build a front end web application with rather sophisticated features in a very thorough, methodical, and systematic way with a knack for explanation that is understandable and enlightening.</p>\n\n<p>Perhaps the greatest strength here is that Jonas goes out of his way to not just hash out some code and say what it does, but actually delves into how things work and reinforces and builds on this knowledge as the course progresses so nothing that you are doing on any of the several projects seems hidden inside a black box.</p>\n\n<p>Even with my prior work and experience in JS, I can say that my knowledge and skills, as well as confidence, has grown an order of magnitude and I consider this a tremendous return on my investment in Jonas's course and highly recommend it to anyone wanting a solid foundation in JS from which to continue to grow. I am looking forward to taking a few more courses that Jonas has here on Udemy, as well as developing some of my own projects and heavily refactoring all my previous code.</p>\n\n<p>Many thanks to Jonas for this course, truly appreciate the level of detail and attention he has put into it.</p>",
+      "rating": 5,
+      "like": 16,
+      "dislike": 8,
+      "created": "2022-11-11T10:42:56-08:00",
+      "user": {
+        "name": "Blake L Morris",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/143840218_6fbe.jpg"
+      },
+      "_id": {
+        "$oid": "63b42d6e8b5d01fd898b5cab"
+      }
+    },
+    {
+      "content": "<p>From html&css to JS (best js course out there) Jonas is the best teacher I have ever had, I really appreciate explaining with slides that contain really deep dive info and practicing on big projects, not just small demos which do not benefit anyone at all,  I watched this course twice for revision, and now I'm going to take node.js and advanced CSS after finishing react.js sadly there no course for it with Jonas :(</p>",
+      "rating": 5,
+      "like": 40,
+      "dislike": 3,
+      "created": "2022-11-07T15:58:28-08:00",
+      "user": {
+        "name": "Mustafa Suleiman",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d6e8b5d01fd898b5cac"
+      }
+    },
+    {
+      "content": "<p>it's a really complete JS course covering all the main features of the language, some of its quirks and how to use them in good practical projects</p>",
+      "rating": 5,
+      "like": 25,
+      "dislike": 6,
+      "created": "2022-12-06T19:23:45-08:00",
+      "user": {
+        "name": "Luis Julian De La Torre Aguilar",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/12292444_17e8.jpg"
+      },
+      "_id": {
+        "$oid": "63b42d6e8b5d01fd898b5cad"
+      }
+    },
+    {
+      "content": "<p>This course is the best javascript course I came across on Udemy.  Jonas explains everything so clearly and with beginner-friendly explanations  &  examples love this one.</p>",
+      "rating": 5,
+      "like": 19,
+      "dislike": 2,
+      "created": "2022-12-25T23:01:34-08:00",
+      "user": {
+        "name": "Sharanu P",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/178537118_b92d.jpg"
+      },
+      "_id": {
+        "$oid": "63b42d6e8b5d01fd898b5cae"
+      }
+    },
+    {
+      "content": "<p>As a developer, I love this course and I'm sure this is one of the best JavaScript courses. I'm waiting for the react.js course!<br>Thank you, Jonas!</p>",
+      "rating": 5,
+      "like": 9,
+      "dislike": 1,
+      "created": "2022-12-18T04:12:58-08:00",
+      "user": {
+        "name": "Esakkimuthu",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d6e8b5d01fd898b5caf"
+      }
+    },
+    {
+      "content": "<p>IT'S EXPLICIT, AND REVEALS ALL THE HIDDEN SALIENT IN MODERN JAVASCRIPT  TILL  ES2021</p>",
+      "rating": 5,
+      "like": 90,
+      "dislike": 9,
+      "created": "2022-12-25T22:59:29-08:00",
+      "user": {
+        "name": "Mustapha Abdulrasaq",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d6e8b5d01fd898b5cb0"
+      }
+    },
+    {
+      "content": "<p>The course was excellent! Jonas explained all the core concepts in length in a very simplified way!</p>\n\n<p>I have been working as a Salesforce developer/ software engineer for quite some time. Salesforce has its own UI framework for building front-end applications/ lightning web components. The Salesforce UI framework relies heavily on the core JavaScript concepts, but I could not find a good place to learn these concepts to upskill my Salesforce UI framework skills. After finishing this course, I feel more confident and understand the concepts from the basic to the granular level.</p>\n\n<p>All through the course, Jonas was breaking down the concepts, and I could feel he was making every effort to make sure the concepts get understood. This course is a service to the software community, and thank Jonas for putting this course out with great effort! Thank you!</p>",
+      "rating": 5,
+      "like": 85,
+      "dislike": 4,
+      "created": "2022-12-30T15:15:07-08:00",
+      "user": {
+        "name": "Vineeth Muppalaneni",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d6e8b5d01fd898b5cb1"
+      }
+    },
+    {
+      "content": "<p>I just finished the full course, and my feelings toward this JS course are mixed. </p>\n\n<p>The first 70% of the course are really well-made, I'd rate it as 4/4+ (out of 5). Everything is well covered, plenty of useful info, I really don't have anything bad to say. </p>\n\n<p>The quality of the content is dropping as we are approaching the end of the course. The Mapty project was really interesting, but in things started to get messy. </p>\n\n<p>The final project - Forkify - was a mess. Yes, I am a novice programmer and I didn't expect to just easily walk through the final project, but the Forkify lesson should be re-made from scratch. The MVC architecture was not well explained in the MVC lesson, so I bet plenty of people just started copy/pasting the code after passing the MVC lesson. It took some time for the famous \"a haaaa\" moment to happen in my brain. My advice to you would be to add a new project to the course, after Mapty and before Forkify. In that project people should practice how to import/export a bunch of modules & classes. Five .js files could be enough for that program, before increasing their number to 10,15+.<br>The call-stack, event loop, runtime environment and closures could all be much better explained. I saw some amazing videos about those topics on YT that helped me understand those concepts and mechanisms. </p>\n\n<p>I will rate this course as average / could be better (3). <br>Forkify is like and an anchor that is pulling the grade of this course down. Redo it please, not for me, but for future people who are starting with JS. </p>\n\n<p>Jonas, thank you, I really learned a lot about JavaScript from this course, I really appreciate it.</p>",
+      "rating": 2.5,
+      "like": 94,
+      "dislike": 9,
+      "created": "2022-12-21T06:05:18-08:00",
+      "user": {
+        "name": "Danilo _",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d6e8b5d01fd898b5cb2"
+      }
+    },
+    {
+      "content": "<p>This is a really wonderful course. I would definitely recommend it to anyone who is new to JavaScript. However, beware that it is a very long course that needs dedication.</p>",
+      "rating": 5,
+      "like": 60,
+      "dislike": 6,
+      "created": "2022-12-16T04:42:52-08:00",
+      "user": {
+        "name": "Simeon Kengere",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d6e8b5d01fd898b5cb3"
+      }
+    },
+    {
+      "content": "<p>I really enjoyed this course from the start to the end, without leaving any part untouched. There's no how you'll finish this course and still find it hard to understand JavaScript.  Jonas did an excellent job.<br>This is a really great course, I'll implore you to give it a trial and don't give up during the learning process. Cheers ?</p>",
+      "rating": 5,
+      "like": 62,
+      "dislike": 9,
+      "created": "2022-12-22T07:59:33-08:00",
+      "user": {
+        "name": "Isiaq Ridwan Bukola",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d6e8b5d01fd898b5cb4"
+      }
+    },
+    {
+      "content": "<p>Some topics in the course were confusing and I would only give 3 stars to the course, but the TAs especially Alexander were so good that they helped me to clear up my confusion. So I gave the course 5 stars.</p>",
+      "rating": 5,
+      "like": 75,
+      "dislike": 0,
+      "created": "2022-12-07T07:36:23-08:00",
+      "user": {
+        "name": "Jason",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d6e8b5d01fd898b5cb5"
+      }
+    },
+    {
+      "content": "<p>This was an excellent course that took me from nothing to understanding advanced JavaScript. Of course, I will need more practice before I can say that I am comfortable with JavaScript, but by reviewing course notes and doing some research, I can implement most of the concepts that were taught. I really liked the broken-down structure of the course. It was easy to follow and to return to previous sections for a quick refresher when required. The projects are excellent to practice the theory. Jonas is an outstanding teacher and conveys the message clearly. Feedback was clear, and I usually got an answer to my questions within 24hrs from any of the TAs.  </p>\n\n<p>It took me a bit of time to complete this course. I did it in two chunks, breaking about half-way for a long period of time, and I don't recommend doing that. This is because each learning objective builds on previous ones, and it's hard to pick up this course again from the middle when you are no longer fluent in the JS language. I also took time to understand, take good notes, do side projects/challenges, and do so research or reading on the subject. So it took me just over a year to complete, including about 8 months break in the middle. It is hard work IMHO and totally worth it!</p>",
+      "rating": 5,
+      "like": 70,
+      "dislike": 2,
+      "created": "2022-11-27T14:49:21-08:00",
+      "user": {
+        "name": "Jean-Sébastien Desmarais",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d6e8b5d01fd898b5cb6"
+      }
+    },
+    {
+      "content": "<p>I've never taken a course on Udemy that's provided so much value at this price. You tell that Jonas is meticulous on making sure his students understand everything that is going on in the code.</p>",
+      "rating": 5,
+      "like": 22,
+      "dislike": 9,
+      "created": "2022-12-22T11:22:52-08:00",
+      "user": {
+        "name": "Toby May",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d6e8b5d01fd898b5cb7"
+      }
+    },
+    {
+      "content": "<p>Date: 3 Nov 2022<br>TLDR: I recommend the course.</p>\n\n<p>NEGATIVE (UDEMY issue): I hate that they start asking for reviews after the first video. It must drive instructors crazy. It would be nice if we could see (and search/sort by) how far a reviewer was in the course, when they left their review. Many reviews seem to be from people who clearly didn't finish the course or get far into it at all. I have finished this course.</p>\n\n<p>NEGATIVE (UDEMY issue): The English captions are ok, for the most part. However, there are a lot of mistakes in them. I wish I had access to them, I'd have fixed them along the way.</p>\n\n<p>English is my first language, but I always use subtitles, in any event. I didn't find Jonas hard to understand. Jonas speaks slowly and clearly. (So slowly I did the course at a higher speed) For people like my wife, who have English as their second (or more) language the subtitles should be better. It seems the English subtitles were manually created, so when considering the problems in them, I really fear for what the auto-generated other languages look like.</p>\n\n<p>HARD NEGATIVE: I would have liked to join the Discord group, but it requires my phone number. Firstly, I don't have a smart phone. Even if I did, I wouldn't be giving out my phone number. Most of my own family doesn't even have my phone number! Not having a smart phone does not mean I'm not a human being, fully capable of contributing to society! I'm a member of many discord communities, and I've never seen this requirement before. I personally consider it a violation of privacy, and would never consent to such a thing. I don't have the ability to participate in his discord, and I removed an entire ⭐ from my rating, for this, alone. It’s a shame since I own all of his courses.</p>\n\n<p>NEGATIVE: I didn't really care too much for his style of continually adding more and more code to a section, and in the end leaving one big mass of code with everything commented out. I feel like that makes it more difficult when you return later to look for something you want to review. I personally used my own system to create sections in individual files, to keep track of things, but the mass of code in one file with huge sections commented out as we go, drove me nuts.</p>\n\n<p>NEGATIVE: The section on Git, is the very last section in the course. I think students would benefit from having it very early on. Maybe even in the first set up sections, so that we could be using it all along, and become comfortable with its use throughout the course. This with multiple files throughout the course and keeping the code \"cleaner\" as we work through the lessons would benefit students more, I think.</p>\n\n<p>POSITIVE: There are quite a few coding exercises and a challenges. I'd have liked more! You don't learn by watching videos, you learn by doing. Over and over. I don't think you can have enough exercises and challenges. If you do them, and make sure you fully understand the topic, before moving on, you'll get the most from the course.</p>\n\n<p>POSITIVE: Jonas put a ton of time and effort into the course. If you take the time to UNDERSTAND the topics before you move on, there is a lot to learn. Don't be afraid to use external resources (MDN, stack overflow, W3schools, YouTube, etc.) to strengthen information you are weak on. Sometimes having something explained in a different way can drive it home. I'm sure even Jonas has to look things up. </p>\n\n<p>NEUTRAL: JavaScript supports both object-oriented programming with prototypal inheritance as well as functional programming. While functional programming is touched on in the course, that's about it. If the course ever gets another major overhaul, I'd really like to see functional programming more central to the content.</p>\n\n<p>I think the title is a misleading. You're not going to be an expert after this (or any single) course. You can't learn a language by watching videos. You have to SPEAK the language. Same thing here. You have to work at it. It's not going to magically sink in. </p>\n\n<p>This is a JavaScript course, which includes some HTML/CSS. Those are not the focus of this course. Neither are databases or any back-end content. Jonas has other courses for those things. Perhaps I'll leave reviews on those as well, when I finish them.</p>",
+      "rating": 3.5,
+      "like": 42,
+      "dislike": 7,
+      "created": "2022-10-30T06:27:12-07:00",
+      "user": {
+        "name": "Ezznuszen",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d6e8b5d01fd898b5cb8"
+      }
+    },
+    {
+      "content": "<p>I am very grateful to Jonas for this course. It is very useful and well-balanced in theory and practice. If you follow and implement projects together with the teacher, you will not have any questions or unclear points. It is clear that the duration of the course is long, but to have good knowledge you need to spend this time.</p>",
+      "rating": 5,
+      "like": 89,
+      "dislike": 6,
+      "created": "2022-11-29T10:40:21-08:00",
+      "user": {
+        "name": "Igor Guzenko",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d6e8b5d01fd898b5cb9"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b42d8741649e392ee900a5"
+  },
+  "course_id": "63b42935f8865d759b2ee353",
+  "viewer": 679719,
+  "avg_rating": 4.6,
+  "num_reviews": 171935,
+  "reviews": [
+    {
+      "content": "<p>A bit long, but one of the best course I have taken. Max takes the time to explain each topic first and then code an example, rather than just coding and not explaining properly.</p>",
+      "rating": 5,
+      "like": 98,
+      "dislike": 7,
+      "created": "2022-12-08T13:20:56-08:00",
+      "user": {
+        "name": "M. Ilyas M. Shahi",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d8741649e392ee900a6"
+      }
+    },
+    {
+      "content": "<p>What a great course and instructor. Max has a way of taking you from simple concept to simplifying complicated concepts. I will be enrolling for his other courses because I want to build on the knowledge gained from this course, but definitely after a lot of practicing on React.</p>",
+      "rating": 5,
+      "like": 18,
+      "dislike": 10,
+      "created": "2022-12-03T08:23:36-08:00",
+      "user": {
+        "name": "Boaz Kiptoo Kemboi",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d8741649e392ee900a7"
+      }
+    },
+    {
+      "content": "<p>Very engrossing and tonnes of things to learn from Max. But as a student one needs to revisit the videos to get in sync if not using those specific features often. Some materials needs to be updated. Overall the course is worths every penny.</p>",
+      "rating": 4.5,
+      "like": 96,
+      "dislike": 7,
+      "created": "2022-12-02T06:27:39-08:00",
+      "user": {
+        "name": "Aritra Kumar Das",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d8741649e392ee900a8"
+      }
+    },
+    {
+      "content": "<p>Fantasic course ! Very detailed and very good explained, Maximilian is a very good teacher. I learned so much from this course and I continue his course on React Native. Don't hesitate to buy this course, it's a very complete course, everything you need to know about React is in this course.</p>",
+      "rating": 5,
+      "like": 98,
+      "dislike": 9,
+      "created": "2022-11-25T11:54:37-08:00",
+      "user": {
+        "name": "Silvija Yu",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d8741649e392ee900a9"
+      }
+    },
+    {
+      "content": "<p>He is a very good teacher! Loved the course! Some teachers ramble a lot and you have to sift through their explanations to take notes, but Max gets straight to the point, making it much easier to take clear and concise notes! Thanks!</p>",
+      "rating": 5,
+      "like": 83,
+      "dislike": 9,
+      "created": "2022-11-07T19:15:20-08:00",
+      "user": {
+        "name": "Brandon Bhangari",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/173812026_62aa_2.jpg"
+      },
+      "_id": {
+        "$oid": "63b42d8741649e392ee900aa"
+      }
+    },
+    {
+      "content": "<p>The best course on React! A big Thanks to Max, because of him I have clearly understood what React is and how to use its power to build our UI, and not just that this helped me to get a job as a Reactjs developer and now I am earning some decent money.</p>",
+      "rating": 5,
+      "like": 21,
+      "dislike": 8,
+      "created": "2022-12-19T09:49:28-08:00",
+      "user": {
+        "name": "Bhagath Sainath Prathipati",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d8741649e392ee900ab"
+      }
+    },
+    {
+      "content": "<p>This course was definitely the right one for me. Ideal for people who want to learn how to work with React.</p>",
+      "rating": 5,
+      "like": 49,
+      "dislike": 2,
+      "created": "2022-12-29T06:08:29-08:00",
+      "user": {
+        "name": "Oxana Kraynova",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d8741649e392ee900ac"
+      }
+    },
+    {
+      "content": "<p>Totally not what I expected. In my opinion there were some major problems.<br>1. Your explanation...Before I started the course I already had some knowledge of React, because of which I didn't get totally lost. Your explanations got me really confused many many times and seeing the comments on almost every lecture I saw it is not just me feeling this way.<br>2. Many parts of this course are done the old way/approach and not updated /the routerv6 for example/<br>3. The projects. All of them were small projects for the current section (nothing fancy or special) and I was disappointed that we don't have a bigger final project combining multiple sections with lots of features worthy to put in your portfolio.<br>4. The pace. In some sections/lectures you were jumping with some already done code and components saying 'we already made this'.</p>\n\n<p>The biggest one in my opinion again is your way of teaching. Not  straight but going back and forth using so many words for something simple making all of us get lost in your explanation. I don't think the course is appropriate anymore for 2022 and so on</p>",
+      "rating": 1.5,
+      "like": 67,
+      "dislike": 1,
+      "created": "2022-12-21T04:43:28-08:00",
+      "user": {
+        "name": "Plamena Ivanova",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d8741649e392ee900ad"
+      }
+    },
+    {
+      "content": "<p>Amazing! Really appreciate his passion in delivering content in such an effective way!!</p>",
+      "rating": 5,
+      "like": 9,
+      "dislike": 9,
+      "created": "2022-11-06T18:43:38-08:00",
+      "user": {
+        "name": "Ajmal Oliyil Mohamed",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d8741649e392ee900ae"
+      }
+    },
+    {
+      "content": "<p>It was complicated at the beginning and it will take time to understand but belive me if you can go through these lectures and understand the concept believe me your react concepts will be super strong even i got stuck at times ... small tip dont just watch code with him and if you don't understand watch the same topic on youtube and then come and  watch again... trust me it's the best and his other videos are truly awsome</p>",
+      "rating": 5,
+      "like": 83,
+      "dislike": 6,
+      "created": "2022-09-28T20:10:49-07:00",
+      "user": {
+        "name": "Devjit Bose",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d8741649e392ee900af"
+      }
+    },
+    {
+      "content": "<p>The course is quite comprehensive and it covers all the essential details to get into the environment of front-end web development. It may make a learner feel overwhelming at first, however, it definitely pays off if one is motivated and deligent.</p>",
+      "rating": 5,
+      "like": 29,
+      "dislike": 0,
+      "created": "2022-09-17T12:53:55-07:00",
+      "user": {
+        "name": "Garibkhan Bakhshiyev",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d8741649e392ee900b0"
+      }
+    },
+    {
+      "content": "<p>This was a great course and just what I was looking for as an introduction to React. My only minor and less-than-great experience was in the review section near the end. It is using a slightly older version and that was not called out in the main lecture. Fortunately, it was addressed in the Q&A. Also, the Assignments were a little clunky where it didn't seem to want to give credit for completion. I understand from the Q&A that it's an issue with the Udemy platform, but it was still a bit frustrating.</p>\n\n<p>I will definitely take more of Max's courses!</p>",
+      "rating": 4.5,
+      "like": 71,
+      "dislike": 3,
+      "created": "2022-12-30T18:55:43-08:00",
+      "user": {
+        "name": "Charles Dale",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d8741649e392ee900b1"
+      }
+    },
+    {
+      "content": "<p>Content coverage was good bit pacing was off. Many instances where it was needed to pause and rewind multiple times to follow along correctly.</p>",
+      "rating": 3,
+      "like": 44,
+      "dislike": 8,
+      "created": "2022-12-13T11:14:25-08:00",
+      "user": {
+        "name": "Richard Nguyen",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d8741649e392ee900b2"
+      }
+    },
+    {
+      "content": "<p>Awesome course, as usual with Maximilian. It´s a very complete course that covers everything you need to learn React. Also, the course is updated with the important changes which could happen in next library versions. </p>\n\n<p>The only thing is React testing section could be more extensive, but definitely if you want to learn React don´t hesitate to buy this course.</p>",
+      "rating": 5,
+      "like": 45,
+      "dislike": 8,
+      "created": "2022-12-20T04:57:37-08:00",
+      "user": {
+        "name": "Mario Gonzalez Duarte",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/18657620_02aa_3.jpg"
+      },
+      "_id": {
+        "$oid": "63b42d8741649e392ee900b3"
+      }
+    },
+    {
+      "content": "<p>Thank you Max. Definitely an in-depth React course. Highly recommended!!!<br>To be honest, I hesitated to take your course at first because my friend told me not to. But you proved him wrong! <br>Just some feedback:<br>- You gave a lot of extra information about how React and JavaScript work while explaining the core topics, which we as starters need and highly appreciate. Thank you!! But sometimes you take quite a long time explaining those extra info that made me confused as to what to really focus on. I think you should leave those info at the end of each lecture.<br>- If possible, can you and your team host those big projects (order app, quote loggers, etc.) so students who want to try the challenges without your guidance can compare their work?</p>",
+      "rating": 4.5,
+      "like": 97,
+      "dislike": 9,
+      "created": "2022-11-14T10:51:49-08:00",
+      "user": {
+        "name": "Truong Nguyen",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d8741649e392ee900b4"
+      }
+    },
+    {
+      "content": "<p>Good one. His explanations didn't resonate with me 100%, but I still learned a lot, and he did put in the effort. I didn't give 5 stars because, on a few projects I downloaded, I couldn't actually start it. It actually happened only once.</p>",
+      "rating": 4.5,
+      "like": 15,
+      "dislike": 1,
+      "created": "2022-11-02T12:19:58-07:00",
+      "user": {
+        "name": "Boris C",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d8741649e392ee900b5"
+      }
+    },
+    {
+      "content": "<p>Poor and out of date instruction on Redux React Router Animation and others</p>",
+      "rating": 1,
+      "like": 31,
+      "dislike": 8,
+      "created": "2022-12-10T05:03:26-08:00",
+      "user": {
+        "name": "Odai Alazzeh",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d8741649e392ee900b6"
+      }
+    },
+    {
+      "content": "<p>Brilliant course! Very detailed and understandable. The teacher explains everything very clearly. I really enjoyed passing this course from the beginning till the end.</p>",
+      "rating": 5,
+      "like": 98,
+      "dislike": 4,
+      "created": "2022-12-19T08:34:07-08:00",
+      "user": {
+        "name": "Andrei Sapegin",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d8741649e392ee900b7"
+      }
+    },
+    {
+      "content": "<p>It was not a good match - it was an excellent match to dive into React. It was just what I was looking for - all important things in one place.<br>I canoot say this was an easy course (had to do some lessons twice for better understanding and catching all the informations given) but I really apprecciate the author's effort put in that course and I clearly see he loves the subject.</p>",
+      "rating": 5,
+      "like": 39,
+      "dislike": 8,
+      "created": "2022-12-27T11:01:33-08:00",
+      "user": {
+        "name": "Aleš Holovský",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d8741649e392ee900b8"
+      }
+    },
+    {
+      "content": "<p>Wery thorough explanation done by Max. I learned a lot and can confidently say I know React.js well enough to venture out on my own and prepare myself for a job developing with React because of this course. Thank you Max!</p>",
+      "rating": 5,
+      "like": 57,
+      "dislike": 6,
+      "created": "2022-10-08T02:44:00-07:00",
+      "user": {
+        "name": "Karl DeSaulniers",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42d8741649e392ee900b9"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b42dbc4eda2d284d68748b"
+  },
+  "course_id": "63b42943d63e72999f610a57",
+  "viewer": 43604,
+  "avg_rating": 4.7,
+  "num_reviews": 5806,
+  "reviews": [
+    {
+      "content": "<p>Ha cumplido perfectamente con mis expectativas. Presenta una visión completa y detallada  de todos los aspectos de TensorFlow documentados con ejemplos prácticos y perfectamente explicados y de forma muy amena por el formador.</p>",
+      "rating": 4.5,
+      "like": 97,
+      "dislike": 9,
+      "created": "2022-12-16T00:31:33-08:00",
+      "user": {
+        "name": "Jose Angel Henales Garcia",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dbc4eda2d284d68748c"
+      }
+    },
+    {
+      "content": "<p>This is a great course for those who want to get hands on in Neural Networks (with TensorFlow). This is a great course for beginners and intermediate, almost everything was covered briefly (even deep understanding of various objects). Definitely much more value than money. I am completely satisfied and happy with this course (I have purchased almost 90 courses on udemy and none of those can beat quality of this course)</p>",
+      "rating": 5,
+      "like": 23,
+      "dislike": 2,
+      "created": "2022-12-15T05:21:56-08:00",
+      "user": {
+        "name": "Atul sain",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dbc4eda2d284d68748d"
+      }
+    },
+    {
+      "content": "<p>it was a wonderful to experience learning from him. He is an exceptional instructor. He covered  everything quite precisely and you are really going to learn a lot if you follow him all along. Alhamdulillah, wonderful experience</p>",
+      "rating": 5,
+      "like": 30,
+      "dislike": 4,
+      "created": "2022-12-11T04:43:22-08:00",
+      "user": {
+        "name": "Dawood Tahir",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dbc4eda2d284d68748e"
+      }
+    },
+    {
+      "content": "<p>It's one of the best courses I ever took on Udemy, 5* to Daniel and to Andrei, simple, objective, and easy to follow along, in two words awesome course, if you want to learn TensorFlow this is the way to go, thank you so much :-)</p>",
+      "rating": 5,
+      "like": 44,
+      "dislike": 9,
+      "created": "2022-12-11T22:41:05-08:00",
+      "user": {
+        "name": "Miguel Filipe Oliveira Lourenço",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dbc4eda2d284d68748f"
+      }
+    },
+    {
+      "content": "<p>I was able to pass the certification exam after taking this course. Highly recommended. Just be aware of # of hours you would need to dedicate to finish the course.</p>",
+      "rating": 4.5,
+      "like": 86,
+      "dislike": 2,
+      "created": "2022-11-24T13:30:10-08:00",
+      "user": {
+        "name": "Ryo Yamaki",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dbc4eda2d284d687490"
+      }
+    },
+    {
+      "content": "<p>It would be a bit better if there is more explanation about the math behind the concepts we're studying. Other than that, this course is pretty great!</p>",
+      "rating": 4.5,
+      "like": 76,
+      "dislike": 8,
+      "created": "2022-10-24T01:26:36-07:00",
+      "user": {
+        "name": "Dinakaran Karunakaran",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dbc4eda2d284d687491"
+      }
+    },
+    {
+      "content": "<p>It is a very very complete course. Of course it does not cover everything which would require a much bigger course. But they teach very well with several examples and well explained.<br>They are not boring, always making little comments to make the class enjoyable and not something you would get tired off. <br>I learned a lot and did some ML and NN that actually work in my real life problems.. <br>To summaryze - Trully recommend it! <br>Congratulations for the great course!</p>",
+      "rating": 5,
+      "like": 9,
+      "dislike": 8,
+      "created": "2022-10-21T13:15:17-07:00",
+      "user": {
+        "name": "Arthur José Germano",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dbc4eda2d284d687492"
+      }
+    },
+    {
+      "content": "<p>AMAZING content with best student engagement plus a motivation to ask dumb questions and very smoothly explained, just like how my mind might wander through it.</p>",
+      "rating": 5,
+      "like": 62,
+      "dislike": 4,
+      "created": "2022-11-11T16:13:58-08:00",
+      "user": {
+        "name": "SJ Pixels",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dbc4eda2d284d687493"
+      }
+    },
+    {
+      "content": "<p>This course delivered on what it promised. I took 1 week after completing the course for continued study and review then took the exam and passed!  By profession I am a Software Engineer, but I began this course with zero TensorFlow experience. This course covers far more information than what the exam will test you on, but provides a great well rounded foundation to build from. The course is really long, but I highly recommend taking the time to do all the challenges and extra-curriculum exercises at the end of each section.  The only thing that wasn't really covered well in this course that you'll likely want to be comfortable with before taking the exam is working with models that include LSTM and GRU layers. </p>\n\n<p>Thank you Daniel Bourke for the great course!</p>",
+      "rating": 5,
+      "like": 37,
+      "dislike": 10,
+      "created": "2022-10-21T13:53:40-07:00",
+      "user": {
+        "name": "John Armstrong",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dbc4eda2d284d687494"
+      }
+    },
+    {
+      "content": "<p>- I'm sorry to say, but it's a long but not in-depth course. </p>\n\n<p>- The course pace is slow: the instructor spends a significant fraction of the course in typing codes and comments. Not sure why watching someone typing should be part of the recordings.</p>\n\n<p>- The computer vision section was a bit disappointing: Section five shows that the trained model performs poorly on the multiclass data, but it fails to explain what made the model inefficient. Using transfer learning is not always an option; it's important to explain why a model doesn't perform and how to improve it; at the fundamental level.</p>\n\n<p>- I've not received any answer to my posted question; not sure if anybody is actively checking the questions. Looks like there are lots of unanswered questions.</p>",
+      "rating": 3,
+      "like": 63,
+      "dislike": 10,
+      "created": "2022-12-24T23:18:05-08:00",
+      "user": {
+        "name": "Matt Astoria",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dbc4eda2d284d687495"
+      }
+    },
+    {
+      "content": "<p>Great walkthroughs. He goes through everything in depth, and though not too much theory behind it, he does provide GREAT resources on where to learn them.</p>",
+      "rating": 4.5,
+      "like": 36,
+      "dislike": 1,
+      "created": "2022-12-02T12:00:14-08:00",
+      "user": {
+        "name": "Pj Villasista",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dbc4eda2d284d687496"
+      }
+    },
+    {
+      "content": "<p>Great course. Covers lot more of fundamentals than just focusing on the certification. This course is enough to complete certification. </p>\n\n<p>Note: in the exam models are expected to be in '.h5' format, but in this course we save it in 'savemodel' format. While practising models in the course try saving all models in h5 format as some architectures are producing issues when saving in h5.  It is better to be prepared for h5 format as well.</p>",
+      "rating": 5,
+      "like": 85,
+      "dislike": 8,
+      "created": "2022-06-08T23:17:40-07:00",
+      "user": {
+        "name": "Yoganand Nandakumar",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dbc4eda2d284d687497"
+      }
+    },
+    {
+      "content": "<p>Daniel Bourke is an excellent instructor and he delivers the course in a very engaging way, keeping the listener focused on the topic.<br>The material does correspond to the requirements of the TensorFlow Developer Certificate program, however it does not provide in-depth information on how the deep learning experiments can be performed, which is required in getting a passing grade.</p>",
+      "rating": 3.5,
+      "like": 76,
+      "dislike": 8,
+      "created": "2022-10-20T06:31:06-07:00",
+      "user": {
+        "name": "Davor Cokrlic",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dbc4eda2d284d687498"
+      }
+    },
+    {
+      "content": "<p>This course is truly excellent. I've been through several Udemy courses on DL and this is by far the best. The very logical step-by-step approach is very effective, as is the emphasis on writing LOTS of code.</p>",
+      "rating": 5,
+      "like": 37,
+      "dislike": 8,
+      "created": "2022-11-19T10:52:15-08:00",
+      "user": {
+        "name": "Robert McWilliams",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dbc4eda2d284d687499"
+      }
+    },
+    {
+      "content": "<p>Great content! Very hands-on course if you code along the instructor (Daniel). You get lots of practice throughout, filled with resources to advance tensorflow learning. Glad to came across this course on Udemy, and highly recommend anyone wanting to learn tensorflow.</p>",
+      "rating": 5,
+      "like": 84,
+      "dislike": 9,
+      "created": "2022-09-10T11:03:13-07:00",
+      "user": {
+        "name": "Abhinav Srivastva",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dbc4eda2d284d68749a"
+      }
+    },
+    {
+      "content": "<p>Your course is nice and helpful. A good crash course in tensorflow. However, after attempting the developer exam after your course, you cover a lot of extra, superfluous things that are not on the exam, while not covering core, key concepts that would have been more helpful on the exam. More time should be spent on LSTMs, different types of nlp classification, and time series. You should also go into more detail about ways to increase accuracy, such as dropouts, batch normalization, and how the types of layers you show actually work. The exam is tested on how well the models do, and in most sections of the course, none of the models perform all that well. In your fashion mnist example you only build a model that is 90% accurate, but you can get it to 99%, so if that came up on the exam, using the techniques you showed would not garner a passing grade. If you intend for this course to be enough for someone to pass the exam you need to cover things more in depth and show how to get models performing at the highest caliber possible.</p>",
+      "rating": 3,
+      "like": 94,
+      "dislike": 7,
+      "created": "2022-08-18T09:09:47-07:00",
+      "user": {
+        "name": "Alex Konic",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dbc4eda2d284d68749b"
+      }
+    },
+    {
+      "content": "<p>I studied Tensorflow,NumPy,Keras,MatplotLib with many examples, and I knew how to code programs. So I understood how to build neuro network  and apply them to actual problems.<br>Besides, Daniel taught me how to solve errors in programs, it is very helpful for me when I actually develop AI for my problems.<br>Before I studied this course, I had studied Python, Tensorflow, NumPy and MatplotLib. So I understood most of Daniel's explanation. I think that students should study Python and some libraries before you start this course.<br>Thank you, Daniel. See you again!</p>",
+      "rating": 5,
+      "like": 79,
+      "dislike": 0,
+      "created": "2022-07-31T23:30:54-07:00",
+      "user": {
+        "name": "秋山 俊恭",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dbc4eda2d284d68749c"
+      }
+    },
+    {
+      "content": "<p>Extremely helpful and very practical course that thoroughly discusses ins and outs of building ML models. After this course, I'm definitely confident to take on serious ML problems and do further research if needed.</p>",
+      "rating": 5,
+      "like": 69,
+      "dislike": 3,
+      "created": "2022-11-12T21:40:06-08:00",
+      "user": {
+        "name": "Ivan Keene",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dbc4eda2d284d68749d"
+      }
+    },
+    {
+      "content": "<p>This course took me around 2 months to finish. The instructor will teach Tensorflow in a way that is enjoyable and simple. I even got the TensorFlow certification around 3 months after starting the course!</p>",
+      "rating": 5,
+      "like": 80,
+      "dislike": 0,
+      "created": "2022-08-06T10:48:08-07:00",
+      "user": {
+        "name": "Pretham Nandakumar",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dbc4eda2d284d68749e"
+      }
+    },
+    {
+      "content": "<p>I higly recommend this course for everyone who wants be an Deep Learning Enginner...</p>\n\n<p>Hi! I'm very happy because I already finished the whole course..!!</p>\n\n<p>This course is very efficient and prepare you, not only to pass the TensorFlow Certification, this also prepare you to be a DL (Deep Learning) Enginner.</p>\n\n<p>Of course, you need keep experimenting and practicing to improve your skills.</p>",
+      "rating": 5,
+      "like": 9,
+      "dislike": 1,
+      "created": "2022-08-22T15:34:24-07:00",
+      "user": {
+        "name": "Derek Pérez",
+        "avatar": "https://img-b.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dbc4eda2d284d68749f"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b42dd7e6a5fc8bb696bfd9"
+  },
+  "course_id": "63b42954a92e70da28898688",
+  "viewer": 346435,
+  "avg_rating": 4.5,
+  "num_reviews": 41743,
+  "reviews": [
+    {
+      "content": "<p>You made Deep Learning easy to approach, presented in a friendly and encouraging way, gave plenty of supporting resources, and even taught subtleties of Python along the way.  Much appreciated!</p>",
+      "rating": 5,
+      "like": 67,
+      "dislike": 8,
+      "created": "2022-11-27T12:34:51-08:00",
+      "user": {
+        "name": "Don Orr",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dd7e6a5fc8bb696bfda"
+      }
+    },
+    {
+      "content": "<p>Excellent course!  Very engaging, paced just right, and most importantly - the theory is presented with the focus on developing your intuition, which is probably the most important thing you'll need if you plan on building your own architectures.</p>",
+      "rating": 5,
+      "like": 8,
+      "dislike": 1,
+      "created": "2022-11-25T21:34:25-08:00",
+      "user": {
+        "name": "Rick Ellis",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dd7e6a5fc8bb696bfdb"
+      }
+    },
+    {
+      "content": "<p>The course contents focus more on application and doesn't cover theories and scientific based for application.</p>",
+      "rating": 2.5,
+      "like": 15,
+      "dislike": 7,
+      "created": "2022-11-08T12:34:08-08:00",
+      "user": {
+        "name": "Ahmad Jaradat",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dd7e6a5fc8bb696bfdc"
+      }
+    },
+    {
+      "content": "<p>The course got me into data science! It is a very good course, some lectures are repetitive and feel slow at at times but I do understand that some concepts are quite hard, the team do a excellent work at explaining these though.</p>",
+      "rating": 4.5,
+      "like": 6,
+      "dislike": 3,
+      "created": "2022-11-07T11:01:23-08:00",
+      "user": {
+        "name": "Pedro Santa Rita",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dd7e6a5fc8bb696bfdd"
+      }
+    },
+    {
+      "content": "<p>Awesome! The deep learning A-Z course is very good for the beginner/advanced level. Step by step process is explained very precisely. All the practice materials are provided to get better hands-on practice. The instructor is highly knowledgeable about the topic. Highly recommend this course...Thank you.</p>",
+      "rating": 5,
+      "like": 72,
+      "dislike": 3,
+      "created": "2022-10-31T01:17:32-07:00",
+      "user": {
+        "name": "Aamina Ko",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dd7e6a5fc8bb696bfde"
+      }
+    },
+    {
+      "content": "<p>This course was totally amazing!  It steered me in the right direction and delivered exactly what I need to get started in the field of deep learning.</p>",
+      "rating": 4.5,
+      "like": 52,
+      "dislike": 6,
+      "created": "2022-10-14T02:26:08-07:00",
+      "user": {
+        "name": "Terese Michael Chen",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dd7e6a5fc8bb696bfdf"
+      }
+    },
+    {
+      "content": "<p>Supervised neural networks were well explained; very interesting the parts about SOMs and Boltzmann Machines, AutoEncoders could have been explored further particularly aiming to extract image embeddings</p>",
+      "rating": 4,
+      "like": 79,
+      "dislike": 9,
+      "created": "2022-11-18T06:31:11-08:00",
+      "user": {
+        "name": "Flavia Pasquali",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dd7e6a5fc8bb696bfe0"
+      }
+    },
+    {
+      "content": "<p>Props for the Intuition Lectures. </p>\n\n<p>The Programming Lectures whrere a little bit overstretched.</p>",
+      "rating": 3.5,
+      "like": 67,
+      "dislike": 9,
+      "created": "2022-10-27T01:55:24-07:00",
+      "user": {
+        "name": "Dimitris Batsios",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dd7e6a5fc8bb696bfe1"
+      }
+    },
+    {
+      "content": "<p>Course materials met the expectations. Data sets are too simple in comparison to real-world problem. It could have been elaborated. Also project is missing.</p>",
+      "rating": 4,
+      "like": 91,
+      "dislike": 7,
+      "created": "2022-10-15T08:58:27-07:00",
+      "user": {
+        "name": "Md. Salah Uddin",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dd7e6a5fc8bb696bfe2"
+      }
+    },
+    {
+      "content": "<p>I was complete Machine learning A-Z recently and think that this course would be on the same high level as it. The things are opens.</p>",
+      "rating": 5,
+      "like": 37,
+      "dislike": 4,
+      "created": "2022-11-11T20:20:30-08:00",
+      "user": {
+        "name": "Marko Protic",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/73212086_d659.jpg"
+      },
+      "_id": {
+        "$oid": "63b42dd7e6a5fc8bb696bfe3"
+      }
+    },
+    {
+      "content": "<p>I really enjoy this course. I just wish there was an easier explanation initially for how to get the data. At the beginning of the course you are given multiple links and some are not quite relevant and it gets confusing. I prefer how the videos tell you, when you need it, where the data is. </p>\n\n<p>I really love the complentary links from SuperDataScience and the ability to have these videos in written form so I can follow along instead of just listening, and also have the resources written down. </p>\n\n<p>This course simple explains the different kinds of neural networks and the exercises that help you combined supervised and unsupervised models are much appreciated. Great effective intro that really can get you started, and sets you up to learn more.</p>",
+      "rating": 4,
+      "like": 21,
+      "dislike": 10,
+      "created": "2022-11-21T03:50:57-08:00",
+      "user": {
+        "name": "Vanessa Vidal",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dd7e6a5fc8bb696bfe4"
+      }
+    },
+    {
+      "content": "<p>Very nicely composed to give an intuitive flavor of the subject till most recent advancements. Also resources in additional reading learning section gives correct Mathematics behind corresponding topic.</p>",
+      "rating": 4.5,
+      "like": 97,
+      "dislike": 1,
+      "created": "2022-11-18T22:05:14-08:00",
+      "user": {
+        "name": "Swapnil Kate",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dd7e6a5fc8bb696bfe5"
+      }
+    },
+    {
+      "content": "<p>I’m seeing extremely complicated things explained so simply that it makes all the other lessons I took on the topic make sense, when they didn’t before. Can’t recommend this course enough.</p>",
+      "rating": 5,
+      "like": 65,
+      "dislike": 1,
+      "created": "2022-12-12T07:03:10-08:00",
+      "user": {
+        "name": "Eric Glandian",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dd7e6a5fc8bb696bfe6"
+      }
+    },
+    {
+      "content": "<p>Great course!</p>\n\n<p>The audio quality and loudness varies sometimes, but that doesn't matter much.</p>",
+      "rating": 5,
+      "like": 94,
+      "dislike": 3,
+      "created": "2022-12-06T12:32:04-08:00",
+      "user": {
+        "name": "Johannes Troppacher",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dd7e6a5fc8bb696bfe7"
+      }
+    },
+    {
+      "content": "<p>linear and logistic explaination should be from scratch (code for developing linear and logistic regression )</p>",
+      "rating": 4,
+      "like": 8,
+      "dislike": 7,
+      "created": "2022-09-12T23:50:09-07:00",
+      "user": {
+        "name": "Udit Pujara",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dd7e6a5fc8bb696bfe8"
+      }
+    },
+    {
+      "content": "<p>There are some mistakes in this course and the author doesn't reply to the questions.</p>\n\n<p>I wish I didn't waste my time and since I have watched around half of the course I can't refund it.</p>",
+      "rating": 1,
+      "like": 58,
+      "dislike": 5,
+      "created": "2022-12-03T23:17:34-08:00",
+      "user": {
+        "name": "Ibrahim Ba-saleh",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/3679118_3222.jpg"
+      },
+      "_id": {
+        "$oid": "63b42dd7e6a5fc8bb696bfe9"
+      }
+    },
+    {
+      "content": "<p>Course is good in general but as an overview with little depth on Deep Neural networks , could have been better if added the math behind the concepts instead of just pointing to references , and no slides included in the material, just the code.</p>",
+      "rating": 3,
+      "like": 56,
+      "dislike": 3,
+      "created": "2022-10-02T04:26:54-07:00",
+      "user": {
+        "name": "Bruce Wayne",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/10125266_11a1_2.jpg"
+      },
+      "_id": {
+        "$oid": "63b42dd7e6a5fc8bb696bfea"
+      }
+    },
+    {
+      "content": "<p>So far it is good. However I have to mention that I took a number of courses on the same subject on Brilliant.org which provided me with more fundamental starting point to understand the material presented so far.</p>",
+      "rating": 4,
+      "like": 21,
+      "dislike": 7,
+      "created": "2022-09-18T03:45:06-07:00",
+      "user": {
+        "name": "Abdullah Alkudsi",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dd7e6a5fc8bb696bfeb"
+      }
+    },
+    {
+      "content": "<p>Excellent balance between theoretical explanation and hands-on python code experience.</p>",
+      "rating": 5,
+      "like": 9,
+      "dislike": 7,
+      "created": "2022-12-07T22:07:45-08:00",
+      "user": {
+        "name": "Arie Meirovich",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dd7e6a5fc8bb696bfec"
+      }
+    },
+    {
+      "content": "<p>Last sections are same with machine learning course.</p>",
+      "rating": 2.5,
+      "like": 79,
+      "dislike": 7,
+      "created": "2022-12-15T12:31:58-08:00",
+      "user": {
+        "name": "Cumhur Kılıç",
+        "avatar": "https://img-c.udemycdn.com/user/50x50/anonymous_3.png"
+      },
+      "_id": {
+        "$oid": "63b42dd7e6a5fc8bb696bfed"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b42e93e69279cba52b340c"
+  },
+  "course_id": "63b428d131ce9f45cb75d517",
+  "viewer": 0,
+  "avg_rating": 0,
+  "num_reviews": 0,
+  "reviews": []
+}]

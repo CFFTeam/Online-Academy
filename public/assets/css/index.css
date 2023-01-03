@@ -465,11 +465,11 @@ button {
     overflow: hidden;
     border-radius: 50%;
     border: none;
-    margin-left: 4rem;
 }
 
 .navbar > .user-dropdown {
     position: relative;
+    margin-left: 4rem;
 }
 
 .navbar > .user-dropdown .no-avatar { 
