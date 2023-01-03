@@ -1,4 +1,7 @@
-<div class="card border-0" style="width:98%; justify-content: center; margin: 0rem auto;">
+<div
+  class="card border-0"
+  style="width:98%; justify-content: center; margin: 0rem auto;"
+>
 
   <div class="card-header border-0 bg-white pt-0 px-0">
     <div
@@ -11,12 +14,14 @@
     </div>
 
   </div>
-  <table id="student" class="cor" style="margin-top: 2rem;">
+
+  <table id="student" class="cor" style="margin-top: 1rem;">
 
     <tr class="none-shawdow">
       <th>ID</th>
       <th>Name</th>
-      <th style="width: 1rem;"></th>
+      <th>Email</th>
+      <th>Active</th>
       <th style="width: 1rem;"></th>
       <th style="width: 1rem;"></th>
       <th style="width: 1rem;"></th>
@@ -25,13 +30,19 @@
     {{#each this.students}}
       <tr>
         <td class="id">{{_id}}</td>
-        <td class="name">{{name}}</td>
-
-        <td class="edit" style="text-align: center; padding: 0 1rem;">
+        <td class="name" style="padding-right: 10rem;">{{name}}</td>
+        <td class="email" style="padding-right: 10rem;">{{email}}</td>
+        <td class="active"  style="padding-right: 10rem;">
+          {{#if active}}
+            Active
+            {{else}}
+              Inactive
+          {{/if}}</td>
+        <td class="edit" style="text-align: center; padding: 0 rem; width: 1rem;">
           <img src="/assets/svg/admin/edit.svg" alt="edit-icon" />
         </td>
 
-        <td style="text-align: center; padding: 0 1rem;">
+        <td style="text-align: center; padding: 0 0.5rem;">
           <form action="/admin/students/ban/{{_id}}" method="post">
             <button type="submit" style="border: none;">
               <img src="/assets/svg/admin/ban.svg" alt="ban-icon" />
@@ -39,15 +50,8 @@
           </form>
         </td>
 
-        <td
-          style="text-align: center; padding: 0 1rem;"
-          data-toggle="modal"
-          data-target="#myModal"
-        >
-          <img src="/assets/svg/admin/info.svg" alt="info-icon" /> 
-        </td>
 
-        <td class="delete" style="text-align: center; padding: 0 1rem;">
+        <td class="delete" style="text-align: center; padding: 0 0.2rem;">
           <form action="/admin/students/delete/{{_id}}" method="post">
             <button type="submit" style="border: none;">
               <img src="/assets/svg/admin/delete.svg" alt="delete-icon" />
@@ -59,77 +63,16 @@
 
   </table>
 
-
-  <div class="modal" id="myModal">
-    <div
-      class="modal-dialog"
-      style="top: 50% !important; transform: translateY(-70%) !important"
-    >
-      <div class="modal-content">
-
-        <!-- Modal Header -->
-        <div class="modal-header" style="border:none; padding: 1rem 0 0 1rem;">
-          <h1
-            style="color:#00A551; font-weight: 700;margin: 0.5rem;"
-          >Detail</h1>
-        </div>
-
-        <!-- Modal body -->
-        <div class="modal-body" style="margin: 0 auto 1rem auto; padding: 0;">
-          <table class="not">
-            <tr>
-              <td><b>ID: </b></td>
-              <td>1 </td>
-            </tr>
-            <tr>
-              <td><b>Name:</b></td>
-              <td>Python beginner to master </td>
-            </tr>
-            <tr>
-              <td><b>Category: </b></td>
-              <td>Web App Development </td>
-            </tr>
-            <tr>
-              <td><b>Teacher:</b> </td>
-              <td>Jonas Schema </td>
-            </tr>
-            <tr>
-              <td><b>Student quantity</b>: </td>
-              <td>172.867</td>
-            </tr>
-            <tr>
-              <td><b>Rate:</b> </td>
-              <td
-                style="display: flex; align-items: center; justify-content: space-between;"
-              >
-                <div>4.7</div>
-                {{#times 5}}
-                  <div>
-                    <img src="/assets/svg/admin/star.svg" alt="star-icon" />
-                  </div>
-                {{/times}}
-                <div>(15.279)</div>
-              </td>
-            </tr>
-          </table>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
   <script>
     $('#student').on('click','.edit',function() { 
       const id=$(this).siblings('.id').text();
     if($(this).siblings('.name').find('input').length){
-    $(this).siblings('.name').text($(this).siblings('.name').find('input').val());
+      $(this).siblings('.name').text($(this).siblings('.name').find('input').val());
     } 
-    else { var content=$(this).siblings('.name').text(); 
-    var actionURL="students/edit/"+id; 
-    var form=$("<form/>", { method: 'POST',action: actionURL, style: 'margin: 0; padding: 0', } ).append($("<input>", {
-    type:'text', name:'title', class:"editname", value: content, }
-    ).val(content)).append($("<input>", { type:'submit', class:"butname", value:"Save" })) 
-    $(this).siblings('.name').text('').append(form); } });
-  </script>
+    else { 
+      var content=$(this).siblings('.name').text(); 
+      var actionURL="students/edit/"+id; var form=$("<form/>",{ method: 'POST',action: actionURL, style: 'margin: 0; padding: 0', }).append($("<input>", { type:'text', name:'title', class:"editname", value:content, } ).val(content));
+      $(this).siblings('.name').text('').append(form); 
+    } });
   </script>
 </div>

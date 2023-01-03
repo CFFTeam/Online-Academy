@@ -5,7 +5,7 @@ const router = express.Router();
 // Categories
 router.route("/categories").get(adminController.renderCategories).post(adminController.addCategories);
 router.post("/categories/edit/:id", adminController.editCategories);
-router.get("/categories/delete/:id",adminController.deleteCategories);
+router.post("/categories/delete/:id",adminController.deleteCategories);
 
 // Courses
 router.route("/courses").get(adminController.renderCourses).post(adminController.renderCoursesByCategories);
@@ -22,9 +22,9 @@ router.post("/teachers/ban/:id", adminController.banTeachers);
 router.post("/teachers/delete/:id",adminController.deleteTeachers);
 
 //Students
-router.route("/students").get(adminController.renderStudents).post(adminController.addStudents);
+router.route("/students").get(adminController.renderStudents)
 router.post("/students/edit/:id", adminController.editStudents);
-router.get("/students/ban/:id", adminController.banStudents);
+router.post("/students/ban/:id", adminController.banStudents);
 router.post("/students/delete/:id",adminController.deleteStudents);
 
 export default router;

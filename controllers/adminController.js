@@ -10,6 +10,9 @@ import url from "url";
 //-----------------Categories--------------
 export const renderCategories = catchAsync(async (req, res) => {
   const category = await Category.find().lean();
+  for(let i=0; i<category.length; i++){
+    category[i]['isEmpty'] =  category[i].lectures.length == 0? true : false;
+  }
   res.render("admin/categories.hbs", {
     categories: category,
     layout: "admin.hbs",
@@ -153,58 +156,32 @@ export const deleteTeachers = catchAsync(async (req, res) => {
 
 //-------------------Student------------------------
 export const renderStudents = catchAsync(async (req, res) => {
-  //const allStudents = await Student.find().lean();
-  const a = [
-    {
-      _id: 1,
-      name: "Jonas Schmedtmann",
-    },
-    {
-      _id: 1,
-      name: "Jonas Schmedtmann",
-    },
-    {
-      _id: 1,
-      name: "Jonas Schmedtmann",
-    },
-    {
-      _id: 1,
-      name: "Jonas Schmedtmann",
-    },
-
-    {
-      _id: 1,
-      name: "Jonas Schmedtmann",
-    },
-    {
-      _id: 1,
-      name: "Jonas Schmedtmann",
-    },
-  ];
-  const allCategories = await Category.find().lean();
+  const allStudents = await User.find({role: "user"}).lean();
   res.render("admin/students.hbs", {
-    students: a,
-    category: allCategories,
+    students: allStudents,
     layout: "admin.hbs",
   });
 });
 
-export const addStudents = catchAsync(async (req, res) => {
-  //const allTeachers = await Teacher.find().lean();
-  res.redirect("/admin/students");
-});
-
 export const editStudents = catchAsync(async (req, res) => {
-  //const allTeachers = await Teacher.find().lean();
+  await User.updateOne(
+    {_id: req.params.id}, 
+    {name: req.body.title}
+  ).lean();
   res.redirect("/admin/students");
 });
 
 export const banStudents = catchAsync(async (req, res) => {
-  //const allTeachers = await Teacher.find().lean();
+  const getUser = await User.findOne({_id: req.params.id}).lean();
+  let banStatus=getUser.active;
+  await User.updateOne(
+    {_id: req.params.id}, 
+    {active: !banStatus}
+  ).lean();
   res.redirect("/admin/students");
 });
 
 export const deleteStudents = catchAsync(async (req, res) => {
-  //const allTeachers = await Teacher.find().lean();
+  await User.deleteOne({_id: req.params.id}).lean();
   res.redirect("/admin/students");
 });
