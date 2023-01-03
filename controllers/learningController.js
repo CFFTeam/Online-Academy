@@ -1,4 +1,3 @@
-import { response } from "express";
 import Course from "../models/courseModel.js";
 import User from "../models/userModel.js";
 import catchAsync from "../utilities/catchAsync.js";
@@ -20,6 +19,10 @@ export const loadCourse = catchAsync(async (req, res, next) => {
     const lesson_url = slug_lesson.split('?')[0];
     
     const course = await Course.findOne({ slug: slug_course }).lean();
+
+    if (!course) {
+        return res.redirect(`${slug_course}`);
+    }
 
     let founded_lessons = null;
 
