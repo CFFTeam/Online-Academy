@@ -86,12 +86,18 @@ export const renderCategoriesByCategories = catchAsync(async (req, res) => {
 });
 
 export const addCategories = catchAsync(async (req, res) => {
-  const addCategoriesData = await Category.create(req.body);
-  const category = await Category.find().lean();
-  res.render("admin/categories.hbs", {
-    categories: category,
-    layout: "admin.hbs",
-  });
+  const getData = {
+    slug: "/"+req.body.newtitle.toLowerCase().replace(" ","-"),
+    title: req.body.newtitle,
+    subcategories:[
+      {
+        slug:"/None",
+        content: "None"
+      }
+    ]
+  }
+  const addCategoriesData = await Category.create(getData);
+  res.redirect("/admin/categories");
 });
 
 export const editCategories = catchAsync(async (req, res) => {
