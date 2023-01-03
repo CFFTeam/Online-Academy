@@ -4,8 +4,9 @@ const router = express.Router();
 
 // Categories
 router.route("/categories").get(adminController.renderCategories).post(adminController.addCategories);
+router.route("/categories/category").get(adminController.renderCategoriesByCategories);
 router.post("/categories/edit/:id", adminController.editCategories);
-router.post("/categories/delete/:id",adminController.deleteCategories);
+router.post("/categories/delete",adminController.deleteCategories);
 
 // Courses
 router.route("/courses").get(adminController.renderCourses).post(adminController.renderCoursesByCategories);

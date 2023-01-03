@@ -21,6 +21,25 @@
       />
       <button type="submit" class="but">Add new</button>
     </form>
+    <div class="dropdown" style="margin-bottom: 1.5rem;">
+      <button
+        type="button"
+        class="btn btn-success dropdown-toggle"
+        data-toggle="dropdown"
+        style="background-color: #00A551; font-size: 1.6rem; font-weight: 600; padding: 0.5rem 1rem; "
+      >
+        Select category
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="/admin/categories">All categories</a>
+        {{#each this.category}}
+          <a
+            class="dropdown-item"
+            href="/admin/categories/category?slug={{slug}}"
+          >{{title}}</a>
+        {{/each}} 
+      </div>
+    </div>
 
   </div>
 
@@ -28,9 +47,10 @@
 
     <tr class="none-shawdow">
       <th>ID</th>
-      <th style="padding-right: 20rem;">Name</th>
+      <th style="padding-right: 10rem;">Category</th>
+      <th style="padding-right: 10rem;">Subcategory</th>
       <th>Course quantity</th>
-      <th>Student quantity</th>
+      <th style="width: 1rem;"></th>
       <th style="width: 1rem;"></th>
       <th style="width: 1rem;"></th>
     </tr>
@@ -38,18 +58,22 @@
     {{#each this.categories}}
       <tr>
         <td class="id">{{_id}}</td>
-        <td class="name" >{{title}}</td>
-        <td>{{courses}}</td>
-        <td>{{students}}</td>
+        <td class="name" >{{category}}</td>
+        <td class="subname" >{{subcategory}}</td>
+        <td>{{num_courses}}</td>
 
-        <td class="edit" style="text-align: center; padding: 0;">
+        <td class="edit" style="text-align: center; padding: 0 1rem;">
           <img src="/assets/svg/admin/edit.svg" alt="edit-icon" />
         </td>
 
-        {{#if isEmpty}}
+        <td class="editsub" style="text-align: center; padding: 0;">
+          <img src="/assets/svg/admin/subcategory.svg" alt="editsub-icon" />
+        </td>
+
+        {{#if empty_courses}}
 
           <td style="text-align: center; padding: 0 1rem;">
-            <form action="/admin/categories/delete/{{_id}}" method="post">
+            <form action="/admin/categories/delete?id={{_id}}&sub={{subcategory}}" method="post">
               <button type="submit" style="border: none;">
                 <img src="/assets/svg/admin/delete.svg" alt="delete-icon" />
               </button>
@@ -101,8 +125,18 @@
     else { var content=$(this).siblings('.name').text(); 
     var actionURL="categories/edit/"+id; 
     var form=$("<form/>", { method: 'POST',action: actionURL, style: 'margin: 0; padding: 0', } ).append($("<input>", {
-    type:'text', name:'title', class:"editname", value: content, }
-    ).val(content)).append($("<input>", { type:'submit', class:"butname", value:"Save" })) 
+    type:'text', name:'title', class:"editname", value: content, }).val(content))
     $(this).siblings('.name').text('').append(form); } });
+
+    $('#category').on('click','.editsub',function() { 
+      const id=$(this).siblings('.id').text();
+    if($(this).siblings('.subname').find('input').length){
+    $(this).siblings('.subname').text($(this).siblings('.subname').find('input').val());
+    } 
+    else { var content=$(this).siblings('.subname').text(); 
+    var actionURL="categories/editsub/"+id; 
+    var form=$("<form/>", { method: 'POST',action: actionURL, style: 'margin: 0; padding: 0', } ).append($("<input>", {
+    type:'text', name:'title', class:"editname", value: content, }).val(content))
+    $(this).siblings('.subname').text('').append(form); } });
   </script>
 </div>
