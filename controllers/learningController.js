@@ -55,7 +55,7 @@ export const loadCourse = catchAsync(async (req, res, next) => {
         current_lesson: Buffer.from(lesson_url).toString('base64'),
         url: lesson_url,
         current_course: slug_course,
-        course_sections: JSON.stringify(course.lectures.sections)
+        course_sections: encodeURIComponent(JSON.stringify(course.lectures.sections))
     }
 
     next();

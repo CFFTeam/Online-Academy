@@ -13,10 +13,9 @@
         const currentLesson = `{{{watch_info.url}}}`;
         const currentWatch = JSON.parse(localStorage.getItem('plyr_current_watch')) || {};
 
-        const sectionList  = JSON.parse(`{{{watch_info.course_sections}}}`);
+        const sectionList  = JSON.parse(decodeURIComponent(`{{{watch_info.course_sections}}}`));
 
-        console.log(sectionList);
-        const lesson_cur = sectionList.find(section => section.lessons.find(lesson => lesson.url === watch_info.url));
+        const lesson_cur = sectionList.find(section => section.lessons.find(lesson => lesson.url === currentWatch[currentCourse]));
 
         if (!lesson_cur) {
             delete currentWatch[currentCourse];

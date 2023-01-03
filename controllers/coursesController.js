@@ -98,7 +98,7 @@ export const coursesPage = catchAsync(async (req, res) => {
 
     const find_by = req.find_by;
 
-    const limit = 1;
+    const limit = 10;
     const offset = res.locals.page;
 
     const results = await loadCourses(req.myCourses, find_by, res.locals.sort_by, offset, limit);
