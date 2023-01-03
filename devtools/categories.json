@@ -1,0 +1,167 @@
+[{
+  "_id": {
+    "$oid": "63a82973bb13867f7f4be6d3"
+  },
+  "slug": "/web-development",
+  "title": "Web Development",
+  "courses": 50,
+  "subcategories": [
+    {
+      "slug": "/html",
+      "content": "HTML",
+      "_id": {
+        "$oid": "63b415a4d3ee9a77815592f4"
+      }
+    },
+    {
+      "slug": "/css",
+      "content": "CSS",
+      "_id": {
+        "$oid": "63b43e067b9d3b195990847c"
+      }
+    },
+    {
+      "slug": "/javascript",
+      "content": "Javascript",
+      "_id": {
+        "$oid": "63b43ec67b9d3b195990847d"
+      }
+    },
+    {
+      "slug": "/reactjs",
+      "content": "ReactJS",
+      "_id": {
+        "$oid": "63b43f0a7b9d3b195990847e"
+      }
+    },
+    {
+      "slug": "/nodejs",
+      "content": "NodeJS",
+      "_id": {
+        "$oid": "63b43f447b9d3b195990847f"
+      }
+    }
+  ],
+  "students": 1000
+},{
+  "_id": {
+    "$oid": "63a829a7bb13867f7f4be6d9"
+  },
+  "slug": "/game-development",
+  "title": "Game Development",
+  "courses": 50,
+  "subcategories": [
+    {
+      "slug": "/unity",
+      "content": "Unity",
+      "_id": {
+        "$oid": "63b415add3ee9a7781559340"
+      }
+    },
+    {
+      "slug": "/c-sharp",
+      "content": "C#",
+      "_id": {
+        "$oid": "63b415add3ee9a7781559342"
+      }
+    },
+    {
+      "slug": "/c-plus-plus",
+      "content": "C++",
+      "_id": {
+        "$oid": "63b4414b7b9d3b1959908483"
+      }
+    },
+    {
+      "slug": "/unreal",
+      "content": "Unreal",
+      "_id": {
+        "$oid": "63b441757b9d3b1959908484"
+      }
+    }
+  ],
+  "students": 1000
+},{
+  "_id": {
+    "$oid": "63a8325f77cf7f9d1134e93c"
+  },
+  "slug": "/artificial-intelligence",
+  "title": "Artificial Intelligenceee",
+  "courses": 50,
+  "subcategories": [
+    {
+      "slug": "/deep-learning",
+      "content": "Deep Learning",
+      "_id": {
+        "$oid": "63b416523608cbe5ebf96c01"
+      }
+    },
+    {
+      "slug": "/machine-learning",
+      "content": "Machine Learning",
+      "_id": {
+        "$oid": "63b4407f7b9d3b1959908480"
+      }
+    },
+    {
+      "slug": "/data-scient",
+      "content": "Data Scient",
+      "_id": {
+        "$oid": "63b440b07b9d3b1959908481"
+      }
+    },
+    {
+      "slug": "/python",
+      "content": "Python",
+      "_id": {
+        "$oid": "63b440e27b9d3b1959908482"
+      }
+    }
+  ],
+  "students": 1000
+},{
+  "_id": {
+    "$oid": "63b42b41dafa1fd15588d86e"
+  },
+  "slug": "/mobile-development",
+  "title": "Mobile Development",
+  "subcategories": [
+    {
+      "slug": "/react-native",
+      "content": "React Native",
+      "_id": {
+        "$oid": "63b42b41dafa1fd15588d86f"
+      }
+    },
+    {
+      "slug": "/flutter",
+      "content": "Flutter",
+      "_id": {
+        "$oid": "63b442177b9d3b1959908485"
+      }
+    },
+    {
+      "slug": "/java",
+      "content": "Java",
+      "_id": {
+        "$oid": "63b442667b9d3b1959908486"
+      }
+    },
+    {
+      "slug": "/kotlin",
+      "content": "Kotlin",
+      "_id": {
+        "$oid": "63b4428a7b9d3b1959908487"
+      }
+    },
+    {
+      "slug": "/swift",
+      "content": "Swift",
+      "_id": {
+        "$oid": "63b442bf7b9d3b1959908488"
+      }
+    }
+  ],
+  "students": 1000,
+  "courses": 50
+}]
