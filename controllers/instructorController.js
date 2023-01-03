@@ -442,10 +442,10 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
     const storage = multer.diskStorage({
         destination: async function(req, file, cb) {
             req.hasFile = true;
-            if (!req.query.lesson && req.query.section) {
-
+            if (!req.query.lesson && req.query.section) { // add new lesson
                 req.course = await Course.findById({_id: req.query.course}).lean();
-                
+                const thisSection = req.course.lectures.sections.find(section => section._id === req.query.section);
+                console.log(thisSection);
                 const lesson_slug = slugify(req.body.lecture_title, {lower: true, locale: 'vi', remove: /[*+~.()'"!:@]/g});
                 const course_slug = req.course.slug.replace('/course/', '/courses/');
                 
@@ -454,7 +454,7 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                 }
                 cb(null, `public${course_slug}/${lesson_slug}`)
             }
-            else if (req.query.lesson) {
+            else if (req.query.lesson) { // edit lesson
                 let foundLesson = {}; // find that lesson
                 req.thisCourseLectures = await Course.findById({_id: req.query.course}).select('lectures');
                 req.thisCourseLectures.lectures.sections.forEach(section => {
