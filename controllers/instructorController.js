@@ -13,6 +13,7 @@ import User from "../models/userModel.js";
 import fs from "fs";
 import slugify from "slugify";
 
+// supporting functions
 const getPageList = (totalPage) => {
     const pageList = [1];
     if (totalPage > 10) {
@@ -29,6 +30,54 @@ const getPageList = (totalPage) => {
             pageList.push(i);
     return pageList;
 };
+// filter file
+const fileFilter = async (req, file, cb) => {
+    req.hasFile = true;
+    // if add existed lesson
+    if (req.query.section){
+        const course = await Course.findOne({ _id: req.query.course });
+        const thisCourseSection = course.lectures.sections.find((section) => {
+            return section._id.toString() === req.query.section.toString();
+        })
+        const foundLesson = thisCourseSection.lessons.find((lesson) => {
+            const slug_name = slugify(req.body.lecture_title, {
+                lower: true,
+                locale: "vi", strict: true
+            });
+            const file_name = lesson.video.substring(lesson.video.lastIndexOf('/'),lesson.video.length).split('.')[0];
+            return lesson.title === req.body.lecture_title || file_name === slug_name;
+        });
+        if (foundLesson) {
+            console.log('skipped')
+            cb(null, false)
+                return
+        }
+    }
+    // if edit existed lesson
+    else if (req.query.lesson) {
+        const course = await Course.findOne({ _id: req.query.course });
+        let foundLesson = null;
+        course.lectures.sections.forEach((section) => {
+            return (foundLesson = section.lessons.find((lesson) => { 
+                const slug_name = slugify(req.body.lecture_title, {
+                    lower: true,
+                    locale: "vi", strict: true
+                });
+                const file_name = lesson.video.substring(lesson.video.lastIndexOf('/'),lesson.video.length).split('.')[0];
+                return (lesson.title === req.body.lecture_title || file_name === slug_name) && lesson._id.toString() !== req.query.lesson.toString();
+            }))
+        })
+        if (foundLesson) {
+            console.log('skipped')
+            cb(null, false)
+                return
+        }
+    }
+   
+  
+    cb(null, true);
+}
+
 
 export const getDashboard = async (req, res, next) => {
     res.render('instructor/others', {
@@ -204,7 +253,7 @@ export const editCourseDescription = catchAsync(async (req,res) => {
 
                 const slug_name = slugify(req.body.course_title, {
                     lower: true,
-                    locale: "vi", remove: /[*+~.()'"!:@]/g
+                    locale: "vi", strict: true
                 });
                 
                 const file_path = `public/courses/${slug_name}`;
@@ -227,7 +276,7 @@ export const editCourseDescription = catchAsync(async (req,res) => {
             if (!req.query.course) {
                 const slug_name = slugify(req.body.course_title, {
                     lower: true,
-                    locale: "vi", remove: /[*+~.()'"!:@]/g
+                    locale: "vi", strict: true
                 });
                 cb(null, `${slug_name}.${file_ext}`);
             }
@@ -276,7 +325,7 @@ export const editCourseDescription = catchAsync(async (req,res) => {
                     name: req.body.course_title,
                     img: `/${req.file.path.replace('public\\', '').replaceAll('\\', '/')}`,
                     details: req.body.full_description,
-                    slug: `/course/${slugify(req.body.course_title,{ lower: true, locale: "vi", remove: /[*+~.()'"!:@]/g })}`,
+                    slug: `/course/${slugify(req.body.course_title,{ lower: true, locale: "vi", strict: true })}`,
                     description: req.body.short_description,
                     currency: req.body.price_currency,
                     price: req.body.price_amount,
@@ -442,19 +491,17 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
     const storage = multer.diskStorage({
         destination: async function(req, file, cb) {
             req.hasFile = true;
-            if (!req.query.lesson && req.query.section) {
-
+            if (!req.query.lesson && req.query.section) { // add new lesson
                 req.course = await Course.findById({_id: req.query.course}).lean();
-                
-                const lesson_slug = slugify(req.body.lecture_title, {lower: true, locale: 'vi', remove: /[*+~.()'"!:@]/g});
-                const course_slug = req.course.slug.replace('/course/', '/courses/');
-                
-                if (!fs.existsSync(`public/courses/${course_slug}/${lesson_slug}`)) {
-                    fs.mkdirSync(`public${course_slug}/${lesson_slug}`);
+                const thisSection = req.course.lectures.sections.find(section => section._id.toString() === req.query.section.toString());
+                const section_dir = slugify(thisSection.title, {lower: true, locale: 'vi', strict: true });
+                const course_slug = req.course.slug.replace('/course/', '/courses/');                
+                if (!fs.existsSync(`public/${course_slug}/${section_dir}`)) {
+                    fs.mkdirSync(`public${course_slug}/${section_dir}`);
                 }
-                cb(null, `public${course_slug}/${lesson_slug}`)
+                cb(null, `public${course_slug}/${section_dir}`)
             }
-            else if (req.query.lesson) {
+            else if (req.query.lesson) { // edit lesson
                 let foundLesson = {}; // find that lesson
                 req.thisCourseLectures = await Course.findById({_id: req.query.course}).select('lectures');
                 req.thisCourseLectures.lectures.sections.forEach(section => {
@@ -475,7 +522,7 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
         filename: function (req, file, cb) {
             const file_ext = file.originalname.substring(file.originalname.lastIndexOf('.'), file.originalname.length).split('.')[1];
             if (!req.query.lesson && req.query.section) {
-                const lesson_slug = slugify(req.body.lecture_title, {lower: true, locale: 'vi', remove: /[*+~.()'"!:@]/g});
+                const lesson_slug = slugify(req.body.lecture_title, {lower: true, locale: 'vi', strict: true});
 
                 cb(null, `${lesson_slug}.${file_ext}`);
             }
@@ -485,14 +532,15 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
             }
         }
     })   
-    const upload = multer({ storage: storage });
+    const upload = multer({ fileFilter: fileFilter, storage: storage});
     upload.single('videoUploadFile')(req,res, async (err) => {
         if (err) console.error(err);
         else {
             const course = req.course ? req.course : await Course.findById({_id: req.query.course}).lean();
             const thisCourseLectures = (req.thisCourseLectures) ? req.thisCourseLectures : await Course.findById({_id: req.query.course}).select('lectures');
+            const thisCourseSlug = await Course.findById({_id: req.query.course}).select('slug');
+            const limit = 2; // limit sections (pagination)
             // if user add new section
-            const limit = 2; // limit sections
             if (req.query.section == "") {
                 let thisCourseSections = thisCourseLectures.lectures.sections;
                 const newSection = {
@@ -531,11 +579,15 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
             // if user delete section
             else if (req.body.requestActionInSection  == "delete_section") {
                 const newSectionArray = thisCourseLectures.lectures.sections.filter((section) => {
-                    section.lessons.forEach((lesson) => {
-                        const folderPath = `public${lesson.video.substring(0,lesson.video.lastIndexOf('/'))}`;
-                        fs.rmSync(folderPath, { recursive: true});
-                    })
-                    return section._id.toString() !== req.query.section;
+                    if (section._id.toString() == req.query.section.toString()) {
+                        const course_slug = thisCourseSlug.slug.replace('/course/', '');
+                        const section_dir = slugify(section.title, {lower: true, locale: 'vi', strict: true });
+                        const folderPath = `public/courses/${course_slug}/${section_dir}`;
+                        if (fs.existsSync(folderPath)) {
+                            fs.rmSync(folderPath, { recursive: true});
+                        }
+                    }
+                    return section._id.toString() !== req.query.section.toString();
                 })
                 const nPagesCurrent = Math.ceil(newSectionArray.length / limit);
                 const page = nPagesCurrent < req.query.page ? Math.max(nPagesCurrent,1) : req.query.page;
@@ -563,7 +615,6 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                         }
                     })
                     if (req.body.lecture_title != "") foundLesson.title = req.body.lecture_title;
-                    console.log(req.file);
                     foundLesson.video = (req.file && req.file.path) ? `/${req.file.path.replace('public\\', '').replaceAll('\\', '/')}` : foundLesson.video;
                     await thisCourseLectures.save();
                     return res.render('instructor/addCourseContent', {
@@ -589,20 +640,28 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                         return section._id.toString() === req.query.section;
                     });
                     thisSection = thisSection[0]; // get section out of an array
-                    const lecture_slug = slugify(req.body.lecture_title, {lower: true, locale: 'vi', remove: /[*+~.()'"!:@]/g});
+                    const lecture_slug = slugify(req.body.lecture_title, {lower: true, locale: 'vi', strict: true});
                     const newLesson = {
                         title: req.body.lecture_title,
                         resources: [],
                         url: `${course.slug}/learn/lecture/${lecture_slug}`,
-                        video: `/${req.file.path.replace('public\\', '').replaceAll('\\', '/')}`,
+                        video: req.file && req.file.path ? `/${req.file.path.replace('public\\', '').replaceAll('\\', '/')}` : "",
                         preview: "",
                         _id: new mongoose.Types.ObjectId()
                     }
-                    const foundLesson = thisSection.lessons.filter((lesson) => {
-                        return lesson.url.toString() === newLesson.url.toString();
-                    });
+                    // const foundLesson = thisSection.lessons.filter((lesson) => {
+                    //     return lesson.url.toString() === newLesson.url.toString();
+                    // });
                     // if this lesson's title existed
-                    if(foundLesson.length > 0) {
+                    const foundLesson = thisSection.lessons.find((lesson) => {
+                        const slug_name = slugify(req.body.lecture_title, {
+                            lower: true,
+                            locale: "vi", strict: true
+                        });
+                        const file_name = lesson.video.substring(lesson.video.lastIndexOf('/'),lesson.video.length).split('.')[0];
+                        return lesson.title === req.body.lecture_title || file_name === slug_name;
+                    });
+                    if(foundLesson) {
                         return res.render('instructor/addCourseContent', {
                             layout: "instructor",
                             course_id: req.query.course,
@@ -630,8 +689,8 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                 thisSection = thisSection[0]; // get section out of an array
                 const newLessonArray = thisSection.lessons.filter((lesson) => {
                     if (lesson._id.toString() == req.query.lesson) {
-                        const folderPath = `public${lesson.video.substring(0,lesson.video.lastIndexOf('/'))}`;
-                        fs.rmSync(folderPath, { recursive: true});
+                        const videoPath = `public${lesson.video}`;
+                        fs.rmSync(videoPath);
                     }
                     return lesson._id.toString() !== req.query.lesson;
                 })
