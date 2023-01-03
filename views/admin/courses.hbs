@@ -12,70 +12,72 @@
         <input class="input1" type="text" placeholder="Search any courses" />
       </label>
     </div>
-      <div class="dropdown" style="margin-top: 2rem;">
-        <button
-          type="button"
-          class="btn btn-success dropdown-toggle"
-          data-toggle="dropdown"
-          style="background-color: #00A551; font-size: 1.6rem; font-weight: 600; padding: 0.5rem 1rem; "
-        >
-          Select category
-        </button>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="/admin/courses">All categories</a>
-          {{#each this.category}}
-            <a
-              class="dropdown-item"
-              href="/admin/courses/category?slug={{slug}}"
-            >{{title}}</a>
-          {{/each}} 
-        </div>
+    <div class="dropdown" style="margin-top: 2rem;">
+      <button
+        type="button"
+        class="btn btn-success dropdown-toggle"
+        data-toggle="dropdown"
+        style="background-color: #00A551; font-size: 1.6rem; font-weight: 600; padding: 0.5rem 1rem; "
+      >
+        Select category
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="/admin/courses">All categories</a>
+        {{#each this.category}}
+          <a
+            class="dropdown-item"
+            href="/admin/courses/category?slug={{slug}}"
+          >{{title}}</a>
+        {{/each}} 
       </div>
-
-
+    </div>
     </div>
 
   </div>
-  <table id="course" class="cor" style="width: 98%; margin: 1rem auto;">
 
-      <tr class="none-shawdow" style="border-radius: 10px;">
-        <th>ID</th>
-        <th>Category</th>
-        <th>Course name</th>
-        <th>Coupon</th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
+  {{#if isEmpty}}
+    <h1 style="padding: 2rem 1.2rem;"> No result found </h1>
+    {{else}}
+      <table id="course" class="cor" style="width: 98%; margin: 1rem auto;">
 
-      {{#each this.courses}}
-        <tr>
-          <td class="id">{{_id}}</td>
-          <td >{{category}}</td>
-          <td >{{name}}</td>
-          <td class="sale">{{sale}}</td>
-          <td class="edit" style="text-align: center; padding: 0 0.2rem; ">
-            <img src="/assets/svg/admin/coupon.svg" alt="coupon-icon" />
-          </td>
-          <td class="viewmore" style="text-align: center; padding: 0;">
-            <a href="/admin/courses/viewmore/{{_id}}">
-              <img src="/assets/svg/admin/info.svg" alt="more-icon" />
-            </a>
-          </td>
+          <tr class="none-shawdow" style="border-radius: 10px;">
+            <th>ID</th>
+            <th>Category</th>
+            <th>Course name</th>
+            <th>Coupon</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
 
-          <td class="delete" style="text-align: center; padding: 0;">
-            <form action="/admin/courses/delete/{{_id}}" method="post">
-              <button type="submit" style="border: none;">
-                <img src="/assets/svg/admin/delete.svg" alt="delete-icon" />
-              </button>
-            </form>
+          {{#each this.courses}}
+            <tr>
+              <td class="id">{{_id}}</td>
+              <td >{{category}}</td>
+              <td >{{name}}</td>
+              <td class="sale">{{sale}}</td>
+              <td class="edit" style="text-align: center; padding: 0 0.2rem; ">
+                <img src="/assets/svg/admin/coupon.svg" alt="coupon-icon" />
+              </td>
+              <td class="viewmore" style="text-align: center; padding: 0;">
+                <a href="/admin/courses/viewmore/{{_id}}">
+                  <img src="/assets/svg/admin/info.svg" alt="more-icon" />
+                </a>
+              </td>
 
-          </td>
+              <td class="delete" style="text-align: center; padding: 0;">
+                <form action="/admin/courses/delete/{{_id}}" method="post">
+                  <button type="submit" style="border: none;">
+                    <img src="/assets/svg/admin/delete.svg" alt="delete-icon" />
+                  </button>
+                </form>
 
-        </tr>
-      {{/each}}
+              </td>
 
-  </table>
+            </tr>
+          {{/each}}
+      </table>
+  {{/if}}
 
   <script>
     $('#course').on('click','.edit',function() { 
