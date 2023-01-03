@@ -46,7 +46,8 @@
   <table id="category" class="cor" style="margin-top: 0;">
 
     <tr class="none-shawdow">
-      <th>ID</th>
+      <th >ID</th>
+      <th style="display:none;">idsub</th>
       <th style="padding-right: 10rem;">Category</th>
       <th style="padding-right: 10rem;">Subcategory</th>
       <th>Course quantity</th>
@@ -57,7 +58,8 @@
 
     {{#each this.categories}}
       <tr>
-        <td class="id">{{_id}}</td>
+        <td class="id" >{{_id}}</td>
+        <td class="idsub" style="display:none;">{{idsub}}</td>
         <td class="name" >{{category}}</td>
         <td class="subname" >{{subcategory}}</td>
         <td>{{num_courses}}</td>
@@ -73,7 +75,7 @@
         {{#if empty_courses}}
 
           <td style="text-align: center; padding: 0 1rem;">
-            <form action="/admin/categories/delete?id={{_id}}&sub={{subcategory}}" method="post">
+            <form action="/admin/categories/delete/{{_id}}/{{idsub}}" method="post">
               <button type="submit" style="border: none;">
                 <img src="/assets/svg/admin/delete.svg" alt="delete-icon" />
               </button>
@@ -123,20 +125,21 @@
     $(this).siblings('.name').text($(this).siblings('.name').find('input').val());
     } 
     else { var content=$(this).siblings('.name').text(); 
-    var actionURL="categories/edit/"+id; 
+    var actionURL="http://localhost:5000/admin/categories/edit/"+id; 
     var form=$("<form/>", { method: 'POST',action: actionURL, style: 'margin: 0; padding: 0', } ).append($("<input>", {
     type:'text', name:'title', class:"editname", value: content, }).val(content))
     $(this).siblings('.name').text('').append(form); } });
 
     $('#category').on('click','.editsub',function() { 
       const id=$(this).siblings('.id').text();
+      const idsub=$(this).siblings('.idsub').text();
     if($(this).siblings('.subname').find('input').length){
     $(this).siblings('.subname').text($(this).siblings('.subname').find('input').val());
     } 
     else { var content=$(this).siblings('.subname').text(); 
-    var actionURL="categories/editsub/"+id; 
-    var form=$("<form/>", { method: 'POST',action: actionURL, style: 'margin: 0; padding: 0', } ).append($("<input>", {
-    type:'text', name:'title', class:"editname", value: content, }).val(content))
+    var actionURL= `http://localhost:5000/admin/categories/editsub/${id}/${idsub}`; 
+    var form=$("<form/>", { method: 'POST',action: actionURL, style: 'margin: 0; padding: 0', } )
+    .append($("<input>", {type:'text', name:'subcat', class:"editname", value: content, }).val(content))
     $(this).siblings('.subname').text('').append(form); } });
   </script>
 </div>

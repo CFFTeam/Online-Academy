@@ -6,6 +6,7 @@ import User from "../models/userModel.js";
 
 
 import url from "url";
+import { title } from "process";
 
 //-----------------Categories--------------
 export const renderCategories = catchAsync(async (req, res) => {
@@ -33,6 +34,7 @@ export const renderCategories = catchAsync(async (req, res) => {
         subcategory: category[i].subcategories[j].content,
         num_courses: count,
         empty_courses: count === 0? true : false,
+        idsub: category[i].subcategories[j]._id
       });
     }
   }
@@ -71,6 +73,7 @@ export const renderCategoriesByCategories = catchAsync(async (req, res) => {
       subcategory: categoryName.subcategories[j].content,
       num_courses: count,
       empty_courses: count === 0? true : false,
+      idsub: categoryName.subcategories[j]._id
     });
   }
 
@@ -105,17 +108,56 @@ export const editCategories = catchAsync(async (req, res) => {
   res.redirect("/admin/categories");
 });
 
+export const editSubCategories = catchAsync(async (req, res) => {
+  const getOldCategory = await Category.findOne({ _id: req.params.id }).lean();
+  let getOldCategoryData = getOldCategory.subcategories;
+  let tempNameCat;
+  console.log(req.body.sub);
+  for(let i=0; i<getOldCategoryData.length; i++){
+    if(getOldCategoryData[i]._id.toString() === req.params.idsub.toString()){
+      tempNameCat = getOldCategoryData[i].content;
+      getOldCategoryData[i].content = req.body.subcat;
+    }
+  }
+  await Category.updateOne(
+    { _id: req.params.id },
+    { subcategories: [...getOldCategoryData] }
+  ).lean();
+
+  const getOldCourse = await Course.findOne({ category: getOldCategory.title }).lean();
+  if(getOldCourse!==null){
+    let getOldCourseData = getOldCourse.subcategory;
+    for(let i=0; i<getOldCourseData.length; i++){
+      if(getOldCourseData[i] === tempNameCat){
+        getOldCourseData[i]= req.body.subcat;
+      }
+    }
+    await Category.updateOne(
+      { category: getOldCategory.title },
+      { subcategory: [...getOldCourseData] }
+    ).lean();
+  }
+  
+  res.redirect("/admin/categories");
+});
+
 export const deleteCategories = catchAsync(async (req, res) => {
   const getCategoryData = await Category.findOne({
-    _id: req.query.id,
+    _id: req.params.id,
   }).lean();
   
   const subcategories = getCategoryData.subcategories;
   for(let i=0; i<subcategories.length; i++){
-    if(subcategories[i]===req.query.sub){
+    if(subcategories[i]._id.toString()===req.params.idsub.toString()){
       subcategories.splice(i, 1);
     }
   }
+  console.log(subcategories);
+
+  await Category.updateOne(
+    {_id: req.params.id,},
+    {subcategories: [...subcategories]}
+  )
   res.redirect("/admin/categories");
 });
 
