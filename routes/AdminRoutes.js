@@ -16,6 +16,7 @@ router.post("/courses/edit/:id", adminController.editCourses);
 
 //Teachers
 router.route("/teachers").get(adminController.renderTeachers).post(adminController.addTeachers);
+router.get("/teachers/not-exist", adminController.notExistTeachers);
 router.post("/teachers/edit/:id", adminController.editTeachers);
 router.post("/teachers/ban/:id", adminController.banTeachers);
 router.post("/teachers/delete/:id",adminController.deleteTeachers);
