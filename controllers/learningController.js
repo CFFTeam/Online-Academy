@@ -4,7 +4,6 @@ import catchAsync from "../utilities/catchAsync.js";
 
 export const loadCourse = catchAsync(async (req, res, next) => {
     const { slug_course_name, slug_lesson_name } = req.params;
-
     let section_numer = req.query.section;
 
     const slug_lesson = req.originalUrl;
@@ -39,7 +38,10 @@ export const loadCourse = catchAsync(async (req, res, next) => {
     section_numer = (section_numer) ? section_numer : 1;
 
     const course_section = course.lectures.sections[section_numer - 1];
-    const course_lessons = (founded_lessons) ? founded_lessons : course_section.lessons.find(lesson => lesson.url === lesson_url) || null;
+    const course_lessons = (founded_lessons) ? founded_lessons : (course_section) ? course_section.lessons.find(lesson => lesson.url && lesson.url === lesson_url) || null : null;
+
+    if (!course_section) 
+        return res.redirect(`${slug_course}`);
 
     if (!course_lessons || !slug_lesson_name) { 
         return res.redirect(`${course_section.lessons[0].url}?section=${section_numer}`);
