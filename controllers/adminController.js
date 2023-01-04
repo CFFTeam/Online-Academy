@@ -118,7 +118,6 @@ export const editSubCategories = catchAsync(async (req, res) => {
   const getOldCategory = await Category.findOne({ _id: req.params.id }).lean();
   let getOldCategoryData = getOldCategory.subcategories;
   let tempNameCat;
-  console.log(req.body.sub);
   for(let i=0; i<getOldCategoryData.length; i++){
     if(getOldCategoryData[i]._id.toString() === req.params.idsub.toString()){
       tempNameCat = getOldCategoryData[i].content;
@@ -130,18 +129,20 @@ export const editSubCategories = catchAsync(async (req, res) => {
     { subcategories: [...getOldCategoryData] }
   ).lean();
 
-  const getOldCourse = await Course.findOne({ category: getOldCategory.title }).lean();
-  if(getOldCourse!==null){
-    let getOldCourseData = getOldCourse.subcategory;
-    for(let i=0; i<getOldCourseData.length; i++){
-      if(getOldCourseData[i] === tempNameCat){
-        getOldCourseData[i]= req.body.subcat;
+  const getOldCourseObj = await Course.find({ category: getOldCategory.title }).lean();
+  let getOldCourse=[...getOldCourseObj];
+  for(let i=0; i<getOldCourse.length; i++){
+    let getOldCourseData = getOldCourse[i].subcategory;
+    for(let j=0; j<getOldCourseData.length; j++){
+      if(getOldCourseData[j] === tempNameCat){
+        getOldCourseData[j]= req.body.subcat;
+        await Course.updateMany(
+          { _id: getOldCourse[i]._id },
+          { subcategory: [...getOldCourseData] }
+        ).lean(); 
+        break;
       }
-    }
-    await Category.updateOne(
-      { category: getOldCategory.title },
-      { subcategory: [...getOldCourseData] }
-    ).lean();
+    } 
   }
   
   res.redirect("/admin/categories");
@@ -152,18 +153,22 @@ export const deleteCategories = catchAsync(async (req, res) => {
     _id: req.params.id,
   }).lean();
   
-  const subcategories = getCategoryData.subcategories;
-  for(let i=0; i<subcategories.length; i++){
-    if(subcategories[i]._id.toString()===req.params.idsub.toString()){
-      subcategories.splice(i, 1);
-    }
+  const subcategories = [...getCategoryData.subcategories];
+  if(subcategories.length ===1 ){
+    await Category.deleteOne({ _id: req.params.id }).lean();
   }
-  console.log(subcategories);
-
-  await Category.updateOne(
-    {_id: req.params.id,},
-    {subcategories: [...subcategories]}
-  )
+  else{
+    for(let i=0; i<subcategories.length; i++){
+      if(subcategories[i]._id.toString()===req.params.idsub.toString()){
+        subcategories.splice(i, 1);
+      }
+    }
+  
+    await Category.updateOne(
+      {_id: req.params.id,},
+      {subcategories: [...subcategories]}
+    )
+  }
   res.redirect("/admin/categories");
 });
 
@@ -254,9 +259,7 @@ export const addTeachers = catchAsync(async (req, res) => {
 });
 
 export const notExistTeachers = catchAsync(async (req, res) => {
-  console.log(req.query.email);
   const teacher = await User.find({email: req.query.email}).lean();
-  console.log(teacher);
 
   if(teacher.length===0){
     return res.json(true);
