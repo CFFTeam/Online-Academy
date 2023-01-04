@@ -15,9 +15,10 @@
             </div>
         </div>
         <div class="watch_course">
-            <video id="player" playsinline>
+            {{!-- <video id="player" playsinline>
                 <source src='{{watch_info.video}}'></source>
-            </video>
+            </video> --}}
+            {{> video id='learning-player' video=watch_info.video}}
         </div>
     </div>
     <div class="course-lectures">
@@ -113,24 +114,6 @@
                 }, 500);
             }
         }
-
-        const player = new Plyr('#player', {
-            controls: [
-                'play-large',
-                'restart',
-                'rewind',
-                'play',
-                'fast-forward',
-                'progress',
-                'current-time',
-                'duration',
-                'mute',
-                'volume',
-                'captions',
-                'settings',
-                'fullscreen',
-            ]
-        });
 
         const timerLoading = setInterval(async () => {
             if (player.duration) {
