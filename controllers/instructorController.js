@@ -19,13 +19,13 @@ const getPageList = (totalPage) => {
     if (totalPage > 10) {
         for (let i = 2; i <= Math.min(totalPage, 4); i++)
             pageList.push(i);
-        
+
         pageList.push("...");
 
         for (let i = Math.min(totalPage - 4, 4); i >= 1; i--)
             pageList.push(totalPage - i + 1);
-        }
-    else 
+    }
+    else
         for (let i = 2; i <= totalPage; i++)
             pageList.push(i);
     return pageList;
@@ -34,7 +34,7 @@ const getPageList = (totalPage) => {
 const fileFilter = async (req, file, cb) => {
     req.hasFile = true;
     // if add existed lesson
-    if (req.query.section){
+    if (req.query.section) {
         const course = await Course.findOne({ _id: req.query.course });
         const thisCourseSection = course.lectures.sections.find((section) => {
             return section._id.toString() === req.query.section.toString();
@@ -44,13 +44,13 @@ const fileFilter = async (req, file, cb) => {
                 lower: true,
                 locale: "vi", strict: true
             });
-            const file_name = lesson.video.substring(lesson.video.lastIndexOf('/'),lesson.video.length).split('.')[0];
+            const file_name = lesson.video.substring(lesson.video.lastIndexOf('/'), lesson.video.length).split('.')[0];
             return lesson.title === req.body.lecture_title || file_name === slug_name;
         });
         if (foundLesson) {
             console.log('skipped')
             cb(null, false)
-                return
+            return
         }
     }
     // if edit existed lesson
@@ -58,23 +58,23 @@ const fileFilter = async (req, file, cb) => {
         const course = await Course.findOne({ _id: req.query.course });
         let foundLesson = null;
         course.lectures.sections.forEach((section) => {
-            return (foundLesson = section.lessons.find((lesson) => { 
+            return (foundLesson = section.lessons.find((lesson) => {
                 const slug_name = slugify(req.body.lecture_title, {
                     lower: true,
                     locale: "vi", strict: true
                 });
-                const file_name = lesson.video.substring(lesson.video.lastIndexOf('/'),lesson.video.length).split('.')[0];
+                const file_name = lesson.video.substring(lesson.video.lastIndexOf('/'), lesson.video.length).split('.')[0];
                 return (lesson.title === req.body.lecture_title || file_name === slug_name) && lesson._id.toString() !== req.query.lesson.toString();
             }))
         })
         if (foundLesson) {
             console.log('skipped')
             cb(null, false)
-                return
+            return
         }
     }
-   
-  
+
+
     cb(null, true);
 }
 
@@ -103,6 +103,162 @@ export const getSales = async (req, res, next) => {
         sidebar: "sales"
     });
 }
+
+
+export const getInstructorProfile = async (req, res, next) => {
+    let user = null;
+    if (res.locals && res.locals.authUser) {
+        user = await User.findOne({ _id: res.locals.authUser._id }).lean();
+    }
+    res.locals.page = "overview"
+    res.locals.name = user.name;
+    res.locals.birthday = user.birthday;
+    res.locals.sex = user.sex;
+    res.locals.phoneNumber = user.phoneNumber;
+    res.locals.email = user.email;
+    res.locals.address = user.address;
+    res.render('instructor/myProfile', {
+        layout: "instructor",
+        sidebar: "user-profile",
+        user: user
+    });
+}
+
+export const updateInstructorProfile = async (req, res, next) => {
+    const submitForm = req.body.submitForm;
+    const user = await User.findOne({ _id: res.locals.authUser._id });
+    const renderUser = {
+        name: user.name,
+        birthday: user.birthday,
+        sex: user.sex,
+        phone: user.phoneNumber,
+        email: user.email,
+        address: user.address
+    };
+
+    res.locals.name = renderUser.name;
+    res.locals.birthday = renderUser.birthday;
+    res.locals.sex = renderUser.sex;
+    res.locals.phoneNumber = renderUser.phone;
+    res.locals.email = renderUser.email;
+    res.locals.address = renderUser.address;
+
+    if (submitForm == "editProfile") {
+        res.locals.handlebars = "instructor/myProfile";
+        res.locals.layout = "instructor";
+
+        const { fullname, dob, sex, phonenumber, email, address } = req.body;
+
+        user.name = fullname;
+        user.birthday = dob;
+        user.sex = sex;
+        user.phoneNumber = phonenumber;
+        user.email = email;
+        user.address = address;
+
+
+
+        res.locals.page = 'editform';
+
+        if (
+            user.name === '' ||
+            user.email === '' ||
+            user.phoneNumber === '' ||
+            user.address === '' ||
+            user.sex === '' ||
+            user.birthday === ''
+        ) {
+            return next(new Error('Please provide all fields!', 400));
+        }
+
+        // check valid name
+        const regex =
+            /^([A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ]|[a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ])*(?:[ ][A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)*$/g;
+
+        if (!regex.exec(user.name)) return next(new Error('Your name is not valid', 400));
+
+        // check birthday
+        const regex_b =
+            /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/g;
+        if (!regex_b.exec(user.birthday)) return next(new Error('Your birthday is not valid', 400));
+
+        // check phone number
+        const regex_p = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
+        if (!regex_p.exec(user.phoneNumber)) return next(new Error('Your phone number is not valid', 400));
+
+        // check name & address length
+        if (user.name.length >= 50 || user.address.length >= 50)
+            return next(new Error('User information is too long. Please enter less than 50 characters'));
+
+        const foundUser = await User.findOne({ email: req.body.email });
+        if (foundUser && foundUser.email == req.body.email && foundUser._id != res.locals.authUser._id) return next(new Error("This email already exists. Please try again."));
+
+        // check gender
+        const gender = ['Male', 'Female', 'Other'];
+        if (!gender.includes(user.sex)) return next(new Error('Sex does not exist'));
+
+        await user.save();
+
+        res.locals.name = user.name;
+        res.locals.birthday = user.birthday;
+        res.locals.sex = user.sex;
+        res.locals.phoneNumber = user.phoneNumber;
+        res.locals.email = user.email;
+        res.locals.address = user.address;
+
+        // res.render("userProfile/userProfile", { user: user, page: 'editform', messages: "profile success" });
+        res.render('instructor/myProfile', {
+            layout: "instructor",
+            page: 'editform',
+            sidebar: "user-profile",
+            messages: "profile success",
+            user: user
+            // user: {
+            //     name: res.locals.name,
+            //     birthday: res.locals.birthday,
+            //     sex: res.locals.sex,
+            //     phoneNumber: res.locals.phoneNumber,
+            //     email: res.locals.email,
+            //     address: res.locals.address
+            // }
+        });
+    }
+    else if (submitForm == "editPassword") {
+        res.locals.handlebars = "instructor/myProfile";
+        res.locals.layout = "instructor";
+        res.locals.page = 'changeform';
+        res.locals.users = { historyCurrentPassword: req.body.currentPassword, historyPassword: req.body.password, historyConfirmPassword: req.body.passwordConfirm };
+        // 1) Get user from collection
+        const user = await User.findById(res.locals.authUser._id).select('+password');
+        // 2) Check if POSTed current password is correct
+        if (!(await user.correctPassword(req.body.currentPassword, user.password))) {
+            return next(new Error('Your current password is wrong'), 401);
+        }
+        // 3) If so, update password
+        if (req.body.password.length == 0) {
+            return next(new Error('Password is empty'), 401);
+        }
+        // 6) If so, update password
+        if (req.body.password.length < 8) {
+            return next(new Error('Password is shorter than 8 character'), 401);
+        }
+        // 5) If so, update password
+        if (req.body.password != req.body.passwordConfirm) {
+            return next(new Error('Password and password confirm not equal'), 401);
+        }
+        user.password = req.body.password;
+        await user.save();
+        res.locals.users = { historyCurrentPassword: "", historyPassword: "", historyConfirmPassword: "" };
+        res.render('instructor/myProfile', {
+            layout: "instructor",
+            page: 'changeform',
+            sidebar: "user-profile",
+            messages: "success"
+        });
+    }
+}
+
+
 export const getPreview = async (req, res, next) => {
     res.render('instructor/others', {
         layout: "instructor",
@@ -110,11 +266,10 @@ export const getPreview = async (req, res, next) => {
     });
 }
 
-export const getInstructorProfile = async (req, res, next) => {
-}
 
 
-export const getMyCourses = async function (req,res,next) {
+
+export const getMyCourses = async function (req, res, next) {
     //     const courseList = [
     //     {
     //         index: 1,
@@ -209,7 +364,7 @@ export const getMyCourses = async function (req,res,next) {
     let index = 1;
     if (res.locals.authUser.myCourses.length > 0) {
         for (const course_id of res.locals.authUser.myCourses) {
-            const thisCourse = await Course.findOne({_id: course_id}).lean();
+            const thisCourse = await Course.findOne({ _id: course_id }).lean();
             if (thisCourse) {
                 thisCourse.index = index;
                 courseList.push(thisCourse);
@@ -225,11 +380,11 @@ export const getMyCourses = async function (req,res,next) {
     });
 }
 
-export const getCourseDescription = catchAsync(async (req,res) => {
+export const getCourseDescription = catchAsync(async (req, res) => {
     const Categories = await Category.find({}).lean();
     let thisCourse = {};
     if (req.query.course) {
-        thisCourse = await Course.findOne({_id: req.query.course}).lean();
+        thisCourse = await Course.findOne({ _id: req.query.course }).lean();
     }
     res.render('instructor/addCourseDescription', {
         layout: "instructor",
@@ -239,12 +394,12 @@ export const getCourseDescription = catchAsync(async (req,res) => {
         course_id: thisCourse._id,
         course: thisCourse,
         sidebar: "my-course"
-        }
+    }
     );
 });
 
 
-export const editCourseDescription = catchAsync(async (req,res) => {
+export const editCourseDescription = catchAsync(async (req, res) => {
     // config storage
     const storage = multer.diskStorage({
         destination: async function (req, file, cb) {
@@ -255,19 +410,19 @@ export const editCourseDescription = catchAsync(async (req,res) => {
                     lower: true,
                     locale: "vi", strict: true
                 });
-                
+
                 const file_path = `public/courses/${slug_name}`;
-                
+
                 if (!fs.existsSync(file_path))
                     fs.mkdirSync(file_path);
-                
+
                 cb(null, file_path)
             }
             else {
-                const course = await Course.findById({_id: req.query.course}).lean();
+                const course = await Course.findById({ _id: req.query.course }).lean();
                 const file_path = `public/${course.img.substring(0, course.img.lastIndexOf('/'))}`;
                 req.filename = course.img.substring(course.img.lastIndexOf('/') + 1, course.img.length);
-                
+
                 cb(null, file_path)
             }
         },
@@ -286,16 +441,16 @@ export const editCourseDescription = catchAsync(async (req,res) => {
             }
         }
     });
-       
+
     const upload = multer({ storage: storage });
-    upload.single('courseImageFile')(req,res, async (err) => {
+    upload.single('courseImageFile')(req, res, async (err) => {
         res.locals.handlebars = "instructor/addCourseDescription";
         res.locals.layout = "instructor.hbs";
         if (err) console.error(err);
         else {
-          // if haven't registered course yet => create new one
+            // if haven't registered course yet => create new one
             if (!req.query.course) {
-                const foundCourse = await Course.findOne({name: req.body.course_title});
+                const foundCourse = await Course.findOne({ name: req.body.course_title });
                 // if user does not upload file
                 if (!req.hasFile) {
                     return res.render(res.locals.handlebars, {
@@ -325,7 +480,7 @@ export const editCourseDescription = catchAsync(async (req,res) => {
                     name: req.body.course_title,
                     img: `/${req.file.path.replace('public\\', '').replaceAll('\\', '/')}`,
                     details: req.body.full_description,
-                    slug: `/course/${slugify(req.body.course_title,{ lower: true, locale: "vi", strict: true })}`,
+                    slug: `/course/${slugify(req.body.course_title, { lower: true, locale: "vi", strict: true })}`,
                     description: req.body.short_description,
                     currency: req.body.price_currency,
                     price: req.body.price_amount,
@@ -351,93 +506,93 @@ export const editCourseDescription = catchAsync(async (req,res) => {
                     reviews: []
                 })
                 // add new course_id in my_course field
-                const thisInstructor = await User.findOne({_id: res.locals.authUser._id});
+                const thisInstructor = await User.findOne({ _id: res.locals.authUser._id });
                 thisInstructor.myCourses.push(newCourse._id);
                 await thisInstructor.save();
                 res.locals.authUser.myCourses = thisInstructor.myCourses;
-                return res.render('instructor/addCourseDescription',{
+                return res.render('instructor/addCourseDescription', {
                     layout: res.locals.layout,
                     course_id: newCourse._id,
                     message: "successAdded",
                     sidebar: "my-course"
                 });
             }
-          // if registered course => edit course description
+            // if registered course => edit course description
             else {
                 if (req.body.requestActionInDescription == "save_course_description") { // save course description
-                const thisCourse = await Course.findOne({_id: req.query.course});
-                let subcategory = [];
-                if (req.body.course_sub_category !== null && req.body.course_sub_category !== undefined) {
-                    subcategory = [...thisCourse.subcategory, req.body.course_sub_category];
+                    const thisCourse = await Course.findOne({ _id: req.query.course });
+                    let subcategory = [];
+                    if (req.body.course_sub_category !== null && req.body.course_sub_category !== undefined) {
+                        subcategory = [...thisCourse.subcategory, req.body.course_sub_category];
+                    }
+                    else subcategory = [...thisCourse.subcategory];
+
+                    await Course.findByIdAndUpdate(req.query.course, {
+                        name: req.body.course_title,
+                        img: (req.file && req.file.path) ? req.file.path.replace('public\\', '/').replaceAll('\\', '/') : thisCourse.img,
+                        details: req.body.full_description,
+                        description: req.body.short_description,
+                        currency: req.body.price_currency,
+                        price: req.body.price_amount,
+                        category: req.body.course_category,
+                        subcategory: subcategory
+                    })
+
+                    return res.render('instructor/addCourseDescription', {
+                        layout: res.locals.layout,
+                        course_id: req.query.course,
+                        message: "successSaved",
+                        sidebar: "my-course"
+                    });
                 }
-                else subcategory = [...thisCourse.subcategory];
-
-                await Course.findByIdAndUpdate(req.query.course, {
-                    name: req.body.course_title,
-                    img: (req.file && req.file.path) ? req.file.path.replace('public\\', '/').replaceAll('\\', '/') : thisCourse.img,
-                    details: req.body.full_description,
-                    description: req.body.short_description,
-                    currency: req.body.price_currency,
-                    price: req.body.price_amount,
-                    category: req.body.course_category,
-                    subcategory: subcategory 
-                })
-
-                return res.render('instructor/addCourseDescription',{
-                    layout: res.locals.layout,
-                    course_id: req.query.course,
-                    message: "successSaved",
-                    sidebar: "my-course"
-                });
-               }
-               else if (req.body.requestActionInDescription == "delete_course_description") { // delete 
-                // delete this course
-                await Course.deleteOne({_id: req.query.course});
-                // delete course_id in course detail
-                await CourseDetail.deleteOne({course_id: req.query.course});
-                // delete course_id in my_course field
-                const thisInstructor = await User.findOne({_id: res.locals.authUser._id});
-                const myCourses = thisInstructor.myCourses;
-                const newCourseList = myCourses.filter((course_id) => {
-                    return course_id != req.query.course;
-                })
-                thisInstructor.myCourses = newCourseList;
-                await thisInstructor.save();
-                res.locals.authUser.myCourses = newCourseList;
-                return res.render('instructor/addCourseDescription',{
-                    layout: res.locals.layout,
-                    message: "successDeleted",
-                    sidebar: "my-course"
-                });
-               }
+                else if (req.body.requestActionInDescription == "delete_course_description") { // delete 
+                    // delete this course
+                    await Course.deleteOne({ _id: req.query.course });
+                    // delete course_id in course detail
+                    await CourseDetail.deleteOne({ course_id: req.query.course });
+                    // delete course_id in my_course field
+                    const thisInstructor = await User.findOne({ _id: res.locals.authUser._id });
+                    const myCourses = thisInstructor.myCourses;
+                    const newCourseList = myCourses.filter((course_id) => {
+                        return course_id != req.query.course;
+                    })
+                    thisInstructor.myCourses = newCourseList;
+                    await thisInstructor.save();
+                    res.locals.authUser.myCourses = newCourseList;
+                    return res.render('instructor/addCourseDescription', {
+                        layout: res.locals.layout,
+                        message: "successDeleted",
+                        sidebar: "my-course"
+                    });
+                }
             }
         }
     });
 });
 
 
-export const getCourseContent = catchAsync(async (req,res) => {
+export const getCourseContent = catchAsync(async (req, res) => {
     res.locals.handlebars = "instructor/addCourseContent";
     res.locals.layout = "instructor.hbs";
     // if haven't registered course yet
     if (!req.query.course) {
-        return res.render('instructor/addCourseContent',{
+        return res.render('instructor/addCourseContent', {
             layout: res.locals.layout,
             message: "You need to add your course description first. Please try again!",
             sidebar: "my-course"
         });
     }
-   
-    const course = await Course.findById({_id: req.query.course}).lean();
-    const thisCourseLectures = await Course.findById({_id: req.query.course}).select('lectures');
+
+    const course = await Course.findById({ _id: req.query.course }).lean();
+    const thisCourseLectures = await Course.findById({ _id: req.query.course }).select('lectures');
     const course_id = req.query.course;
     const section_id = req.query.section;
     // pre processing url
     let my_url = req.originalUrl;
     if (my_url.includes("&lesson")) {
-       const temp_url = my_url;
-       const lesson_id = temp_url.split("&lesson=").pop();
-       my_url = temp_url.replace(`&lesson=${lesson_id}`, "");
+        const temp_url = my_url;
+        const lesson_id = temp_url.split("&lesson=").pop();
+        my_url = temp_url.replace(`&lesson=${lesson_id}`, "");
     }
     let foundLesson = {
         title: ""
@@ -483,19 +638,19 @@ export const getCourseContent = catchAsync(async (req,res) => {
 });
 
 
-export const editCourseContent = catchAsync(async(req,res,next) => {
+export const editCourseContent = catchAsync(async (req, res, next) => {
     res.locals.handlebars = "instructor/addCourseContent";
     res.locals.layout = "instructor.hbs";
 
     // config storage
     const storage = multer.diskStorage({
-        destination: async function(req, file, cb) {
+        destination: async function (req, file, cb) {
             req.hasFile = true;
             if (!req.query.lesson && req.query.section) { // add new lesson
-                req.course = await Course.findById({_id: req.query.course}).lean();
+                req.course = await Course.findById({ _id: req.query.course }).lean();
                 const thisSection = req.course.lectures.sections.find(section => section._id.toString() === req.query.section.toString());
-                const section_dir = slugify(thisSection.title, {lower: true, locale: 'vi', strict: true });
-                const course_slug = req.course.slug.replace('/course/', '/courses/');                
+                const section_dir = slugify(thisSection.title, { lower: true, locale: 'vi', strict: true });
+                const course_slug = req.course.slug.replace('/course/', '/courses/');
                 if (!fs.existsSync(`public/${course_slug}/${section_dir}`)) {
                     fs.mkdirSync(`public${course_slug}/${section_dir}`);
                 }
@@ -503,7 +658,7 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
             }
             else if (req.query.lesson) { // edit lesson
                 let foundLesson = {}; // find that lesson
-                req.thisCourseLectures = await Course.findById({_id: req.query.course}).select('lectures');
+                req.thisCourseLectures = await Course.findById({ _id: req.query.course }).select('lectures');
                 req.thisCourseLectures.lectures.sections.forEach(section => {
                     const queryLessons = section.lessons.filter(lesson => {
                         return lesson._id.toString() === req.query.lesson;
@@ -522,7 +677,7 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
         filename: function (req, file, cb) {
             const file_ext = file.originalname.substring(file.originalname.lastIndexOf('.'), file.originalname.length).split('.')[1];
             if (!req.query.lesson && req.query.section) {
-                const lesson_slug = slugify(req.body.lecture_title, {lower: true, locale: 'vi', strict: true});
+                const lesson_slug = slugify(req.body.lecture_title, { lower: true, locale: 'vi', strict: true });
 
                 cb(null, `${lesson_slug}.${file_ext}`);
             }
@@ -531,14 +686,14 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                 cb(null, `${only_name}.${file_ext}`);
             }
         }
-    })   
-    const upload = multer({ fileFilter: fileFilter, storage: storage});
-    upload.single('videoUploadFile')(req,res, async (err) => {
+    })
+    const upload = multer({ fileFilter: fileFilter, storage: storage });
+    upload.single('videoUploadFile')(req, res, async (err) => {
         if (err) console.error(err);
         else {
-            const course = req.course ? req.course : await Course.findById({_id: req.query.course}).lean();
-            const thisCourseLectures = (req.thisCourseLectures) ? req.thisCourseLectures : await Course.findById({_id: req.query.course}).select('lectures');
-            const thisCourseSlug = await Course.findById({_id: req.query.course}).select('slug');
+            const course = req.course ? req.course : await Course.findById({ _id: req.query.course }).lean();
+            const thisCourseLectures = (req.thisCourseLectures) ? req.thisCourseLectures : await Course.findById({ _id: req.query.course }).select('lectures');
+            const thisCourseSlug = await Course.findById({ _id: req.query.course }).select('slug');
             const limit = 2; // limit sections (pagination)
             // if user add new section
             if (req.query.section == "") {
@@ -560,13 +715,13 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                     sidebar: "my-course"
                 })
             }
-             // if user edit  section
-            else if (req.body.requestActionInSection  == 'save_section') {
+            // if user edit  section
+            else if (req.body.requestActionInSection == 'save_section') {
                 let thisSection = thisCourseLectures.lectures.sections.filter((section) => {
                     return section._id.toString() === req.query.section;
                 });
                 thisSection = thisSection[0]; // get section out of an array
-                thisSection.title = req.body.section_title; 
+                thisSection.title = req.body.section_title;
                 await thisCourseLectures.save();
                 return res.render('instructor/addCourseContent', {
                     layout: "instructor",
@@ -577,20 +732,20 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                 })
             }
             // if user delete section
-            else if (req.body.requestActionInSection  == "delete_section") {
+            else if (req.body.requestActionInSection == "delete_section") {
                 const newSectionArray = thisCourseLectures.lectures.sections.filter((section) => {
                     if (section._id.toString() == req.query.section.toString()) {
                         const course_slug = thisCourseSlug.slug.replace('/course/', '');
-                        const section_dir = slugify(section.title, {lower: true, locale: 'vi', strict: true });
+                        const section_dir = slugify(section.title, { lower: true, locale: 'vi', strict: true });
                         const folderPath = `public/courses/${course_slug}/${section_dir}`;
                         if (fs.existsSync(folderPath)) {
-                            fs.rmSync(folderPath, { recursive: true});
+                            fs.rmSync(folderPath, { recursive: true });
                         }
                     }
                     return section._id.toString() !== req.query.section.toString();
                 })
                 const nPagesCurrent = Math.ceil(newSectionArray.length / limit);
-                const page = nPagesCurrent < req.query.page ? Math.max(nPagesCurrent,1) : req.query.page;
+                const page = nPagesCurrent < req.query.page ? Math.max(nPagesCurrent, 1) : req.query.page;
                 thisCourseLectures.lectures.sections = newSectionArray;
                 await thisCourseLectures.save();
                 return res.render('instructor/addCourseContent', {
@@ -640,7 +795,7 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                         return section._id.toString() === req.query.section;
                     });
                     thisSection = thisSection[0]; // get section out of an array
-                    const lecture_slug = slugify(req.body.lecture_title, {lower: true, locale: 'vi', strict: true});
+                    const lecture_slug = slugify(req.body.lecture_title, { lower: true, locale: 'vi', strict: true });
                     const newLesson = {
                         title: req.body.lecture_title,
                         resources: [],
@@ -658,10 +813,10 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                             lower: true,
                             locale: "vi", strict: true
                         });
-                        const file_name = lesson.video.substring(lesson.video.lastIndexOf('/'),lesson.video.length).split('.')[0];
+                        const file_name = lesson.video.substring(lesson.video.lastIndexOf('/'), lesson.video.length).split('.')[0];
                         return lesson.title === req.body.lecture_title || file_name === slug_name;
                     });
-                    if(foundLesson) {
+                    if (foundLesson) {
                         return res.render('instructor/addCourseContent', {
                             layout: "instructor",
                             course_id: req.query.course,
@@ -680,7 +835,7 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                         sidebar: "my-course"
                     })
                 }
-               
+
             }
             else if (req.body.requestAction === "delete_lesson") { // if user delete a lesson
                 let thisSection = thisCourseLectures.lectures.sections.filter((section) => {
@@ -704,7 +859,7 @@ export const editCourseContent = catchAsync(async(req,res,next) => {
                     sidebar: "my-course"
                 })
             }
-             // if user finish the course
+            // if user finish the course
             else if (req.body.requestAction === "finish") {
                 const thisCourse = await Course.findById(req.query.course);
                 thisCourse.finish = 1;
