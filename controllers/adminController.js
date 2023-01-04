@@ -129,18 +129,20 @@ export const editSubCategories = catchAsync(async (req, res) => {
     { subcategories: [...getOldCategoryData] }
   ).lean();
 
-  const getOldCourse = await Course.findOne({ category: getOldCategory.title }).lean();
-  if(getOldCourse!==null){
-    let getOldCourseData = getOldCourse.subcategory;
-    for(let i=0; i<getOldCourseData.length; i++){
-      if(getOldCourseData[i] === tempNameCat){
-        getOldCourseData[i]= req.body.subcat;
+  const getOldCourseObj = await Course.find({ category: getOldCategory.title }).lean();
+  let getOldCourse=[...getOldCourseObj];
+  for(let i=0; i<getOldCourse.length; i++){
+    let getOldCourseData = getOldCourse[i].subcategory;
+    for(let j=0; j<getOldCourseData.length; j++){
+      if(getOldCourseData[j] === tempNameCat){
+        getOldCourseData[j]= req.body.subcat;
+        await Course.updateMany(
+          { _id: getOldCourse[i]._id },
+          { subcategory: [...getOldCourseData] }
+        ).lean(); 
+        break;
       }
-    }
-    await Category.updateOne(
-      { category: getOldCategory.title },
-      { subcategory: [...getOldCourseData] }
-    ).lean();
+    } 
   }
   
   res.redirect("/admin/categories");
