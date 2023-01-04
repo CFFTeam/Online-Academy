@@ -130,10 +130,7 @@ export const getPreview = (async (req,res) => {
        const lesson_id = temp_url.split("&lesson=").pop();
        my_url = temp_url.replace(`&lesson=${lesson_id}`, "");
     }
-    let foundLesson = {
-        title: ""
-    };
-    let section_found = {};
+    let foundLesson = null;
     if (req.query.lesson) {
         thisCourseLectures.lectures.sections.forEach(section => {
             const queryLessons = section.lessons.filter(lesson => {
@@ -166,7 +163,9 @@ export const getPreview = (async (req,res) => {
         prev_page: prev_page,
         next_page: next_page,
         lesson: {
-            title: foundLesson.title
+            title: foundLesson ? foundLesson.title : "",
+            _id: foundLesson ? foundLesson.id : "",
+            video: foundLesson ? foundLesson.video : ""
         },
         sidebar: "my-course"
     });

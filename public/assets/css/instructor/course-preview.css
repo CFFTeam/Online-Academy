@@ -146,17 +146,6 @@
 }
 
 
-/* backdrop */
-.backdrop {
-    position: fixed;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    background: rgba(0, 0, 0, 0.3);
-    z-index: 20;
-    display: none
-}
 
 
 .lecture-info:nth-child(1)
@@ -244,8 +233,9 @@
     background-color: rgb(55, 158, 98);
 }
 
-div.lesson > div.preview-lesson-content > form > button.preview-lesson-btn
+div.lesson > div.preview-lesson-content >  a.preview-lesson-btn
 {
+    text-decoration: none;
     font-weight: 500;
     font-size: 1.4rem;
     border-radius: 8px;
@@ -256,12 +246,35 @@ div.lesson > div.preview-lesson-content > form > button.preview-lesson-btn
     transition: all 0.1s ease-in;
 }
 
-div.lesson > div.preview-lesson-content > form > button.preview-lesson-btn:hover
+div.lesson > div.preview-lesson-content >  a.preview-lesson-btn:hover
 {
     background-color: #fff;
     color: #868e96;
     border: 2px solid #868e96;
 }
+
+
+/* backdrop */
+.backdrop {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 20;
+    display: none
+}
+
+div.backdrop > video
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+}
+
 
 .hide {
     display: none;

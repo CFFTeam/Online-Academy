@@ -18,11 +18,11 @@
         <div class="lesson">
             <span class="lesson-title"><img src="/assets/svg/instructor/lesson.svg" alt="lesson">{{title}}</span>
             <div class="preview-lesson-content">
-                {{!-- <form action="{{../../url}}&section={{../_id}}&lesson={{this._id}}" method="get">
+                {{!-- <form action="{{../../url}}&lesson={{this._id}}" method="get">
                     <button name="requestAction" value="preview_lesson" class="preview-lesson-btn" type="submit">PREVIEW</button>
                 </form> --}}
-                    <button name="requestAction" value="preview_lesson" class="preview-lesson-btn" type="submit">PREVIEW</button>
-
+                <a href="{{../../url}}&lesson={{this._id}}" class = "preview-lesson-btn">PREVIEW</a>
+                {{!-- <button name="requestAction" value="preview_lesson" class="preview-lesson-btn" type="submit">PREVIEW</button> --}}
             </div>
         </div>
         {{/each}}
@@ -44,24 +44,28 @@
         {{/if}}
     </div>
 </div>
-{{!-- backdrop --}}
-<div class="backdrop hide"></div>
-
+{{!-- backdrop & video--}}  
+<div class="{{#if lesson.video}}show {{#else}}hide {{/else}}{{/if}}backdrop">
+    <video src={{lesson.video}} id = {{lesson._id}} controls></video>
+</div>
 <script>
     // if user click preview button
     $(".preview-lesson-btn").click(() => {
         $('.backdrop').removeClass("hide");
-        $('.video').removeClass("hide");
         $('.backdrop').addClass("show");
-        $('.video').addClass("show");
     })
     //  if user click backdrop
     $(".backdrop").click(() => {
         $('.backdrop').removeClass("show");
-        $('.video').removeClass("show");
         $('.backdrop').addClass("hide");
-        $('.video').addClass("hide");
+        $('#{{lesson._id}}').trigger('pause');
     })
+
+    $('#{{lesson._id}}').click((event) => {
+        event.stopPropagation();
+    });
+    
+
     // display message when user upload file
    
 </script>
