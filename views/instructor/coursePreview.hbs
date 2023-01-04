@@ -18,9 +18,11 @@
         <div class="lesson">
             <span class="lesson-title"><img src="/assets/svg/instructor/lesson.svg" alt="lesson">{{title}}</span>
             <div class="preview-lesson-content">
-                <form action="{{../../url}}&section={{../_id}}&lesson={{this._id}}" method="post">
+                {{!-- <form action="{{../../url}}&section={{../_id}}&lesson={{this._id}}" method="get">
                     <button name="requestAction" value="preview_lesson" class="preview-lesson-btn" type="submit">PREVIEW</button>
-                </form>
+                </form> --}}
+                    <button name="requestAction" value="preview_lesson" class="preview-lesson-btn" type="submit">PREVIEW</button>
+
             </div>
         </div>
         {{/each}}
@@ -43,30 +45,28 @@
     </div>
 </div>
 {{!-- backdrop --}}
-<div class="{{#if lesson.title}}show {{/if}}{{#if section_id}}show {{/if}}backdrop"></div>
+<div class="backdrop hide"></div>
 
 <script>
-    // show/hide overlay and edit lesson form when user click
-    $(".backdrop, .cancel-btn").click(() => {
+    // if user click preview button
+    $(".preview-lesson-btn").click(() => {
+        $('.backdrop').removeClass("hide");
+        $('.video').removeClass("hide");
+        $('.backdrop').addClass("show");
+        $('.video').addClass("show");
+    })
+    //  if user click backdrop
+    $(".backdrop").click(() => {
         $('.backdrop').removeClass("show");
-        $('.handle-lesson-form').removeClass("show");
+        $('.video').removeClass("show");
         $('.backdrop').addClass("hide");
-        $('.handle-lesson-form').addClass("hide");
-    })
-
-    // set file name when uploading
-    $('#videoUploadFile').change(function (event) {
-        const filename = event.target.files[0].name;
-        $('.upload-video-message').text(filename);
-        $('.upload-video-message').css("color", "#495057");
-    })
-    // cancel upload
-    $('.cancel-upload-btn').click(() => {
-        $('#videoUploadFile').val(null);
-        $('.upload-video-message').text("Drop video files here or click to choose");
+        $('.video').addClass("hide");
     })
     // display message when user upload file
-    if ("{{message}}" == "success") {
+   
+</script>
+
+ {{!-- if ("{{message}}" == "success") {
         alert("Your change was saved successfully...");
         window.location.replace("http://localhost:5000/instructor/add-course-content/?course={{course_id}}&page={{page}}");
     }
@@ -84,6 +84,4 @@
     else if ("{{message}}" != "success" && ("{{message}}" != "")) {
         alert("{{message}}");
         window.location.replace("http://localhost:5000/instructor/add-course-content/?course={{course_id}}&page={{page}}");
-    }
-</script>
-
+    } --}}

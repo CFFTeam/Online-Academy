@@ -262,3 +262,11 @@ div.lesson > div.preview-lesson-content > form > button.preview-lesson-btn:hover
     color: #868e96;
     border: 2px solid #868e96;
 }
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}

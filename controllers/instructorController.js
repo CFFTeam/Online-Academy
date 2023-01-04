@@ -113,13 +113,12 @@ export const getPreview = (async (req,res) => {
     res.locals.layout = "instructor.hbs";
     // if haven't registered course yet
     if (!req.query.course) {
-        return res.render(res.locals.handlebars,{
+        return res.render("instructor/addCourseDescription",{
             layout: res.locals.layout,
             message: "You need to add your course description first. Please try again!",
             sidebar: "my-course"
         });
     }
-   
     const course = await Course.findById({_id: req.query.course}).lean();
     const thisCourseLectures = await Course.findById({_id: req.query.course}).select('lectures');
     const course_id = req.query.course;
@@ -157,7 +156,6 @@ export const getPreview = (async (req,res) => {
     const next_page = +page + 1 <= nPages ? +page + 1 : false;
     res.render(res.locals.handlebars, {
         layout: res.locals.layout,
-        // sections: course.lectures.sections,
         sections: sections,
         sections_empty: true,
         url: my_url,
