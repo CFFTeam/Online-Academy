@@ -1,0 +1,264 @@
+/* curriculum */
+.course-content
+{
+    margin-left: 10rem;
+    width: 70%;
+}
+.curriculum
+{
+    margin-top: 5rem;
+    padding: 1rem 2rem;
+    font-size: 1.6rem;
+    min-height: 5rem;
+    box-shadow: 0 0 10px rgba(0,0,0,20%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Montserrat;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #00A551;
+}
+
+.mode {
+    display: flex;
+    gap: 3rem;
+    font-family: Montserrat;
+    font-size: 1.8rem;
+}
+
+.mode a 
+{
+    color: #000;
+    font-weight: 700;
+    padding: 0.5rem 1.6rem;
+    text-decoration: none;
+    border-radius: 7px;
+    border: 1px solid #343a40;
+}
+
+.mode a:hover {
+    color: #fff;
+    background-color: #2FC397;
+    border: 1px solid transparent;
+}
+
+.mode .active
+{
+ border: 2px solid transparent;
+ color: #fff;
+ background-color: #2FC397;
+}
+
+
+.mode .active:hover
+{
+    border: 2px solid transparent;
+    color: #fff;
+    background-color: #2FC397;
+}
+
+/* section */
+.section {
+    margin-top: 4rem;
+    font-family: Montserrat;
+    font-size: 1.6rem;
+}
+.section .section-heading
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #D9D9D9;
+    height: 5rem;
+    font-size: 2rem;
+    padding: 0rem 1.5rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-top: 3rem;
+}
+
+.section .section-heading button 
+{
+    margin-top: 0;
+    background-color: transparent;
+    border: none;
+}
+
+.section-heading .section-title 
+{
+    flex: 1;
+}
+
+
+.section-title > form > input
+{
+    border: none;
+    background-color: transparent;
+    font-size: 1.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    outline-color: #adb5bd;
+    width: 70%;
+}
+
+
+
+
+/* lesson */
+.section .lesson {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #F1F3F5;
+    height: 5rem;
+    font-size: 2rem;
+    padding: 0rem 1.5rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.section:last-child
+{
+    margin-bottom: 0;
+}
+
+.section .lesson > .lesson-title
+{
+    font-size: 1.6rem; 
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.section .lesson button
+{
+    border: none;
+}
+
+
+
+.preview-lesson-content
+{
+    display: flex;
+    gap: 2rem;
+}
+
+
+/* backdrop */
+.backdrop {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 20;
+    display: none
+}
+
+
+.lecture-info:nth-child(1)
+{
+    margin-left: -3rem;
+    
+}
+
+.form-group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin: 1.3rem 0rem 0rem 3.6rem;
+    font-family: Montserrat;
+}
+  
+  .form-group label {
+    color: #000;
+    font-weight: 700;
+  }
+  
+  .form-group input {
+    width: 95%;
+    border-radius: 10px;
+    height: 3.6rem;
+    padding: 0rem 1.5rem;
+    background-color: #f4f4f4;
+    border: none;
+    /* outline: none; */
+  }
+
+  .form-group textarea {
+    padding: 1rem;
+    border: none;
+    box-shadow: 0 0 10px rgba(0,0,0,20%);
+    resize: none;
+    border: none;
+    outline: none;
+  }
+
+/* section heading newest */
+
+.section-title  > input
+{
+    border: none;
+    background-color: transparent;
+    font-size: 1.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    outline-color: #adb5bd;
+    width: 70%;
+}
+
+/* pagination */
+
+.course-content > .page-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 5rem;
+}
+
+.course-content > .page-group > .page-items {
+    height: 4rem;
+    width: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: .5rem;
+    font-weight: 600;
+    box-shadow: 0rem 0rem .4rem 0rem rgba(0, 0, 0, 0.15);
+    transition: all .15s ease-in-out;
+}
+
+.course-content > .page-group > .page-items:hover,
+.course-content > .page-group > .page-items.active:hover {
+    color: white;
+    background-color: rgb(51, 117, 79);
+}
+
+.course-content > .page-group > .page-items.active {
+    color: white;
+    background-color: rgb(55, 158, 98);
+}
+
+div.lesson > div.preview-lesson-content > form > button.preview-lesson-btn
+{
+    font-weight: 500;
+    font-size: 1.4rem;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    background-color: #868e96;
+    color: #fff;
+    border: 2px solid transparent;
+    transition: all 0.1s ease-in;
+}
+
+div.lesson > div.preview-lesson-content > form > button.preview-lesson-btn:hover
+{
+    background-color: #fff;
+    color: #868e96;
+    border: 2px solid #868e96;
+}
