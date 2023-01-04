@@ -258,14 +258,71 @@ export const updateInstructorProfile = async (req, res, next) => {
     }
 }
 
+export const getPreview = (async (req, res) => {
+    res.locals.handlebars = "instructor/coursePreview";
+    res.locals.layout = "instructor.hbs";
+    // if haven't registered course yet
+    if (!req.query.course) {
+        return res.render(res.locals.handlebars, {
+            layout: res.locals.layout,
+            message: "You need to add your course description first. Please try again!",
+            sidebar: "my-course"
+        });
+    }
 
-export const getPreview = async (req, res, next) => {
-    res.render('instructor/others', {
-        layout: "instructor",
+    const course = await Course.findById({ _id: req.query.course }).lean();
+    const thisCourseLectures = await Course.findById({ _id: req.query.course }).select('lectures');
+    const course_id = req.query.course;
+    const section_id = req.query.section;
+    // pre processing url
+    let my_url = req.originalUrl;
+    if (my_url.includes("&lesson")) {
+        const temp_url = my_url;
+        const lesson_id = temp_url.split("&lesson=").pop();
+        my_url = temp_url.replace(`&lesson=${lesson_id}`, "");
+    }
+    let foundLesson = {
+        title: ""
+    };
+    let section_found = {};
+    if (req.query.lesson) {
+        thisCourseLectures.lectures.sections.forEach(section => {
+            const queryLessons = section.lessons.filter(lesson => {
+                return lesson._id.toString() === req.query.lesson;
+            });
+            if (queryLessons[0]) {
+                foundLesson = queryLessons[0];
+                return;
+            }
+        })
+        await thisCourseLectures.save();
+    }
+    // Pagination sections
+    const page = req.query.page * 1 || 1;
+    const limit = 2;
+    const sections = course.lectures.sections.slice((page - 1) * limit, page * limit);
+    const nPages = Math.ceil(course.lectures.sections.length / limit);
+    const pageList = getPageList(nPages);
+    const prev_page = +page - 1 > 0 ? +page - 1 : false;
+    const next_page = +page + 1 <= nPages ? +page + 1 : false;
+    res.render(res.locals.handlebars, {
+        layout: res.locals.layout,
+        // sections: course.lectures.sections,
+        sections: sections,
+        sections_empty: true,
+        url: my_url,
+        course_id: course_id,
+        section_id: section_id,
+        pageList: pageList,
+        page: page,
+        prev_page: prev_page,
+        next_page: next_page,
+        lesson: {
+            title: foundLesson.title
+        },
         sidebar: "my-course"
     });
-}
-
+});
 
 
 

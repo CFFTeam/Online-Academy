@@ -38,7 +38,11 @@ export const loadCourse = catchAsync(async (req, res, next) => {
     section_numer = (section_numer) ? section_numer : 1;
 
     const course_section = course.lectures.sections[section_numer - 1];
-    const course_lessons = (founded_lessons) ? founded_lessons : (course_section) ? course_section.lessons.find(lesson => lesson.url && lesson.url === lesson_url) || null : null;
+    const course_lessons = (founded_lessons) 
+                            ? founded_lessons 
+                            : (course_section) 
+                            ? course_section.lessons.find(lesson => lesson.url && lesson.url === lesson_url) || null 
+                            : null;
 
     if (!course_section) 
         return res.redirect(`${slug_course}`);

@@ -1,0 +1,89 @@
+<div class="course-content">
+    <div class="curriculum">
+        <span class="title">Curriculum</span>
+        <div class="mode">
+            <a href="/instructor/preview/?course={{course_id}}" class="active">Preview</a>
+            <a href="/instructor/add-course-description/?course={{course_id}}">Description</a>
+            <a href="/instructor/add-course-content?course={{course_id}}">Content</a>
+        </div>
+    </div>
+    <div class="section">
+        {{#each this.sections}}
+         <form class="section-heading" action="{{../url}}&section={{this._id}}" method = "post">
+            <div class="section-title">
+                <input type="text" class="txtSectionTitle" name="section_title" value="{{this.title}}">
+            </div>
+        </form>
+        {{#each lessons}}
+        <div class="lesson">
+            <span class="lesson-title"><img src="/assets/svg/instructor/lesson.svg" alt="lesson">{{title}}</span>
+            <div class="preview-lesson-content">
+                <form action="{{../../url}}&section={{../_id}}&lesson={{this._id}}" method="post">
+                    <button name="requestAction" value="preview_lesson" class="preview-lesson-btn" type="submit">PREVIEW</button>
+                </form>
+            </div>
+        </div>
+        {{/each}}
+        {{/each}}
+    </div>
+    <div class="page-group">
+        {{#if prev_page}}
+            <a class="page-items" href="?course={{course_id}}&page={{prev_page}}"><i class="fa-solid fa-chevron-left"></i></a>
+        {{/if}}
+        {{#each pageList}}
+            {{#if (eq this "...")}}
+            <span class="page-items">{{this}}</span>
+            {{else}}
+            <a class="page-items{{#if (eq ../page this)}} active{{/if}}" href="?course={{../course_id}}&page={{this}}">{{this}}</a>
+            {{/if}}
+        {{/each}}
+        {{#if next_page}}
+            <a class="page-items" href="?course={{course_id}}&page={{next_page}}"><i class="fa-solid fa-chevron-right"></i></a>
+        {{/if}}
+    </div>
+</div>
+{{!-- backdrop --}}
+<div class="{{#if lesson.title}}show {{/if}}{{#if section_id}}show {{/if}}backdrop"></div>
+
+<script>
+    // show/hide overlay and edit lesson form when user click
+    $(".backdrop, .cancel-btn").click(() => {
+        $('.backdrop').removeClass("show");
+        $('.handle-lesson-form').removeClass("show");
+        $('.backdrop').addClass("hide");
+        $('.handle-lesson-form').addClass("hide");
+    })
+
+    // set file name when uploading
+    $('#videoUploadFile').change(function (event) {
+        const filename = event.target.files[0].name;
+        $('.upload-video-message').text(filename);
+        $('.upload-video-message').css("color", "#495057");
+    })
+    // cancel upload
+    $('.cancel-upload-btn').click(() => {
+        $('#videoUploadFile').val(null);
+        $('.upload-video-message').text("Drop video files here or click to choose");
+    })
+    // display message when user upload file
+    if ("{{message}}" == "success") {
+        alert("Your change was saved successfully...");
+        window.location.replace("http://localhost:5000/instructor/add-course-content/?course={{course_id}}&page={{page}}");
+    }
+    else if ("{{message}}" == "You need to add your course description first. Please try again!")
+    {
+        alert("{{message}}");
+        window.location.replace("http://localhost:5000/instructor/add-course-description");
+    }
+    else if ("{{message}}" == "finish")
+    {
+        alert("Congratulations! You finally finished this course and you can update later whatever you want.");
+        window.location.replace("http://localhost:5000/instructor/add-course-content/?course={{course_id}}&page={{page}}");
+    }
+    // if failed
+    else if ("{{message}}" != "success" && ("{{message}}" != "")) {
+        alert("{{message}}");
+        window.location.replace("http://localhost:5000/instructor/add-course-content/?course={{course_id}}&page={{page}}");
+    }
+</script>
+
