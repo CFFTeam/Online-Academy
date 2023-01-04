@@ -88,7 +88,11 @@ export const updateProfilePage = catchAsync(async (req, res, next) => {
 
     await user.save();
 
-    res.render("userProfile/userProfile", { user: user, page: 'editform', messages: "profile success" });
+    res.render("userProfile/userProfile", {
+      user: user,
+      page: 'editform',
+      messages: "profile success"
+    });
   }
   else if (submitForm == "editPassword") {
     res.locals.handlebars = "userProfile/userProfile";
@@ -108,7 +112,6 @@ export const updateProfilePage = catchAsync(async (req, res, next) => {
     await user.save();
 
     res.render("userProfile/userProfile", { user: user, page: 'changeform', messages: "success" });
-
   }
 });
 
