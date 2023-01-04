@@ -263,15 +263,14 @@ export const getPreview = (async (req, res) => {
     res.locals.layout = "instructor.hbs";
     // if haven't registered course yet
     if (!req.query.course) {
-        return res.render(res.locals.handlebars, {
+        return res.render("instructor/addCourseDescription",{
             layout: res.locals.layout,
             message: "You need to add your course description first. Please try again!",
             sidebar: "my-course"
         });
     }
-
-    const course = await Course.findById({ _id: req.query.course }).lean();
-    const thisCourseLectures = await Course.findById({ _id: req.query.course }).select('lectures');
+    const course = await Course.findById({_id: req.query.course}).lean();
+    const thisCourseLectures = await Course.findById({_id: req.query.course}).select('lectures');
     const course_id = req.query.course;
     const section_id = req.query.section;
     // pre processing url
@@ -281,10 +280,7 @@ export const getPreview = (async (req, res) => {
         const lesson_id = temp_url.split("&lesson=").pop();
         my_url = temp_url.replace(`&lesson=${lesson_id}`, "");
     }
-    let foundLesson = {
-        title: ""
-    };
-    let section_found = {};
+    let foundLesson = null;
     if (req.query.lesson) {
         thisCourseLectures.lectures.sections.forEach(section => {
             const queryLessons = section.lessons.filter(lesson => {
@@ -307,7 +303,6 @@ export const getPreview = (async (req, res) => {
     const next_page = +page + 1 <= nPages ? +page + 1 : false;
     res.render(res.locals.handlebars, {
         layout: res.locals.layout,
-        // sections: course.lectures.sections,
         sections: sections,
         sections_empty: true,
         url: my_url,
@@ -318,7 +313,9 @@ export const getPreview = (async (req, res) => {
         prev_page: prev_page,
         next_page: next_page,
         lesson: {
-            title: foundLesson.title
+            title: foundLesson ? foundLesson.title : "",
+            _id: foundLesson ? foundLesson.id : "",
+            video: foundLesson ? foundLesson.video : ""
         },
         sidebar: "my-course"
     });

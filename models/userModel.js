@@ -23,6 +23,20 @@ const userSchema = new mongoose.Schema({
     type: Array,
     default: []
   },
+  my_progress: {
+    type: [{
+      course_id: String,
+      total: Number,
+      progress: [{
+        lesson_id: String,
+        status: {
+          type: Boolean,
+          default: false
+        }
+      }]
+    }],
+    default: []
+  },
   facebookId: String,
   googleId: String,
   githubId: String,
@@ -48,7 +62,7 @@ const userSchema = new mongoose.Schema({
   passwordResetExpires: Date,
   active: {
     type: Boolean,
-    default: true,
+    default: true
   }
 });
 

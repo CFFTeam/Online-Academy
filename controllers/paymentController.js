@@ -50,11 +50,30 @@ export const updateShoppingCart = catchAsync(async (req, res, next) => {
       const shoppingCart = Object.values(await ShoppingCart.find({ user_id: res.locals.authUser._id }));
       if (shoppingCart && shoppingCart.length > 0) {
         for (const sc of shoppingCart) {
+          const courses = await Course.findOne({ _id: sc.course_id }).lean();
+          
           const user = await User.findOne({ _id: res.locals.authUser._id });
+          
+          const current_course = {
+            course_id: sc.course_id,
+            total: courses.lectures.total,
+            progress: []
+          };
+
+          courses.lectures.sections.forEach(section => {
+            section.lessons.forEach(lesson => {
+              current_course.progress.push({
+                lesson_id: lesson._id,
+                status: false
+              });
+            });
+          });
+
           await User.updateOne(
             { _id: sc.user_id },
-            { myCourses: [...user.myCourses, sc.course_id] })
-          await ShoppingCart.deleteOne({ _id: sc._id });
+            { myCourses: [...user.myCourses, sc.course_id], my_progress: [...user.my_progress, current_course] })
+          
+            await ShoppingCart.deleteOne({ _id: sc._id });
         }
       }
     }

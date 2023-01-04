@@ -9,20 +9,19 @@ export const loadCourse = catchAsync(async (req, res, next) => {
     const slug_lesson = req.originalUrl;
     const slug_course = slug_lesson.substring(0, slug_lesson.indexOf(slug_course_name) + slug_course_name.length);
 
-    const my_course = User.findOne({ myCourses: { $in: [slug_course] } }).lean();
-    
-    if (!my_course || (req.session.auth === false && !req.session.passport)) {
+    if (req.session.auth === false && !req.session.passport)
         return res.redirect(`${slug_course}`);
-    }
 
+    const course = await Course.findOne({ slug: slug_course }).lean();
+    if (!course)
+        return res.redirect(`${slug_course}`);
+
+    const my_course = await User.findOne({ _id: res.locals.authUser._id, myCourses: { $in: [course._id.toString()] } }).lean();
+    if (!my_course)
+        return res.redirect(`${slug_course}`);
+    
     const lesson_url = slug_lesson.split('?')[0];
     
-    const course = await Course.findOne({ slug: slug_course }).lean();
-
-    if (!course) {
-        return res.redirect(`${slug_course}`);
-    }
-
     let founded_lessons = null;
 
     if (!section_numer && slug_lesson_name) {
@@ -44,12 +43,11 @@ export const loadCourse = catchAsync(async (req, res, next) => {
                             ? course_section.lessons.find(lesson => lesson.url && lesson.url === lesson_url) || null 
                             : null;
 
-    if (!course_section) 
+    if (!course_section || !course_section.lessons.length) 
         return res.redirect(`${slug_course}`);
 
-    if (!course_lessons || !slug_lesson_name) { 
+    if (!course_lessons || !slug_lesson_name)
         return res.redirect(`${course_section.lessons[0].url}?section=${section_numer}`);
-    }
 
     req.course = course;
     req.watch_info = {
@@ -67,11 +65,41 @@ export const loadCourse = catchAsync(async (req, res, next) => {
     next();
 });
 
+export const loadCourseProgress = catchAsync(async (req, res, next) => { 
+
+});
+
 export const watchingCourse = catchAsync(async (req, res) => {
     res.locals.handlebars = 'learning/course_learning';
 
     res.render(res.locals.handlebars, {
         course: req.course,
         watch_info: req.watch_info
+    });
+});
+
+export const progressCourse = catchAsync(async (req, res) => {
+    const { course_id, lesson_id, status } = req.body;
+
+    if (req.session.auth === false && !req.session.passport)
+        return res.redirect(`${slug_course}`);
+
+    const my_course = await User.findOne({ _id: res.locals.authUser._id, myCourses: { $in: [course_cur._id] } }).lean();
+    if (!my_course)
+        return res.redirect(`${slug_course}`);
+
+    const progress = await User.findOne({
+        _id: req.session.passport.user,
+        'my_progress.course_id': course_id
+    }).select('my_progress');
+
+    const course_current = progress.my_progress.find(course => course.course_id === course_id);
+    course_current.progress.find(el => el.lesson_id === lesson_id).status = status;
+
+    const data = await progress.save();
+
+    res.status(200).json({  
+        status: 'success',
+        data
     });
 });
