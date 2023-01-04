@@ -11,7 +11,7 @@
     <script type="text/javascript">
         const currentCourse = `{{{watch_info.current_course}}}`;
         const currentLesson = `{{{watch_info.url}}}`;
-        const currentWatch = JSON.parse(localStorage.getItem('plyr_current_watch')) || {};
+        const currentWatch = JSON.parse(localStorage.getItem('{{authUser._id}}_current_watch')) || {};
 
         const sectionList  = JSON.parse(decodeURIComponent(`{{{watch_info.course_sections}}}`));
 
@@ -19,7 +19,7 @@
 
         if (!lesson_cur) {
             delete currentWatch[currentCourse];
-            localStorage.setItem('plyr_current_watch', JSON.stringify({
+            localStorage.setItem('{{authUser._id}}_current_watch', JSON.stringify({
                 ...currentWatch
             }));
         }
@@ -30,7 +30,7 @@
             window.location.replace(currentWatchCourse);
         }
         else if (!currentWatch || !currentWatchCourse) {
-            localStorage.setItem('plyr_current_watch', JSON.stringify({
+            localStorage.setItem('{{authUser._id}}_current_watch', JSON.stringify({
                 ...currentWatch,
                 [currentCourse]: currentLesson
             }));
