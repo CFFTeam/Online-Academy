@@ -44,7 +44,8 @@ export const updateShoppingCart = catchAsync(async (req, res, next) => {
   if (req.body.deleteItem == "delete") {
     await ShoppingCart.deleteOne({ _id: req.body.id });
   }
-  else if (req.body.deleteItem == "checkout") {
+
+  else if (req.body.deleteItem == "payment") {
     if (res.locals && res.locals.authUser) {
       const shoppingCart = Object.values(await ShoppingCart.find({ user_id: res.locals.authUser._id }));
       if (shoppingCart && shoppingCart.length > 0) {
@@ -59,10 +60,10 @@ export const updateShoppingCart = catchAsync(async (req, res, next) => {
     }
   }
   else {
-    const  {course_id}  = req.body;
+    const { course_id } = req.body;
     const backURL = req.headers.referer.split('?')[0];
 
-    if (!res.locals.auth){
+    if (!res.locals.auth) {
       return res.redirect(`${backURL}?message=Please login to continue}`);
     }
     const shopping_cart = { course_id: course_id, user_id: res.locals.authUser._id };
@@ -73,7 +74,7 @@ export const updateShoppingCart = catchAsync(async (req, res, next) => {
     if (prev_course) {
       return res.redirect(`${backURL}?message=Course already in cart`);
     }
-    
+
     // if (Object.values(my_courses).length > 0) {
     //   return res.redirect(`${backURL}?message=Course already in my courses`);
     // }

@@ -1,5 +1,5 @@
 <div class="shoppingCart">
-    <div class="title">
+    <div class="titlee">
       <h1>shopping cart</h1>
       <img>
       <svg width="55" height="49" viewBox="0 0 55 49" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -14,7 +14,6 @@
       <div class="itemList ">
 
       </div>
-
       {{!-- payment open--}}
       <div class="paymentMethod shoppingCartHidden">
         <P class="title">checkout</P>
@@ -171,10 +170,10 @@
 
         <div class="promotionList"></div>
 
-        <button name="deleteItem" value="checkout" class="checkoutButton ">checkout</button>
+        <button type="button" class="checkoutButton ">checkout</button>
 
         {{!-- payment open --}}
-        <button name="deleteItem" value="payment" class="checkoutButton shoppingCartHidden">payment</button>
+        <button name="deleteItem" value="payment" class="paymentButton shoppingCartHidden">payment</button>
         {{!-- payment close --}}
 
       </form>
@@ -338,8 +337,16 @@
           deleteForm.submit()
         });
 
-    $(".checkoutButton").on("click",(event)=>{
-      if(itemList.length>0) alert("Payment successfully!");
-    })
+
+        $(".checkoutButton").on("click",(event)=>{
+          $(".paymentButton").removeClass("shoppingCartHidden")
+          $(".checkoutButton").addClass("shoppingCartHidden")
+          $(".itemList").addClass("shoppingCartHidden")
+          $(".promotion").addClass("shoppingCartHidden")
+          $(".titlee").addClass("shoppingCartHidden")
+          $(".paymentMethod").removeClass("shoppingCartHidden")
+          $(".Coupons").removeClass("shoppingCartHidden")
+          $(".checkout").removeClass("shoppingCartMargin")
+        })
   </script>
   </div>
