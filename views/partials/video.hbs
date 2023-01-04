@@ -1,0 +1,25 @@
+<script src="https://cdn.plyr.io/3.7.3/plyr.polyfilled.js"></script>
+
+<video id={{id}} playsinline>
+    <source src={{video}}></source>
+</video>
+
+<script>
+    const player = new Plyr(`#{{id}}`, {
+        controls: [
+            'play-large',
+            'restart',
+            'rewind',
+            'play',
+            'fast-forward',
+            'progress',
+            'current-time',
+            'duration',
+            'mute',
+            'volume',
+            'captions',
+            'settings',
+            'fullscreen',
+        ]
+    });
+</script>
