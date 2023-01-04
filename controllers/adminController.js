@@ -10,30 +10,31 @@ import { title } from "process";
 
 //-----------------Categories--------------
 export const renderCategories = catchAsync(async (req, res) => {
+  res.locals.handlebars = "admin/categories";
   const category = await Category.find().lean();
   const course = await Course.find({}).lean();
 
   let isEmpty = false;
-  if(category.length === 0){
+  if (category.length === 0) {
     isEmpty: true
   }
   let getAllCategories = [];
-  for(let i = 0; i < category.length; i++){
-    for(let j=0; j<category[i].subcategories.length; j++){
-      const courseObject = await Course.find({category: category[i].title}).lean();
+  for (let i = 0; i < category.length; i++) {
+    for (let j = 0; j < category[i].subcategories.length; j++) {
+      const courseObject = await Course.find({ category: category[i].title }).lean();
       const course = [...courseObject];
-      let count=0;
-      for(let z=0; z<course.length; z++){
-        if(course[z].subcategory.includes(category[i].subcategories[j].content)){
+      let count = 0;
+      for (let z = 0; z < course.length; z++) {
+        if (course[z].subcategory.includes(category[i].subcategories[j].content)) {
           count++;
         }
       }
       getAllCategories.push({
-        _id: category[i]._id, 
-        category: category[i].title, 
+        _id: category[i]._id,
+        category: category[i].title,
         subcategory: category[i].subcategories[j].content,
         num_courses: count,
-        empty_courses: count === 0? true : false,
+        empty_courses: count === 0 ? true : false,
         idsub: category[i].subcategories[j]._id
       });
     }
@@ -52,27 +53,27 @@ export const renderCategoriesByCategories = catchAsync(async (req, res) => {
   const categoryName = await Category.findOne({
     slug: url.parse(req.url, true).query.slug,
   });
-  
+
   let isEmpty = false;
-  if(categoryName.length === 0){
+  if (categoryName.length === 0) {
     isEmpty: true
   }
   let getAllCategories = [];
-  for(let j=0; j<categoryName.subcategories.length; j++){
-    const courseObject = await Course.find({category: categoryName.title}).lean();
+  for (let j = 0; j < categoryName.subcategories.length; j++) {
+    const courseObject = await Course.find({ category: categoryName.title }).lean();
     const course = [...courseObject];
-    let count=0;
-    for(let z=0; z<course.length; z++){
-      if(course[z].subcategory.includes(categoryName.subcategories[j].content)){
+    let count = 0;
+    for (let z = 0; z < course.length; z++) {
+      if (course[z].subcategory.includes(categoryName.subcategories[j].content)) {
         count++;
       }
     }
     getAllCategories.push({
-      _id: categoryName._id, 
-      category: categoryName.title, 
+      _id: categoryName._id,
+      category: categoryName.title,
       subcategory: categoryName.subcategories[j].content,
       num_courses: count,
-      empty_courses: count === 0? true : false,
+      empty_courses: count === 0 ? true : false,
       idsub: categoryName.subcategories[j]._id
     });
   }
@@ -87,11 +88,11 @@ export const renderCategoriesByCategories = catchAsync(async (req, res) => {
 
 export const addCategories = catchAsync(async (req, res) => {
   const getData = {
-    slug: "/"+req.body.newtitle.toLowerCase().replace(" ","-"),
+    slug: "/" + req.body.newtitle.toLowerCase().replace(" ", "-"),
     title: req.body.newtitle,
-    subcategories:[
+    subcategories: [
       {
-        slug:"/None",
+        slug: "/None",
         content: "None"
       }
     ]
@@ -108,8 +109,8 @@ export const editCategories = catchAsync(async (req, res) => {
     { title: req.body.title }
   ).lean();
   await Course.updateMany(
-    {category: getOldCategoryData},
-    {category: req.body.title}
+    { category: getOldCategoryData },
+    { category: req.body.title }
   ).lean();
   res.redirect("/admin/categories");
 });
@@ -118,8 +119,8 @@ export const editSubCategories = catchAsync(async (req, res) => {
   const getOldCategory = await Category.findOne({ _id: req.params.id }).lean();
   let getOldCategoryData = getOldCategory.subcategories;
   let tempNameCat;
-  for(let i=0; i<getOldCategoryData.length; i++){
-    if(getOldCategoryData[i]._id.toString() === req.params.idsub.toString()){
+  for (let i = 0; i < getOldCategoryData.length; i++) {
+    if (getOldCategoryData[i]._id.toString() === req.params.idsub.toString()) {
       tempNameCat = getOldCategoryData[i].content;
       getOldCategoryData[i].content = req.body.subcat;
     }
@@ -130,21 +131,21 @@ export const editSubCategories = catchAsync(async (req, res) => {
   ).lean();
 
   const getOldCourseObj = await Course.find({ category: getOldCategory.title }).lean();
-  let getOldCourse=[...getOldCourseObj];
-  for(let i=0; i<getOldCourse.length; i++){
+  let getOldCourse = [...getOldCourseObj];
+  for (let i = 0; i < getOldCourse.length; i++) {
     let getOldCourseData = getOldCourse[i].subcategory;
-    for(let j=0; j<getOldCourseData.length; j++){
-      if(getOldCourseData[j] === tempNameCat){
-        getOldCourseData[j]= req.body.subcat;
+    for (let j = 0; j < getOldCourseData.length; j++) {
+      if (getOldCourseData[j] === tempNameCat) {
+        getOldCourseData[j] = req.body.subcat;
         await Course.updateMany(
           { _id: getOldCourse[i]._id },
           { subcategory: [...getOldCourseData] }
-        ).lean(); 
+        ).lean();
         break;
       }
-    } 
+    }
   }
-  
+
   res.redirect("/admin/categories");
 });
 
@@ -152,21 +153,21 @@ export const deleteCategories = catchAsync(async (req, res) => {
   const getCategoryData = await Category.findOne({
     _id: req.params.id,
   }).lean();
-  
+
   const subcategories = [...getCategoryData.subcategories];
-  if(subcategories.length ===1 ){
+  if (subcategories.length === 1) {
     await Category.deleteOne({ _id: req.params.id }).lean();
   }
-  else{
-    for(let i=0; i<subcategories.length; i++){
-      if(subcategories[i]._id.toString()===req.params.idsub.toString()){
+  else {
+    for (let i = 0; i < subcategories.length; i++) {
+      if (subcategories[i]._id.toString() === req.params.idsub.toString()) {
         subcategories.splice(i, 1);
       }
     }
-  
+
     await Category.updateOne(
-      {_id: req.params.id,},
-      {subcategories: [...subcategories]}
+      { _id: req.params.id, },
+      { subcategories: [...subcategories] }
     )
   }
   res.redirect("/admin/categories");
@@ -174,11 +175,12 @@ export const deleteCategories = catchAsync(async (req, res) => {
 
 //-------------------Courses------------------------
 export const renderCourses = catchAsync(async (req, res) => {
+  res.locals.handlebars = "admin/courses";
   const allCourses = await Course.find().lean();
   const allCategories = await Category.find().lean();
-  let isEmpty=false;
-  if(allCourses.length===0 || allCategories.length===0) {
-    isEmpty =true;
+  let isEmpty = false;
+  if (allCourses.length === 0 || allCategories.length === 0) {
+    isEmpty = true;
   }
   res.render("admin/courses.hbs", {
     courses: allCourses,
@@ -196,9 +198,9 @@ export const renderCoursesByCategories = catchAsync(async (req, res) => {
     category: categoryName.title,
   }).lean();
 
-  let isEmpty=false;
-  if(categoryName.length===0 || allCoursesByCategories.length===0) {
-    isEmpty =true;
+  let isEmpty = false;
+  if (categoryName.length === 0 || allCoursesByCategories.length === 0) {
+    isEmpty = true;
   }
 
   const allCategories = await Category.find().lean();
@@ -211,7 +213,7 @@ export const renderCoursesByCategories = catchAsync(async (req, res) => {
 });
 
 export const editCourses = catchAsync(async (req, res) => {
-  const updateCourses= await Course.updateOne(
+  const updateCourses = await Course.updateOne(
     { _id: req.params.id },
     { sale: Number(req.body.sale) }
   ).lean();
@@ -219,11 +221,11 @@ export const editCourses = catchAsync(async (req, res) => {
 });
 
 export const viewMoreCourse = catchAsync(async (req, res) => {
-  const course= await Course.findOne({ _id: req.params.id }).lean();
+  const course = await Course.findOne({ _id: req.params.id }).lean();
   const courseDetail = await CourseDetail.findOne({ course_id: req.params.id }).lean();
   courseDetail["integerPart"] = Array(Math.floor(courseDetail.avg_rating)).fill('0');
-  courseDetail["isRemainder"] = courseDetail.avg_rating - Math.floor(courseDetail.avg_rating) !==0;
-  course.date = course.date.slice(0,10);
+  courseDetail["isRemainder"] = courseDetail.avg_rating - Math.floor(courseDetail.avg_rating) !== 0;
+  course.date = course.date.slice(0, 10);
   res.render("admin/courseDetail.hbs", {
     course: course,
     courseDetail: courseDetail,
@@ -240,7 +242,8 @@ export const deleteCourses = catchAsync(async (req, res) => {
 
 //-------------------Teacher------------------------
 export const renderTeachers = catchAsync(async (req, res) => {
-  const allTeachers = await User.find({role: "instructor"}).lean();
+  res.locals.handlebars = "admin/teachers";
+  const allTeachers = await User.find({ role: "instructor" }).lean();
   res.render("admin/teachers.hbs", {
     teachers: allTeachers,
     layout: "admin.hbs",
@@ -259,9 +262,9 @@ export const addTeachers = catchAsync(async (req, res) => {
 });
 
 export const notExistTeachers = catchAsync(async (req, res) => {
-  const teacher = await User.find({email: req.query.email}).lean();
+  const teacher = await User.find({ email: req.query.email }).lean();
 
-  if(teacher.length===0){
+  if (teacher.length === 0) {
     return res.json(true);
   }
   else res.json(false);
@@ -269,31 +272,32 @@ export const notExistTeachers = catchAsync(async (req, res) => {
 
 export const editTeachers = catchAsync(async (req, res) => {
   await User.updateOne(
-    {_id: req.params.id}, 
-    {name: req.body.title}
+    { _id: req.params.id },
+    { name: req.body.title }
   ).lean();
   res.redirect("/admin/teachers");
 });
 
 export const banTeachers = catchAsync(async (req, res) => {
-  const getUser = await User.findOne({_id: req.params.id}).lean();
-  let banStatus=getUser.active;
+  const getUser = await User.findOne({ _id: req.params.id }).lean();
+  let banStatus = getUser.active;
   await User.updateOne(
-    {_id: req.params.id}, 
-    {active: !banStatus}
+    { _id: req.params.id },
+    { active: !banStatus }
   ).lean();
   res.redirect("/admin/teachers");
 });
 
 export const deleteTeachers = catchAsync(async (req, res) => {
-  await User.deleteOne({_id: req.params.id}).lean();
+  await User.deleteOne({ _id: req.params.id }).lean();
   res.redirect("/admin/teachers");
 });
 
 
 //-------------------Student------------------------
 export const renderStudents = catchAsync(async (req, res) => {
-  const allStudents = await User.find({role: "user"}).lean();
+  res.locals.handlebars = "admin/students";
+  const allStudents = await User.find({ role: "user" }).lean();
   res.render("admin/students.hbs", {
     students: allStudents,
     layout: "admin.hbs",
@@ -302,23 +306,23 @@ export const renderStudents = catchAsync(async (req, res) => {
 
 export const editStudents = catchAsync(async (req, res) => {
   await User.updateOne(
-    {_id: req.params.id}, 
-    {name: req.body.title}
+    { _id: req.params.id },
+    { name: req.body.title }
   ).lean();
   res.redirect("/admin/students");
 });
 
 export const banStudents = catchAsync(async (req, res) => {
-  const getUser = await User.findOne({_id: req.params.id}).lean();
-  let banStatus=getUser.active;
+  const getUser = await User.findOne({ _id: req.params.id }).lean();
+  let banStatus = getUser.active;
   await User.updateOne(
-    {_id: req.params.id}, 
-    {active: !banStatus}
+    { _id: req.params.id },
+    { active: !banStatus }
   ).lean();
   res.redirect("/admin/students");
 });
 
 export const deleteStudents = catchAsync(async (req, res) => {
-  await User.deleteOne({_id: req.params.id}).lean();
+  await User.deleteOne({ _id: req.params.id }).lean();
   res.redirect("/admin/students");
 });

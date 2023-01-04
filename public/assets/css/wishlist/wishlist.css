@@ -81,6 +81,24 @@
   background-color: #007ea5;
 }
 
+.wishlist > main >.course-item > .formPost {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  color: white;
+  font-size: 1.8rem;
+  z-index: 2; 
+}
+
+.wishlist > main >.course-item > .formPost > .but{
+  border: none;
+}
+
+.wishlist > main >.course-item> .formPost > .but > .icon{
+  color: white;
+}
+
+
 .wishlist > main >.course-item > .icon {
   position: absolute;
   right: 1rem;

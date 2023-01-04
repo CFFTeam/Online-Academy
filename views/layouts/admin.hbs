@@ -47,15 +47,15 @@
           <p class="text-center" style="color:#808080; font-size: 1.2rem;">DanielSara@gmail.com</p>
 
           <ul class="nav flex-column mx-0">
-            <li class="nav-item 5 mt-5 mb-2 w-100 py-3">
-              <a href="/admin/categories" style="text-decoration: none">
-                <h2 class="aaa mt-2" style="margin-left: 2rem;">
+            <li class="nav-item 5 mt-5 mb-2 w-100 py-3 li-cat{{#if (eq handlebars 'admin/categories')}} itemMenuAdminChosen {{/if}}">
+              <a class="cat" href="/admin/categories" style="text-decoration: none">
+                <h2  class="aaa mt-2 {{#if (eq handlebars 'admin/categories')}} textMenuAdminChosen {{/if}}" style="margin-left: 2rem;">
                 <svg
-                    class="icon"
+                    fill="none"
+                    class="icon {{#if (eq handlebars 'admin/categories')}} textMenuAdminChosen{{/if}}"
                     width="32"
                     height="26"
                     viewBox="0 0 32 26"
-                    fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
@@ -65,15 +65,15 @@
                   &nbsp;Category</h2>
               </a>
             </li>
-            <li class="nav-item my-2 w-100 py-3">
-              <a href="/admin/courses" style="text-decoration: none">
-                <h2 class="aaa mt-2" style="margin-left: 2rem;">
+            <li class="nav-item my-2 w-100 py-3 li-cou {{#if (eq handlebars 'admin/courses')}} itemMenuAdminChosen {{/if}}">
+              <a class="cou" href="/admin/courses" style="text-decoration: none">
+                <h2 class="aaa mt-2 {{#if (eq handlebars 'admin/courses')}} textMenuAdminChosen {{/if}}" style="margin-left: 2rem;">
                   <svg
-                    class="icon"
+                    fill="none"
+                    class="icon {{#if (eq handlebars 'admin/courses')}} textMenuAdminChosen {{/if}}"
                     width="32"
                     height="26"
                     viewBox="0 0 34 22"
-                    fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -84,14 +84,14 @@
               </a>
 
             </li>
-            <li class="nav-item my-2 w-100 py-3">
-              <a href="/admin/teachers" style="text-decoration: none">
-                <h2 class="aaa mt-2" style="margin-left: 2rem;"><svg
-                    class="icon"
+            <li class="nav-item my-2 w-100 py-3 li-tea {{#if (eq handlebars 'admin/teachers')}} itemMenuAdminChosen {{/if}}">
+              <a class="tea" href="/admin/teachers" style="text-decoration: none">
+                <h2 id="tea" class="aaa mt-2 {{#if (eq handlebars 'admin/teachers')}} textMenuAdminChosen {{/if}}" style="margin-left: 2rem;"><svg
+                    fill="none"
+                    class="icon {{#if (eq handlebars 'admin/teachers')}} textMenuAdminChosen {{/if}}"
                     width="32"
                     height="26"
                     viewBox="0 0 28 30"
-                    fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -102,14 +102,15 @@
               </a>
             </li>
 
-            <li class="nav-item my-2 w-100 py-3">
-              <a href="/admin/students" style="text-decoration: none">
-                <h2 class="aaa mt-2" style="margin-left: 2rem;"><svg
-                    class="icon"
+            <li class="nav-item my-2 w-100 py-3 li-stu {{#if (eq handlebars 'admin/students')}} itemMenuAdminChosen {{/if}}">
+              <a class="stu" href="/admin/students" style="text-decoration: none">
+                <h2 id="stu" class="aaa mt-2 {{#if (eq handlebars 'admin/students')}} textMenuAdminChosen {{/if}}" style="margin-left: 2rem;">
+                  <svg
+                    fill="none"
+                    class="icon {{#if (eq handlebars 'admin/students')}} textMenuAdminChosen {{/if}}"
                     width="32"
                     height="26"
                     viewBox="0 0 32 28"
-                    fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -154,5 +155,6 @@
       integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
       crossorigin="anonymous"
     ></script>
+
   </body>
 </html>
