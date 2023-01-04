@@ -8,6 +8,19 @@
     cursor: pointer;
     
 }
+
+.itemMenuAdminChosen{
+    background: #E7FFF3;
+    border-left: 0.4rem solid #00A551;
+    cursor: pointer;
+}
+
+.textMenuAdminChosen{
+    color: #00A551 !important;
+    fill:#00A551 !important;
+}
+
+
 .row{
     margin: 0;
 }
