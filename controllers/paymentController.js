@@ -34,10 +34,11 @@ export const shoppingCartPage = catchAsync(async (req, res, next) => {
       });
     }
   }
-
+  let message = res.locals.messages;
+  res.locals.messages = "";
   res.locals.cart_number = shoppingCart && shoppingCart.length > 0 ? shoppingCart.length : 0;
 
-  res.render("payment/payment", { course: JSON.stringify(course) });
+  res.render("payment/payment", { course: JSON.stringify(course), message: message });
 });
 
 export const updateShoppingCart = catchAsync(async (req, res, next) => {
@@ -51,9 +52,9 @@ export const updateShoppingCart = catchAsync(async (req, res, next) => {
       if (shoppingCart && shoppingCart.length > 0) {
         for (const sc of shoppingCart) {
           const courses = await Course.findOne({ _id: sc.course_id }).lean();
-          
+
           const user = await User.findOne({ _id: res.locals.authUser._id });
-          
+
           const current_course = {
             course_id: sc.course_id,
             total: courses.lectures.total,
@@ -72,8 +73,8 @@ export const updateShoppingCart = catchAsync(async (req, res, next) => {
           await User.updateOne(
             { _id: sc.user_id },
             { myCourses: [...user.myCourses, sc.course_id], my_progress: [...user.my_progress, current_course] })
-          
-            await ShoppingCart.deleteOne({ _id: sc._id });
+
+          await ShoppingCart.deleteOne({ _id: sc._id });
         }
       }
     }
@@ -102,9 +103,13 @@ export const updateShoppingCart = catchAsync(async (req, res, next) => {
 
     return res.redirect(`${backURL}?message=Course added to cart`);
   }
-
-  if (req.body.deleteItem == "delete" || req.body.deleteItem == "checkout")
+  if (req.body.deleteItem == "delete") {
     shoppingCartPage(req, res, next)
+  }
+  else if (req.body.deleteItem == "payment") {
+    res.locals.messages = "success"
+    shoppingCartPage(req, res, next)
+  }
 })
 
 
