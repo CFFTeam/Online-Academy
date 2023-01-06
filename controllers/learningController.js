@@ -65,41 +65,59 @@ export const loadCourse = catchAsync(async (req, res, next) => {
     next();
 });
 
-export const loadCourseProgress = catchAsync(async (req, res, next) => { 
-
-});
-
 export const watchingCourse = catchAsync(async (req, res) => {
     res.locals.handlebars = 'learning/course_learning';
 
+    const progress = await User.findOne({
+        _id: res.locals.authUser._id,
+        'my_progress.course_id': req.course._id
+    }).select('my_progress');
+
+    const progress_course_current = progress.my_progress.find(course => course.course_id === req.course._id.toString()).progress;
+    
+    let progressor = {};
+    progress_course_current.forEach(el => (progressor = { ...progressor, [el.lesson_id]: el.status } ));
+
     res.render(res.locals.handlebars, {
         course: req.course,
-        watch_info: req.watch_info
+        watch_info: req.watch_info,
+        progress: progressor
     });
 });
 
 export const progressCourse = catchAsync(async (req, res) => {
-    const { course_id, lesson_id, status } = req.body;
+    const { course_id, lesson_id, status, slug_course } = req.body;
 
     if (req.session.auth === false && !req.session.passport)
-        return res.redirect(`${slug_course}`);
+        return res.status(403).json({
+            redirect: `${slug_course}`
+        });
 
-    const my_course = await User.findOne({ _id: res.locals.authUser._id, myCourses: { $in: [course_cur._id] } }).lean();
+    const course_cur = await Course.findOne({ slug: slug_course }).lean();
+    if (!course_cur)
+        return res.status(403).json({
+            redirect: `${slug_course}`
+        });
+
+    const my_course = await User.findOne({ _id: res.locals.authUser._id, myCourses: { $in: [course_cur._id.toString()] } }).lean();
     if (!my_course)
-        return res.redirect(`${slug_course}`);
+        return res.status(403).json({
+            redirect: `${slug_course}`
+        });
 
     const progress = await User.findOne({
-        _id: req.session.passport.user,
+        _id: res.locals.authUser._id,
         'my_progress.course_id': course_id
     }).select('my_progress');
 
     const course_current = progress.my_progress.find(course => course.course_id === course_id);
-    course_current.progress.find(el => el.lesson_id === lesson_id).status = status;
-
-    const data = await progress.save();
+    
+    const progress_cur = course_current.progress.find(el => el.lesson_id === lesson_id);
+    progress_cur.status = status;
+    
+    await progress.save();
 
     res.status(200).json({  
-        status: 'success',
-        data
+        status: 'success'    
     });
 });
