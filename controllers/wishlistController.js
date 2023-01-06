@@ -15,12 +15,13 @@ export const wishlistPage = catchAsync(async (req, res) => {
     for (const m of user.wishlist) {
       const course = await Course.findOne({ _id: m });
       const courseDetails = await CourseDetails.findOne({ course_id: m }).lean();
+      const author = await User.findOne({ _id: course.author }).lean();
       courses.push({
         id: m,
         slug: course.slug,
         name: course.name,
         img: course.img,
-        author: course.author,
+        author: author.name,
         category: course.category,
         date: course.date.slice(0, course.date.indexOf("T")),
         price: course.price,
