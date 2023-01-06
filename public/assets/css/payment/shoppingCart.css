@@ -8,7 +8,7 @@
 }
 
 .shoppingCartMargin{
-  margin-top: 3rem;
+  margin-top: 4rem;
 }
 
 .shoppingCart .titlee {
@@ -39,10 +39,19 @@
 }
 
 .shoppingCart > .cart >.itemList {
-  /* background-color: aqua; */
   width: 67%;
   height: 44rem;
   overflow-y: scroll;
+}
+
+.shoppingCart > .cart >.itemList > .cartIsEmpty{
+  font-size: 36px;
+  color: #535353;
+  font-weight: 600;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .shoppingCart > .cart > .paymentMethod {
@@ -92,9 +101,9 @@
 }
 
 .shoppingCart > .cart > .paymentMethod >.cardInformation> .chooseCard >.cardName{
-  width: 18rem;
+  width: 30rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -171,6 +180,7 @@
   height: 100%;
   /* background-color: yellow; */
   padding-left: 6rem;
+  /* margin-top: 3rem; */
 }
 
 

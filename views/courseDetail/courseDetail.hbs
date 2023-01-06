@@ -143,7 +143,14 @@
             {{courseDetail.lectures.total}}
             lectures -
             {{courseDetail.lectures.duration}}</p>
-          <a href="{{courseDetail.lectures.sections.0.lessons.0.url}}" class="all-sections">View all sections</a>
+          <div class="total-length-lessons">
+            <a href="{{courseDetail.lectures.sections.0.lessons.0.url}}" 
+            class="all-sections"
+            data-toggle="modal"
+            data-target="#allmodalsection"
+            >View all sections</a>
+            <a href="{{courseDetail.lectures.sections.0.lessons.0.url}}" class="all-sections">Learn now</a>
+          </div>
         </div>
         <a href="#" class="link-video" data-toggle="modal" data-target="#intro-0">
           <div class="section-video" style="margin-top: 3rem;">
@@ -175,8 +182,8 @@
           <div class="section-video">
             <img src={{courseDetail.img}} style="height: 8rem;" />
             <div class="header-content">
-              <h2>{{courseDetail.lectures.sections.1.title}}</h2>
-              <p>{{courseDetail.lectures.sections.1.lessons.1.title}}</p>
+              <h2>{{courseDetail.lectures.sections.0.title}}</h2>
+              <p>{{courseDetail.lectures.sections.1.lessons.0.title}}</p>
             </div>
           </div>
         </a>
@@ -187,7 +194,7 @@
           >
             <div class="modal-content" style="padding: 0; margin: 0;">
               <video class=".vid" controls>
-                <source src={{courseDetail.lectures.sections.1.lessons.1.video}} type="video/mp4">
+                <source src={{courseDetail.lectures.sections.1.lessons.0.video}} type="video/mp4">
               </video>
             </div>
           </div>
@@ -198,7 +205,7 @@
             <img src={{courseDetail.img}} style="height: 8rem;" />
             <div class="header-content">
               <h2>{{courseDetail.lectures.sections.2.title}}</h2>
-              <p>{{courseDetail.lectures.sections.2.lessons.1.title}}</p>
+              <p>{{courseDetail.lectures.sections.2.lessons.0.title}}</p>
             </div>
           </div>
         </a>
@@ -209,7 +216,7 @@
           >
             <div class="modal-content" style="padding: 0; margin: 0;">
               <video class=".vid" controls>
-                <source src={{courseDetail.lectures.sections.2.lessons.1.video}} type="video/mp4">
+                <source src={{courseDetail.lectures.sections.2.lessons.0.video}} type="video/mp4">
               </video>
             </div>
           </div>
@@ -219,7 +226,7 @@
             <img src={{courseDetail.img}} style="height: 8rem;" />
             <div class="header-content">
               <h2>{{courseDetail.lectures.sections.3.title}}</h2>
-              <p>{{courseDetail.lectures.sections.3.lessons.1.title}}</p>
+              <p>{{courseDetail.lectures.sections.3.lessons.0.title}}</p>
             </div>
           </div>
         </a>
@@ -230,7 +237,7 @@
           >
             <div class="modal-content" style="padding: 0; margin: 0;">
               <video class=".vid" controls>
-                <source src={{courseDetail.lectures.sections.2.lessons.1.video}} type="video/mp4">
+                <source src={{courseDetail.lectures.sections.2.lessons.0.video}} type="video/mp4">
               </video>
             </div>
           </div>
@@ -240,7 +247,7 @@
             <img src={{courseDetail.img}} style="height: 8rem;" />
             <div class="header-content">
               <h2>{{courseDetail.lectures.sections.4.title}}</h2>
-              <p>{{courseDetail.lectures.sections.4.lessons.1.title}}</p>
+              <p>{{courseDetail.lectures.sections.4.lessons.0.title}}</p>
             </div>
           </div>
         </a>
@@ -251,7 +258,7 @@
           >
             <div class="modal-content" style="padding: 0; margin: 0;">
               <video class=".vid" controls>
-                <source src={{courseDetail.lectures.sections.4.lessons.1.video}} type="video/mp4">
+                <source src={{courseDetail.lectures.sections.4.lessons.0.video}} type="video/mp4">
               </video>
             </div>
           </div>
@@ -283,8 +290,8 @@
 
   <div class="ins">
     <div class="heading-ins">
-      <h1>Instructor</h1>
-      <h1 style="color: #51CF66; margin-top: 1rem;">Jonas Schemedtmann</h1>
+      <h2>Instructor</h2>
+      <h2 style="color: #51CF66; margin-top: 1rem;">Academind by Maximilian Schwarzmüller</h2>
       <p>Web Developer, Designer, and Teacher</p>
       <div class="info-ins">
         <img src={{courseDetail.img}} style="height: 20rem; width: 20rem;" />
@@ -295,7 +302,7 @@
           </div>
           <div class="flex-rating">
             <img src="/assets/svg/course/like.svg" alt="star-icon" />
-            <p> 400.000 Reviwers</p>
+            <p> 400.000 Reviewers</p>
           </div>
           <div class="flex-rating">
             <img src="/assets/svg/course/student.svg" alt="student-icon" />
@@ -581,6 +588,26 @@
                 {{{this.content}}}
             </div>
           {{/each}}
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade bd-example-modal-lg" id="allmodalsection" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="exampleModalLongTitle">Course contents</h5>
+        </div>
+        <div class="modal-body">
+          {{#each courseDetail.lectures.sections}}
+            <h2>{{title}}</h2>
+            <ol>
+              {{#each lessons}}
+                <li style="margin-left: 2rem;">{{title}}</li>
+              {{/each}}
+            </ol>
+          {{/each}}
+        </div>
       </div>
     </div>
   </div>

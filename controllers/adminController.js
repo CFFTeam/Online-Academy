@@ -178,6 +178,13 @@ export const renderCourses = catchAsync(async (req, res) => {
   res.locals.handlebars = "admin/courses";
   const allCourses = await Course.find().lean();
   const allCategories = await Category.find().lean();
+  const getCourseTemp = await Course.find().lean();
+  let instructors = [];
+  for(let i = 0; i<getCourseTemp.length; i++) {
+    if(instructors.includes(getCourseTemp[i].author)===false) {
+      instructors.push(getCourseTemp[i].author);
+    }
+  }
   let isEmpty = false;
   if (allCourses.length === 0 || allCategories.length === 0) {
     isEmpty = true;
@@ -186,6 +193,7 @@ export const renderCourses = catchAsync(async (req, res) => {
     courses: allCourses,
     isEmpty: isEmpty,
     category: allCategories,
+    instructor: instructors,
     layout: "admin.hbs",
   });
 });
@@ -204,10 +212,46 @@ export const renderCoursesByCategories = catchAsync(async (req, res) => {
   }
 
   const allCategories = await Category.find().lean();
+  const getCourseTemp = await Course.find().lean();
+  let instructors = [];
+  for(let i = 0; i<getCourseTemp.length; i++) {
+    if(instructors.includes(getCourseTemp[i].author)===false) {
+      instructors.push(getCourseTemp[i].author);
+    }
+  }
+
   res.render("admin/courses.hbs", {
     courses: allCoursesByCategories,
     isEmpty: isEmpty,
     category: allCategories,
+    instructor: instructors,
+    layout: "admin.hbs",
+  });
+});
+
+export const renderCoursesByInstructors = catchAsync(async (req, res) => {
+  const allCoursesByInstructors = await Course.find({
+    author:  url.parse(req.url, true).query.author,
+  }).lean();
+
+  let isEmpty = false;
+  if (allCoursesByInstructors.length === 0) {
+    isEmpty = true;
+  }
+
+  const allCategories = await Category.find().lean();
+  const getCourseTemp = await Course.find().lean();
+  let instructors = [];
+  for(let i = 0; i<getCourseTemp.length; i++) {
+    if(instructors.includes(getCourseTemp[i].author)===false) {
+      instructors.push(getCourseTemp[i].author);
+    }
+  }
+  res.render("admin/courses.hbs", {
+    courses: allCoursesByInstructors,
+    category: allCategories,
+    instructor: instructors,
+    isEmpty: isEmpty,
     layout: "admin.hbs",
   });
 });

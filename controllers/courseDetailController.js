@@ -136,6 +136,13 @@ export const handleBuyNow = catchAsync(async (req, res) => {
       { _id: res.locals.authUser._id },
       { myCourses: [...getMyCourses], my_progress: [...user.my_progress, current_course] }
     )
+
+    const getCourseDetail = await courseDetail.findOne({ course_id: req.body.course_id }).lean();
+    let view = getCourseDetail.viewer + 1;
+    await courseDetail.updateOne(
+      {course_id: req.body.course_id},
+      {viewers: view}
+    )
     const url = req.headers.referer;
     res.redirect(url);
   }
