@@ -117,6 +117,7 @@ export const getInstructorProfile = async (req, res, next) => {
     res.locals.phoneNumber = user.phoneNumber;
     res.locals.email = user.email;
     res.locals.address = user.address;
+    res.locals.description = user.description;
     res.render('instructor/myProfile', {
         layout: "instructor",
         sidebar: "user-profile",
@@ -133,7 +134,8 @@ export const updateInstructorProfile = async (req, res, next) => {
         sex: user.sex,
         phone: user.phoneNumber,
         email: user.email,
-        address: user.address
+        address: user.address,
+        introduction: user.description
     };
 
     res.locals.props = {
@@ -151,7 +153,6 @@ export const updateInstructorProfile = async (req, res, next) => {
     res.locals.phoneNumber = res.locals.props.historyPhone != null ? res.locals.props.historyPhone : renderUser.phone;
     res.locals.email = res.locals.props.historyEmail != null ? res.locals.props.historyEmail : renderUser.email;
     res.locals.address = res.locals.props.historyAddress != null ? res.locals.props.historyAddress : renderUser.address;
-
 
     if (submitForm == "editProfile") {
         res.locals.handlebars = "instructor/myProfile";
@@ -265,7 +266,17 @@ export const updateInstructorProfile = async (req, res, next) => {
         res.locals.layout = "instructor";
         res.locals.page = 'introductionform';
         res.locals.sidebar = "user-profile";
-
+        res.locals.description = req.body.full_introduction
+        await User.updateOne(
+            { _id: res.locals.authUser._id },
+            { description: req.body.full_introduction }
+        )
+        res.render('instructor/myProfile', {
+            layout: "instructor",
+            page: 'introductionform',
+            sidebar: "user-profile",
+            messages: "introduction success"
+        });
     }
 }
 
