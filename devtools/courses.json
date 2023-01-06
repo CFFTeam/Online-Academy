@@ -2,6 +2,7 @@
   "_id": {
     "$oid": "63b4279cce0cd31e2ed3cfaa"
   },
+  "active": true,
   "name": "Flutter & Dart - The Complete Guide [2023 Edition]",
   "img": "https://img-c.udemycdn.com/course/750x422/1708340_7108_5.jpg",
   "author": "Academind by Maximilian Schwarzmüller",
@@ -4228,6 +4229,7 @@
   "_id": {
     "$oid": "63b427b304799c69ada4c0b3"
   },
+  "active": true,
   "name": "Node.js, Express, MongoDB & More: The Complete Bootcamp 2023",
   "img": "https://img-c.udemycdn.com/course/750x422/1672410_9ff1_5.jpg",
   "author": "Jonas Schmedtmann",
@@ -6694,6 +6696,7 @@
   "_id": {
     "$oid": "63b4282683be56df91902cd9"
   },
+  "active": true,
   "name": "Math for Data Science Masterclass",
   "img": "https://img-c.udemycdn.com/course/750x422/4849126_3676_2.jpg",
   "author": "Jose Portilla",
@@ -7570,6 +7573,7 @@
   "_id": {
     "$oid": "63b4286587c45c53eac4cc96"
   },
+  "active": true,
   "name": "React Native - The Practical Guide [2023]",
   "img": "https://img-c.udemycdn.com/course/750x422/1436092_2024_4.jpg",
   "author": "Academind by Maximilian Schwarzmüller",
@@ -10706,6 +10710,7 @@
   "_id": {
     "$oid": "63b42874e4a20a5c43577597"
   },
+  "active": true,
   "name": "Modern MERN Stack | React Node Express MongoDB",
   "img": "https://img-c.udemycdn.com/course/750x422/4835930_d67c_4.jpg",
   "author": "Riaz Qureshi",
