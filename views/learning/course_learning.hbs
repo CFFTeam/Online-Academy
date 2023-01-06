@@ -18,60 +18,84 @@
             {{!-- <video id="player" playsinline>
                 <source src='{{watch_info.video}}'></source>
             </video> --}}
-            {{> video id='learning-player' video=watch_info.video}}
+            {{> video id='learning-player' video=watch_info.video }}
+            <div class="toolbar">
+                <button type="button" class="toolbar-btn active">Description</button>
+                <button type="button" class="toolbar-btn">Reviews</button>
+                <button type="button" class="toolbar-btn">Discussion</button>
+                <button type="button" class="toolbar-btn">Resources</button>
+                <button type="button" class="toolbar-btn">Announcements</button>
+            </div>
+            <div class="viewbox">
+                <div class="author-info">
+                    <div class="avatar">
+                        <img width="50px" src="https://img-c.udemycdn.com/user/200_H/7799204_2091_5.jpg" alt={{course.author}} />
+                    </div>
+                    <div class="author-description">
+                        <div class="name">{{course.author}}</div>
+                        <div class="role">Lecture</div>
+                    </div>
+                </div>
+                <div>
+                    {{{course.details}}}
+                </div>
+            </div>
         </div>
     </div>
-    <div class="course-lectures">
-        <div class="lecture-heading">
-            <b class="title">Course lectures</b>
-            <div class="progress-bar-group">
-                <div class="progress-bar-status">
-                    <span>5% Completed</span>
-                    <span>5 / 100</span>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-bar-fill"></div>
-                </div>
-            </div>
-        </div>
-        <div class="course-lectures-list">
-            {{#each course.lectures.sections}}
-            <div class="course-lectures-item">
-                <input id="section-content-{{@index}}" class="hidden-section-content" hidden type="checkbox" style="display: none;" />
-                <label for="section-content-{{@index}}" class="section-heading">
-                    <div class="section-title">
-                        <span class="section-index">{{#if (lt @index 9) }}0{{/if}}{{sum @index 1}}</span>
-                        <span class="section-name">{{this.title}}</span>
+    <div class="sticky-lectures">
+        <div class="course-lectures">
+            <div class="lecture-heading">
+                <b class="title">Course lectures</b>
+                <div class="progress-bar-group">
+                    <div class="progress-bar-status">
+                        <span>5% Completed</span>
+                        <span>5 / 100</span>
                     </div>
-                    <div class="section-checkbox">
-                        <i class="fa-solid fa-chevron-down dropdown-btn"></i>
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill"></div>
                     </div>
-                </label>
-                <div class="section-content">
-                    {{#each this.lessons}}
-                    <div class="lesson-item">
-                        <div class="lesson-item-checkbox">
-                            <div class="checkbox-cs">
-                                <input class="checkbox-input-cs" type="checkbox" id="lesson-{{@../index}}-{{@index}}" />
-                                <label class="checkbox-label" for="lesson-{{@../index}}-{{@index}}">
-                                    <span></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="lesson-item-content">
-                            <a href='{{this.url}}?section={{sum @../index 1}}' class="lesson-item-title">
-                                {{this.title}}
-                            </a>
-                            <div class="lesson-item-time">
-                                <span class="time-icon"><i class="fa-regular fa-circle-play"></i></span>
-                                <span>{{this.duration}}</span>
-                            </div>
-                        </div>
-                    </div>
-                    {{/each}}
                 </div>
             </div>
-            {{/each}}
+            <div class="course-lectures-list">
+                {{#each course.lectures.sections}}
+                <div class="course-lectures-item">
+                    <input id="section-content-{{@index}}" class="hidden-section-content" hidden type="checkbox" style="display: none;" />
+                    <label for="section-content-{{@index}}" class="section-heading">
+                        <div class="section-title">
+                            <span class="section-index">{{#if (lt @index 9) }}0{{/if}}{{sum @index 1}}</span>
+                            <span class="section-name">{{this.title}}</span>
+                        </div>
+                        <div class="section-checkbox">
+                            <i class="fa-solid fa-chevron-down dropdown-btn"></i>
+                        </div>
+                    </label>
+                    <div class="section-content">
+                        {{#each this.lessons}}
+                        <div class="lesson-item">
+                            <div class="lesson-item-checkbox">
+                                <div class="checkbox-cs">
+                                    <input hidden readonly class="checkbox-input-cs-value" type="text" id="lesson-value-{{@../index}}-{{@index}}" value={{this._id}} />
+                                    <input class="checkbox-input-cs" type="checkbox" id="lesson-{{@../index}}-{{@index}}" />
+                                    <label class="checkbox-label" for="lesson-{{@../index}}-{{@index}}">
+                                        <span></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="lesson-item-content">
+                                <a href='{{this.url}}?section={{sum @../index 1}}' class="lesson-item-title">
+                                    {{this.title}}
+                                </a>
+                                <div class="lesson-item-time">
+                                    <span class="time-icon"><i class="fa-regular fa-circle-play"></i></span>
+                                    <span>{{this.duration}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+                {{/each}}
+            </div>
         </div>
     </div>
 </div>
@@ -79,21 +103,42 @@
 <script>
     $(document).ready(() => {
         const currentCourse = `{{{watch_info.current_course}}}`;
-        const currentWatch = JSON.parse(localStorage.getItem('plyr_current_watch')) || {};
+        const currentWatch = JSON.parse(localStorage.getItem('{{authUser._id}}_current_watch')) || {};
         
-        $(".course-learning > .course-lectures > .course-lectures-list > .course-lectures-item > .section-content > .lesson-item > .lesson-item-content > .lesson-item-title").click((event) => {
-            localStorage.setItem('plyr_current_watch', JSON.stringify({
+        $(".course-learning > .sticky-lectures > .course-lectures > .course-lectures-list > .course-lectures-item > .section-content > .lesson-item > .lesson-item-content > .lesson-item-title")
+        .click((event) => {
+            localStorage.setItem('{{authUser._id}}_current_watch', JSON.stringify({
                 ...currentWatch,
                 [currentCourse]: $(event.currentTarget).val().split("?")[0]
             }));
         });
 
-        let $container = $('.course-learning > .course-lectures > .course-lectures-list');
+        $('.course-learning > .sticky-lectures > .course-lectures > .course-lectures-list > .course-lectures-item > .section-content > .lesson-item > .lesson-item-checkbox > .checkbox-cs > .checkbox-input-cs')
+        .click((event) => {
+            const lession_id = $(event.currentTarget).prev().val();
+            const status = $(event.currentTarget).is(':checked');
+            const course_id = `{{course._id}}`;
+
+            $.ajax({
+                url: '/course/learn/lecture/progress',
+                type: 'POST',
+                data: {
+                    course_id,
+                    lession_id,
+                    status
+                },
+                success: (data) => {
+                    console.log(data);
+                }
+            });
+        });
+
+        let $container = $('.course-learning > .sticky-lectures > .course-lectures > .course-lectures-list');
 
         const section = parseInt(`{{watch_info.section}}`);
         const lesson = `{{{watch_info.url}}}`;
 
-        $(".course-learning > .course-lectures > .course-lectures-list > .course-lectures-item > .hidden-section-content").change((event) =>{
+        $(".course-learning > .sticky-lectures > .course-lectures > .course-lectures-list > .course-lectures-item > .hidden-section-content").change((event) =>{
             if ($(event.currentTarget).is(':checked') === true)
                 $container.animate({
                     scrollTop: $(event.currentTarget).next().offset().top - $container.offset().top + $container.scrollTop()
@@ -115,22 +160,22 @@
             }
         }
 
-        const timerLoading = setInterval(async () => {
+        const timerLoading = setInterval(() => {
             if (player.duration) {
 
-                player.currentTime = JSON.parse(localStorage.getItem('plyr_video__current'))[`{{{watch_info.current_lesson}}}`];
+                player.currentTime = JSON.parse(localStorage.getItem('{{authUser._id}}__current'))[`{{{watch_info.current_lesson}}}`];
                 player.muted = false;
 
                 player.on('playing', () => {
-                    localStorage.setItem('plyr_video__current', JSON.stringify({
-                        ...JSON.parse(localStorage.getItem('plyr_video__current')),
+                    localStorage.setItem('{{authUser._id}}__current', JSON.stringify({
+                        ...JSON.parse(localStorage.getItem('{{authUser._id}}__current')),
                         '{{{watch_info.current_lesson}}}': player.currentTime
                     }));
                 });
 
                 player.on('pause', () => {
-                    localStorage.setItem('plyr_video__current', JSON.stringify({
-                        ...JSON.parse(localStorage.getItem('plyr_video__current')),
+                    localStorage.setItem('{{authUser._id}}__current', JSON.stringify({
+                        ...JSON.parse(localStorage.getItem('{{authUser._id}}__current')),
                         '{{{watch_info.current_lesson}}}': player.currentTime
                     }));
                 });
@@ -142,8 +187,8 @@
         player.on('error', () => clearInterval(timerLoading));
 
         $(window).on("beforeunload", () => { 
-            localStorage.setItem('plyr_video__current', JSON.stringify({
-                ...JSON.parse(localStorage.getItem('plyr_video__current')),
+            localStorage.setItem('{{authUser._id}}__current', JSON.stringify({
+                ...JSON.parse(localStorage.getItem('{{authUser._id}}__current')),
                 '{{{watch_info.current_lesson}}}': player.currentTime
             }));
         });

@@ -34,35 +34,56 @@ export const shoppingCartPage = catchAsync(async (req, res, next) => {
       });
     }
   }
-
+  let message = res.locals.messages;
+  res.locals.messages = "";
   res.locals.cart_number = shoppingCart && shoppingCart.length > 0 ? shoppingCart.length : 0;
 
-  res.render("payment/payment", { course: JSON.stringify(course) });
+  res.render("payment/payment", { course: JSON.stringify(course), message: message });
 });
 
 export const updateShoppingCart = catchAsync(async (req, res, next) => {
   if (req.body.deleteItem == "delete") {
     await ShoppingCart.deleteOne({ _id: req.body.id });
   }
-  else if (req.body.deleteItem == "checkout") {
+
+  else if (req.body.deleteItem == "payment") {
     if (res.locals && res.locals.authUser) {
       const shoppingCart = Object.values(await ShoppingCart.find({ user_id: res.locals.authUser._id }));
       if (shoppingCart && shoppingCart.length > 0) {
         for (const sc of shoppingCart) {
+          const courses = await Course.findOne({ _id: sc.course_id }).lean();
+
           const user = await User.findOne({ _id: res.locals.authUser._id });
+
+          const current_course = {
+            course_id: sc.course_id,
+            total: courses.lectures.total,
+            progress: []
+          };
+
+          courses.lectures.sections.forEach(section => {
+            section.lessons.forEach(lesson => {
+              current_course.progress.push({
+                lesson_id: lesson._id,
+                status: false
+              });
+            });
+          });
+
           await User.updateOne(
             { _id: sc.user_id },
-            { myCourses: [...user.myCourses, sc.course_id] })
+            { myCourses: [...user.myCourses, sc.course_id], my_progress: [...user.my_progress, current_course] })
+
           await ShoppingCart.deleteOne({ _id: sc._id });
         }
       }
     }
   }
   else {
-    const  {course_id}  = req.body;
+    const { course_id } = req.body;
     const backURL = req.headers.referer.split('?')[0];
 
-    if (!res.locals.auth){
+    if (!res.locals.auth) {
       return res.redirect(`${backURL}?message=Please login to continue}`);
     }
     const shopping_cart = { course_id: course_id, user_id: res.locals.authUser._id };
@@ -73,7 +94,7 @@ export const updateShoppingCart = catchAsync(async (req, res, next) => {
     if (prev_course) {
       return res.redirect(`${backURL}?message=Course already in cart`);
     }
-    
+
     // if (Object.values(my_courses).length > 0) {
     //   return res.redirect(`${backURL}?message=Course already in my courses`);
     // }
@@ -82,9 +103,13 @@ export const updateShoppingCart = catchAsync(async (req, res, next) => {
 
     return res.redirect(`${backURL}?message=Course added to cart`);
   }
-
-  if (req.body.deleteItem == "delete" || req.body.deleteItem == "checkout")
+  if (req.body.deleteItem == "delete") {
     shoppingCartPage(req, res, next)
+  }
+  else if (req.body.deleteItem == "payment") {
+    res.locals.messages = "success"
+    shoppingCartPage(req, res, next)
+  }
 })
 
 

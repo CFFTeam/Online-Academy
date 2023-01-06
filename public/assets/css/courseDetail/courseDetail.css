@@ -246,8 +246,15 @@
 .total-length{
     display: flex;
     justify-content: space-between;
-    align-items: center;;
+    align-items: center;
 }
+
+.total-length-lessons{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 
 .total-length p{
     margin: 0;
@@ -326,17 +333,17 @@
     clip-path: polygon(0 0, 100% 0, 82% 100%, 0% 100%);
 }
 
-.heading-ins h1{
+.heading-ins h2{
     font-size: 4rem;
     font-weight: 700;
-    margin-left: 6rem;
+    margin-left: 3rem;
     margin-top: 7rem;
     color: white;
 }
 
 .heading-ins p{
     font-weight: 600;
-    margin-left: 6rem;
+    margin-left: 3rem;
     margin-top: 1rem;
     color: white;
 }
@@ -356,7 +363,7 @@
 .info-ins{
     display: flex;
     height: 20rem;;
-    margin-left: 6rem;
+    margin-left: 3rem;
     margin-top: 4rem;
 }
 

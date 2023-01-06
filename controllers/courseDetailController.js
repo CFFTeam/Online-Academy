@@ -17,7 +17,7 @@ const loadhotCourse = async (sameCategory) => {
     const hotCoursesDetails = hotCourses[index];
     const course = await Course.findOne({
       _id: hotCoursesDetails.course_id,
-      category: sameCategory,
+      category: sameCategory
     })
       .select("-lectures.sections")
       .lean();
@@ -38,7 +38,7 @@ const loadhotCourse = async (sameCategory) => {
         course_img: course.img,
         course_description: course.description,
         course_duration: course.lectures.duration,
-        course_lessons: course.lectures.total,
+        course_lessons: course.lectures.total
       };
       newcourse.push(new_hot_course);
     }
@@ -50,12 +50,12 @@ export const renderCourseDetail = catchAsync(async (req, res) => {
   res.locals.handlebars = "courseDetail/courseDetail";
 
   const getCourse = await Course.findOne({
-    slug: `/course${url.parse(req.url, true).pathname}`,
+    slug: `/course${url.parse(req.url, true).pathname}`
   }).lean();
 
   const getCourseRating = await courseDetail
     .findOne({
-      course_id: getCourse._id,
+      course_id: getCourse._id
     })
     .lean();
 
@@ -99,7 +99,7 @@ export const renderCourseDetail = catchAsync(async (req, res) => {
     getThreeLastComment: getThreeLastComment,
     layout: "courseDetail.hbs",
     mostviewCourse: mostviewCourse,
-    isExist: isExist,
+    isExist: isExist
   });
 });
 
@@ -108,18 +108,42 @@ export const handleBuyNow = catchAsync(async (req, res) => {
   let user=null;
 
   if (res.locals && res.locals.authUser) {
+    const courses = await Course.findOne({ _id: req.body.course_id }).lean();
+
     user = await User.findOne({ _id: res.locals.authUser._id }).lean();
     let getMyCourses = user.myCourses;
     
     if(getMyCourses.includes(req.body.course_id)===false){
       getMyCourses.push(req.body.course_id);
     }
+
+    const current_course = {
+      course_id: req.body.course_id,
+      total: courses.lectures.total,
+      progress: []
+    };
+
+    courses.lectures.sections.forEach(section => {
+      section.lessons.forEach(lesson => {
+        current_course.progress.push({
+          lesson_id: lesson._id,
+          status: false
+        });
+      });
+    });
+
     await User.updateOne(
       { _id: res.locals.authUser._id },
-      {myCourses: [...getMyCourses]}
+      { myCourses: [...getMyCourses], my_progress: [...user.my_progress, current_course] }
+    )
+
+    const getCourseDetail = await courseDetail.findOne({ course_id: req.body.course_id }).lean();
+    let view = getCourseDetail.viewer + 1;
+    await courseDetail.updateOne(
+      {course_id: req.body.course_id},
+      {viewers: view}
     )
     const url = req.headers.referer;
-    console.log(url);
     res.redirect(url);
   }
   else{

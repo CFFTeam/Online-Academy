@@ -1,5 +1,5 @@
 <div class="shoppingCart">
-    <div class="title">
+    <div class="titlee">
       <h1>shopping cart</h1>
       <img>
       <svg width="55" height="49" viewBox="0 0 55 49" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -12,9 +12,10 @@
 
     <div class="cart">
       <div class="itemList ">
-
+        <div class="cartIsEmpty">
+          <p>Cart is empty...</p>
+        </div>
       </div>
-
       {{!-- payment open--}}
       <div class="paymentMethod shoppingCartHidden">
         <P class="title">checkout</P>
@@ -47,7 +48,7 @@
               <div style="width: 16px;height:16px;background-color:#D9D9D9;border-radius:50%;display:flex;align-items:center;justify-content:center;">
                 <div style="width: 12px;height:12px;background-color:#55D379;border-radius:50%"></div>
               </div>
-              <P style="font-weight:600;margin:0;">Credit / Debit Card</P>
+              <P style="font-weight:600;margin:0;margin-left:2rem;">Credit / Debit Card</P>
             </div>
             <div class="cardImage">
                 <svg width="41" height="34" viewBox="0 0 41 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -123,7 +124,7 @@
             <div class="cardName">
               <div style="width: 16px;height:16px;background-color:#D9D9D9;border-radius:50%;display:flex;align-items:center;justify-content:center;">
               </div>
-              <P style="font-weight:600;margin:0;">Paypal</P>
+              <P style="font-weight:600;margin:0;margin-left:2rem;">Paypal</P>
             </div>
             <div class="cardImage">
               <svg width="42" height="34" viewBox="0 0 42 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -143,7 +144,7 @@
       {{!-- payment close--}}
 
 
-      <form method="post" class="checkout shoppingCartMargin">
+      <form method="post" class="checkout ">
         <div class="price">
           <p class="label">Price</p>
           <p class="value">$0</p>
@@ -171,10 +172,10 @@
 
         <div class="promotionList"></div>
 
-        <button name="deleteItem" value="checkout" class="checkoutButton ">checkout</button>
+        <button type="button" class="checkoutButton ">checkout</button>
 
         {{!-- payment open --}}
-        <button name="deleteItem" value="payment" class="checkoutButton shoppingCartHidden">payment</button>
+        <button name="deleteItem" value="payment" class="paymentButton shoppingCartHidden">payment</button>
         {{!-- payment close --}}
 
       </form>
@@ -186,6 +187,7 @@
     <input value="delete" type="hidden" name="deleteItem">
     <input value="delete" type="hidden" name="id" class="getId">
   </form>
+  <input type="hidden" class="message" value="{{messages}}">
     <script>
     const addPromotion=(item,index)=>{
     $(".promotionList").append(`<div id=${index} class="promotionItem">
@@ -311,6 +313,10 @@
         
         const itemList = JSON.parse(`{{{course}}}`)
 
+        if(itemList.length>0){
+          $(".cartIsEmpty").addClass("shoppingCartHidden")
+        }
+
         let total = 0;
         let discount = 0;
         for(let i=0;i<itemList.length;i++){
@@ -338,8 +344,30 @@
           deleteForm.submit()
         });
 
-    $(".checkoutButton").on("click",(event)=>{
-      if(itemList.length>0) alert("Payment successfully!");
-    })
+
+        $(".checkoutButton").on("click",(event)=>{
+          if(itemList.length>0){
+          $(".paymentButton").removeClass("shoppingCartHidden")
+          $(".checkoutButton").addClass("shoppingCartHidden")
+          $(".itemList").addClass("shoppingCartHidden")
+          $(".promotion").addClass("shoppingCartHidden")
+          $(".titlee").addClass("shoppingCartHidden")
+          $(".paymentMethod").removeClass("shoppingCartHidden")
+          $(".Coupons").removeClass("shoppingCartHidden")
+          $(".checkout").addClass("shoppingCartMargin")
+          }
+          else{
+            alert("Shopping cart is empty")
+          }
+        })
+          
+        $(".paymentButton").on("click",(event)=>{
+          alert("Payment successfully!");
+        })
+
+        //$(document).ready(function(){
+        //  const messages = '{{{message}}}'
+        //  if(messages && (messages==="success")) alert("Payment successfully!");
+        //})
   </script>
   </div>

@@ -12,23 +12,44 @@
         <input class="input1" type="text" placeholder="Search any courses" />
       </label>
     </div>
-    <div class="dropdown" style="margin-top: 2rem;">
-      <button
-        type="button"
-        class="btn btn-success dropdown-toggle"
-        data-toggle="dropdown"
-        style="background-color: #00A551; font-size: 1.6rem; font-weight: 600; padding: 0.5rem 1rem; "
-      >
-        Select category
-      </button>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="/admin/courses">All categories</a>
-        {{#each this.category}}
-          <a
-            class="dropdown-item"
-            href="/admin/courses/category?slug={{slug}}"
-          >{{title}}</a>
-        {{/each}} 
+    <div style="display: flex; justify-content: space-between; margin-top: 2rem; ">
+      <div class="dropdown">
+        <button
+          type="button"
+          class="btn btn-success dropdown-toggle"
+          data-toggle="dropdown"
+          style="background-color: #00A551; font-size: 1.6rem; font-weight: 600; padding: 0.5rem 1rem; "
+        >
+          Select category
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/admin/courses">All categories</a>
+          {{#each this.category}}
+            <a
+              class="dropdown-item"
+              href="/admin/courses/category?slug={{slug}}"
+            >{{title}}</a>
+          {{/each}} 
+        </div>
+      </div>
+      <div class="dropdown">
+        <button
+          type="button"
+          class="btn btn-success dropdown-toggle"
+          data-toggle="dropdown"
+          style="background-color: #00A551; font-size: 1.6rem; font-weight: 600; padding: 0.5rem 1rem; "
+        >
+          Select instructor
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/admin/courses">All instructors</a>
+          {{#each instructor}}
+            <a
+              class="dropdown-item"
+              href="/admin/courses/instructor?author={{this}}"
+            >{{this}}</a>
+          {{/each}} 
+        </div>
       </div>
     </div>
     </div>
@@ -38,12 +59,14 @@
   {{#if isEmpty}}
     <h1 style="padding: 2rem 1.2rem;"> No result found </h1>
     {{else}}
-      <table id="course" class="cor" style="width: 98%; margin: 1rem auto;">
+      <table id="course" class="cor" style="width: 98%; margin: 1rem auto; font-size: 1.4rem;">
 
           <tr class="none-shawdow" style="border-radius: 10px;">
-            <th>ID</th>
-            <th>Category</th>
+            <th style="display: none;">ID</th>
             <th>Course name</th>
+            <th>Category</th>
+            <th>Author</th>
+            <th>Status</th>
             <th>Coupon</th>
             <th></th>
             <th></th>
@@ -52,9 +75,11 @@
 
           {{#each this.courses}}
             <tr>
-              <td class="id">{{_id}}</td>
-              <td >{{category}}</td>
+              <td class="id" style="display: none;">{{_id}}</td>
               <td >{{name}}</td>
+              <td >{{category}}</td>
+              <td>{{author}}</td>
+              <td>{{#if active}}Active{{else}}Inactive{{/if}}</td>
               <td class="sale">{{sale}}</td>
               <td class="edit" style="text-align: center; padding: 0 0.2rem; ">
                 <img src="/assets/svg/admin/coupon.svg" alt="coupon-icon" />

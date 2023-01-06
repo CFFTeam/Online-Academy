@@ -125,7 +125,7 @@
     $(this).siblings('.name').text($(this).siblings('.name').find('input').val());
     } 
     else { var content=$(this).siblings('.name').text(); 
-    var actionURL="http://localhost:5000/admin/categories/edit/"+id; 
+    var actionURL="/admin/categories/edit/"+id; 
     var form=$("<form/>", { method: 'POST',action: actionURL, style: 'margin: 0; padding: 0', } ).append($("<input>", {
     type:'text', name:'title', class:"editname", value: content, }).val(content))
     $(this).siblings('.name').text('').append(form); } });
@@ -137,7 +137,7 @@
     $(this).siblings('.subname').text($(this).siblings('.subname').find('input').val());
     } 
     else { var content=$(this).siblings('.subname').text(); 
-    var actionURL= `http://localhost:5000/admin/categories/editsub/${id}/${idsub}`; 
+    var actionURL= `/admin/categories/editsub/${id}/${idsub}`; 
     var form=$("<form/>", { method: 'POST',action: actionURL, style: 'margin: 0; padding: 0', } )
     .append($("<input>", {type:'text', name:'subcat', class:"editname", value: content, }).val(content))
     $(this).siblings('.subname').text('').append(form); } });
