@@ -246,6 +246,21 @@
   outline: none;
 }
 
+.shoppingCart > .cart > .checkout >.promotion input::-webkit-input-placeholder {
+  color: #8d8d8d;
+  letter-spacing: 1px;
+}
+
+.shoppingCart > .cart > .checkout >.promotion input:-ms-input-placeholder {
+  color: #8d8d8d;
+  letter-spacing: 1px;
+}
+
+.shoppingCart > .cart > .checkout >.promotion input::-ms-input-placeholder {
+  color: #8d8d8d;
+  letter-spacing: 1px;
+}
+
 .shoppingCart > .cart > .checkout >.promotion input::placeholder {
   color: #8d8d8d;
   letter-spacing: 1px;

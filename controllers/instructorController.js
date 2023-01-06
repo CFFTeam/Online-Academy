@@ -218,21 +218,12 @@ export const updateInstructorProfile = async (req, res, next) => {
         res.locals.address = res.locals.props.historyAddress
 
 
-        // res.render("userProfile/userProfile", { user: user, page: 'editform', messages: "profile success" });
         res.render('instructor/myProfile', {
             layout: "instructor",
             page: 'editform',
             sidebar: "user-profile",
             messages: "profile success",
             user: user
-            // user: {
-            //     name: res.locals.name,
-            //     birthday: res.locals.birthday,
-            //     sex: res.locals.sex,
-            //     phoneNumber: res.locals.phoneNumber,
-            //     email: res.locals.email,
-            //     address: res.locals.address
-            // }
         });
     }
     else if (submitForm == "editPassword") {
@@ -562,7 +553,8 @@ export const editCourseDescription = catchAsync(async (req, res) => {
                     finish: 0,
                     category: req.body.course_category,
                     subcategory: [req.body.course_sub_category],
-                    author: res.locals.authUser.name,
+                    author: res.locals.authUser._id,
+                    // author: res.locals.authUser.name,
                     // author: "Khoa Nguyen",
                     date: new Date().toJSON(),
                     lectures: {

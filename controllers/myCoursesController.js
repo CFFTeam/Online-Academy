@@ -13,6 +13,7 @@ export const myCoursesPage = catchAsync(async (req, res) => {
   }
   if (user) {
     for (const m of user.myCourses) {
+<<<<<<< HEAD
       if (isValidObjectId(m)) {
         const course = await Course.findOne({ _id: m });
         // console.log("name: ", course.author);
@@ -45,6 +46,18 @@ export const myCoursesPage = catchAsync(async (req, res) => {
           { myCourses: [...user.myCourses] }
         )
       }
+=======
+      const course = await Course.findOne({ _id: m });
+      courses.push({
+        id: m,
+        slug: course.slug,
+        name: course.name,
+        img: course.img,
+        author: course.author,
+        category: course.category,
+        date: course.date.slice(0, course.date.indexOf("T"))
+      });
+>>>>>>> 00209117071577adbceb555d5a221d312af48226
     }
   }
 
