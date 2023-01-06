@@ -136,16 +136,27 @@ export const updateInstructorProfile = async (req, res, next) => {
         address: user.address
     };
 
-    res.locals.name = renderUser.name;
-    res.locals.birthday = renderUser.birthday;
-    res.locals.sex = renderUser.sex;
-    res.locals.phoneNumber = renderUser.phone;
-    res.locals.email = renderUser.email;
-    res.locals.address = renderUser.address;
+    res.locals.props = {
+        historyName: req.body.fullname,
+        historyBirthday: req.body.dob,
+        historySex: req.body.sex,
+        historyPhone: req.body.phonenumber,
+        historyEmail: req.body.email,
+        historyAddress: req.body.address
+    }
+
+    res.locals.name = res.locals.props.historyName != null ? res.locals.props.historyName : renderUser.name;
+    res.locals.birthday = res.locals.props.historyBirthday != null ? res.locals.props.historyBirthday : renderUser.birthday;
+    res.locals.sex = res.locals.props.historySex != null ? res.locals.props.historySex : renderUser.sex;
+    res.locals.phoneNumber = res.locals.props.historyPhone != null ? res.locals.props.historyPhone : renderUser.phone;
+    res.locals.email = res.locals.props.historyEmail != null ? res.locals.props.historyEmail : renderUser.email;
+    res.locals.address = res.locals.props.historyAddress != null ? res.locals.props.historyAddress : renderUser.address;
+
 
     if (submitForm == "editProfile") {
         res.locals.handlebars = "instructor/myProfile";
-        res.locals.layout = "instructor";
+        res.locals.layout = "instructor"
+        res.locals.sidebar = "user-profile";
 
         const { fullname, dob, sex, phonenumber, email, address } = req.body;
 
@@ -172,10 +183,10 @@ export const updateInstructorProfile = async (req, res, next) => {
         }
 
         // check valid name
-        const regex =
-            /^([A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ]|[a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ])*(?:[ ][A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)*$/g;
+        // const regex =
+        //     /^([A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ]|[a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ])*(?:[ ][A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)*$/g;
 
-        if (!regex.exec(user.name)) return next(new Error('Your name is not valid', 400));
+        // if (!regex.exec(user.name)) return next(new Error('Your name is not valid', 400));
 
         // check birthday
         const regex_b =
@@ -199,12 +210,13 @@ export const updateInstructorProfile = async (req, res, next) => {
 
         await user.save();
 
-        res.locals.name = user.name;
-        res.locals.birthday = user.birthday;
-        res.locals.sex = user.sex;
-        res.locals.phoneNumber = user.phoneNumber;
-        res.locals.email = user.email;
-        res.locals.address = user.address;
+        res.locals.name = res.locals.props.historyName
+        res.locals.birthday = res.locals.props.historyBirthday
+        res.locals.sex = res.locals.props.historySex
+        res.locals.phoneNumber = res.locals.props.historyPhone
+        res.locals.email = res.locals.props.historyEmail
+        res.locals.address = res.locals.props.historyAddress
+
 
         // res.render("userProfile/userProfile", { user: user, page: 'editform', messages: "profile success" });
         res.render('instructor/myProfile', {
@@ -227,6 +239,7 @@ export const updateInstructorProfile = async (req, res, next) => {
         res.locals.handlebars = "instructor/myProfile";
         res.locals.layout = "instructor";
         res.locals.page = 'changeform';
+        res.locals.sidebar = "user-profile";
         res.locals.users = { historyCurrentPassword: req.body.currentPassword, historyPassword: req.body.password, historyConfirmPassword: req.body.passwordConfirm };
         // 1) Get user from collection
         const user = await User.findById(res.locals.authUser._id).select('+password');
@@ -256,6 +269,13 @@ export const updateInstructorProfile = async (req, res, next) => {
             messages: "success"
         });
     }
+    else if (submitForm == "editIntroduction") {
+        res.locals.handlebars = "instructor/myProfile";
+        res.locals.layout = "instructor";
+        res.locals.page = 'introductionform';
+        res.locals.sidebar = "user-profile";
+
+    }
 }
 
 export const getPreview = (async (req, res) => {
@@ -263,14 +283,14 @@ export const getPreview = (async (req, res) => {
     res.locals.layout = "instructor.hbs";
     // if haven't registered course yet
     if (!req.query.course) {
-        return res.render("instructor/addCourseDescription",{
+        return res.render("instructor/addCourseDescription", {
             layout: res.locals.layout,
             message: "You need to add your course description first. Please try again!",
             sidebar: "my-course"
         });
     }
-    const course = await Course.findById({_id: req.query.course}).lean();
-    const thisCourseLectures = await Course.findById({_id: req.query.course}).select('lectures');
+    const course = await Course.findById({ _id: req.query.course }).lean();
+    const thisCourseLectures = await Course.findById({ _id: req.query.course }).select('lectures');
     const course_id = req.query.course;
     const section_id = req.query.section;
     // pre processing url

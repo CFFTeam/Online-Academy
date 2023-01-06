@@ -9,7 +9,7 @@
 <img src="/assets/images/userProfile/user.jpg" />
       </div>
       <p class="name">{{name}}</p>
-      <p class="role">user</p>
+      <p class="role">Instructor</p>
       <div class="icons">
         <svg width="28" height="28" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M44 24C44 12.96 35.04 4 24 4C12.96 4 4 12.96 4 24C4 33.68 10.88 41.74 20 43.6V30H16V24H20V19C20 15.14 23.14 12 27 12H32V18H28C26.9 18 26 18.9 26 20V24H32V30H26V43.9C36.1 42.9 44 34.38 44 24Z" fill="#2D75FA"/>
@@ -51,6 +51,8 @@
         <p class="overview {{#if (eq page "overview")}} optionChosen{{/if}}">Overview</p>
         <p class="edit {{#if (eq page "editform")}} optionChosen{{/if}}">Edit Profile</p>
         <p class="change {{#if (eq page "changeform")}} optionChosen{{/if}}">Change Password</p>
+        <p class="introduction {{#if (eq page "introductionform")}} optionChosen{{/if}}">Introduction</p>
+
       </div>
       <div class="content">
         <div class="overview{{#if (eq page "overview")}}{{else}} hideUserProfile{{/if}}">
@@ -143,7 +145,7 @@
           </div>
         </form>
 
-        <form method="post" class="changePassword{{#if (eq page "changeform")}}{{else}} hideUserProfile{{/if}}">
+        <form method="post" class="changePassword{{#if (eq page "introductionform")}}{{else}} hideUserProfile{{/if}}">
           <div class="currentPassword">
             <p>Current Password</p>
             <input name="currentPassword" type="password" value="{{users.historyCurrentPassword}}" />
@@ -168,6 +170,13 @@
 
           <div class="buttonFrame">
             <button name="submitForm" class="changeButton" value="editPassword">Change Password</button>
+          </div>
+        </form>
+        
+        <form method="post" class="introduction{{#if (eq page "introduction")}}{{else}} hideUserProfile{{/if}}">
+
+          <div class="buttonFrame">
+            <button name="submitForm" class="saveIntroduction" value="editIntroduction">Save</button>
           </div>
         </form>
 
@@ -204,6 +213,7 @@
       $(".instructorProfile >.body > .mainn > .content > .overview").removeClass("hideUserProfile")    
     $(".messageUserProfile").text("")
     });
+    
     $(document).ready(function(){
     const messages = "{{messages}}"
     if(messages && (messages==="success")) alert("Changed password successfully!");
