@@ -5,7 +5,7 @@ import ShoppingCart from "../models/shoppingCartModel.js";
 import catchAsync from "../utilities/catchAsync.js";
 
 
-export const shoppingCartPage = catchAsync(async (req, res, next) => {
+export const shoppingCartPage = catchAsync(async (req, res) => {
   res.locals.handlebars = "payment/payment";
 
   let shoppingCart = null;

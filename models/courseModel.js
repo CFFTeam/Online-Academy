@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const courseSchema = new mongoose.Schema({
   name: { type: String },
+  active: { type: Boolean, default: true},
   img: { type: String },
   author: { type: String },
   description: { type: String },

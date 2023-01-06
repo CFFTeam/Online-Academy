@@ -18,7 +18,8 @@
     const addItem=(item,index)=>{
       $("main").append(`    <div class="courseItem">
     <div class="course-card-overlay">
-        <a class="button-cs" href="${item.slug}/learn/lecture">More Details</a>
+        <a class="button-cs" href="${item.slug}">More Details</a>
+        <a class="button-cs learning" href="${item.slug}/learn/lecture">Learn Now</a>
     </div>
       <img src=${item.img} />
       <div class="content">
