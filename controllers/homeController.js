@@ -5,7 +5,7 @@ import { fixDateFormat, fixNumberFormat } from "../utilities/fixFormat.js";
 import catchAsync from "../utilities/catchAsync.js";
 
 const loadhotCourse = async (myCourses, myWishCourses, categories, authors) => { 
-    const hotCourses = await courseDetailsModel.find().select('-reviews').sort('-viewer').limit(10).lean();
+    const hotCourses = await courseDetailsModel.find({ viewer: { $gt: 40000 } }).select('-reviews').sort('-viewer').limit(10).lean();
     const newcourse = [];
 
     for (let index = 0; index < hotCourses.length; index++) {
@@ -38,7 +38,22 @@ const loadhotCourse = async (myCourses, myWishCourses, categories, authors) => {
 }
 
 const loadNewestCourse = async (myCourses, myWishCourses, categories, authors) => {
-    const newestViewCourse = await courseModel.find({ finish: 1, active: true }).select('-lectures.sections').sort('-date').limit(10).lean();
+    const date = new Date();
+    const current_date = date.getTime(); 
+    const prev_date = new Date(date.setMonth(date.getMonth() - 3)).getTime();
+
+    const hotCourses = await courseDetailsModel.find({ viewer: { $gt: 40000 } }, { course_id: 1 }).sort('-viewer').limit(10).lean();
+    const hotCourses_ID = hotCourses.map(el => el.course_id);
+
+    const newestViewCourse = await courseModel.find({ 
+        _id: { $nin: hotCourses_ID },
+        finish: 1, 
+        active: true, 
+        date: {
+            $gte: new Date(prev_date).toISOString(),
+            $lte: new Date(current_date).toISOString()
+        }
+    }).select('-lectures.sections').sort('-date').limit(10).lean();
     const newcourse = [];
 
     for (let index = 0; index < newestViewCourse.length; index++) {

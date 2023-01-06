@@ -6,7 +6,7 @@ import { fixDateFormat, fixNumberFormat } from "../utilities/fixFormat.js";
 import catchAsync from "../utilities/catchAsync.js";
 
 const loadBestSeller = async () => { 
-    const allcourses = await courseDetailsModel.find({}, {course_id: 1}).sort({
+    const allcourses = await courseDetailsModel.find({ viewer: { $gt: 40000 } }, {course_id: 1}).sort({
         viewer: -1,
         course_id: 1
     }).limit(10).lean();
@@ -57,6 +57,7 @@ const loadCourses = async (categories, authors, myCourses, find_by = {}, sort_by
         const course = (sort_by === 'price') ? courses[index] : await courseModel.findOne({ _id: courses[index].course_id, finish: 1, active: true }).select('-lectures.sections').lean();
         const course_date = new Date(course.date).getTime();
         const coursesDetails = (sort_by === 'price') ? await courseDetailsModel.findOne({ course_id: courses[index]._id }).select('-reviews').lean() : courses[index];
+        
         const newest_course = {
             active: index === 0 ? true : false,
             course_status: (bestseller.includes(course._id.toString())) ? 'best seller' : (course_date >= prev_date && course_date <= current_date) ? 'new' : '',
