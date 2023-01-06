@@ -13,7 +13,7 @@ const loadBestSeller = async () => {
     return allcourses.map(course => course.course_id.toString());
 };
 
-const loadCourses = async (myCourses, find_by = {}, sort_by, offset = 0, limit = 10) => {
+const loadCourses = async (categories, authors, myCourses, find_by = {}, sort_by, offset = 0, limit = 10) => {
 
     const skip = (offset - 1) * limit;
 
@@ -40,7 +40,7 @@ const loadCourses = async (myCourses, find_by = {}, sort_by, offset = 0, limit =
     const allcourses_id = allcourses.map(course => course._id);
 
     const courses = (sort_by === 'price') 
-    ? await courseModel.find(find_by)
+    ? await courseModel.find({ ...find_by, finish: 1, active: true })
     .sort(sort_query).collation({ locale: 'en', numericOrdering: true })
     .skip(skip).limit(limit).lean()
     : await courseDetailsModel.find({ course_id: { $in: allcourses_id } }).select('-reviews')
@@ -54,7 +54,7 @@ const loadCourses = async (myCourses, find_by = {}, sort_by, offset = 0, limit =
     const prev_date = new Date(date.setMonth(date.getMonth() - 3)).getTime();
 
     for (let index = 0; index < courses.length; index++) {
-        const course = (sort_by === 'price') ? courses[index] : await courseModel.findOne({ _id: courses[index].course_id }).select('-lectures.sections').lean();
+        const course = (sort_by === 'price') ? courses[index] : await courseModel.findOne({ _id: courses[index].course_id, finish: 1, active: true }).select('-lectures.sections').lean();
         const course_date = new Date(course.date).getTime();
         const coursesDetails = (sort_by === 'price') ? await courseDetailsModel.findOne({ course_id: courses[index]._id }).select('-reviews').lean() : courses[index];
         const newest_course = {
@@ -65,9 +65,9 @@ const loadCourses = async (myCourses, find_by = {}, sort_by, offset = 0, limit =
             course_rate: coursesDetails.avg_rating,
             course_vote: fixNumberFormat(coursesDetails.num_reviews),
             course_viewer: fixNumberFormat(coursesDetails.viewer),
-            course_author: course.author,
+            course_author: authors.find(el => el._id.toString() === course.author).name || '',
             course_price: course.price,
-            course_category: course.category,
+            course_category: categories.find(el => el._id.toString() === course.category).title || '',
             course_date: fixDateFormat(course.date),
             course_img: course.img,
             course_description: course.description,
@@ -104,12 +104,15 @@ export const coursesPage = catchAsync(async (req, res) => {
     res.locals.sort_by = req.query.sort_by || 'default';
     res.locals.page = req.query.page || 1;
 
+    const categories = JSON.parse(res.locals.categories);
+    const authors = await User.find().select('name').lean();
+
     const find_by = req.find_by;
 
     const limit = 10;
     const offset = res.locals.page;
 
-    const results = await loadCourses(req.myCourses, find_by, res.locals.sort_by, offset, limit);
+    const results = await loadCourses(categories, authors, req.myCourses, find_by, res.locals.sort_by, offset, limit);
 
     const courses = results.courses;
     const totalPage = results.total_pages;
@@ -141,8 +144,8 @@ export const loadCategory = catchAsync(async (req, res, next) => {
             return category.slug === `/${subcategory}`;
         });
         
-        const categoryName = categoryList ? categoryList.title : null;
-        const subcategoryName = subCategory ? subCategory.content : null;
+        const categoryName = categoryList ? categoryList._id.toString() : null;
+        const subcategoryName = subCategory ? subCategory._id.toString() : null;
 
         if (categoryName)
             req.find_by.category = categoryName;
