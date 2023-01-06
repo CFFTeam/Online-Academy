@@ -47213,8 +47213,9 @@
   "role": "instructor",
   "password": "$2a$12$fHCtLrrXLpcD9ZTxD5OvpuTidFNHncjiT5MmqbSH/VwUYCsTeHZFy",
   "active": true,
-  "__v": 0
-},{
+  "__v": 0,
+  "description": "<p>Bundling the courses and know how of successful instructors, Academind strives to deliver high quality online education.&nbsp;</p><p>Online Education, Real-Life Success - that's what Academind stands for. Learn topics like web development, data analyses and more in a fun and engaging way.</p><p>We've taught more than 2,000,000 students on a broad variety of topics. We'd love to teach you as well!&nbsp;:)</p><p>Keep learning!</p>"
+  },{
   "_id": {
     "$oid": "63b8196ea86a29ffe08ceefa"
   },
@@ -47229,7 +47230,7 @@
   "role": "instructor",
   "password": "$2a$12$PszLSK3T2uIZKGKB9FByoOTwC6tCrLv5WB3uzxKqSXb58k1IKjpkG",
   "active": true,
-  "__v": 0
+  "description": "<p>Jose Marcial Portilla has a BS and MS in Mechanical Engineering from Santa Clara University and&nbsp;years of&nbsp;experience as a professional instructor and trainer for Data Science, Machine Learning and Python Programming. He has publications and patents in various fields such as microfluidics,&nbsp;materials science, and data science. Over the course of his career he has developed a skill set in analyzing data and he hopes to use his experience in teaching and data science to help other people learn the power of programming, the&nbsp;ability to analyze data, and the skills needed to present the data in clear and beautiful visualizations. Currently he works as the Head of Data Science for Pierian Training&nbsp;and provides in-person data science and python programming training courses to employees working at top companies, including General Electric, Cigna, The New York Times, Credit Suisse, McKinsey and many more.&nbsp;Feel free to check out the website link to find out more information about training offerings.</p>"
 },{
   "_id": {
     "$oid": "63b81b69a86a29ffe08cef01"
@@ -47245,7 +47246,8 @@
   "role": "instructor",
   "password": "$2a$12$EZKcj4yXNv55I98BEOt1oOFmo4miwGDK6sCx/PQLgds5ExsGvL62q",
   "active": true,
-  "__v": 0
+  "__v": 0,
+  "description": "<p>Hi, I'm Jonas! I have been identified as one of Udemy's Top Instructors and all my premium courses have earned the best-selling status for outstanding performance and student satisfaction.</p><p>I'm a full-stack web developer and designer with a passion for building beautiful things from scratch. I've been building websites and apps since 2010 and also have a Master's degree in Engineering.</p><p>I discovered my passion for teaching and helping others by sharing all I knew when I&nbsp;was in college, and that passion brought me to Udemy in 2015.</p><p>Here, in all my courses, what students love the most is that I take the time to explain every concept in a way that everyone can easily understand.</p><p><strong><em>So, do you want to learn how to build awesome websites with modern HTML&nbsp;and CSS?</em></strong></p><p><strong><em>Looking for a complete JavaScript course that takes you from zero to an advanced developer?</em></strong></p><p><strong><em>Or maybe you want to build modern and fast back-end applications with Node.js?</em></strong></p><p>Then don't waste your time with random tutorials or incomplete youtube videos. All my courses are easy-to-follow, all-in-one packages that will take your skills to the next level.</p><p><em>These courses are exactly the courses I wish I had when I was first getting into web development!</em></p><p>So see for yourself, enroll in one of my courses (or all of them :D) and join <strong>1,000,000+</strong> happy students today.</p>"
 },{
   "_id": {
     "$oid": "63b81b70748fc38fd94199df"
@@ -47276,7 +47278,8 @@
   "role": "instructor",
   "password": "$2a$12$CYDg9b.vIopOotu1th/i1e43a1Z75tp51Ae5gsPFzgs3A6RBU759y",
   "active": true,
-  "__v": 0
+  "__v": 0,
+  "description": "<p>Today, I spend most of my time as an artificial intelligence and machine learning engineer with a focus on deep learning, although I have also been known as a data scientist, big data engineer, and full stack software engineer.</p><p>I received my first masters degree over a decade ago in computer engineering with a specialization in machine learning and pattern recognition. I received my second masters degree in statistics with applications to financial engineering.</p><p>Experience includes&nbsp;online advertising and digital media as both a data scientist (optimizing click and conversion rates)&nbsp;and big data engineer (building data processing pipelines). Some big data technologies I frequently use are Hadoop,&nbsp;Pig, Hive,&nbsp;MapReduce, and Spark.</p><p>I've created deep&nbsp;learning models to predict click-through rate and user behavior, as well as for image and signal processing and modeling text.</p><p>My work in recommendation systems has applied Reinforcement Learning and Collaborative Filtering, and we&nbsp;validated the results using A/B testing.</p><p>I have taught undergraduate and graduate students in data science, statistics, machine learning, algorithms, calculus, computer graphics, and physics for students attending universities such as Columbia University, NYU, Hunter College, and The New School.&nbsp;</p><p>Multiple businesses have benefitted from my web programming expertise. I do all the backend (server), frontend (HTML/JS/CSS), and operations/deployment work. Some of the technologies I've used are: Python, Ruby/Rails, PHP, Bootstrap, jQuery (Javascript), Backbone, and Angular. For storage/databases I've used MySQL, Postgres, Redis, MongoDB, and more.</p>"
 },{
   "_id": {
     "$oid": "63b81cc6a86a29ffe08cef0f"
@@ -47290,7 +47293,8 @@
   "role": "instructor",
   "password": "$2a$12$NIyXRkWyacFaFz4RxJ1ORua5WYYU.LoTsGolOcgZrqcmmP.4xetx2",
   "active": true,
-  "__v": 0
+  "__v": 0,
+  "description": "<p>Hi, I am Godson. I am a full stack <strong>web developer</strong> passionate for the latest technologies.</p><p>I have a master's degree in Computer Science. I have been programming for several years now and have worked with different technologies.</p><p>I also have a YouTube channel called GTCoding, where I teach web designing and development to complete beginner programmers.</p><p>I encourage you to invest your time in learning to code with my courses.</p>"
 },{
   "_id": {
     "$oid": "63b81da4a86a29ffe08cef16"
@@ -47304,7 +47308,8 @@
   "role": "instructor",
   "password": "$2a$12$lGUHlXLECmOkqCV6joVb8uuZVyQre7i4RiKxpVk8/regVHxwL.gvi",
   "active": true,
-  "__v": 0
+  "__v": 0,
+  "description": "<p>Hi, it's Mustafa Alawi, a Software&nbsp;engineer &amp; entrepreneur. I've basically&nbsp;seven years of&nbsp;experience in web development &amp; software development. I also work as a consultant helping small-businesses. And have a great passion for business &amp; entrepreneurship and founded CalmAndCode.</p><p>I like teaching people and providing them with the knowledge that I&nbsp;have as I'm talented at simplifying complex theories and matters. And one of my goals is to help my students find success and reach their goals. </p><p>My way of teaching focuses on helping students applying what they learn to make sure they're capable of using what they learn in the real world.</p><p>Moreover, I work on entrepreneurial projects from time to time.</p>"
 },{
   "_id": {
     "$oid": "63b81eada86a29ffe08cef1d"
@@ -47318,7 +47323,8 @@
   "role": "instructor",
   "password": "$2a$12$9BQQRVRGPUkYk9GYG0f6x..LggcYKYn.CKa0kGh5zLSMtFzI490qK",
   "active": true,
-  "__v": 0
+  "__v": 0,
+  "description": "<p>I am a Javascript developer with over 10 years of experience. I am passionate about teaching what I have learned over the past decade. My courses are designed to teach Javascript with real world applications that can be used to learn difficult skills in an easy and painless manner. My current technology stack consists of React JS on the frontend and Node JS on the backend. I have experience in building real world consumer applications that has allowed me to learn a lot and now I want to teach what I have learned so that my students can build the projects they want and land the job of their dreams. </p>"
 },{
   "_id": {
     "$oid": "63b81f6ba86a29ffe08cef55"
@@ -47332,7 +47338,8 @@
   "role": "instructor",
   "password": "$2a$12$titSNE6VeHu/Ozdks7u78e5DBouioXE2BeScO1jX.T1aWmwDCgOQq",
   "active": true,
-  "__v": 0
+  "__v": 0,
+  "description": "<p>I always struggled finding information with the right details I am looking for. <br>This is why, my mission was, to convey knowledge to others in the simplest way possible. By initially Ignoring the unnecessary, and focusing on the building blocks.</p><p>Hello together, I am Mouhammad Hamsho,&nbsp; an Engineer, Freelancer, and content creator. </p><p>My experience in over a 100 projects in the domain of Data analysis Embedded systems, and Industrial automation, has led me to be here today. <br>By working at large companies like BMW, Schneider electric and many Freelancing opportunities with wonderful clients. I am brining to you the summary of that experience, Through my E-learning materials.</p><p>I am&nbsp; also the owner of evertutorial dot com.</p><p>I am here to be your mentor, not just trying to sell you stuff. If you need anything regarding my domain of expertise. Just let me know!</p>"
 },{
   "_id": {
     "$oid": "63b82063a86a29ffe08cef5c"
@@ -47346,7 +47353,8 @@
   "role": "instructor",
   "password": "$2a$12$dsn1cKUWE4K0PHPsQz68ieLMFnrjQIcxBsb9J3XNSsnqFfOMN5eC.",
   "active": true,
-  "__v": 0
+  "__v": 0,
+  "description": "<p>Hi,</p><p>I am Satyaprakash Reddy, I am a freelance developer in India.I've 5 years of experience in developing applications in Android and Web Development.</p><p>I've been teaching coding lectures from the past three years in an Institute. So now I wanted to share my knowledge across the globe through Udemy.</p><p>I spend most of my time researching how to make <strong>learning to code fun</strong> and make <strong>hard concepts easy to understand</strong>. I apply everything I discover into my Bootcamp courses. In my courses, you'll find lots of geeky humor but also lots of <strong>explanations and animations</strong> to make sure everything is easy to understand.</p><p>Thank U.</p>"
 },{
   "_id": {
     "$oid": "63b8224ea86a29ffe08cef6f"
@@ -47360,7 +47368,8 @@
   "role": "instructor",
   "password": "$2a$12$ke7i8mORQWJjf5GUAcgAv.iaYRW5QIV7T/jSFyubikCmuGdVFxMf2",
   "active": true,
-  "__v": 0
+  "__v": 0,
+  "description": "<p>Hadelin is an online entrepreneur who has created 30+ top-rated educational e-courses to the world on new technology topics such as Artificial Intelligence, Machine Learning, Deep Learning, Blockchain and Cryptocurrencies. He is passionate about bringing this knowledge to the world and help as much people as possible. So far more than 1.6 million students have subscribed to his courses.</p>"
 },{
   "_id": {
     "$oid": "63b8284ba86a29ffe08cef76"
@@ -47374,7 +47383,8 @@
   "role": "instructor",
   "password": "$2a$12$XyLEXzeLoW1ZXb4jZTGdrOZn4sttvVABiPDqu.5swkHiynsVNeh8K",
   "active": true,
-  "__v": 0
+  "__v": 0,
+  "description": "<p>I-Novotek Academy is a web development bootcamp that helps students learn the latest technologies and become proficient in web development. We provide an intensive, 5-month program in which students learn how to design, build, and maintain websites and web applications using technologies including HTML, CSS, JavaScript, ReactJS, Node.js, and more. Our experienced instructors guide students through each step of the process so they can learn quickly and be productive from day one.</p>"
 },{
   "_id": {
     "$oid": "63b828cca86a29ffe08cef7d"
@@ -47388,7 +47398,8 @@
   "role": "instructor",
   "password": "$2a$12$IBa3pKphuve1k5r1VJ9MteSCSjoCAhj8IsDf7FIuTMUrhNaiEZkPu",
   "active": true,
-  "__v": 0
+  "__v": 0,
+  "description": "<p>I'm Angela, I'm a developer with a passion for teaching. I'm the <strong>lead instructor</strong> at the London App Brewery, London's leading <strong>Programming Bootcamp</strong>. I've helped hundreds of thousands of students learn to code and change their lives by becoming a developer. I've been invited by companies such as Twitter, Facebook and Google to teach their employees.</p><p>My first foray into programming was when I was just 12 years old, wanting to build my own Space Invader game. Since then, I've made <strong>hundred of websites, apps and games</strong>. But most importantly, I realised that my <strong>greatest passion</strong> is teaching. </p><p>I spend most of my time researching how to make <strong>learning to code fun</strong> and make <strong>hard concepts easy to understand</strong>. I apply everything I discover into my bootcamp courses. In my courses, you'll find lots of geeky humour but also lots of <strong>explanations and animations</strong> to make sure everything is easy to understand. </p><p><strong>I'll be there for you every step of the way.</strong></p>"
 },{
   "_id": {
     "$oid": "63b8296ba86a29ffe08cef84"
@@ -47402,7 +47413,8 @@
   "role": "instructor",
   "password": "$2a$12$CbDmeqmBkyuL1drdJ4k/.ezCKVYAjxZI6Utv/hVXe.1q6K5FyQlte",
   "active": true,
-  "__v": 0
+  "__v": 0,
+  "description": "<p>Having been connected with programming since 2013, most of my standing regarding by developer career has been that of a student, though in the later years it has been that of a teacher. I teach programming logic using python in private classes, as well as full-stack web development in the same way. I have recently started recording full courses regarding the subjects I have been teaching.</p>"
 },{
   "_id": {
     "$oid": "63b829a5a86a29ffe08cef8b"
@@ -47416,7 +47428,8 @@
   "role": "instructor",
   "password": "$2a$12$eykShLez2dDvtzg.2VRvwOkSl/9S.bFcxJQfAQtffr8jBfp35oFrG",
   "active": true,
-  "__v": 0
+  "__v": 0,
+  "description": "<p>I'm an electrical engineer with 8+ years of experience with data analytics (IBM). I have a master degree and Ph.D. degree in Engineering and I'm currently a postdoctoral fellow. I've been working as mentor for Udacity for the last 3 years and I'm an instructor at Data Science Dojo. I've been a consultant for Shell, Fastshop, Symrise and Petrobras. </p><p><br></p><p>I'm currently at Microsoft Research as a Research Software Development Engineer. </p><p><br></p>"
 },{
   "_id": {
     "$oid": "63b82a0ba86a29ffe08cef92"
@@ -47430,7 +47443,8 @@
   "role": "instructor",
   "password": "$2a$12$R1oEj.qKBwnX4SIgOpwwZersdvnNXb4cStDcPcx/.N7AjXTmX/o9K",
   "active": true,
-  "__v": 0
+  "__v": 0,
+  "description": "<p>Andrei is the instructor of some of the highest rated programming and technical courses online.<strong> He is now the founder of ZTM&nbsp;Academy which is one of the fastest growing education platforms in the world. ZTM&nbsp;Academy is known for having some of the best instructors and success rates for students.&nbsp;</strong>His graduates have&nbsp;moved&nbsp;on to work for&nbsp;some of the biggest tech&nbsp;companies around the world like Apple, Google, Tesla, Amazon, JP Morgan, IBM, UNIQLO etc...&nbsp;He&nbsp;has&nbsp;been working as a senior software developer in&nbsp;Silicon Valley and Toronto for many years,&nbsp;and&nbsp;is now taking all that he has learned,&nbsp;to teach&nbsp;programming skills and&nbsp;to help you&nbsp;discover the amazing career opportunities that being a developer allows in&nbsp;life.&nbsp;</p><p>Having been&nbsp;a self taught programmer,&nbsp;he understands that there is an&nbsp;overwhelming number of online courses, tutorials and books&nbsp;that are overly verbose and inadequate at teaching proper skills.&nbsp;Most people feel paralyzed and don't know where to start when learning a complex subject matter, or even worse, most people don't have $20,000 to spend on a coding bootcamp.&nbsp;<strong>Programming skills should be affordable and open to all. An education material&nbsp;should teach real life skills that are current and&nbsp;they should not waste a student's valuable time.</strong>&nbsp; Having learned important&nbsp;lessons from working for Fortune 500 companies, tech startups, to even&nbsp;founding his own business, he is now dedicating 100% of his time to&nbsp;teaching others valuable&nbsp;software development skills&nbsp;in order to take control of their life and work in an exciting industry with infinite possibilities.&nbsp;</p><p>Andrei promises you that there are no other courses out there as comprehensive and as well explained.&nbsp;<strong>He believes that in order to learn anything of value, you need to start with the foundation and develop the roots of the tree. Only from there will you be able to learn concepts and specific skills(leaves) that connect to the foundation. Learning becomes exponential when structured in this way.</strong>&nbsp;</p><p>Taking his experience in educational psychology and coding, Andrei's courses will take you on an understanding of complex subjects that you never thought would be possible.&nbsp;&nbsp;</p><p><strong>See you inside the courses!</strong></p><p><br></p>"
 },{
   "_id": {
     "$oid": "63b82a73a86a29ffe08cef99"
@@ -47444,5 +47458,6 @@
   "role": "instructor",
   "password": "$2a$12$32q90k8k33CsUk/RFcKoj.xOODqsLXaNubVy8XyYyaGN9G2NlcRci",
   "active": true,
-  "__v": 0
+  "__v": 0,
+  "description": "<p>My name is Kirill Eremenko and I am super-psyched that you are reading this!</p><p>Professionally, I come from the Data Science consulting space with experience in finance, retail, transport and other industries. I was trained by the best analytics mentors at Deloitte Australia and since starting on Udemy I&nbsp;have passed on my knowledge to thousands of aspiring data scientists.</p><p>From my courses you will straight away notice how I combine my real-life experience and academic background in Physics and Mathematics to deliver professional step-by-step coaching in the space of Data Science. One of the strongest sides of my teaching style is that I focus on intuitive explanations, so you can be sure that you will truly understand even the most complex topics.</p><p>To sum up, I am absolutely and utterly passionate about Data Science and I am looking forward to sharing my passion and knowledge with you!</p>"
 }]
