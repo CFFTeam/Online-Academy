@@ -24,5 +24,6 @@ export default {
   sum: (v1, v2) => v1 + v2,
   format_date(date) {
     return date.slice(0,10);
-  }
+  },
+  progress_find: (obj, key) => obj[key]
 };

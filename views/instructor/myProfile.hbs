@@ -54,7 +54,7 @@
         <p class="introduction {{#if (eq page "introductionform")}} optionChosen{{/if}}">Introduction</p>
 
       </div>
-      <div class="content">
+      <div class="content{{#if (eq page "introductionform")}} instructorProfileIntroductionPadding{{/if}}">
         <div class="overview{{#if (eq page "overview")}}{{else}} hideUserProfile{{/if}}">
           <p class="title">Profile Details</p>
           <div class="overviewForm">
@@ -145,7 +145,7 @@
           </div>
         </form>
 
-        <form method="post" class="changePassword{{#if (eq page "introductionform")}}{{else}} hideUserProfile{{/if}}">
+        <form method="post" class="changePassword{{#if (eq page "changeform")}}{{else}} hideUserProfile{{/if}}">
           <div class="currentPassword">
             <p>Current Password</p>
             <input name="currentPassword" type="password" value="{{users.historyCurrentPassword}}" />
@@ -173,7 +173,12 @@
           </div>
         </form>
         
-        <form method="post" class="introduction{{#if (eq page "introduction")}}{{else}} hideUserProfile{{/if}}">
+        <form method="post" class="Introduction{{#if (eq page "introductionform")}}{{else}} hideUserProfile{{/if}}">
+          <div class = "course-information course-full-description">
+            <div class = "form-group-description" style="margin: 0;height:380px;">
+                <textarea  name="full_introduction" id="txtFullDescription" cols="30" rows="20" style = "font-family: Montserrat;">{{description}}</textarea>
+            </div>
+          </div>
 
           <div class="buttonFrame">
             <button name="submitForm" class="saveIntroduction" value="editIntroduction">Save</button>
@@ -184,24 +189,31 @@
     </div>
   </div>
   <script>
-     $(".messageUserProfile").text("{{message}}")
+      
 
-        $(".instructorProfile > .body > .mainn > .menu > .edit").click(function(){ 
+     $(".messageUserProfile").text("{{message}}")
+      $(".instructorProfile > .body > .mainn > .menu > .edit").click(function(){ 
       $(".instructorProfile >.body > .mainn > .menu > .change").removeClass("optionChosen")
       $(".instructorProfile >.body >.mainn > .menu > .overview").removeClass("optionChosen")
+      $(".instructorProfile >.body >.mainn > .menu > .introduction").removeClass("optionChosen")
       $(".instructorProfile >.body > .mainn>.menu > .edit").addClass("optionChosen")
       $(".instructorProfile >.body > .mainn > .content > .overview").addClass("hideUserProfile") 
       $(".instructorProfile >.body > .mainn > .content > .changePassword").addClass("hideUserProfile") 
+      $(".instructorProfile >.body > .mainn > .content > .Introduction").addClass("hideUserProfile") 
       $(".instructorProfile >.body > .mainn > .content > .editProfile").removeClass("hideUserProfile")
+      $(".instructorProfile >.body > .mainn > .content").removeClass("instructorProfileIntroductionPadding")
     $(".messageUserProfile").text("")
     }); 
     $(".instructorProfile >.body > .mainn > .menu > .change").click(function(){ 
       $(".instructorProfile >.body > .mainn > .menu > .edit").removeClass("optionChosen") 
       $(".instructorProfile >.body > .mainn > .menu > .overview").removeClass("optionChosen")
+      $(".instructorProfile >.body > .mainn > .menu > .introduction").removeClass("optionChosen")
       $(".instructorProfile >.body > .mainn > .menu > .change").addClass("optionChosen") 
       $(".instructorProfile >.body > .mainn > .content > .overview").addClass("hideUserProfile") 
       $(".instructorProfile >.body > .mainn > .content > .editProfile").addClass("hideUserProfile")
+      $(".instructorProfile >.body > .mainn > .content > .Introduction").addClass("hideUserProfile")
       $(".instructorProfile >.body > .mainn > .content > .changePassword").removeClass("hideUserProfile")
+      $(".instructorProfile >.body > .mainn > .content").removeClass("instructorProfileIntroductionPadding")
     $(".messageUserProfile").text("")
     }); 
     $(".body > .mainn > .menu > .overview").click(function(){ 
@@ -210,14 +222,30 @@
       $(".instructorProfile >.body > .mainn > .menu > .overview").addClass("optionChosen") 
       $(".instructorProfile >.body > .mainn > .content > .changePassword").addClass("hideUserProfile") 
       $(".instructorProfile >.body > .mainn > .content > .editProfile").addClass("hideUserProfile") 
-      $(".instructorProfile >.body > .mainn > .content > .overview").removeClass("hideUserProfile")    
+      $(".instructorProfile >.body > .mainn > .content > .overview").removeClass("hideUserProfile")
+      $(".instructorProfile >.body > .mainn > .menu > .introduction").removeClass("optionChosen")
+      $(".instructorProfile >.body > .mainn > .content > .Introduction").addClass("hideUserProfile")   
+      $(".instructorProfile >.body > .mainn > .content").removeClass("instructorProfileIntroductionPadding")
     $(".messageUserProfile").text("")
     });
-    
+    $(".body > .mainn > .menu > .introduction").click(function(){ 
+      $(".instructorProfile >.body > .mainn > .menu > .edit").removeClass("optionChosen") 
+      $(".instructorProfile >.body > .mainn > .menu >.change").removeClass("optionChosen")
+      $(".instructorProfile >.body > .mainn > .menu > .overview").removeClass("optionChosen") 
+      $(".instructorProfile >.body > .mainn > .menu > .introduction").addClass("optionChosen") 
+      $(".instructorProfile >.body > .mainn > .content > .changePassword").addClass("hideUserProfile") 
+      $(".instructorProfile >.body > .mainn > .content > .editProfile").addClass("hideUserProfile") 
+      $(".instructorProfile >.body > .mainn > .content > .overview").addClass("hideUserProfile")    
+      $(".instructorProfile >.body > .mainn > .content > .Introduction").removeClass("hideUserProfile")  
+      $(".instructorProfile >.body > .mainn > .content").addClass("instructorProfileIntroductionPadding")  
+
+    $(".messageUserProfile").text("")
+    });
     $(document).ready(function(){
     const messages = "{{messages}}"
-    if(messages && (messages==="success")) alert("Changed password successfully!");
-    if(messages && (messages==="profile success")) alert("Update profile successfully!");
+        if(messages && (messages==="success")) alert("Changed password successfully!");
+        if(messages && (messages==="profile success")) alert("Update profile successfully!");
+        if(messages && (messages==="introduction success")) alert("Update introduction successfully!");
     })
 
     console.log()

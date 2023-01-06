@@ -78,11 +78,17 @@ const loadNewestCourse = async (myCourses, myWishCourses, categories, authors) =
             course_lessons: course.lectures.total,
             course_id: course._id,
             my_courses: (myCourses && myCourses.includes(course._id.toString())) ? true : false,
-            myWishCourses: (myWishCourses && myWishCourses.includes(course._id.toString())) ? "chosen" : ""
+            myWishCourses: (myWishCourses && myWishCourses.includes(course._id.toString())) ? 'chosen' : ''
         }
         newcourse.push(newest_course);
     }
     return newcourse;
+}
+
+const loadTopCategories = async (categories) => {
+    const hotCourses = await courseDetailsModel.find({ viewer: { $gt: 40000 } }, { course_id: 1 }).sort('-viewer').limit(10).lean();
+
+    
 }
 
 export const load_my_courses = catchAsync(async (req, res, next) => {

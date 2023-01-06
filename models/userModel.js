@@ -15,6 +15,9 @@ const userSchema = new mongoose.Schema({
     lowercase: true
     //validate: [validator.isEmail, 'Please provide a valid email']
   },
+  description: {
+    type: String
+  },
   myCourses: {
     type: Array,
     default: []
