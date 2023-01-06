@@ -11028,6 +11028,7 @@
   "_id": {
     "$oid": "63b42883d764bb40139dbf70"
   },
+  "active": true,
   "name": "MERN Stack Real Time Chat App - React , Node , Socket IO",
   "img": "https://img-c.udemycdn.com/course/750x422/5015910_2a41_2.jpg",
   "author": "63b82063a86a29ffe08cef5c",
@@ -11675,6 +11676,7 @@
   "_id": {
     "$oid": "63b428963e3c0c3b11c49b8b"
   },
+  "active": true,
   "name": "Learn JavaScript By Creating A Simple Number Game",
   "img": "https://img-c.udemycdn.com/course/750x422/4958404_f6f9_2.jpg",
   "author": "63b81cc6a86a29ffe08cef0f",
@@ -11861,6 +11863,7 @@
   "_id": {
     "$oid": "63b428a6d1255a2138f3be17"
   },
+  "active": true,
   "name": "Create E-commerce Web Application Using Node JS",
   "img": "https://img-c.udemycdn.com/course/750x422/4977502_ac7a.jpg",
   "author": "63b81da4a86a29ffe08cef16",
@@ -12637,6 +12640,7 @@
   "_id": {
     "$oid": "63b428b264d2c04c1f243fae"
   },
+  "active": true,
   "name": "Data Science & Machine Learning: Naive Bayes in Python",
   "img": "https://img-c.udemycdn.com/course/750x422/4929064_b97d.jpg",
   "author": "63b81c53a86a29ffe08cef08",
@@ -13173,6 +13177,7 @@
   "_id": {
     "$oid": "63b428c18229d1234caed2f6"
   },
+  "active": true,
   "name": "Python All In-One 2023 ™️ -Everything You'll Ever Need",
   "img": "https://img-c.udemycdn.com/course/750x422/4929652_63c4_8.jpg",
   "author": "63b81f6ba86a29ffe08cef55",
@@ -18429,6 +18434,7 @@
   "_id": {
     "$oid": "63b428d131ce9f45cb75d517"
   },
+  "active": true,
   "name": "Nodejs API Complete Guide Build a Blog Project API  2023",
   "img": "https://img-c.udemycdn.com/course/750x422/4980426_ee5d_4.jpg",
   "author": "63b8284ba86a29ffe08cef76",
@@ -19705,6 +19711,7 @@
   "_id": {
     "$oid": "63b428e09d7d9deda795f761"
   },
+  "active": true,
   "name": "End-to-end data science and machine learning project",
   "img": "https://img-c.udemycdn.com/course/750x422/3681724_0b88_2.jpg",
   "author": "63b829a5a86a29ffe08cef8b",
@@ -19981,6 +19988,7 @@
   "_id": {
     "$oid": "63b428ef44e1ad426406f5ca"
   },
+  "active": true,
   "name": "Artificial Intelligence A-Z™: Learn How To Build An AI",
   "img": "https://img-c.udemycdn.com/course/750x422/1219332_bdd7.jpg",
   "author": "63b8224ea86a29ffe08cef6f",
@@ -21447,6 +21455,7 @@
   "_id": {
     "$oid": "63b428fb0eceb22ec791b100"
   },
+  "active": true,
   "name": "Build Responsive Real-World Websites with HTML and CSS",
   "img": "https://img-c.udemycdn.com/course/750x422/437398_46c3_10.jpg",
   "author": "63b81b69a86a29ffe08cef01",
@@ -23094,6 +23103,7 @@
   "_id": {
     "$oid": "63b429080cda972759946d6e"
   },
+  "active": true,
   "name": "React JS from Zero to Hero",
   "img": "https://img-c.udemycdn.com/course/750x422/4956178_557e_2.jpg",
   "author": "63b8296ba86a29ffe08cef84",
@@ -23310,6 +23320,7 @@
   "_id": {
     "$oid": "63b4291a9f712cb4ebfd68ad"
   },
+  "active": true,
   "name": "The Complete 2023 Web Development Bootcamp",
   "img": "https://img-c.udemycdn.com/course/750x422/1565838_e54e_16.jpg",
   "author": "63b828cca86a29ffe08cef7d",
@@ -28778,6 +28789,7 @@
   "_id": {
     "$oid": "63b4292757324f71f58f2217"
   },
+  "active": true,
   "name": "The Complete JavaScript Course 2023: From Zero to Expert!",
   "img": "https://img-c.udemycdn.com/course/750x422/851712_fc61_6.jpg",
   "author": "63b81b69a86a29ffe08cef01",
@@ -32214,6 +32226,7 @@
   "_id": {
     "$oid": "63b42935f8865d759b2ee353"
   },
+  "active": true,
   "name": "React - The Complete Guide (incl Hooks, React Router, Redux)",
   "img": "https://img-c.udemycdn.com/course/750x422/1362070_b9a1_2.jpg",
   "author": "63b817a5a86a29ffe08ceef3",
@@ -37610,6 +37623,7 @@
   "_id": {
     "$oid": "63b42943d63e72999f610a57"
   },
+  "active": true,
   "name": "TensorFlow Developer Certificate in 2023: Zero to Mastery",
   "img": "https://img-c.udemycdn.com/course/750x422/3693164_f87d_3.jpg",
   "author": "63b82a0ba86a29ffe08cef92",
@@ -42066,6 +42080,7 @@
   "_id": {
     "$oid": "63b42954a92e70da28898688"
   },
+  "active": true,
   "name": "Deep Learning A-Z™: Hands-On Artificial Neural Networks",
   "img": "https://img-c.udemycdn.com/course/750x422/1151632_de9b.jpg",
   "author": "63b82a73a86a29ffe08cef99",

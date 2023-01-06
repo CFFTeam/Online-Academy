@@ -12,7 +12,7 @@ import { title } from "process";
 export const renderCategories = catchAsync(async (req, res) => {
   res.locals.handlebars = "admin/categories";
   const category = await Category.find().lean();
-  const course = await Course.find({}).lean();
+  const course = await Course.find().lean();
 
   let isEmpty = false;
   if (category.length === 0) {
@@ -21,11 +21,11 @@ export const renderCategories = catchAsync(async (req, res) => {
   let getAllCategories = [];
   for (let i = 0; i < category.length; i++) {
     for (let j = 0; j < category[i].subcategories.length; j++) {
-      const courseObject = await Course.find({ category: category[i].title }).lean();
+      const courseObject = await Course.find({ category: category[i]._id }).lean();
       const course = [...courseObject];
       let count = 0;
       for (let z = 0; z < course.length; z++) {
-        if (course[z].subcategory.includes(category[i].subcategories[j].content)) {
+        if (course[z].subcategory.includes(category[i].subcategories[j]._id.toString())) {
           count++;
         }
       }
@@ -60,11 +60,11 @@ export const renderCategoriesByCategories = catchAsync(async (req, res) => {
   }
   let getAllCategories = [];
   for (let j = 0; j < categoryName.subcategories.length; j++) {
-    const courseObject = await Course.find({ category: categoryName.title }).lean();
+    const courseObject = await Course.find({ category: categoryName._id }).lean();
     const course = [...courseObject];
     let count = 0;
     for (let z = 0; z < course.length; z++) {
-      if (course[z].subcategory.includes(categoryName.subcategories[j].content)) {
+      if (course[z].subcategory.includes(categoryName.subcategories[j]._id.toString())) {
         count++;
       }
     }
@@ -121,7 +121,7 @@ export const editSubCategories = catchAsync(async (req, res) => {
   let tempNameCat;
   for (let i = 0; i < getOldCategoryData.length; i++) {
     if (getOldCategoryData[i]._id.toString() === req.params.idsub.toString()) {
-      tempNameCat = getOldCategoryData[i].content;
+      tempNameCat = getOldCategoryData[i]._id;
       getOldCategoryData[i].content = req.body.subcat;
     }
   }
@@ -130,7 +130,7 @@ export const editSubCategories = catchAsync(async (req, res) => {
     { subcategories: [...getOldCategoryData] }
   ).lean();
 
-  const getOldCourseObj = await Course.find({ category: getOldCategory.title }).lean();
+  const getOldCourseObj = await Course.find({ category: getOldCategory._id }).lean();
   let getOldCourse = [...getOldCourseObj];
   for (let i = 0; i < getOldCourse.length; i++) {
     let getOldCourseData = getOldCourse[i].subcategory;
@@ -176,13 +176,19 @@ export const deleteCategories = catchAsync(async (req, res) => {
 //-------------------Courses------------------------
 export const renderCourses = catchAsync(async (req, res) => {
   res.locals.handlebars = "admin/courses";
-  const allCourses = await Course.find().lean();
+  let allCourses = await Course.find().lean();
   const allCategories = await Category.find().lean();
-  const getCourseTemp = await Course.find().lean();
-  let instructors = [];
-  for(let i = 0; i<getCourseTemp.length; i++) {
-    if(instructors.includes(getCourseTemp[i].author)===false) {
-      instructors.push(getCourseTemp[i].author);
+  const instructors = await User.find({role:"instructor"}).lean();
+  for(let i=0; i<allCourses.length; i++) {
+    for(let j=0; j<instructors.length; j++){
+      if(allCourses[i].author===instructors[j]._id.toString()){
+        allCourses[i]['nameAuthor']=instructors[j].name;
+      }
+    }
+    for(let j=0; j<allCategories.length; j++){
+      if(allCourses[i].category===allCategories[j]._id.toString()){
+        allCourses[i]['nameCategory']=allCategories[j].title;
+      }
     }
   }
   let isEmpty = false;
@@ -202,26 +208,33 @@ export const renderCoursesByCategories = catchAsync(async (req, res) => {
   const categoryName = await Category.findOne({
     slug: url.parse(req.url, true).query.slug,
   });
-  const allCoursesByCategories = await Course.find({
-    category: categoryName.title,
+  const allCourses = await Course.find({
+    category: categoryName._id,
   }).lean();
 
   let isEmpty = false;
-  if (categoryName.length === 0 || allCoursesByCategories.length === 0) {
+  if (categoryName.length === 0 || allCourses.length === 0) {
     isEmpty = true;
   }
 
   const allCategories = await Category.find().lean();
-  const getCourseTemp = await Course.find().lean();
-  let instructors = [];
-  for(let i = 0; i<getCourseTemp.length; i++) {
-    if(instructors.includes(getCourseTemp[i].author)===false) {
-      instructors.push(getCourseTemp[i].author);
+  const instructors = await User.find({role:"instructor"}).lean();
+
+  for(let i=0; i<allCourses.length; i++) {
+    for(let j=0; j<instructors.length; j++){
+      if(allCourses[i].author===instructors[j]._id.toString()){
+        allCourses[i]['nameAuthor']=instructors[j].name;
+      }
+    }
+    for(let j=0; j<allCategories.length; j++){
+      if(allCourses[i].category===allCategories[j]._id.toString()){
+        allCourses[i]['nameCategory']=allCategories[j].title;
+      }
     }
   }
 
   res.render("admin/courses.hbs", {
-    courses: allCoursesByCategories,
+    courses: allCourses,
     isEmpty: isEmpty,
     category: allCategories,
     instructor: instructors,
@@ -230,25 +243,32 @@ export const renderCoursesByCategories = catchAsync(async (req, res) => {
 });
 
 export const renderCoursesByInstructors = catchAsync(async (req, res) => {
-  const allCoursesByInstructors = await Course.find({
-    author:  url.parse(req.url, true).query.author,
+  const allCourses = await Course.find({
+    author: req.params.id,
   }).lean();
 
   let isEmpty = false;
-  if (allCoursesByInstructors.length === 0) {
+  if (allCourses.length === 0) {
     isEmpty = true;
   }
 
   const allCategories = await Category.find().lean();
-  const getCourseTemp = await Course.find().lean();
-  let instructors = [];
-  for(let i = 0; i<getCourseTemp.length; i++) {
-    if(instructors.includes(getCourseTemp[i].author)===false) {
-      instructors.push(getCourseTemp[i].author);
+  const instructors = await User.find({role:"instructor"}).lean();
+
+  for(let i=0; i<allCourses.length; i++) {
+    for(let j=0; j<instructors.length; j++){
+      if(allCourses[i].author===instructors[j]._id.toString()){
+        allCourses[i]['nameAuthor']=instructors[j].name;
+      }
+    }
+    for(let j=0; j<allCategories.length; j++){
+      if(allCourses[i].category===allCategories[j]._id.toString()){
+        allCourses[i]['nameCategory']=allCategories[j].title;
+      }
     }
   }
   res.render("admin/courses.hbs", {
-    courses: allCoursesByInstructors,
+    courses: allCourses,
     category: allCategories,
     instructor: instructors,
     isEmpty: isEmpty,
@@ -264,14 +284,48 @@ export const editCourses = catchAsync(async (req, res) => {
   res.redirect("/admin/courses");
 });
 
+export const banCourses = catchAsync(async (req, res) => {
+  const getCourse = await Course.findOne({_id: req.params.id}).lean();
+  const tempStatus =  getCourse.active;
+  const updateCourses = await Course.updateOne(
+    { _id: req.params.id },
+    { active: !tempStatus }
+  ).lean();
+  res.redirect("/admin/courses");
+});
+
 export const viewMoreCourse = catchAsync(async (req, res) => {
-  const course = await Course.findOne({ _id: req.params.id }).lean();
+  const allCourses = await Course.findOne({ _id: req.params.id }).lean();
   const courseDetail = await CourseDetail.findOne({ course_id: req.params.id }).lean();
   courseDetail["integerPart"] = Array(Math.floor(courseDetail.avg_rating)).fill('0');
   courseDetail["isRemainder"] = courseDetail.avg_rating - Math.floor(courseDetail.avg_rating) !== 0;
-  course.date = course.date.slice(0, 10);
+  
+  const allCategories = await Category.find().lean();
+  const instructors = await User.find({role:"instructor"}).lean();
+
+  for(let j=0; j<instructors.length; j++){
+    if(allCourses.author===instructors[j]._id.toString()){
+      allCourses['nameAuthor']=instructors[j].name;
+    }
+  }
+  allCourses['nameSubCategory'] = [];
+  for(let i=0; i<allCategories.length; i++){
+    if(allCourses.category===allCategories[i]._id.toString()){
+      allCourses['nameCategory']=allCategories[i].title;
+    }
+    for(let j=0; j<allCategories[i].subcategories.length; j++){
+      for(let z=0; z<allCourses.subcategory.length; z++){
+        if(allCourses.subcategory[z]===allCategories[i].subcategories[j]._id.toString()){
+          allCourses['nameSubCategory'].push(allCategories[i].subcategories[j].content);
+        }
+      }
+    }
+  }
+
+
+  allCourses.date = allCourses.date.slice(0, 10);
   res.render("admin/courseDetail.hbs", {
-    course: course,
+    course: allCourses,
     courseDetail: courseDetail,
     layout: "admin.hbs",
   });
