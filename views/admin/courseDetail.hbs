@@ -7,7 +7,7 @@
   <img src={{course.img}} style="max-width: 50%; height: auto; margin: 1rem auto;"/>
   <table class="not" style="border-spacing: 0 1rem; width: 50%; margin: 1rem auto;">
     <tr>
-      <td><b>ID: </b></td>
+      <td style="padding-right: 20rem;"><b>ID: </b></td>
       <td>{{course._id}}</td>
     </tr>
     <tr>
@@ -16,15 +16,15 @@
     </tr>
     <tr>
       <td><b>Category: </b></td>
-      <td>{{course.category}}</td>
+      <td>{{course.nameCategory}}</td>
     </tr>
     <tr>
       <td><b>Subcategory: </b></td>
-      <td>{{course.subcategory}}</td>
+      <td>{{#each course.nameSubCategory}}{{this}}{{/each}}</td>
     </tr>
     <tr>
       <td><b>Author: </b></td>
-      <td>{{course.author}}</td>
+      <td>{{course.nameAuthor}}</td>
     </tr>
     <tr>
       <td><b>Price:</b> </td>
