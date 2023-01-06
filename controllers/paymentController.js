@@ -10,7 +10,7 @@ export const shoppingCartPage = catchAsync(async (req, res) => {
 
   let shoppingCart = null;
   let course = []
-
+  const user = await User.findOne({ _id: res.locals.authUser._id });
   if (res.locals && res.locals.authUser) {
     shoppingCart = Object.values(await ShoppingCart.find({ user_id: res.locals.authUser._id }));
   }
@@ -19,19 +19,20 @@ export const shoppingCartPage = catchAsync(async (req, res) => {
     for (const sc of shoppingCart) {
       const courses = await Course.findOne({ _id: sc.course_id }).lean();
       const courseDetails = await CourseDetails.findOne({ course_id: sc.course_id });
-
-      course.push({
-        id: sc._id,
-        discount: courses.sale,
-        name: courses.name,
-        img: courses.img,
-        rate: courseDetails.avg_rating,
-        numReview: courseDetails.num_reviews,
-        view: courseDetails.viewer,
-        author: courses.author,
-        date: courses.date.slice(0, courses.date.indexOf("T")),
-        price: courses.price
-      });
+      if (!user.myCourses.includes(sc.course_id)) {
+        course.push({
+          id: sc._id,
+          discount: courses.sale,
+          name: courses.name,
+          img: courses.img,
+          rate: courseDetails.avg_rating,
+          numReview: courseDetails.num_reviews,
+          view: courseDetails.viewer,
+          author: courses.author,
+          date: courses.date.slice(0, courses.date.indexOf("T")),
+          price: courses.price
+        });
+      }
     }
   }
   let message = res.locals.messages;

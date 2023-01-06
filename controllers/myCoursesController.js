@@ -1,4 +1,5 @@
 import { isValidObjectId } from "mongoose";
+import Category from "../models/categoryModel.js";
 import Course from "../models/courseModel.js";
 import User from "../models/userModel.js";
 import catchAsync from "../utilities/catchAsync.js";
@@ -15,8 +16,8 @@ export const myCoursesPage = catchAsync(async (req, res) => {
     for (const m of user.myCourses) {
       if (isValidObjectId(m)) {
         const course = await Course.findOne({ _id: m });
-        // console.log("name: ", course.author);
         const author = await User.findOne({ _id: course.author }).lean();
+        const category = await Category.findOne({ _id: course.category }).lean();
         if (course != null) {
           courses.push({
             id: m,
@@ -24,7 +25,7 @@ export const myCoursesPage = catchAsync(async (req, res) => {
             name: course.name,
             img: course.img,
             author: author.name,
-            category: course.category,
+            category: category.title,
             date: course.date.slice(0, course.date.indexOf("T"))
           });
         }
@@ -45,19 +46,6 @@ export const myCoursesPage = catchAsync(async (req, res) => {
           { myCourses: [...user.myCourses] }
         )
       }
-<<<<<<< HEAD
-=======
-      const course = await Course.findOne({ _id: m });
-      courses.push({
-        id: m,
-        slug: course.slug,
-        name: course.name,
-        img: course.img,
-        author: course.author,
-        category: course.category,
-        date: course.date.slice(0, course.date.indexOf("T"))
-      });
->>>>>>> ec91b26987da769aee1bb9da39afdfb1432eb963
     }
   }
 
