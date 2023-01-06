@@ -46,8 +46,8 @@
           {{#each instructor}}
             <a
               class="dropdown-item"
-              href="/admin/courses/instructor?author={{this}}"
-            >{{this}}</a>
+              href="/admin/courses/instructor/{{_id}}"
+            >{{name}}</a>
           {{/each}} 
         </div>
       </div>
@@ -71,14 +71,15 @@
             <th></th>
             <th></th>
             <th></th>
+            <th></th>
           </tr>
 
           {{#each this.courses}}
             <tr>
               <td class="id" style="display: none;">{{_id}}</td>
               <td >{{name}}</td>
-              <td >{{category}}</td>
-              <td>{{author}}</td>
+              <td >{{nameCategory}}</td>
+              <td> {{nameAuthor}}</td>
               <td>{{#if active}}Active{{else}}Inactive{{/if}}</td>
               <td class="sale">{{sale}}</td>
               <td class="edit" style="text-align: center; padding: 0 0.2rem; ">
@@ -89,7 +90,13 @@
                   <img src="/assets/svg/admin/info.svg" alt="more-icon" />
                 </a>
               </td>
-
+              <td style="text-align: center; padding: 0 0.5rem;">
+                <form action="/admin/courses/ban/{{_id}}" method="post">
+                  <button type="submit" style="border: none;">
+                    <img src="/assets/svg/admin/ban.svg" alt="ban-icon" />
+                  </button>
+                </form>
+              </td>
               <td class="delete" style="text-align: center; padding: 0;">
                 <form action="/admin/courses/delete/{{_id}}" method="post">
                   <button type="submit" style="border: none;">

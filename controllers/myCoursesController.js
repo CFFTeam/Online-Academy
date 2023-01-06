@@ -45,6 +45,19 @@ export const myCoursesPage = catchAsync(async (req, res) => {
           { myCourses: [...user.myCourses] }
         )
       }
+<<<<<<< HEAD
+=======
+      const course = await Course.findOne({ _id: m });
+      courses.push({
+        id: m,
+        slug: course.slug,
+        name: course.name,
+        img: course.img,
+        author: course.author,
+        category: course.category,
+        date: course.date.slice(0, course.date.indexOf("T"))
+      });
+>>>>>>> ec91b26987da769aee1bb9da39afdfb1432eb963
     }
   }
 

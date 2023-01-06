@@ -29,6 +29,7 @@ export const handleLoginForm = catchAsync(async (req, res, next) => {
   if (!foundUser || !(await foundUser.correctPassword(password, foundUser.password))) {
     return next(new Error('Incorrect email or password. Please try again.'));
   }
+  if (!foundUser.active) res.render("auth/login.hbs", {layout: "auth.hbs", message: "Your account has been disabled. Contact your administrator for more information."});
   // set session for request
   req.session.auth = true;
   req.session.authUser = {
@@ -44,7 +45,8 @@ export const handleLoginForm = catchAsync(async (req, res, next) => {
     active: foundUser.active,
     myCourses: foundUser.myCourses
   }
-  if (foundUser.role === 'instructor') return res.redirect('/instructor/my-courses');
+  if (foundUser.role === 'instructor' && foundUser.active) return res.redirect('/instructor/my-courses');
+  if (foundUser.role === 'admin' && foundUser.active) return res.redirect('/admin/categories');
   res.render("auth/login.hbs", { layout: "auth.hbs", message: "success" });
 });
 
