@@ -7,21 +7,9 @@
         </button>
         <input class="search-bar" name="q" type="search" placeholder="search for anything" />
     </form>
-    <a class="link desktop mobile" href="/">Home</a>
-    <div class="dropdown mobile">
-        <a class="link" href="/courses">Courses <i class="fa-solid fa-chevron-down"></i></a>
-        <div class="categories dropdown-list">
-        </div>
-        <div class="sub-categories dropdown-list">
-        </div>
-    </div>
-    <a class="link ipad mobile" href="#about">About</a>
-    <a class="link" href="/payment">
-        <button class="shopping__cart-btn">
-            <img class="icon" src="/assets/svg/home/cart.svg" alt="shopping-cart" />
-            <span class="active-dot">{{cart_number}}</span>
-        </button>
-    </a>
+    <a class="link desktop mobile" href="/instructor/my-courses">Home</a>
+    <a class="link ipad mobile" href="/instructor/my-courses">About</a>
+    
     {{#if auth}}
     <div class="user-dropdown mobile">
         <button type="button" class="avatar mobile">
@@ -42,9 +30,8 @@
                     <span class="name">{{authUser.name}}</span>
                 </div>
                 <hr />
-                <a class="link" href="/user-profile"><i class="fa-solid fa-user"></i> <span>Edit profile</span></a>
-                <a class="link" href="/my-courses"><i class="fa-solid fa-film"></i> <span>My courses</span></a>
-                <a class="link" href="/wishlist"><i class="fa-regular fa-heart"></i> <span>Wishlist</span></a>
+                <a class="link" href="/instructor/my-profile"><i class="fa-solid fa-user"></i> <span>Edit profile</span></a>
+                <a class="link" href="/instructor/my-courses"><i class="fa-solid fa-film"></i> <span>My courses</span></a>
                 <a class="link" href="/account/logout"><i class="fa-solid fa-sign-out"></i> <span>Sign out</span></a>
             </div>
         </div>

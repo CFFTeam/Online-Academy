@@ -468,3 +468,48 @@ width: 100%;
 .hideUserProfile {
   display: none !important;
 }
+
+.instructorProfile > .body > .mainn > .content > .Introduction > .buttonFrame {
+  width: 80px;
+  margin: 12px auto;
+}
+
+.instructorProfile
+  > .body
+  > .mainn
+  > .content
+  > .Introduction
+  > .buttonFrame
+  > .saveIntroduction {
+  border: none;
+  background-color: #00a551;
+  width: 80px;
+  padding: 2px 0px;
+  border-radius: 6px;
+  margin-top:8px;
+  color: #ffffff;
+}
+
+.instructorProfile
+  > .body
+  > .mainn
+  > .content
+  > .Introduction
+  > .buttonFrame
+  > .saveIntroduction:hover {
+  background-color: #009045;
+}
+
+.instructorProfileIntroductionPadding{
+  padding: 0 !important;
+}
+
+.instructorProfile
+  > .body
+  > .mainn
+  > .content
+  > .Introduction
+  > .course-information
+  > .form-group-description > .tox-tinymce{
+    height: 400px !important; 
+  }
