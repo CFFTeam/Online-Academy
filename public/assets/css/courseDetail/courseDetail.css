@@ -246,8 +246,15 @@
 .total-length{
     display: flex;
     justify-content: space-between;
-    align-items: center;;
+    align-items: center;
 }
+
+.total-length-lessons{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 
 .total-length p{
     margin: 0;

@@ -143,7 +143,14 @@
             {{courseDetail.lectures.total}}
             lectures -
             {{courseDetail.lectures.duration}}</p>
-          <a href="{{courseDetail.lectures.sections.0.lessons.0.url}}" class="all-sections">View all sections</a>
+          <div class="total-length-lessons">
+            <a href="{{courseDetail.lectures.sections.0.lessons.0.url}}" 
+            class="all-sections"
+            data-toggle="modal"
+            data-target="#allmodalsection"
+            >View all sections</a>
+            <a href="{{courseDetail.lectures.sections.0.lessons.0.url}}" class="all-sections">Learn now</a>
+          </div>
         </div>
         <a href="#" class="link-video" data-toggle="modal" data-target="#intro-0">
           <div class="section-video" style="margin-top: 3rem;">
@@ -581,6 +588,26 @@
                 {{{this.content}}}
             </div>
           {{/each}}
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade bd-example-modal-lg" id="allmodalsection" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="exampleModalLongTitle">Course contents</h5>
+        </div>
+        <div class="modal-body">
+          {{#each courseDetail.lectures.sections}}
+            <h2>{{title}}</h2>
+            <ol>
+              {{#each lessons}}
+                <li style="margin-left: 2rem;">{{title}}</li>
+              {{/each}}
+            </ol>
+          {{/each}}
+        </div>
       </div>
     </div>
   </div>
