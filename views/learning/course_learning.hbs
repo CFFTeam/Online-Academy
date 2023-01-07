@@ -95,6 +95,9 @@
                     </div>
                 </div>
                 {{/each}}
+                <form class="form-finish" method="POST" action='{{course.slug}}/learn/lecture/finish'>
+                    <button class="finish-btn" type="submit">Finish</button>
+                </form>
             </div>
         </div>
     </div>

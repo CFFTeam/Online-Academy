@@ -21,6 +21,9 @@
         <a class="button-cs" href="${item.slug}">More Details</a>
         <a class="button-cs learning" href="${item.slug}/learn/lecture">Learn Now</a>
     </div>
+      ${
+        (item.finish) ? `<div class="status finish">Finish</div>` : ''
+      }
       <img src=${item.img} />
       <div class="content">
         <p class="name">${item.name}</p>

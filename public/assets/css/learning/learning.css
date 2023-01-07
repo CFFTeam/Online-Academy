@@ -124,6 +124,36 @@
 .course-learning
     > .sticky-lectures > .course-lectures
     > .course-lectures-list
+    > .form-finish {
+        display: flex;
+        width: 100%;
+        align-items: center;
+    }
+
+.course-learning
+    > .sticky-lectures > .course-lectures
+    > .course-lectures-list
+    > .form-finish
+    > .finish-btn {
+    border: none;
+    background-color: #38af7d;
+    padding: .5rem 1.5rem;
+    border-radius: .3rem;
+    color: white;
+    transition: all .25s ease-in-out;
+}
+
+.course-learning
+    > .sticky-lectures > .course-lectures
+    > .course-lectures-list
+    > .form-finish
+    > .finish-btn:hover {
+    background-color: #338a66;
+}
+
+.course-learning
+    > .sticky-lectures > .course-lectures
+    > .course-lectures-list
     > .course-lectures-item
     > .hidden-section-content
     + .section-heading

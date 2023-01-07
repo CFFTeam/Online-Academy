@@ -168,3 +168,27 @@ export const progressCourse = catchAsync(async (req, res) => {
         }   
     });
 });
+
+export const finishCourse = catchAsync(async (req, res) => { 
+    const { slug_course_name } = req.params;
+
+    const slug_course = `/course/${slug_course_name}`;
+
+    if (req.session.auth === false && !req.session.passport)
+        return res.redirect(`${slug_course}`);
+
+    const course = await Course.findOne({ slug: slug_course }).lean();
+    if (!course)
+        return res.redirect(`${slug_course}`);
+
+    const my_course = await User.findOne({ _id: res.locals.authUser._id, myCourses: { $in: [course._id.toString()] } });
+    if (!my_course)
+        return res.redirect(`${slug_course}`);
+
+    if (!my_course.finishCourses.includes(course._id.toString()))
+        my_course.finishCourses.push(course._id.toString());
+
+    await my_course.save();
+
+    res.redirect('/my-courses');
+});

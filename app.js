@@ -91,7 +91,7 @@ app.use("/wishlist", auth_middleware, WishlistRoutes);
 app.use("/course", CourseDetailRoutes);
 
 //admin
-app.use("/admin", AdminRoutes);
+app.use("/admin",auth_middleware, AdminRoutes);
 
 app.use('*', (req, res, next) => {
   res.locals.handlebars = 'errors/404';

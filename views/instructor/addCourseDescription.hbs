@@ -35,8 +35,13 @@
         <div class = "course-information course-language-category">
             <div class="form-group-description">
                 <label for="txtCourseCategory" class="course-category">Select course category</label>
-                 <select style = "{{#if course.name}}color: black;{{course.name}}{{/if}}" name="course_category" id="txtCourseCategory">
-                    <option value="" disabled selected hidden>{{#if course.category}}{{course.category}}{{else}}Choose course category{{/if}}</option>
+                 <select style = "{{#if course.name}}color: black;{{/if}}" name="course_category" id="txtCourseCategory">
+                    {{#if urCourseCategory}}
+                        <option value='{{urCourseCategory}}' hidden>{{urCourseCategory}}</option>
+                        {{else}}
+                        <option value="" disabled selected hidden>Choose course category</option>
+                    {{/if}}
+
                     {{#each this.categoryList}}
                         <option value='{{title}}'>{{title}}</option>
                     {{/each}}
@@ -44,17 +49,13 @@
             </div>
              <div class="form-group-description">
                 <label for="txtCourseSubCategory" class="course-sub-category">Select course sub-category</label>
-                <select style = "{{#if course.name}}color: black;{{course.name}}{{/if}}" name="course_sub_category" id="txtCourseSubCategory">
+                <select style = "{{#if course.name}}color: black;{{/if}}" name="course_sub_category" id="txtCourseSubCategory">
                     <option value="" disabled selected hidden>
-                        {{#if course.subcategory}}
-                        {{#each course.subcategory}}{{this}} {{/each}}
-                        {{else}}Choose course sub-category
-                        {{/if}}</option>
-                    {{!-- <option value="" disabled selected hidden>Choose course sub-category</option> --}}
-                    <option value="Vietnamese">Mobile Development</option>
-                    <option value="English">Web Development</option>
-                    <option value="Chinese">Game Development</option>
-                    <option value="Spanish">Artificial Intelligence</option>
+                    {{#if urCourseSubCategory}}
+                    {{#each urCourseSubCategory}}{{this}} {{/each}}
+                    {{else}}Choose course sub-category
+                    {{/if}}
+                    </option>
                 </select>
             </div>
         </div>
@@ -149,6 +150,13 @@
         });
     });
 
+    const categoryVal = $('#txtCourseCategory').find(":selected").val();
+    const Category = categories.find((category) => category.title === categoryVal);
+
+    Category.subcategories.forEach((subcategory) => {
+        $('#txtCourseSubCategory').append(`<option value='${subcategory.content}'>${subcategory.content}</option>`);
+    });
+
      // set file name when uploading
     $('#courseImageFile').change(function (event) {
         const filename = event.target.files[0].name;
@@ -156,9 +164,3 @@
     })
     
 </script>
-     {{!-- else if ("{{message}}" != "") // failed
-    {
-        alert("{{message}}");
-        console.log("{{message}}");
-        window.location.replace("http://localhost:5000/instructor/add-course-description");
-    } --}}
