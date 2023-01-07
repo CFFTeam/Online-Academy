@@ -18,8 +18,12 @@ export const shoppingCartPage = catchAsync(async (req, res) => {
   if (shoppingCart && shoppingCart.length > 0) {
     for (const sc of shoppingCart) {
       const courses = await Course.findOne({ _id: sc.course_id }).lean();
-      const courseDetails = await CourseDetails.findOne({ course_id: sc.course_id });
-      if (!user.myCourses.includes(sc.course_id)) {
+
+      if (!user.myCourses.includes(sc.course_id) && courses != null) {
+        const courseDetails = await CourseDetails.findOne({ course_id: sc.course_id });
+        const author = await User.findOne({ _id: courses.author }).lean();
+
+
         course.push({
           id: sc._id,
           discount: courses.sale,
@@ -28,10 +32,13 @@ export const shoppingCartPage = catchAsync(async (req, res) => {
           rate: courseDetails.avg_rating,
           numReview: courseDetails.num_reviews,
           view: courseDetails.viewer,
-          author: courses.author,
+          author: author.name,
           date: courses.date.slice(0, courses.date.indexOf("T")),
           price: courses.price
         });
+      }
+      else {
+        await ShoppingCart.deleteOne({ _id: sc._id });
       }
     }
   }
