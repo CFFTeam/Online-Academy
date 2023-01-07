@@ -439,10 +439,13 @@ export const getMyCourses = async function (req, res, next) {
     let courseList = [];
     let index = 1;
     if (res.locals.authUser.myCourses.length > 0) {
+        const categories = await Category.find({}).lean();
         for (const course_id of res.locals.authUser.myCourses) {
             const thisCourse = await Course.findOne({ _id: course_id }).lean();
             if (thisCourse) {
                 thisCourse.index = index;
+                const thisCourseCategory = categories.find((el) => el._id.toString() === thisCourse.category.toString());
+                thisCourse.category_title = thisCourseCategory.title;
                 courseList.push(thisCourse);
                 index++;
             }
@@ -459,8 +462,16 @@ export const getMyCourses = async function (req, res, next) {
 export const getCourseDescription = catchAsync(async (req, res) => {
     const Categories = await Category.find({}).lean();
     let thisCourse = {};
+    let urCourseSubcategory = [];
+    let urCourseCategory;
+
     if (req.query.course) {
         thisCourse = await Course.findOne({ _id: req.query.course }).lean();
+        urCourseCategory = await Category.findOne({_id: thisCourse.category}).lean();
+        for (const subcategory of thisCourse.subcategory) {
+            let sub_cat = urCourseCategory.subcategories.find((el) => el._id == subcategory);
+            urCourseSubcategory.push(sub_cat.content);
+        }
     }
     res.render('instructor/addCourseDescription', {
         layout: "instructor",
@@ -469,6 +480,8 @@ export const getCourseDescription = catchAsync(async (req, res) => {
         url: req.originalUrl,
         course_id: thisCourse._id,
         course: thisCourse,
+        urCourseCategory: urCourseCategory ? urCourseCategory.title : "",
+        urCourseSubCategory: urCourseSubcategory ? urCourseSubcategory : [],
         sidebar: "my-course"
     }
     );
@@ -552,6 +565,12 @@ export const editCourseDescription = catchAsync(async (req, res) => {
                     });
                 }
                 // create new course
+                let foundCategory = await Category.findOne({title: req.body.course_category});
+                let subcategory = [];
+                if (req.body.course_sub_category !== null && req.body.course_sub_category !== undefined) {
+                    const foundSubcategory = foundCategory.subcategories.find((el) => el.content == req.body.course_sub_category);
+                    subcategory = [foundSubcategory._id];
+                }
                 const newCourse = await Course.create({
                     name: req.body.course_title,
                     img: `/${req.file.path.replace('public\\', '').replaceAll('\\', '/')}`,
@@ -562,11 +581,9 @@ export const editCourseDescription = catchAsync(async (req, res) => {
                     price: req.body.price_amount,
                     sale: 0,
                     finish: 0,
-                    category: req.body.course_category,
-                    subcategory: [req.body.course_sub_category],
+                    category: foundCategory._id,
+                    subcategory: subcategory,
                     author: res.locals.authUser._id,
-                    // author: res.locals.authUser.name,
-                    // author: "Khoa Nguyen",
                     date: new Date().toJSON(),
                     lectures: {
                         total: 0,
@@ -598,9 +615,18 @@ export const editCourseDescription = catchAsync(async (req, res) => {
             else {
                 if (req.body.requestActionInDescription == "save_course_description") { // save course description
                     const thisCourse = await Course.findOne({ _id: req.query.course });
+                    const thisCourseCategory = await Category.findOne({_id: thisCourse.category});
+                    let foundCategory = await Category.findOne({title: req.body.course_category}).lean();
                     let subcategory = [];
+                    
                     if (req.body.course_sub_category !== null && req.body.course_sub_category !== undefined) {
-                        subcategory = [...thisCourse.subcategory, req.body.course_sub_category];
+                        const foundSubcategory = foundCategory.subcategories.find((el) => el.content == req.body.course_sub_category);
+                        if (req.body.course_category === thisCourseCategory.title && !thisCourse.subcategory.includes(foundSubcategory._id)) subcategory = [...thisCourse.subcategory, foundSubcategory._id]; // existed category and add new subcategory
+                        else if (thisCourse.subcategory.includes(foundSubcategory._id)) subcategory = [...thisCourse.subcategory]; // duplicate sub category
+                        else { // change new category => reset subcategory
+                            subcategory = [];
+                            subcategory.push(foundSubcategory._id);
+                        }
                     }
                     else subcategory = [...thisCourse.subcategory];
 
@@ -611,7 +637,7 @@ export const editCourseDescription = catchAsync(async (req, res) => {
                         description: req.body.short_description,
                         currency: req.body.price_currency,
                         price: req.body.price_amount,
-                        category: req.body.course_category,
+                        category: foundCategory._id,
                         subcategory: subcategory
                     })
 
@@ -624,7 +650,10 @@ export const editCourseDescription = catchAsync(async (req, res) => {
                 }
                 else if (req.body.requestActionInDescription == "delete_course_description") { // delete 
                     // delete this course
-                    await Course.deleteOne({ _id: req.query.course });
+                    const thisCourse = await Course.findOne({_id: req.query.course}); // find this course
+                    await Course.deleteOne({ _id: req.query.course }); // delete this course
+                    // remove course folder
+                    fs.rmSync(`public/courses/${thisCourse.slug.replace("/course/","")}`, { recursive: true});
                     // delete course_id in course detail
                     await CourseDetail.deleteOne({ course_id: req.query.course });
                     // delete course_id in my_course field
