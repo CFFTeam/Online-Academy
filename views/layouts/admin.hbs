@@ -42,8 +42,8 @@
             width="100"
             height="100"
           />
-          <h3 class="text-center mt-4 mb-0" style="font-weight: 700; font-size: 1.5rem;">Daniel Sara</h3>
-          <p class="text-center" style="color:#808080; font-size: 1.2rem;">DanielSara@gmail.com</p>
+          <h3 class="text-center mt-4 mb-0" style="font-weight: 700; font-size: 1.5rem;">{{authUser.name}}</h3>
+          <p class="text-center" style="color:#808080; font-size: 1.2rem;">{{authUser.email}}</p>
 
           <ul class="nav flex-column mx-0">
             <li class="nav-item 5 mt-5 mb-2 w-100 py-3 li-cat{{#if (eq handlebars 'admin/categories')}} itemMenuAdminChosen {{/if}}">
