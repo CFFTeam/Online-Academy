@@ -36,7 +36,7 @@ const loadCourses = async (categories, authors, myCourses, myWishCourses, find_b
 
     const bestseller = await loadBestSeller();
 
-    const allcourses = await courseModel.find({ find_by, finish: 1, active: true }, {_id: 1});
+    const allcourses = await courseModel.find({ ...find_by, finish: 1, active: true }, {_id: 1});
     const allcourses_id = allcourses.map(course => course._id);
 
     const courses = (sort_by === 'price') 
@@ -52,6 +52,7 @@ const loadCourses = async (categories, authors, myCourses, myWishCourses, find_b
     const date = new Date();
     const current_date = date.getTime(); 
     const prev_date = new Date(date.setMonth(date.getMonth() - 3)).getTime();
+
 
     for (let index = 0; index < courses.length; index++) {
         const course = (sort_by === 'price') ? courses[index] : await courseModel.findOne({ _id: courses[index].course_id, finish: 1, active: true }).select('-lectures.sections').lean();
@@ -138,7 +139,8 @@ export const loadCategory = catchAsync(async (req, res, next) => {
 
     if (category || subcategory) {
         if (category)
-        find_by.slug = `/${category}`;
+            find_by.slug = `/${category}`;
+        
         if (subcategory)
             find_by.subcategory = { $elemMatch: { slug: `/${subcategory}` } };
 
