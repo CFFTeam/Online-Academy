@@ -21,6 +21,9 @@
         <a class="button-cs" href="${item.slug}">More Details</a>
         <a class="button-cs learning" href="${item.slug}/learn/lecture">Learn Now</a>
     </div>
+      ${
+        (item.finish) ? `<div class="status finish">Finish</div>` : ''
+      }
       <img src=${item.img} />
       <div class="content">
         <p class="name">${item.name}</p>
@@ -80,17 +83,10 @@
           <p>${item.category}</p>
         </div>
         <div class="complete">
-          <svg
-            width="245"
-            height="6"
-            viewBox="0 0 245 6"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect width="245" height="6" fill="#F5F5F5"></rect>
-            <rect width="14" height="6" fill="#58FF49"></rect>
-          </svg>
-          <p>1% complete</p>
+          <div class="progress-bar">
+            <div class="progress-bar-fill" style="width: ${item.progress.percent}%"></div>
+          </div>
+          <p>${item.progress.percent}% complete</p>
         </div>
         <div class="date">
           <svg

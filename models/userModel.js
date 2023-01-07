@@ -22,6 +22,10 @@ const userSchema = new mongoose.Schema({
     type: Array,
     default: []
   },
+  finishCourses: {
+    type: Array,
+    default: []
+  },
   wishlist: {
     type: Array,
     default: []

@@ -24,10 +24,16 @@
     font-size: 1.6rem;
 }
 
+.main-courses > .main-courses-heading > .filter > .icon {
+    color: rgb(35, 160, 112);
+}
+
 .main-courses > .main-courses-heading > .filter .dropdown {
     border: 1px solid lightgray;
-    padding: .5rem 1rem;
+    border-radius: .3rem;
+    padding: .8rem 1rem;
     outline: none;
+    cursor: pointer;
 }
 
 .main-courses > .main-courses-heading > .filter > i {

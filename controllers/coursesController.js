@@ -13,7 +13,7 @@ const loadBestSeller = async () => {
     return allcourses.map(course => course.course_id.toString());
 };
 
-const loadCourses = async (categories, authors, myCourses, find_by = {}, sort_by, offset = 0, limit = 10) => {
+const loadCourses = async (categories, authors, myCourses, myWishCourses, find_by = {}, sort_by, offset = 0, limit = 10) => {
 
     const skip = (offset - 1) * limit;
 
@@ -36,7 +36,7 @@ const loadCourses = async (categories, authors, myCourses, find_by = {}, sort_by
 
     const bestseller = await loadBestSeller();
 
-    const allcourses = await courseModel.find(find_by, {_id: 1});
+    const allcourses = await courseModel.find({ find_by, finish: 1, active: true }, {_id: 1});
     const allcourses_id = allcourses.map(course => course._id);
 
     const courses = (sort_by === 'price') 
@@ -60,6 +60,7 @@ const loadCourses = async (categories, authors, myCourses, find_by = {}, sort_by
         
         const newest_course = {
             active: index === 0 ? true : false,
+            course_id: course._id.toString(),
             course_status: (bestseller.includes(course._id.toString())) ? 'best seller' : (course_date >= prev_date && course_date <= current_date) ? 'new' : '',
             course_name: course.name,
             course_slug: course.slug,
@@ -74,28 +75,30 @@ const loadCourses = async (categories, authors, myCourses, find_by = {}, sort_by
             course_description: course.description,
             course_duration: course.lectures.duration,
             course_lessons: course.lectures.total,
-            my_courses: myCourses && myCourses.includes(course._id.toString()) ? true : false
+            my_courses: myCourses && myCourses.includes(course._id.toString()) ? true : false,
+            myWishCourses: (myWishCourses && myWishCourses.includes(course._id.toString())) ? 'chosen' : ''
         }
 
         newcourse.push(newest_course);
     }
 
-    return { courses: newcourse, total_pages: Math.ceil(allcourses.length / limit) };
+    const total = Math.ceil(allcourses.length / limit);
+    return { courses: newcourse, total_pages: total};
 };
 
 const getPageList = (totalPage) => {
     const pageList = [1];
     if (totalPage > 10) {
-        for (let i = 2; i <= Math.min(totalPage, 4); i++)
+        for (let i = 2; i <= Math.min(totalPage, 4); ++i)
             pageList.push(i);
         
         pageList.push("...");
 
-        for (let i = Math.min(totalPage - 4, 4); i >= 1; i--)
+        for (let i = Math.min(totalPage - 4, 4); i >= 1; --i)
             pageList.push(totalPage - i + 1);
     }
     else 
-        for (let i = 2; i <= totalPage; i++)
+        for (let i = 2; i <= totalPage; ++i)
             pageList.push(i);
     return pageList;
 };
@@ -113,7 +116,7 @@ export const coursesPage = catchAsync(async (req, res) => {
     const limit = 10;
     const offset = res.locals.page;
 
-    const results = await loadCourses(categories, authors, req.myCourses, find_by, res.locals.sort_by, offset, limit);
+    const results = await loadCourses(categories, authors, req.myCourses, req.myWishCourses, find_by, res.locals.sort_by, offset, limit);
 
     const courses = results.courses;
     const totalPage = results.total_pages;
@@ -159,11 +162,19 @@ export const loadCategory = catchAsync(async (req, res, next) => {
 
 export const load_my_courses = catchAsync(async (req, res, next) => {
     if (req.session.auth || req.session.passport) {
-        const my_courses = await User.findOne({ author: res.locals.authUser._id }).select('myCourses').lean();
+        const my_courses = await User.findOne({ _id: res.locals.authUser._id }).select('myCourses').lean();
         req.myCourses = my_courses.myCourses;
     }
     next();
 });
+
+export const loadMyWishCourse = catchAsync(async (req, res, next) => {
+    if (res.locals && res.locals.authUser) {
+        const myWishCourses = await User.findOne({ _id: res.locals.authUser._id }).select("wishlist").lean();
+        req.myWishCourses = myWishCourses.wishlist;
+    }
+    next();
+})
 
 export const loadSearch = catchAsync(async (req, res, next) => {
     if (req.query.q) {

@@ -1,10 +1,13 @@
 
 <div class="course-card">
+    {{#if my_courses}}
+    {{else}}
     <form action="/wishlist/{{course_id}}" method="post" name="addToWishlist" class="formPost">
         <button type="submit" class="but">
             <i class="{{myWishCourses}} fa-regular fa-heart icon"></i>
         </button>
     </form>
+    {{/if}}
     <div class="course-card-overlay">
         <a class="button-cs" href="{{course_slug}}">More Details</a>
         {{#if my_courses}}

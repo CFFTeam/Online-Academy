@@ -113,6 +113,22 @@
   display: flex;
   flex-direction: column;
 }
+
+.myCourses > main > .courseItem > .status {
+  position: absolute;
+  top: 0;
+  text-transform: capitalize;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: white;
+  padding: .8rem 1.8rem;
+  border-radius: 0rem 0rem 1.5rem 0rem;
+}
+
+.myCourses > main > .courseItem > .status.finish {
+  background-color: #008d8d;
+}
+  
 .myCourses > main > .courseItem > .content > .name {
   font-size: 1.7rem;
   font-weight: bold;
@@ -172,6 +188,24 @@
 .myCourses > main > .courseItem > .content > .complete > p {
   font-size: 14px;
   margin: 0;
+}
+
+.myCourses > main > .courseItem > .content > .complete > .progress-bar {
+  width: 100%;
+  height: .4rem;
+  background-color: #e3e3e3;
+  margin: 1.5rem 0rem;
+  margin-bottom: .5rem;
+  position: relative;
+}
+
+.myCourses > main > .courseItem > .content > .complete > .progress-bar > .progress-bar-fill {
+  width: 0%;
+  height: 100%;
+  background-color: #3ac97f;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .myCourses > main > .courseItem > .content > .date {
