@@ -6,7 +6,7 @@ const router = express.Router();
 router.get("/categories", adminController.renderCategories)
 router.post("/categories", adminController.addCategories);
 router.get("/categories/category", adminController.renderCategoriesByCategories);
-router.post("/categories/edit/:id", adminController.editCategories);
+router.post("/categories/edit/:id/:idsub", adminController.editCategories);
 router.post("/categories/editsub/:id/:idsub", adminController.editSubCategories);
 router.post("/categories/delete/:id/:idsub",adminController.deleteCategories);
 
@@ -19,6 +19,7 @@ router.post("/courses/delete/:id", adminController.deleteCourses);
 router.get("/courses/viewmore/:id", adminController.viewMoreCourse);
 router.post("/courses/edit/:id", adminController.editCourses);
 router.post("/courses/ban/:id", adminController.banCourses);
+
 
 
 //Teachers

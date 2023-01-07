@@ -102,46 +102,50 @@ export const addCategories = catchAsync(async (req, res) => {
 });
 
 export const editCategories = catchAsync(async (req, res) => {
-  const getOldCategory = await Category.findOne({ _id: req.params.id }).lean();
-  const getOldCategoryData = getOldCategory.title;
-  await Category.updateOne(
-    { _id: req.params.id },
-    { title: req.body.title }
-  ).lean();
-  await Course.updateMany(
-    { category: getOldCategoryData },
-    { category: req.body.title }
-  ).lean();
+  if(req.body.title!==""){
+    const getOldCategory = await Category.findOne({ _id: req.params.id }).lean();
+    const getOldCategoryData = getOldCategory.title;
+    await Category.updateOne(
+      { _id: req.params.id },
+      { title: req.body.title }
+    ).lean();
+    await Course.updateMany(
+      { category: getOldCategoryData },
+      { category: req.body.title }
+    ).lean();
+  }
   res.redirect("/admin/categories");
 });
 
 export const editSubCategories = catchAsync(async (req, res) => {
-  const getOldCategory = await Category.findOne({ _id: req.params.id }).lean();
-  let getOldCategoryData = getOldCategory.subcategories;
-  let tempNameCat;
-  for (let i = 0; i < getOldCategoryData.length; i++) {
-    if (getOldCategoryData[i]._id.toString() === req.params.idsub.toString()) {
-      tempNameCat = getOldCategoryData[i]._id;
-      getOldCategoryData[i].content = req.body.subcat;
+  if(req.body.subcat!==""){
+    const getOldCategory = await Category.findOne({ _id: req.params.id }).lean();
+    let getOldCategoryData = getOldCategory.subcategories;
+    let tempNameCat;
+    for (let i = 0; i < getOldCategoryData.length; i++) {
+      if (getOldCategoryData[i]._id.toString() === req.params.idsub.toString()) {
+        tempNameCat = getOldCategoryData[i]._id;
+        getOldCategoryData[i].content = req.body.subcat;
+      }
     }
-  }
-  await Category.updateOne(
-    { _id: req.params.id },
-    { subcategories: [...getOldCategoryData] }
-  ).lean();
-
-  const getOldCourseObj = await Course.find({ category: getOldCategory._id }).lean();
-  let getOldCourse = [...getOldCourseObj];
-  for (let i = 0; i < getOldCourse.length; i++) {
-    let getOldCourseData = getOldCourse[i].subcategory;
-    for (let j = 0; j < getOldCourseData.length; j++) {
-      if (getOldCourseData[j] === tempNameCat) {
-        getOldCourseData[j] = req.body.subcat;
-        await Course.updateMany(
-          { _id: getOldCourse[i]._id },
-          { subcategory: [...getOldCourseData] }
-        ).lean();
-        break;
+    await Category.updateOne(
+      { _id: req.params.id },
+      { subcategories: [...getOldCategoryData] }
+    ).lean();
+  
+    const getOldCourseObj = await Course.find({ category: getOldCategory._id }).lean();
+    let getOldCourse = [...getOldCourseObj];
+    for (let i = 0; i < getOldCourse.length; i++) {
+      let getOldCourseData = getOldCourse[i].subcategory;
+      for (let j = 0; j < getOldCourseData.length; j++) {
+        if (getOldCourseData[j] === tempNameCat) {
+          getOldCourseData[j] = req.body.subcat;
+          await Course.updateMany(
+            { _id: getOldCourse[i]._id },
+            { subcategory: [...getOldCourseData] }
+          ).lean();
+          break;
+        }
       }
     }
   }
@@ -172,6 +176,8 @@ export const deleteCategories = catchAsync(async (req, res) => {
   }
   res.redirect("/admin/categories");
 });
+
+
 
 //-------------------Courses------------------------
 export const renderCourses = catchAsync(async (req, res) => {
