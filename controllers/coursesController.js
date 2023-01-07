@@ -36,7 +36,7 @@ const loadCourses = async (categories, authors, myCourses, myWishCourses, find_b
 
     const bestseller = await loadBestSeller();
 
-    const allcourses = await courseModel.find(find_by, {_id: 1});
+    const allcourses = await courseModel.find({ find_by, finish: 1, active: true }, {_id: 1});
     const allcourses_id = allcourses.map(course => course._id);
 
     const courses = (sort_by === 'price') 
@@ -82,7 +82,8 @@ const loadCourses = async (categories, authors, myCourses, myWishCourses, find_b
         newcourse.push(newest_course);
     }
 
-    return { courses: newcourse, total_pages: Math.ceil(allcourses.length / limit) };
+    const total = Math.ceil(allcourses.length / limit);
+    return { courses: newcourse, total_pages: total};
 };
 
 const getPageList = (totalPage) => {
