@@ -18,9 +18,10 @@ export const myCoursesPage = catchAsync(async (req, res) => {
     for (const m of user.myCourses) {
       if (isValidObjectId(m)) {
         const course = await Course.findOne({ _id: m });
-        const author = await User.findOne({ _id: course.author }).lean();
-        const category = await Category.findOne({ _id: course.category }).lean();
+
         if (course != null) {
+          const author = await User.findOne({ _id: course.author }).lean();
+          const category = await Category.findOne({ _id: course.category }).lean();
           const progress = await loadProgress(m, res.locals.authUser._id);
           courses.push({
             id: m,
@@ -35,7 +36,6 @@ export const myCoursesPage = catchAsync(async (req, res) => {
           });
         }
         else {
-          console.log("in")
           user.myCourses.splice(user.myCourses.indexOf(m), 1);
           await User.updateOne(
             { _id: res.locals.authUser._id },
@@ -44,7 +44,6 @@ export const myCoursesPage = catchAsync(async (req, res) => {
         }
       }
       else {
-        console.log("out")
         user.myCourses.splice(user.myCourses.indexOf(m), 1);
         await User.updateOne(
           { _id: res.locals.authUser._id },
