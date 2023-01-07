@@ -6,46 +6,55 @@ import courseDetail from "../models/courseDetailsModel.js";
 import User from "../models/userModel.js";
 import url from "url";
 
-const loadhotCourse = async (sameCategory) => {
-  const hotCourses = await courseDetail
-    .find()
-    .select("-reviews")
-    .sort("-viewer")
-    .lean();
+export const load_my_courses = catchAsync(async (req, res, next) => {
+  if (req.session.auth || req.session.passport) {
+      const my_courses = await User.findOne({ _id: res.locals.authUser._id }).select('myCourses').lean();
+      req.myCourses = my_courses.myCourses;
+  }
+  next();
+});
+
+export const loadMyWishCourse = catchAsync(async (req, res, next) => {
+  if (res.locals && res.locals.authUser) {
+      const myWishCourses = await User.findOne({ _id: res.locals.authUser._id }).select("wishlist").lean();
+      req.myWishCourses = myWishCourses.wishlist;
+  }
+  next();
+})
+
+
+const loadhotCourse = async (myCourses, myWishCourses, categories, authors) => { 
+  const hotCourses = await courseDetail.find({ viewer: { $gt: 40000 } }).select('-reviews').sort('-viewer').limit(10).lean();
   const newcourse = [];
 
   for (let index = 0; index < hotCourses.length; index++) {
-    const hotCoursesDetails = hotCourses[index];
-    const course = await Course.findOne({
-      _id: hotCoursesDetails.course_id,
-      category: sameCategory
-    })
-      .select("-lectures.sections")
-      .lean();
+      const hotCoursesDetails = hotCourses[index];
+      const course = await Course.findOne({ _id: hotCoursesDetails.course_id, finish: 1, active: true }).select('-lectures.sections').lean();
 
-    if (course !== null && newcourse.length < 5) {
       const new_hot_course = {
-        active: index === 0 ? true : false,
-        course_name: course.name,
-        course_slug: course.slug,
-        course_rate: hotCoursesDetails.avg_rating,
-        course_vote: fixNumberFormat(hotCoursesDetails.num_reviews),
-        course_viewer: fixNumberFormat(hotCoursesDetails.viewer),
-        course_author: course.author,
-        course_price: course.price,
-        course_status: "best seller",
-        course_category: course.category,
-        course_date: fixDateFormat(course.date),
-        course_img: course.img,
-        course_description: course.description,
-        course_duration: course.lectures.duration,
-        course_lessons: course.lectures.total
-      };
+          active: index === 0 ? true : false,
+          course_name: course.name,
+          course_slug: course.slug,
+          course_rate: hotCoursesDetails.avg_rating,
+          course_vote: fixNumberFormat(hotCoursesDetails.num_reviews),
+          course_viewer: fixNumberFormat(hotCoursesDetails.viewer),
+          course_author: authors.find(el => el._id.toString() === course.author).name || '',
+          course_price: course.price,
+          course_status: "best seller",
+          course_category: categories.find(el => el._id.toString() === course.category).title || '',
+          course_date: fixDateFormat(course.date),
+          course_img: course.img,
+          course_description: course.description,
+          course_duration: course.lectures.duration,
+          course_lessons: course.lectures.total,
+          course_id: course._id,
+          my_courses: (myCourses && myCourses.includes(course._id.toString())) ? true : false,
+          myWishCourses: (myWishCourses && myWishCourses.includes(course._id.toString())) ? "chosen" : ""
+      }
       newcourse.push(new_hot_course);
-    }
   }
   return newcourse;
-};
+}
 
 export const renderCourseDetail = catchAsync(async (req, res) => {
   res.locals.handlebars = "courseDetail/courseDetail";
@@ -116,7 +125,10 @@ export const renderCourseDetail = catchAsync(async (req, res) => {
     getCourseRating.reviews.length
   );
 
-  const mostviewCourse = await loadhotCourse(allCourses.category);
+  const categories = JSON.parse(res.locals.categories);
+  const authors = await User.find().select('name').lean();
+
+  const mostviewCourse = await loadhotCourse(req.myCourses, req.myWishCourses, categories, authors);
   let user=null;
   let isExist = false;
 
