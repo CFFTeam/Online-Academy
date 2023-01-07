@@ -153,9 +153,11 @@
     const categoryVal = $('#txtCourseCategory').find(":selected").val();
     const Category = categories.find((category) => category.title === categoryVal);
 
-    Category.subcategories.forEach((subcategory) => {
-        $('#txtCourseSubCategory').append(`<option value='${subcategory.content}'>${subcategory.content}</option>`);
-    });
+    if (Category) {
+        Category.subcategories.forEach((subcategory) => {
+            $('#txtCourseSubCategory').append(`<option value='${subcategory.content}'>${subcategory.content}</option>`);
+        });
+    }
 
      // set file name when uploading
     $('#courseImageFile').change(function (event) {
