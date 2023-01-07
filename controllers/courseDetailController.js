@@ -1,5 +1,6 @@
 import catchAsync from "../utilities/catchAsync.js";
 import Course from "../models/courseModel.js";
+import Category from "../models/categoryModel.js";
 import { fixDateFormat, fixNumberFormat } from "../utilities/fixFormat.js";
 import courseDetail from "../models/courseDetailsModel.js";
 import User from "../models/userModel.js";
@@ -49,13 +50,51 @@ const loadhotCourse = async (sameCategory) => {
 export const renderCourseDetail = catchAsync(async (req, res) => {
   res.locals.handlebars = "courseDetail/courseDetail";
 
-  const getCourse = await Course.findOne({
+  const allCourses = await Course.findOne({
     slug: `/course${url.parse(req.url, true).pathname}`
   }).lean();
+  
+  const allCategories = await Category.find().lean();
+  const instructors = await User.findOne({_id:allCourses.author}).lean();
+
+  allCourses['nameAuthor']=instructors.name;
+
+  allCourses['nameSubCategory'] = [];
+  for(let i=0; i<allCategories.length; i++){
+    if(allCourses.category===allCategories[i]._id.toString()){
+      allCourses['nameCategory']=allCategories[i].title;
+    }
+    for(let j=0; j<allCategories[i].subcategories.length; j++){
+      for(let z=0; z<allCourses.subcategory.length; z++){
+        if(allCourses.subcategory[z]===allCategories[i].subcategories[j]._id.toString()){
+          allCourses['nameSubCategory'].push(allCategories[i].subcategories[j].content);
+        }
+      }
+    }
+  }
+
+  const getCourseByAuthor = await Course.find({author: allCourses.author}).lean();
+  const getCourseByAuthorArray = [...getCourseByAuthor];
+  let getCourseDetailByAuthor = [];
+  let sumRating = 0;
+  let sumViewer = 0;
+  let sumReview = 0;
+  for(let i=0; i<getCourseByAuthorArray.length; i++){
+    const getCourseDetailTemp = await courseDetail.findOne({course_id: getCourseByAuthorArray[i]._id})
+    getCourseDetailByAuthor.push(getCourseDetailTemp);
+  }
+  for(let i=0; i<getCourseDetailByAuthor.length; i++){
+    sumRating += getCourseDetailByAuthor[i].avg_rating;
+    sumViewer += getCourseDetailByAuthor[i].viewer;
+    sumReview +=  getCourseDetailByAuthor[i].num_reviews;
+  }
+  const numCourse = getCourseByAuthorArray.length;
+  const avgRating = sumRating / numCourse;
+
 
   const getCourseRating = await courseDetail
     .findOne({
-      course_id: getCourse._id
+      course_id: allCourses._id
     })
     .lean();
 
@@ -77,25 +116,30 @@ export const renderCourseDetail = catchAsync(async (req, res) => {
     getCourseRating.reviews.length
   );
 
-  const mostviewCourse = await loadhotCourse(getCourse.category);
+  const mostviewCourse = await loadhotCourse(allCourses.category);
   let user=null;
   let isExist = false;
 
   if (res.locals && res.locals.authUser) {
     user = await User.findOne({ _id: res.locals.authUser._id }).lean();
     let myCourses = user.myCourses;
-    if (myCourses.includes(getCourse._id.toString())){
+    if (myCourses.includes(allCourses._id.toString())){
       isExist=true;
     }
   }
   res.render("courseDetail/courseDetail.hbs", {
-    courseDetail: getCourse,
+    courseDetail: allCourses,
     courseRating: getCourseRating,
+    authorDetail: instructors,
+    avgRating: avgRating,
+    sumViewer: sumViewer,
+    sumReview: sumReview,
+    numCourse: numCourse,
     integerPart: Math.floor(getCourseRating.avg_rating),
     isRemainder:
       getCourseRating.avg_rating - Math.floor(getCourseRating.avg_rating) !== 0,
-    dateUpdate: getCourse.date.slice(0, 10),
-    numberSection: getCourse.lectures.sections.length,
+    dateUpdate: allCourses.date.slice(0, 10),
+    numberSection: allCourses.lectures.sections.length,
     getThreeLastComment: getThreeLastComment,
     layout: "courseDetail.hbs",
     mostviewCourse: mostviewCourse,
@@ -141,7 +185,7 @@ export const handleBuyNow = catchAsync(async (req, res) => {
     let view = getCourseDetail.viewer + 1;
     await courseDetail.updateOne(
       {course_id: req.body.course_id},
-      {viewers: view}
+      {viewer: view}
     )
     const url = req.headers.referer;
     res.redirect(url);

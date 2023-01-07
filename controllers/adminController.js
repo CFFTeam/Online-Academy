@@ -322,7 +322,6 @@ export const viewMoreCourse = catchAsync(async (req, res) => {
     }
   }
 
-
   allCourses.date = allCourses.date.slice(0, 10);
   res.render("admin/courseDetail.hbs", {
     course: allCourses,

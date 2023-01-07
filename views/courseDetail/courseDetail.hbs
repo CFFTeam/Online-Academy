@@ -3,9 +3,9 @@
     <div class="content">
       <div class="info-content">
         <p class="p-green">Course >
-          {{courseDetail.category}}
+          {{courseDetail.nameCategory}}
           >
-          {{#each courseDetail.subcategory}}{{this}} &nbsp;{{/each}}</p>
+          {{#each courseDetail.nameSubCategory}}{{this}} &nbsp;{{/each}}</p>
         <h1>{{courseDetail.name}}</h1>
         <p>{{courseDetail.description}}</p>
         <div class="rating-content">
@@ -106,7 +106,7 @@
         <img src="/assets/svg/course/instructor.svg" alt="instructor-icon" />
         <div class="informative-content" style="width: 52rem;">
           <h2>Instructor</h2>
-          <p>{{courseDetail.author}}</p>
+          <p>{{courseDetail.nameAuthor}}</p>
         </div>
       </div>
     </div>
@@ -291,54 +291,33 @@
   <div class="ins">
     <div class="heading-ins">
       <h2>Instructor</h2>
-      <h2 style="color: #51CF66; margin-top: 1rem;">Academind by Maximilian Schwarzmüller</h2>
+      <h2 style="color: #51CF66; margin-top: 1rem;">{{courseDetail.nameAuthor}}</h2>
       <p>Web Developer, Designer, and Teacher</p>
       <div class="info-ins">
         <img src={{courseDetail.img}} style="height: 20rem; width: 20rem;" />
         <div class="info-rating">
           <div class="flex-rating">
             <img src="/assets/svg/course/star.svg" alt="star-icon" />
-            <p> 4.7 Instructor Rating</p>
+            <p> {{avgRating}} Instructorfa-stack-2x Rating</p>
           </div>
           <div class="flex-rating">
             <img src="/assets/svg/course/like.svg" alt="star-icon" />
-            <p> 400.000 Reviewers</p>
+            <p> {{sumReview}} Reviewers</p>
           </div>
           <div class="flex-rating">
             <img src="/assets/svg/course/student.svg" alt="student-icon" />
-            <p> 1.500.000 Students</p>
+            <p> {{sumViewer}} Students</p>
           </div>
           <div class="flex-rating">
             <img src="/assets/svg/course/course.svg" alt="course-icon" />
-            <p> 6 Courses</p>
+            <p> {{numCourse}} Courses</p>
           </div>
         </div>
       </div>
     </div>
     <div class="content-ins">
-      <div class="content-ins-s">
-        <p style="font-weight: 400; font-size: 1.5rem;">
-          Hi, I'm Jonas! I have been identified as one of Udemy's Top
-          Instructors and all my premium courses have earned the best-selling
-          status for outstanding performance and student satisfaction. I'm a
-          full-stack web developer and designer with a passion for building
-          beautiful things from scratch. I've been building websites and apps
-          since 2010 and also have a Master's degree in Engineering. I
-          discovered my passion for teaching and helping others by sharing all I
-          knew when I was in college, and that passion brought me to Udemy in
-          2015. Here, in all my courses, what students love the most is that I
-          take the time to explain every concept in a way that everyone can
-          easily understand. So, do you want to learn how to build awesome
-          websites with modern HTML and CSS? Looking for a complete JavaScript
-          course that takes you from zero to an advanced developer? Or maybe you
-          want to build modern and fast back-end applications with Node.js? Then
-          don't waste your time with random tutorials or incomplete youtube
-          videos. All my courses are easy-to-follow, all-in-one packages that
-          will take your skills to the next level. These courses are exactly the
-          courses I wish I had when I was first getting into web development! So
-          see for yourself, enroll in one of my courses (or all of them :D) and
-          join 1,000,000+ happy students today.
-        </p>
+      <div class="content-ins-s" style="font-size: 1.3rem;">
+        {{{authorDetail.description}}}
       </div>
     </div>
   </div>
