@@ -89,16 +89,16 @@ const loadCourses = async (categories, authors, myCourses, myWishCourses, find_b
 const getPageList = (totalPage) => {
     const pageList = [1];
     if (totalPage > 10) {
-        for (let i = 2; i <= Math.min(totalPage, 4); i++)
+        for (let i = 2; i <= Math.min(totalPage, 4); ++i)
             pageList.push(i);
         
         pageList.push("...");
 
-        for (let i = Math.min(totalPage - 4, 4); i >= 1; i--)
+        for (let i = Math.min(totalPage - 4, 4); i >= 1; --i)
             pageList.push(totalPage - i + 1);
     }
     else 
-        for (let i = 2; i <= totalPage; i++)
+        for (let i = 2; i <= totalPage; ++i)
             pageList.push(i);
     return pageList;
 };

@@ -14,6 +14,7 @@ export const myCoursesPage = catchAsync(async (req, res) => {
     user = await User.findOne({ _id: res.locals.authUser._id });
   }
   if (user) {
+    const finishCourses = user.finishCourses;
     for (const m of user.myCourses) {
       if (isValidObjectId(m)) {
         const course = await Course.findOne({ _id: m });
@@ -28,6 +29,7 @@ export const myCoursesPage = catchAsync(async (req, res) => {
             img: course.img,
             author: author.name,
             category: category.title,
+            finish: finishCourses.includes(m),
             date: course.date.slice(0, course.date.indexOf("T")),
             progress: progress
           });
