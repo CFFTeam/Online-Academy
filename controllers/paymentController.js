@@ -18,11 +18,12 @@ export const shoppingCartPage = catchAsync(async (req, res) => {
   if (shoppingCart && shoppingCart.length > 0) {
     for (const sc of shoppingCart) {
       const courses = await Course.findOne({ _id: sc.course_id }).lean();
-      const courseDetails = await CourseDetails.findOne({ course_id: sc.course_id });
-      const author = await User.findOne({ _id: courses.author }).lean();
+
+      if (!user.myCourses.includes(sc.course_id) && courses != null) {
+        const courseDetails = await CourseDetails.findOne({ course_id: sc.course_id });
+        const author = await User.findOne({ _id: courses.author }).lean();
 
 
-      if (!user.myCourses.includes(sc.course_id)) {
         course.push({
           id: sc._id,
           discount: courses.sale,

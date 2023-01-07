@@ -42,8 +42,7 @@ export const wishlistPage = catchAsync(async (req, res) => {
           user.wishlist.splice(user.wishlist.indexOf(m), 1);
           await User.updateOne(
             { _id: res.locals.authUser._id },
-            { wishlist: [...user.wishlist] }
-          )
+            { wishlist: [...user.wishlist] })
         }
       }
       else {
