@@ -115,7 +115,7 @@
     $(this).siblings('.sale').text($(this).siblings('.sale').find('input').val());
     } 
     else { var content=$(this).siblings('.sale').text(); 
-    var actionURL="courses/edit/"+id; 
+    var actionURL="/admin/courses/edit/"+id; 
     var form=$("<form/>", { method: 'POST',action: actionURL, style: 'margin: 0; padding: 0', } ).append($("<input>", {
     type:'text', name:'sale', class:"editsale", value: content, }
     ).val(content))
