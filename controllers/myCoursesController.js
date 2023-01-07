@@ -3,6 +3,7 @@ import Category from "../models/categoryModel.js";
 import Course from "../models/courseModel.js";
 import User from "../models/userModel.js";
 import catchAsync from "../utilities/catchAsync.js";
+import { loadProgress } from "./learningController.js";
 
 
 export const myCoursesPage = catchAsync(async (req, res) => {
@@ -19,6 +20,7 @@ export const myCoursesPage = catchAsync(async (req, res) => {
         const author = await User.findOne({ _id: course.author }).lean();
         const category = await Category.findOne({ _id: course.category }).lean();
         if (course != null) {
+          const progress = await loadProgress(m, res.locals.authUser._id);
           courses.push({
             id: m,
             slug: course.slug,
@@ -26,7 +28,8 @@ export const myCoursesPage = catchAsync(async (req, res) => {
             img: course.img,
             author: author.name,
             category: category.title,
-            date: course.date.slice(0, course.date.indexOf("T"))
+            date: course.date.slice(0, course.date.indexOf("T")),
+            progress: progress
           });
         }
         else {

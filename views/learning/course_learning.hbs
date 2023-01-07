@@ -32,7 +32,7 @@
                         <img width="50px" src="https://img-c.udemycdn.com/user/200_H/7799204_2091_5.jpg" alt={{course.author}} />
                     </div>
                     <div class="author-description">
-                        <div class="name">{{course.author}}</div>
+                        <div class="name">{{author.name}}</div>
                         <div class="role">Lecture</div>
                     </div>
                 </div>
@@ -48,11 +48,11 @@
                 <b class="title">Course lectures</b>
                 <div class="progress-bar-group">
                     <div class="progress-bar-status">
-                        <span>5% Completed</span>
-                        <span>5 / 100</span>
+                        <span class="progress-complete">{{progress.percent}}% Completed</span>
+                        <span class="progress-complete-percent-total">{{progress.value}} / {{progress.total}}</span>
                     </div>
                     <div class="progress-bar">
-                        <div class="progress-bar-fill"></div>
+                        <div class="progress-bar-fill" style="width: {{progress.percent}}%"></div>
                     </div>
                 </div>
             </div>
@@ -75,7 +75,7 @@
                             <div class="lesson-item-checkbox">
                                 <div class="checkbox-cs">
                                     <input hidden readonly class="checkbox-input-cs-value" type="text" id="lesson-value-{{@../index}}-{{@index}}" value={{this._id}} />
-                                    <input class="checkbox-input-cs"{{#if (progress_find ../../progress _id)}} checked{{/if}} type="checkbox" id="lesson-{{@../index}}-{{@index}}" />
+                                    <input class="checkbox-input-cs"{{#if (progress_find ../../progress.progressor _id)}} checked{{/if}} type="checkbox" id="lesson-{{@../index}}-{{@index}}" />
                                     <label class="checkbox-label" for="lesson-{{@../index}}-{{@index}}">
                                         <span></span>
                                     </label>
@@ -129,8 +129,12 @@
                     slug_course: `{{course.slug}}`
                 },
                 success: (data) => {
+                    $('.course-learning > .sticky-lectures > .course-lectures > .lecture-heading > .progress-bar-group > .progress-bar-status > .progress-complete').text(`${data.progress.percent}% Completed`);
+                    $('.course-learning > .sticky-lectures > .course-lectures > .lecture-heading > .progress-bar-group > .progress-bar-status > .progress-complete-percent-total').text(`${data.progress.value} / ${data.progress.total}`);
+                    $('.course-learning > .sticky-lectures > .course-lectures > .lecture-heading > .progress-bar-group > .progress-bar > .progress-bar-fill').width(`${data.progress.percent}%`);
                 },
                 error: (err) => {
+                    window.location.replace(`{{course.slug}}`);
                 }
             });
         });
@@ -186,7 +190,19 @@
             }
         }, 0);
 
-        player.on('error', () => clearInterval(timerLoading));
+        player.on('error', () => {
+            clearInterval(timerLoading);
+        });
+
+        player.on('ended', () => {
+            const next_lesson = `{{{watch_info.next_lesson}}}`;
+            
+            const checkCourse = $(`.lesson-item a[href="${lesson}?section={{{watch_info.section}}}"]`).parent().prev().find('.checkbox-cs > .checkbox-input-cs')[0];
+            if (!$(checkCourse).is(':checked')) checkCourse.click();
+
+            if (next_lesson && next_lesson !== 'finished')
+                setTimeout(() => {$(`.lesson-item a[href="${next_lesson}"]`)[0].click()}, 1000);
+        });
 
         $(window).on("beforeunload", () => { 
             localStorage.setItem('{{authUser._id}}__current', JSON.stringify({
