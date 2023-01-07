@@ -31,8 +31,12 @@ const getPageList = (totalPage) => {
     return pageList;
 };
 // filter file
-const fileFilter = async (req, file, cb) => {
+const videoFilter = async (req, file, cb) => {
     req.hasFile = true;
+    const ext_file = path.extname(file.originalname); // validate file extension
+    
+    req.validVideo = (/\.(mp4|mkv)$/).test(ext_file);
+    if (!req.validVideo) return cb(null, false);
     // if add existed lesson
     if (req.query.section) {
         const course = await Course.findOne({ _id: req.query.course });
@@ -75,6 +79,14 @@ const fileFilter = async (req, file, cb) => {
     }
 
 
+    cb(null, true);
+}
+
+const fileFilter = async (req, file, cb) => {
+    req.hasFile = true;
+    const ext_file = path.extname(file.originalname); // validate file extension
+    req.validFile = (/\.(jpg|png|jpeg|gif)$/).test(ext_file);
+    if (!req.validFile) return cb(null, false);
     cb(null, true);
 }
 
@@ -346,96 +358,6 @@ export const getPreview = (async (req, res) => {
 
 
 export const getMyCourses = async function (req, res, next) {
-    //     const courseList = [
-    //     {
-    //         index: 1,
-    //         name: "MERN Stack Real Time Chat App - React , Node , Socket IO",
-    //         category: "Web Development",
-    //         price: "209",
-    //         date: "2022-12-31",
-    //         finish: 1
-    //     },
-    //     {
-    //         index: 2,
-    //         name: "React - The Complete Guide (incl Hooks, React Router, Redux)",
-    //         category: "Web Development",
-    //         price: "99",
-    //         date: "2022-12-31",
-    //         finish: 0
-    //     },
-    //     {
-    //         index: 3,
-    //         name: "React - The Complete Guide (incl Hooks, React Router, Redux)",
-    //         category: "Web Development",
-    //         price: "150",
-    //         date: "2022-12-31",
-    //         finish: 1
-    //     },
-    //     {
-    //         index: 4,
-    //         name: "React - The Complete Guide (incl Hooks, React Router, Redux)",
-    //         category: "Web Development",
-    //         price: "80",
-    //         date: "2022-12-31",
-    //         finish: 0
-    //     },
-    //     {
-    //         index: 5,
-    //         name: "The Complete 2023 Web Development Bootcamp",
-    //         category: "Web Development",
-    //         price: "90",
-    //         date: "2022-12-31",
-    //         finish: 1
-    //     },
-    //     {
-    //         index: 6,
-    //         name: "The Complete 2023 Web Development Bootcamp",
-    //         category: "Web Development",
-    //         price: "90",
-    //         date: "2022-12-31",
-    //         finish: 1
-    //     },
-    //     {
-    //         index: 7,
-    //         name: "The Complete 2023 Web Development Bootcamp",
-    //         category: "Web Development",
-    //         price: "90",
-    //         date: "2022-12-31",
-    //         finish: 1
-    //     },
-    //     {
-    //         index: 8,
-    //         name: "The Complete 2023 Web Development Bootcamp",
-    //         category: "Web Development",
-    //         price: "90",
-    //         date: "2022-12-31",
-    //         finish: 1
-    //     },
-    //     {
-    //         index: 9,
-    //         name: "The Complete 2023 Web Development Bootcamp",
-    //         category: "Web Development",
-    //         price: "90",
-    //         date: "2022-12-31",
-    //         finish: 1
-    //     },
-    //     {
-    //         index: 10,
-    //         name: "The Complete 2023 Web Development Bootcamp",
-    //         category: "Web Development",
-    //         price: "90",
-    //         date: "2022-12-31",
-    //         finish: 1
-    //     },
-    //     {
-    //         index: 11,
-    //         name: "The Complete 2023 Web Development Bootcamp",
-    //         category: "Web Development",
-    //         price: "90",
-    //         date: "2022-12-31",
-    //         finish: 1
-    //     }
-    // ]
     let courseList = [];
     let index = 1;
     if (res.locals.authUser.myCourses.length > 0) {
@@ -531,7 +453,7 @@ export const editCourseDescription = catchAsync(async (req, res) => {
         }
     });
 
-    const upload = multer({ storage: storage });
+    const upload = multer({ fileFilter: fileFilter, storage: storage });
     upload.single('courseImageFile')(req, res, async (err) => {
         res.locals.handlebars = "instructor/addCourseDescription";
         res.locals.layout = "instructor.hbs";
@@ -548,6 +470,17 @@ export const editCourseDescription = catchAsync(async (req, res) => {
                         sidebar: "my-course"
                     });
                 }
+                
+                // if user upload invalid file
+                if (!req.validFile) {
+                    return res.render(res.locals.handlebars, {
+                        layout: res.locals.layout,
+                        message: "Your file extension is not valid.",
+                        sidebar: "my-course"
+                    });
+                }
+               
+              
                 // if this course title already exists
                 if (foundCourse) {
                     return res.render(res.locals.handlebars, {
@@ -614,6 +547,18 @@ export const editCourseDescription = catchAsync(async (req, res) => {
             // if registered course => edit course description
             else {
                 if (req.body.requestActionInDescription == "save_course_description") { // save course description
+                    // if user does not upload file
+                    if (req.hasFile) {
+                    // if user upload invalid file
+                        if (!req.validFile) {
+                            return res.render(res.locals.handlebars, {
+                                layout: res.locals.layout,
+                                course_id: req.query.course,
+                                message: "Your file extension is not valid.",
+                                sidebar: "my-course"
+                            });
+                        }
+                    }
                     const thisCourse = await Course.findOne({ _id: req.query.course });
                     const thisCourseCategory = await Category.findOne({_id: thisCourse.category});
                     let foundCategory = await Category.findOne({title: req.body.course_category}).lean();
@@ -793,7 +738,7 @@ export const editCourseContent = catchAsync(async (req, res, next) => {
             }
         }
     })
-    const upload = multer({ fileFilter: fileFilter, storage: storage });
+    const upload = multer({ fileFilter: videoFilter, storage: storage });
     upload.single('videoUploadFile')(req, res, async (err) => {
         if (err) console.error(err);
         else {
@@ -865,6 +810,17 @@ export const editCourseContent = catchAsync(async (req, res, next) => {
             // if user edit course content
             if (req.body.requestAction === "publish") {
                 if (req.query.lesson) {  // edit lesson
+                    if (req.hasFile) { // if file already exists, if add new one => check format
+                        if (!req.validVideo) {
+                            return res.render('instructor/addCourseContent', {
+                                layout: "instructor",
+                                course_id: req.query.course,
+                                page: req.query.page,
+                                message: "Your video format is not valid. Try again later!",
+                                sidebar: "my-course"
+                            })
+                        }
+                    }
                     let foundLesson = {}; // find that lesson
                     thisCourseLectures.lectures.sections.forEach(section => {
                         const queryLessons = section.lessons.filter(lesson => {
@@ -894,6 +850,15 @@ export const editCourseContent = catchAsync(async (req, res, next) => {
                             course_id: req.query.course,
                             page: req.query.page,
                             message: "You must add video of this lesson. Try again later!",
+                            sidebar: "my-course"
+                        })
+                    }
+                    if (!req.validVideo) {
+                        return res.render('instructor/addCourseContent', {
+                            layout: "instructor",
+                            course_id: req.query.course,
+                            page: req.query.page,
+                            message: "Your video format is not valid. Try again later!",
                             sidebar: "my-course"
                         })
                     }

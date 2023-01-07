@@ -131,7 +131,12 @@
         alert("Your course was deleted successfully...");
         window.location.replace("http://localhost:5000/instructor/add-course-description");
     }
-    else if ("{{message}}" != "successAdded" && "{{message}}" != "successSaved" && "{{message}}" != "")  { // failed
+    else if ("{{message}}" == "Your file extension is not valid.")
+    {
+        alert("Your file extension is not valid.");
+        window.location.replace("http://localhost:5000/instructor/add-course-description/?course={{course_id}}");
+    }
+    else if ("{{message}}" != "")  { // failed
         alert("{{message}}");
         window.location.replace("http://localhost:5000/instructor/add-course-description");
     }
