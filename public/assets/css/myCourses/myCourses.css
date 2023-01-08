@@ -1,5 +1,5 @@
 .myCourses{
-  min-height: 28rem;
+  min-height: 100vh;
 }
 
 .myCourses > header {
