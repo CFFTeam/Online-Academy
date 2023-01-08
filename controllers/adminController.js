@@ -16,7 +16,7 @@ export const renderCategories = catchAsync(async (req, res) => {
 
   let isEmpty = false;
   if (category.length === 0) {
-    isEmpty: true
+    true
   }
   let getAllCategories = [];
   for (let i = 0; i < category.length; i++) {
@@ -44,19 +44,19 @@ export const renderCategories = catchAsync(async (req, res) => {
     category: category,
     categories: getAllCategories,
     isEmpty: isEmpty,
-    layout: "admin.hbs",
+    layout: "admin.hbs"
   });
 });
 
 export const renderCategoriesByCategories = catchAsync(async (req, res) => {
   const category = await Category.find().lean();
   const categoryName = await Category.findOne({
-    slug: url.parse(req.url, true).query.slug,
+    slug: url.parse(req.url, true).query.slug
   });
 
   let isEmpty = false;
   if (categoryName.length === 0) {
-    isEmpty: true
+    true
   }
   let getAllCategories = [];
   for (let j = 0; j < categoryName.subcategories.length; j++) {
@@ -82,7 +82,7 @@ export const renderCategoriesByCategories = catchAsync(async (req, res) => {
     category: category,
     categories: getAllCategories,
     isEmpty: isEmpty,
-    layout: "admin.hbs",
+    layout: "admin.hbs"
   });
 });
 
@@ -170,7 +170,7 @@ export const editSubCategories = catchAsync(async (req, res) => {
 
 export const deleteCategories = catchAsync(async (req, res) => {
   const getCategoryData = await Category.findOne({
-    _id: req.params.id,
+    _id: req.params.id
   }).lean();
 
   const subcategories = [...getCategoryData.subcategories];
@@ -185,7 +185,7 @@ export const deleteCategories = catchAsync(async (req, res) => {
     }
 
     await Category.updateOne(
-      { _id: req.params.id, },
+      { _id: req.params.id },
       { subcategories: [...subcategories] }
     )
   }
@@ -221,16 +221,16 @@ export const renderCourses = catchAsync(async (req, res) => {
     isEmpty: isEmpty,
     category: allCategories,
     instructor: instructors,
-    layout: "admin.hbs",
+    layout: "admin.hbs"
   });
 });
 
 export const renderCoursesByCategories = catchAsync(async (req, res) => {
   const categoryName = await Category.findOne({
-    slug: url.parse(req.url, true).query.slug,
+    slug: url.parse(req.url, true).query.slug
   });
   const allCourses = await Course.find({
-    category: categoryName._id,
+    category: categoryName._id
   }).lean();
 
   let isEmpty = false;
@@ -259,13 +259,13 @@ export const renderCoursesByCategories = catchAsync(async (req, res) => {
     isEmpty: isEmpty,
     category: allCategories,
     instructor: instructors,
-    layout: "admin.hbs",
+    layout: "admin.hbs"
   });
 });
 
 export const renderCoursesByInstructors = catchAsync(async (req, res) => {
   const allCourses = await Course.find({
-    author: req.params.id,
+    author: req.params.id
   }).lean();
 
   let isEmpty = false;
@@ -293,7 +293,7 @@ export const renderCoursesByInstructors = catchAsync(async (req, res) => {
     category: allCategories,
     instructor: instructors,
     isEmpty: isEmpty,
-    layout: "admin.hbs",
+    layout: "admin.hbs"
   });
 });
 
@@ -347,7 +347,7 @@ export const viewMoreCourse = catchAsync(async (req, res) => {
   res.render("admin/courseDetail.hbs", {
     course: allCourses,
     courseDetail: courseDetail,
-    layout: "admin.hbs",
+    layout: "admin.hbs"
   });
 });
 
@@ -364,7 +364,7 @@ export const renderTeachers = catchAsync(async (req, res) => {
   const allTeachers = await User.find({ role: "instructor" }).lean();
   res.render("admin/teachers.hbs", {
     teachers: allTeachers,
-    layout: "admin.hbs",
+    layout: "admin.hbs"
   });
 });
 
@@ -418,7 +418,7 @@ export const renderStudents = catchAsync(async (req, res) => {
   const allStudents = await User.find({ role: "user" }).lean();
   res.render("admin/students.hbs", {
     students: allStudents,
-    layout: "admin.hbs",
+    layout: "admin.hbs"
   });
 });
 

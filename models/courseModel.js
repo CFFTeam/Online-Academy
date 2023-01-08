@@ -37,7 +37,13 @@ const courseSchema = new mongoose.Schema({
   }
 });
 
+courseSchema.pre('save', (next) => {
+  this.date = new Date(new Date().toLocaleString({ locale: 'en_US', timeZone: 'Asia/Ho_Chi_Minh' })).now() - 1000;
+  next();
+});
+
 courseSchema.index({ name: "text", description: "text", category: "text", subcategory: "text", author: "text" }, { default_language: "none" });
+
 const Course = mongoose.model("course", courseSchema);
 
 export default Course;
