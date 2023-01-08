@@ -37,8 +37,13 @@ const courseSchema = new mongoose.Schema({
   }
 });
 
-courseSchema.pre('save', (next) => {
-  this.date = new Date(new Date().toLocaleString({ locale: 'en_US', timeZone: 'Asia/Ho_Chi_Minh' })).now() - 1000;
+courseSchema.pre("save", function (next) { 
+  this.date = new Date().toJSON();
+  next();
+});
+
+courseSchema.pre("findOneAndUpdate", function (next) { 
+  this.findOneAndUpdate({}, { $set: { date: new Date().toJSON() } });
   next();
 });
 
