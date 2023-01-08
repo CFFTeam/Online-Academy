@@ -400,7 +400,7 @@
 }
 
 .category-group > .category-item {
-    width: 32rem;
+    width: 20rem;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -408,7 +408,7 @@
     justify-content: center;
     margin: 0rem 1.2rem;
     border-radius: 1.5rem;
-    padding: 2rem 5.5rem;
+    padding: 2rem;
     padding-bottom: 1.6rem;
     color: white;
     cursor: pointer;
@@ -416,23 +416,33 @@
 }
 
 .category-group > .category-item > .icon {
-    font-size: 8rem;
+    font-size: 2rem;
+    font-weight: 500;
 }
 
 .category-group > .category-item > .content {
     font-weight: 700;
     letter-spacing: .05em;
     text-align: center;
+    color: white;
 }
     
-.bluegradient {
-    background: linear-gradient(103.71deg, rgba(0, 119, 182, 0.9834) 12.94%, #2CA2F9 112.89%);;
+.top1gradient {
+    background: linear-gradient(to right, #ff9900 0%, #990099 100%);
 }
 
-.darkbluegradient { 
+.top2gradient {
+    background: linear-gradient(to right, #0066cc 0%, #33cccc 100%);
+}
+
+.top3gradient { 
     background: linear-gradient(103.71deg, rgba(0, 29, 182, 0.9834) 12.94%, #F92C2C 112.89%);
 }
 
-.purplegradient { 
-    background: linear-gradient(103.71deg, rgba(0, 171, 182, 0.9834) 12.94%, #F52CF9 112.89%);
+.top4gradient { 
+    background: linear-gradient(to left, #ffce9e 10%, #e428e7 112.89%);
+}
+
+.top5gradient { 
+    background: linear-gradient(to right, #0099cc 0%, #66ff66 100%);
 }
