@@ -54,7 +54,6 @@
     </div>
     <div class="confirm-section">
         <form action="{{url}}" method="post">
-            {{!-- <button name="requestAction" value="save" class="save-btn">SAVE</button> --}}
             <button name="requestAction" value="finish" class="finish-btn">FINISH THE COURSE</button>
         </form>
     </div>
@@ -85,7 +84,7 @@
         <a class="quizz-section">Quizz</a>
         <a class="announcements-section">Announcements</a>
     </div>
-    <form action="" method="post" enctype="multipart/form-data">
+    <form class = "add-lesson-form" action="" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="txtLectureTitle" class="lecture-title">Lecture Title</label>
             <input name="lecture_title" type="text" id="txtLectureTitle" placeholder="Enter your lecture title"
@@ -108,7 +107,7 @@
         </div>
         <div class="confirm-section">
             <button class="publish-btn" type="submit" name="requestAction" value="publish">Publish</button>
-            <button class="cancel-btn" type="submit" name="requestAction" value="cancel">Cancel</button>
+            <button class="cancel-btn" type="button" name="requestAction" value="cancel">Cancel</button>
         </div>
     </form>
 </div>
@@ -153,5 +152,15 @@
         alert("{{message}}");
         window.location.replace("http://localhost:5000/instructor/add-course-content/?course={{course_id}}&page={{page}}");
     }
+    // validate user input's field before submitting (add lesson form)
+    $('.add-lesson-form').on('submit', (e) => {
+        const lesson_title = $('#txtLectureTitle').val().trim(); 
+        
+        if (lesson_title.length === 0 ) { 
+            e.preventDefault(); 
+            alert("Course title must not be empty. Try again!");
+            return;
+        } 
+    });
 </script>
 
