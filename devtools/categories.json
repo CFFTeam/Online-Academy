@@ -86,7 +86,7 @@
     "$oid": "63a8325f77cf7f9d1134e93c"
   },
   "slug": "/artificial-intelligence",
-  "title": "Artificial Intelligenceee",
+  "title": "Artificial Intelligence",
   "courses": 50,
   "subcategories": [
     {
@@ -104,8 +104,8 @@
       }
     },
     {
-      "slug": "/data-scient",
-      "content": "Data Scient",
+      "slug": "/data-science",
+      "content": "Data Science",
       "_id": {
         "$oid": "63b440b07b9d3b1959908481"
       }
@@ -164,4 +164,27 @@
   ],
   "students": 1000,
   "courses": 50
+},{
+  "_id": {
+    "$oid": "63bab763d20baf30048eb400"
+  },
+  "slug": "/devops",
+  "title": "DevOps",
+  "subcategories": [
+    {
+      "slug": "/git",
+      "content": "Git",
+      "_id": {
+        "$oid": "63bab763d20baf30048eb401"
+      }
+    },
+    {
+      "slug": "/cloud",
+      "content": "Cloud",
+      "_id": {
+        "$oid": "63bac4f08a269c33ad8e4290"
+      }
+    }
+  ],
+  "__v": 0
 }]
