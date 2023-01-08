@@ -792,6 +792,8 @@ export const editCourseContent = catchAsync(async (req, res, next) => {
                         if (fs.existsSync(folderPath)) {
                             fs.rmSync(folderPath, { recursive: true });
                         }
+                        // update total number of lessons after deleting section
+                       thisCourseLectures.lectures.total -= section.lessons.length
                     }
                     return section._id.toString() !== req.query.section.toString();
                 })
@@ -896,7 +898,8 @@ export const editCourseContent = catchAsync(async (req, res, next) => {
                             sidebar: "my-course"
                         })
                     }
-                    thisSection.lessons.push(newLesson);
+                    thisSection.lessons.push(newLesson); // push new lesson
+                    thisCourseLectures.lectures.total += 1;
                     await thisCourseLectures.save();
                     return res.render('instructor/addCourseContent', {
                         layout: "instructor",
@@ -908,7 +911,7 @@ export const editCourseContent = catchAsync(async (req, res, next) => {
                 }
 
             }
-            else if (req.body.requestAction === "delete_lesson") { // if user delete a lesson
+            else if (req.body.requestAction === "delete_lesson") { // if user delete lesson
                 let thisSection = thisCourseLectures.lectures.sections.filter((section) => {
                     return section._id.toString() === req.query.section;
                 });
@@ -921,6 +924,7 @@ export const editCourseContent = catchAsync(async (req, res, next) => {
                     return lesson._id.toString() !== req.query.lesson;
                 })
                 thisSection.lessons = newLessonArray;
+                thisCourseLectures.lectures.total -= 1;
                 await thisCourseLectures.save();
                 return res.render('instructor/addCourseContent', {
                     layout: "instructor",

@@ -107,8 +107,8 @@
         </div>
         {{!-- SAVE button --}}
         <div class ="save_description" style = "text-align: center;">
-            <button type="submit" name = "requestActionInDescription" value = "save_course_description">SAVE</button>
-            <button type="submit" name = "requestActionInDescription" value = "delete_course_description">DELETE</button>
+            <button id = "saveCourseBtn" type="submit" name = "requestActionInDescription" value = "save_course_description">SAVE</button>
+            <button id = "deleteCourseBtn" type="submit" name = "requestActionInDescription" value = "delete_course_description">DELETE</button>
         </div>
      {{!-- <input name="requestActionInDescription" value = "save_course_description" type="submit" hidden > --}}
     </form>
@@ -157,17 +157,26 @@
 
     const categoryVal = $('#txtCourseCategory').find(":selected").val();
     const Category = categories.find((category) => category.title === categoryVal);
-
     if (Category) {
         Category.subcategories.forEach((subcategory) => {
             $('#txtCourseSubCategory').append(`<option value='${subcategory.content}'>${subcategory.content}</option>`);
         });
     }
-
      // set file name when uploading
     $('#courseImageFile').change(function (event) {
         const filename = event.target.files[0].name;
         $('.upload-image-message').text(filename);
     })
-    
 </script>
+
+     {{!-- validate user input's field before submitting --}}
+  {{!-- $('.description-form').on('submit', (e) => {
+    console.log("bug right here....");
+    e.preventDefault(); 
+    const course_title = $('#txtCourseTitle').val().trim(); 
+    if (course_title.length === 0 ) { 
+        alert("Course title must not be empty. Try again!");
+        return;
+    } 
+    $('.description-form').off('submit').submit();
+  }); --}}
