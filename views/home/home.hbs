@@ -140,18 +140,11 @@
     <div class="category-view">
         <h1>Most studied field</h1>
         <div class="category-group">
-            <div class="category-item bluegradient">
-                <i class="fa-solid fa-globe icon"></i>
-                <span class="content">Website development</span>
+        {{#each topCategories.top}}
+            <div class='category-item {{lookup ../topCategories.colors @index}}'>
+                <i class="icon"># {{sum @index 1}}</i>
+                <a class="content" href='/courses/{{this.slug}}'>{{this.title}}</a>
             </div>
-            <div class="category-item darkbluegradient">
-                <i class="fa-solid fa-mobile-screen icon"></i>
-                <span class="content">Mobile development</span>
-            </div>
-            <div class="category-item purplegradient">
-                <i class="fa-solid fa-gamepad icon"></i>
-                <span class="content">Game development</span>
-            </div>
-        </div>
+        {{/each}}
     </div>
 </main>

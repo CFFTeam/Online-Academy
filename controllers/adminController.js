@@ -88,7 +88,7 @@ export const renderCategoriesByCategories = catchAsync(async (req, res) => {
 
 export const addCategories = catchAsync(async (req, res) => {
   const getData = {
-    slug: "/" + req.body.newtitle.toLowerCase().replace(" ", "-"),
+    slug: "/" + req.body.newtitle.toLowerCase().replaceAll(" ", "-"),
     title: req.body.newtitle,
     subcategories: [
       {
