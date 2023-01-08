@@ -14,7 +14,6 @@ const loadhotCourse = async (categoryID, myCourses, myWishCourses, categories, a
   for (let index = 0; index < hotCourses.length; index++) {
       const hotCoursesDetails = hotCourses[index];
       const course = await Course.findOne({ _id: hotCoursesDetails.course_id, category: categoryID, finish: 1, active: true }).select('-lectures.sections').lean();
-
       if (course!==null){
         const new_hot_course = {
             active: index === 0 ? true : false,
@@ -23,10 +22,10 @@ const loadhotCourse = async (categoryID, myCourses, myWishCourses, categories, a
             course_rate: hotCoursesDetails.avg_rating,
             course_vote: fixNumberFormat(hotCoursesDetails.num_reviews),
             course_viewer: fixNumberFormat(hotCoursesDetails.viewer),
-            course_author: authors.find(el => el._id.toString() === course.author).name || '',
+            course_author: await authors.find(el => el._id.toString() === course.author).name || '',
             course_price: course.price,
             course_status: "best seller",
-            course_category: categories.find(el => el._id.toString() === course.category).title || '',
+            course_category: await categories.find(el => el._id.toString() === course.category).title || '',
             course_date: fixDateFormat(course.date),
             course_img: course.img,
             course_description: course.description,
@@ -84,8 +83,8 @@ export const renderCourseDetail = catchAsync(async (req, res) => {
     sumReview +=  getCourseDetailByAuthor[i].num_reviews;
   }
   const numCourse = getCourseByAuthorArray.length;
-  const avgRating = sumRating / numCourse;
-
+  let avgRating = sumRating / numCourse;
+  avgRating = Math.round(avgRating * 10)/10;
 
   const getCourseRating = await courseDetail
     .findOne({
@@ -110,7 +109,7 @@ export const renderCourseDetail = catchAsync(async (req, res) => {
     getCourseRating.reviews.length - 3,
     getCourseRating.reviews.length
   );
-
+  
   const categories = JSON.parse(res.locals.categories);
   const authors = await User.find().select('name').lean();
 
