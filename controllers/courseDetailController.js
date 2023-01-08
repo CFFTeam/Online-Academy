@@ -6,22 +6,6 @@ import courseDetail from "../models/courseDetailsModel.js";
 import User from "../models/userModel.js";
 import url from "url";
 
-export const load_my_courses = catchAsync(async (req, res, next) => {
-  if (req.session.auth || req.session.passport) {
-      const my_courses = await User.findOne({ _id: res.locals.authUser._id }).select('myCourses').lean();
-      req.myCourses = my_courses.myCourses;
-  }
-  next();
-});
-
-export const loadMyWishCourse = catchAsync(async (req, res, next) => {
-  if (res.locals && res.locals.authUser) {
-      const myWishCourses = await User.findOne({ _id: res.locals.authUser._id }).select("wishlist").lean();
-      req.myWishCourses = myWishCourses.wishlist;
-  }
-  next();
-})
-
 
 const loadhotCourse = async (categoryID, myCourses, myWishCourses, categories, authors) => { 
   const hotCourses = await courseDetail.find({ viewer: { $gt: 40000 }, }).select('-reviews').sort('-viewer').lean();
@@ -31,27 +15,29 @@ const loadhotCourse = async (categoryID, myCourses, myWishCourses, categories, a
       const hotCoursesDetails = hotCourses[index];
       const course = await Course.findOne({ _id: hotCoursesDetails.course_id, category: categoryID, finish: 1, active: true }).select('-lectures.sections').lean();
 
-      const new_hot_course = {
-          active: index === 0 ? true : false,
-          course_name: course.name,
-          course_slug: course.slug,
-          course_rate: hotCoursesDetails.avg_rating,
-          course_vote: fixNumberFormat(hotCoursesDetails.num_reviews),
-          course_viewer: fixNumberFormat(hotCoursesDetails.viewer),
-          course_author: authors.find(el => el._id.toString() === course.author).name || '',
-          course_price: course.price,
-          course_status: "best seller",
-          course_category: categories.find(el => el._id.toString() === course.category).title || '',
-          course_date: fixDateFormat(course.date),
-          course_img: course.img,
-          course_description: course.description,
-          course_duration: course.lectures.duration,
-          course_lessons: course.lectures.total,
-          course_id: course._id,
-          my_courses: (myCourses && myCourses.includes(course._id.toString())) ? true : false,
-          myWishCourses: (myWishCourses && myWishCourses.includes(course._id.toString())) ? "chosen" : ""
+      if (course!==null){
+        const new_hot_course = {
+            active: index === 0 ? true : false,
+            course_name: course.name,
+            course_slug: course.slug,
+            course_rate: hotCoursesDetails.avg_rating,
+            course_vote: fixNumberFormat(hotCoursesDetails.num_reviews),
+            course_viewer: fixNumberFormat(hotCoursesDetails.viewer),
+            course_author: authors.find(el => el._id.toString() === course.author).name || '',
+            course_price: course.price,
+            course_status: "best seller",
+            course_category: categories.find(el => el._id.toString() === course.category).title || '',
+            course_date: fixDateFormat(course.date),
+            course_img: course.img,
+            course_description: course.description,
+            course_duration: course.lectures.duration,
+            course_lessons: course.lectures.total,
+            course_id: course._id,
+            my_courses: (myCourses && myCourses.includes(course._id.toString())) ? true : false,
+            myWishCourses: (myWishCourses && myWishCourses.includes(course._id.toString())) ? "chosen" : ""
+        }
+        newcourse.push(new_hot_course);
       }
-      newcourse.push(new_hot_course);
       if(newcourse.length === 5) break;
   }
   return newcourse;
@@ -63,12 +49,11 @@ export const renderCourseDetail = catchAsync(async (req, res) => {
   const allCourses = await Course.findOne({
     slug: `/course${url.parse(req.url, true).pathname}`
   }).lean();
-  
+
   const allCategories = await Category.find().lean();
-  const instructors = await User.findOne({_id:allCourses.author}).lean();
 
+  const instructors = await User.findOne({_id: allCourses.author.toString()}).lean();
   allCourses['nameAuthor']=instructors.name;
-
   allCourses['nameSubCategory'] = [];
   for(let i=0; i<allCategories.length; i++){
     if(allCourses.category===allCategories[i]._id.toString()){
@@ -235,7 +220,6 @@ export const handleCmt = catchAsync(async (req, res) => {
       { reviews: [...getReviews], num_reviews: getTotalReviews}
     )
     const url = req.headers.referer;
-    console.log(url);
     res.redirect(url);
   }
   else{
