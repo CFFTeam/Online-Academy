@@ -87,8 +87,10 @@ export const renderCategoriesByCategories = catchAsync(async (req, res) => {
 });
 
 export const addCategories = catchAsync(async (req, res) => {
-  const getCategoryInDB = await Category.findOne({title: req.body.newtitle});
-  if(getCategoryInDB!==null){
+  const getCategoryInDB = await Category.findOne({title: req.body.newtitle}).lean();
+  console.log(getCategoryInDB);
+  if(getCategoryInDB===null){
+    console.log('addd');
     const getData = {
       slug: "/" + req.body.newtitle.toLowerCase().replaceAll(" ", "-"),
       title: req.body.newtitle,
@@ -102,6 +104,7 @@ export const addCategories = catchAsync(async (req, res) => {
     const addCategoriesData = await Category.create(getData);
   }
   else{
+    console.log('without add');
     let subCat = getCategoryInDB.subcategories;
     subCat.push({
       slug: "/none",
