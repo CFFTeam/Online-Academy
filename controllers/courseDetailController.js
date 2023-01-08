@@ -23,13 +23,13 @@ export const loadMyWishCourse = catchAsync(async (req, res, next) => {
 })
 
 
-const loadhotCourse = async (myCourses, myWishCourses, categories, authors) => { 
-  const hotCourses = await courseDetail.find({ viewer: { $gt: 40000 } }).select('-reviews').sort('-viewer').limit(10).lean();
+const loadhotCourse = async (categoryID, myCourses, myWishCourses, categories, authors) => { 
+  const hotCourses = await courseDetail.find({ viewer: { $gt: 40000 }, }).select('-reviews').sort('-viewer').lean();
   const newcourse = [];
 
   for (let index = 0; index < hotCourses.length; index++) {
       const hotCoursesDetails = hotCourses[index];
-      const course = await Course.findOne({ _id: hotCoursesDetails.course_id, finish: 1, active: true }).select('-lectures.sections').lean();
+      const course = await Course.findOne({ _id: hotCoursesDetails.course_id, category: categoryID, finish: 1, active: true }).select('-lectures.sections').lean();
 
       const new_hot_course = {
           active: index === 0 ? true : false,
@@ -52,6 +52,7 @@ const loadhotCourse = async (myCourses, myWishCourses, categories, authors) => {
           myWishCourses: (myWishCourses && myWishCourses.includes(course._id.toString())) ? "chosen" : ""
       }
       newcourse.push(new_hot_course);
+      if(newcourse.length === 5) break;
   }
   return newcourse;
 }
@@ -128,7 +129,7 @@ export const renderCourseDetail = catchAsync(async (req, res) => {
   const categories = JSON.parse(res.locals.categories);
   const authors = await User.find().select('name').lean();
 
-  const mostviewCourse = await loadhotCourse(req.myCourses, req.myWishCourses, categories, authors);
+  const mostviewCourse = await loadhotCourse(allCourses.category, req.myCourses, req.myWishCourses, categories, authors);
   let user=null;
   let isExist = false;
 
