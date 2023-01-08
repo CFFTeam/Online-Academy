@@ -709,7 +709,7 @@ export const editCourseContent = catchAsync(async (req, res, next) => {
             }
             else if (req.query.lesson) { // edit lesson
                 let foundLesson = {}; // find that lesson
-                req.thisCourseLectures = await Course.findById({ _id: req.query.course }).select('lectures');
+                req.thisCourseLectures = await Course.findById({ _id: req.query.course }).select('lectures slug');
                 req.thisCourseLectures.lectures.sections.forEach(section => {
                     const queryLessons = section.lessons.filter(lesson => {
                         return lesson._id.toString() === req.query.lesson;
@@ -720,9 +720,22 @@ export const editCourseContent = catchAsync(async (req, res, next) => {
                     }
                 })
                 const file_path = foundLesson.video.substring(0, foundLesson.video.lastIndexOf('/'));
-                req.filepath = `public${file_path}`;
-                req.filename = foundLesson.video.substring(foundLesson.video.lastIndexOf('/'), foundLesson.video.length);
-                cb(null, `public${file_path}`);
+                console.log(file_path);
+                if (file_path.indexOf('http://videostreamsv') !== -1) { 
+                    const thisSection = req.thisCourseLectures.lectures.sections.find(section => section.lessons.includes(foundLesson));
+                    const section_dir = slugify(thisSection.title, { lower: true, locale: 'vi', strict: true });
+                    const course_slug = req.thisCourseLectures.slug.replace('/course/', '/courses/');
+                    if (!fs.existsSync(`public/${course_slug}/${section_dir}`)) {
+                        fs.mkdirSync(`public${course_slug}/${section_dir}`);
+                    }
+                    req.filepath = `public${course_slug}/${section_dir}`;
+                    req.filename = `${slugify(foundLesson.title, { lower: true, locale: 'vi', strict: true })}.`;
+                } 
+                else {
+                    req.filepath = `public${file_path}`;
+                    req.filename = foundLesson.video.substring(foundLesson.video.lastIndexOf('/'), foundLesson.video.length);
+                }
+                cb(null, req.filepath);
             }
         },
         filename: function (req, file, cb) {
