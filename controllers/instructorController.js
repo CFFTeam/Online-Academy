@@ -1,10 +1,6 @@
-import { NOTIMP } from "dns";
-import express from "express";
 import catchAsync from "../utilities/catchAsync.js";
-import validateUser from '../middlewares/auth.mdw.js';
 import multer from 'multer';
-import path, { dirname } from "path";
-import { fileURLToPath } from "url";
+import path from "path";
 import mongoose from "mongoose";
 import Course from "../models/courseModel.js";
 import CourseDetail from "../models/courseDetailsModel.js";
@@ -30,6 +26,7 @@ const getPageList = (totalPage) => {
             pageList.push(i);
     return pageList;
 };
+
 // filter file
 const videoFilter = async (req, file, cb) => {
     req.hasFile = true;
