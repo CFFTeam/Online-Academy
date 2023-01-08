@@ -50,7 +50,7 @@
              <div class="form-group-description">
                 <label for="txtCourseSubCategory" class="course-sub-category">Select course sub-category</label>
                 <select style = "{{#if course.name}}color: black;{{/if}}" name="course_sub_category" id="txtCourseSubCategory">
-                    <option value="" disabled selected hidden>
+                    <option value='{{#if urCourseSubCategory}}{{#each urCourseSubCategory}}{{this}} {{/each}}{{else}}{{/if}}' disabled selected hidden>
                     {{#if urCourseSubCategory}}
                     {{#each urCourseSubCategory}}{{this}} {{/each}}
                     {{else}}Choose course sub-category
@@ -167,16 +167,29 @@
         const filename = event.target.files[0].name;
         $('.upload-image-message').text(filename);
     })
+    // validate user input's field before submitting 
+    $('.description-form').on('submit', (e) => {
+        const course_title = $('#txtCourseTitle').val().trim(); 
+        const course_category = $('#txtCourseCategory :selected').text().trim();
+        const course_sub_category = $('#txtCourseSubCategory :selected').text().trim();
+        
+        if (course_title.length === 0 ) { 
+            e.preventDefault(); 
+            alert("Course title must not be empty. Try again!");
+            return;
+        } 
+        if (course_category == "Choose course category" || course_category.length === 0) {
+            e.preventDefault(); 
+            alert("You must choose course category. Try again!");
+            return;
+
+        }
+       if (course_sub_category == "Choose course sub-category" || course_sub_category.length === 0) {
+            e.preventDefault(); 
+            alert("You must choose course sub category. Try again!");
+            return;
+        }
+    });
 </script>
 
-     {{!-- validate user input's field before submitting --}}
-  {{!-- $('.description-form').on('submit', (e) => {
-    console.log("bug right here....");
-    e.preventDefault(); 
-    const course_title = $('#txtCourseTitle').val().trim(); 
-    if (course_title.length === 0 ) { 
-        alert("Course title must not be empty. Try again!");
-        return;
-    } 
-    $('.description-form').off('submit').submit();
-  }); --}}
+ 

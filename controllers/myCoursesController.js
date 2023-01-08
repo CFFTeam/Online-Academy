@@ -19,9 +19,9 @@ export const myCoursesPage = catchAsync(async (req, res) => {
       if (isValidObjectId(m)) {
         const course = await Course.findOne({ _id: m });
 
-        if (course.finish !== 1 || course.active === false) continue;
-
         if (course != null) {
+          if (course.finish !== 1 || course.active === false) continue;
+
           const author = await User.findOne({ _id: course.author }).lean();
           const category = await Category.findOne({ _id: course.category }).lean();
           const progress = await loadProgress(m, res.locals.authUser._id);
