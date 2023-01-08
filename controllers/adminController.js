@@ -87,17 +87,28 @@ export const renderCategoriesByCategories = catchAsync(async (req, res) => {
 });
 
 export const addCategories = catchAsync(async (req, res) => {
-  const getData = {
-    slug: "/" + req.body.newtitle.toLowerCase().replaceAll(" ", "-"),
-    title: req.body.newtitle,
-    subcategories: [
-      {
-        slug: "/None",
-        content: "None"
-      }
-    ]
+  const getCategoryInDB = await Category.findOne({title: req.body.newtitle});
+  if(getCategoryInDB!==null){
+    const getData = {
+      slug: "/" + req.body.newtitle.toLowerCase().replaceAll(" ", "-"),
+      title: req.body.newtitle,
+      subcategories: [
+        {
+          slug: "/None",
+          content: "None"
+        }
+      ]
+    }
+    const addCategoriesData = await Category.create(getData);
   }
-  const addCategoriesData = await Category.create(getData);
+  else{
+    let subCat = getCategoryInDB.subcategories;
+    subCat.push({
+      slug: "/none",
+      content: "None"
+    });
+    await Category.updateOne({title: req.body.newtitle}, {subcategories: [...subCat]});
+  }
   res.redirect("/admin/categories");
 });
 
@@ -126,6 +137,7 @@ export const editSubCategories = catchAsync(async (req, res) => {
       if (getOldCategoryData[i]._id.toString() === req.params.idsub.toString()) {
         tempNameCat = getOldCategoryData[i]._id;
         getOldCategoryData[i].content = req.body.subcat;
+        getOldCategoryData[i].slug = "/" + req.body.subcat.toLowerCase().replaceAll(" ", "-");
       }
     }
     await Category.updateOne(
