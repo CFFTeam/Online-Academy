@@ -12,7 +12,7 @@ export const loadCourse = catchAsync(async (req, res, next) => {
     if (req.session.auth === false && !req.session.passport)
         return res.redirect(`${slug_course}`);
 
-    const course = await Course.findOne({ slug: slug_course }).lean();
+    const course = await Course.findOne({ slug: slug_course, finish: 1, active: true }).lean();
     if (!course)
         return res.redirect(`${slug_course}`);
 
@@ -84,7 +84,30 @@ export const loadProgress = async (course_id, user_id) => {
     }).select('my_progress');
 
     const progress_course_current = progress.my_progress.find(course => course.course_id === course_id.toString());
+
+    if (!progress_course_current) {
+        progress.my_progress = progress.my_progress.filter(course => course.course_id !== course_id.toString());
+        await progress.save();
+        return {
+            progressor: {},
+            percent: 0,
+            value: 0,
+            total: 0
+        }
+    }
+
+    const all_lesson = [];
     
+    const courses = await Course.findOne({ _id: course_id });
+
+    courses.lectures.sections.forEach(section => {
+        section.lessons.forEach(lesson => {
+            all_lesson.push(lesson._id.toString());
+        });
+    });
+
+    progress_course_current.progress = progress_course_current.progress.filter(lesson => all_lesson.includes(lesson.lesson_id) 
+                                                                                        || !progress_course_current.progress.includes(lesson.lesson_id));
     let progress_value = 0;
     
     progress_course_current.progress.forEach(el => {
@@ -95,6 +118,8 @@ export const loadProgress = async (course_id, user_id) => {
 
     let progressor = {};
     progress_course_current.progress.forEach(el => (progressor = { ...progressor, [el.lesson_id]: el.status } ));
+
+    await progress.save();
 
     return {
         progressor: progressor,
