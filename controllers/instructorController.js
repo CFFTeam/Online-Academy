@@ -720,7 +720,6 @@ export const editCourseContent = catchAsync(async (req, res, next) => {
                     }
                 })
                 const file_path = foundLesson.video.substring(0, foundLesson.video.lastIndexOf('/'));
-                console.log(file_path);
                 if (file_path.indexOf('http://videostreamsv') !== -1) { 
                     const thisSection = req.thisCourseLectures.lectures.sections.find(section => section.lessons.includes(foundLesson));
                     const section_dir = slugify(thisSection.title, { lower: true, locale: 'vi', strict: true });
