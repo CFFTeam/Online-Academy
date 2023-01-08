@@ -23,7 +23,6 @@ export const shoppingCartPage = catchAsync(async (req, res) => {
         const courseDetails = await CourseDetails.findOne({ course_id: sc.course_id });
         const author = await User.findOne({ _id: courses.author }).lean();
 
-
         course.push({
           id: sc._id,
           discount: courses.sale,
@@ -38,7 +37,9 @@ export const shoppingCartPage = catchAsync(async (req, res) => {
         });
       }
       else {
+        const rmCourse_id = shoppingCart.findIndex(el => el.course_id === sc._id);
         await ShoppingCart.deleteOne({ _id: sc._id });
+        shoppingCart.splice(rmCourse_id, 1);
       }
     }
   }
@@ -97,15 +98,15 @@ export const updateShoppingCart = catchAsync(async (req, res, next) => {
     const shopping_cart = { course_id: course_id, user_id: res.locals.authUser._id };
     const prev_course = await ShoppingCart.findOne(shopping_cart).lean();
 
-    const my_courses = await User.findOne({ _id: res.locals.authUser._id }).lean();
+    const my_courses = await User.findOne({ _id: res.locals.authUser._id, myCourses: { $in: [course_id] } }).lean();
 
     if (prev_course) {
       return res.redirect(`${backURL}?message=Course already in cart`);
     }
 
-    // if (Object.values(my_courses).length > 0) {
-    //   return res.redirect(`${backURL}?message=Course already in my courses`);
-    // }
+    if (my_courses) {
+      return res.redirect(`${backURL}?message=Course already in my courses`);
+    }
 
     await ShoppingCart.create(shopping_cart);
 

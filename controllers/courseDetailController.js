@@ -5,10 +5,11 @@ import { fixDateFormat, fixNumberFormat } from "../utilities/fixFormat.js";
 import courseDetail from "../models/courseDetailsModel.js";
 import User from "../models/userModel.js";
 import url from "url";
+import ShoppingCart from "../models/shoppingCartModel.js";
 
 
 const loadhotCourse = async (categoryID, myCourses, myWishCourses, categories, authors) => { 
-  const hotCourses = await courseDetail.find({ viewer: { $gt: 40000 }, }).select('-reviews').sort('-viewer').lean();
+  const hotCourses = await courseDetail.find({ viewer: { $gt: 40000 } }).select('-reviews').sort('-viewer').lean();
   const newcourse = [];
 
   for (let index = 0; index < hotCourses.length; index++) {
@@ -150,6 +151,7 @@ export const handleBuyNow = catchAsync(async (req, res) => {
 
   if (res.locals && res.locals.authUser) {
     const courses = await Course.findOne({ _id: req.body.course_id }).lean();
+    const shopping_cart = await ShoppingCart.findOne({ course_id: req.body.course_id, user_id: res.locals.authUser._id.toString() }).lean();
 
     user = await User.findOne({ _id: res.locals.authUser._id }).lean();
     let getMyCourses = user.myCourses;
@@ -177,6 +179,11 @@ export const handleBuyNow = catchAsync(async (req, res) => {
       { _id: res.locals.authUser._id },
       { myCourses: [...getMyCourses], my_progress: [...user.my_progress, current_course] }
     )
+
+    if (shopping_cart) {
+      await ShoppingCart.deleteOne({ course_id: req.body.course_id, user_id: res.locals.authUser._id.toString() });
+      res.locals.cart_number -= 1;
+    }
 
     const getCourseDetail = await courseDetail.findOne({ course_id: req.body.course_id }).lean();
     let view = getCourseDetail.viewer + 1;

@@ -11,6 +11,7 @@ const loadhotCourse = async (myCourses, myWishCourses, categories, authors) => {
     for (let index = 0; index < hotCourses.length; index++) {
         const hotCoursesDetails = hotCourses[index];
         const course = await courseModel.findOne({ _id: hotCoursesDetails.course_id, finish: 1, active: true }).select('-lectures.sections').lean();
+        if (!course) continue;
 
         const new_hot_course = {
             active: index === 0 ? true : false,
