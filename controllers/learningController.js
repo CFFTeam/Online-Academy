@@ -86,8 +86,6 @@ export const loadProgress = async (course_id, user_id) => {
     const progress_course_current = progress.my_progress.find(course => course.course_id === course_id.toString());
 
     if (!progress_course_current) {
-        progress.my_progress = progress.my_progress.filter(course => course.course_id !== course_id.toString());
-        await progress.save();
         return {
             progressor: {},
             percent: 0,
@@ -100,21 +98,40 @@ export const loadProgress = async (course_id, user_id) => {
     
     const courses = await Course.findOne({ _id: course_id });
 
+    if (!courses) {
+        progress.my_progress = progress.my_progress.filter(course => course.course_id !== course_id.toString());         
+        await progress.save();
+        return {
+            progressor: {},
+            percent: 0,
+            value: 0,
+            total: 0
+        }
+    }
+
     courses.lectures.sections.forEach(section => {
         section.lessons.forEach(lesson => {
             all_lesson.push(lesson._id.toString());
         });
     });
 
-    progress_course_current.progress = progress_course_current.progress.filter(lesson => all_lesson.includes(lesson.lesson_id) 
-                                                                                        || !progress_course_current.progress.includes(lesson.lesson_id));
+    progress_course_current.progress = all_lesson.map(el => {
+        const old_lesson = progress_course_current.progress.find(el2 => el2.lesson_id === el);
+        if (old_lesson) return old_lesson;
+        return { 
+            lesson_id: el,
+            status: false 
+        }
+    });
+
     let progress_value = 0;
-    
+
     progress_course_current.progress.forEach(el => {
         progress_value = el.status === true ? progress_value + 1 : progress_value 
     });
 
-    const progress_total = progress_course_current.total;
+    const progress_total = courses.lectures.total;
+    progress_course_current.total = progress_total;
 
     let progressor = {};
     progress_course_current.progress.forEach(el => (progressor = { ...progressor, [el.lesson_id]: el.status } ));
@@ -173,7 +190,7 @@ export const progressCourse = catchAsync(async (req, res) => {
     const progress_total = course_current.total;
     
     const progress_cur = course_current.progress.find(el => el.lesson_id === lesson_id);
-    progress_cur.status = status;
+    if (progress_cur) progress_cur.status = status;
     
     let progress_value = 0;
     course_current.progress.forEach(el => {

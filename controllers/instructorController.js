@@ -598,7 +598,7 @@ export const editCourseDescription = catchAsync(async (req, res) => {
                     const thisCourse = await Course.findOne({_id: req.query.course}); // find this course
                     await Course.deleteOne({ _id: req.query.course }); // delete this course
                     // remove course folder
-                    fs.rmSync(`public/courses/${thisCourse.slug.replace("/course/","")}`, { recursive: true});
+                    fs.rmSync(`public/courses/${thisCourse.slug.replace("/course/","")}`, { recursive: true });
                     // delete course_id in course detail
                     await CourseDetail.deleteOne({ course_id: req.query.course });
                     // delete course_id in my_course field
