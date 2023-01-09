@@ -1,6 +1,9 @@
 import express from "express";
 import * as adminController from "../controllers/adminController.js";
+import { validateAdmin } from "../middlewares/validate_role.mdw.js";
 const router = express.Router();
+
+router.use(validateAdmin);
 
 // Categories
 router.get("/categories", adminController.renderCategories)
@@ -19,8 +22,6 @@ router.post("/courses/delete/:id", adminController.deleteCourses);
 router.get("/courses/viewmore/:id", adminController.viewMoreCourse);
 router.post("/courses/edit/:id", adminController.editCourses);
 router.post("/courses/ban/:id", adminController.banCourses);
-
-
 
 //Teachers
 router.get("/teachers", adminController.renderTeachers)

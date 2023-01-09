@@ -4,6 +4,7 @@ import catchAsync from "../utilities/catchAsync.js";
 
 export const userProfilePage = catchAsync(async (req, res) => {
   // let users
+  res.locals.HTMLTitle = 'Profile';
   res.locals.handlebars = "userProfile/userProfile";
   let users = null;
   if (res.locals && res.locals.authUser) {
@@ -16,6 +17,7 @@ export const userProfilePage = catchAsync(async (req, res) => {
 });
 
 export const updateProfilePage = catchAsync(async (req, res, next) => {
+  res.locals.HTMLTitle = 'Profile'; 
   const submitForm = req.body.submitForm;
   const user = await User.findOne({ _id: res.locals.authUser._id });
 

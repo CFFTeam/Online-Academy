@@ -143,7 +143,7 @@
         {{#each topCategories.top}}
             <div class='category-item {{lookup ../topCategories.colors @index}}'>
                 <i class="icon"># {{sum @index 1}}</i>
-                <a class="content" href='/courses/{{this.slug}}'>{{this.title}}</a>
+                <a class="content" href='/courses{{this.slug}}'>{{this.title}}</a>
             </div>
         {{/each}}
     </div>

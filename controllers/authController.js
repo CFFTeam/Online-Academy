@@ -11,6 +11,7 @@ import validateUser from '../middlewares/auth.mdw.js';
 
 // handle for login (method GET)
 export const renderLoginForm = async (req, res) => {
+  res.locals.HTMLTitle = 'Login';
   res.render("auth/login.hbs", { layout: "auth.hbs" });
 };
 
@@ -20,6 +21,7 @@ export const handleLoginForm = catchAsync(async (req, res, next) => {
   res.locals.handlebars = 'auth/login';
   res.locals.layout = "auth.hbs";
   res.locals.props = { historyEmail: req.body.email };
+  res.locals.HTMLTitle = 'Login';
 
   const { email, password } = req.body;
   const foundUser = await User.findOne({ email: email }).select('+password');
@@ -52,6 +54,7 @@ export const handleLoginForm = catchAsync(async (req, res, next) => {
 
 // handle for register (method GET)
 export const renderSignupForm = (req, res) => {
+  res.locals.HTMLTitle = 'Signup';
   res.render("auth/signup.hbs", { layout: "auth.hbs" });
 };
 
@@ -63,6 +66,8 @@ export const handleSignupForm = catchAsync(async (req, res, next, err) => {
     historyName: req.body.name,
     historyEmail: req.body.email
   }
+  res.locals.HTMLTitle = 'Signup';
+
   // Find user by email to check it existed or not.
   const foundUser = await User.findOne({ email: req.body.email });
   if (foundUser) return next(new Error("This email already exists. Please try again."));
@@ -94,6 +99,8 @@ export const handleSignupForm = catchAsync(async (req, res, next, err) => {
 
 
 export const renderOTPForm = (req, res) => {
+  res.locals.HTMLTitle = 'Verify OTP';
+
   res.render('auth/OTP.hbs', { layout: 'auth.hbs' });
 };
 
@@ -101,6 +108,8 @@ export const handleOTPForm = catchAsync(async (req, res, next, err) => {
   // set up local
   res.locals.handlebars = 'auth/OTP';
   res.locals.layout = "auth.hbs";
+  res.locals.HTMLTitle = 'Verify OTP';
+
   let msg = "";
   const candidateCode = req.body.verificationCode;
   const userVerifyToken = req.query.u;
@@ -128,6 +137,7 @@ export const handleOTPForm = catchAsync(async (req, res, next, err) => {
 });
 
 export const renderForgotPasswordForm = async (req, res) => {
+  res.locals.HTMLTitle = 'Forgot password';
   res.render('auth/forgotPassword.hbs', { layout: 'auth.hbs' });
 }
 
@@ -135,7 +145,9 @@ export const handleForgotPasswordForm = catchAsync(async (req, res, next, err) =
   res.locals.handlebars = 'auth/forgotPassword';
   res.locals.layout = "auth.hbs";
   res.locals.props = { historyEmail: req.body.email };
-  const foundUser = await User.findOne({ email: req.body.email });
+  res.locals.HTMLTitle = 'Forgot password';
+
+  const foundUser = await User.findOne({ email: req.body.email }).select('+password');
   if (!foundUser) return next(new Error("This email does not exist. Please try again."));
   if (foundUser && !foundUser.password) {
     return next(new Error('You can not use this feature because this account is already used with social media platform.'));
@@ -165,12 +177,15 @@ export const handleForgotPasswordForm = catchAsync(async (req, res, next, err) =
 
 
 export const renderNewPasswordForm = async (req, res) => {
+  res.locals.HTMLTitle = 'Reset password';
+  
   res.render('auth/newPassword.hbs', { layout: 'auth.hbs' });
 }
 
 export const handleNewPasswordForm = catchAsync(async (req, res, next) => {
   res.locals.handlebars = 'auth/newPassword';
   res.locals.layout = "auth.hbs";
+  res.locals.HTMLTitle = 'Reset password';
   const userVerifyToken = req.query.u;
   await jwt.verify(userVerifyToken, process.env.USER_VERIFY_TOKEN_SECRET, async (err, decoded) => {
     if (err) return next(err);

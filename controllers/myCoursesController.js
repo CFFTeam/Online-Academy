@@ -7,6 +7,7 @@ import { loadProgress } from "./learningController.js";
 
 
 export const myCoursesPage = catchAsync(async (req, res) => {
+  res.locals.HTMLTitle = 'My courses';
   res.locals.handlebars = "myCourses/myCourses";
   let user = null;
   const courses = [];

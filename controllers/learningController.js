@@ -147,6 +147,8 @@ export const loadProgress = async (course_id, user_id) => {
 }
 
 export const watchingCourse = catchAsync(async (req, res) => {
+    res.locals.HTMLTitle = req.course.name;
+
     res.locals.handlebars = 'learning/course_learning';
 
     const progress = await loadProgress(req.course._id, res.locals.authUser._id);
@@ -184,7 +186,6 @@ export const progressCourse = catchAsync(async (req, res) => {
         _id: res.locals.authUser._id,
         'my_progress.course_id': course_id
     }).select('my_progress');
-
     
     const course_current = progress.my_progress.find(course => course.course_id === course_id);
     const progress_total = course_current.total;

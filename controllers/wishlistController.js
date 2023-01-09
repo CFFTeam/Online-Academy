@@ -5,10 +5,8 @@ import catchAsync from "../utilities/catchAsync.js";
 import Category from "../models/categoryModel.js";
 import { isValidObjectId } from "mongoose";
 
-
-
-
 export const wishlistPage = catchAsync(async (req, res) => {
+  res.locals.HTMLTitle = 'Wish list';
   res.locals.handlebars = "wishlist/wishlist";
   let user = null;
   const courses = [];

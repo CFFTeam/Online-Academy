@@ -45,10 +45,13 @@ const loadhotCourse = async (categoryID, myCourses, myWishCourses, categories, a
 
 export const renderCourseDetail = catchAsync(async (req, res) => {
   res.locals.handlebars = "courseDetail/courseDetail";
+  const message = req.query.message || '';
 
   const allCourses = await Course.findOne({
     slug: `/course${url.parse(req.url, true).pathname}`
   }).lean();
+
+  res.locals.HTMLTitle = allCourses.name;
 
   const allCategories = await Category.find().lean();
 
@@ -126,6 +129,7 @@ export const renderCourseDetail = catchAsync(async (req, res) => {
     }
   }
   res.render("courseDetail/courseDetail.hbs", {
+    messages: message,
     courseDetail: allCourses,
     courseRating: getCourseRating,
     authorDetail: instructors,
@@ -191,8 +195,8 @@ export const handleBuyNow = catchAsync(async (req, res) => {
       {course_id: req.body.course_id},
       {viewer: view}
     )
-    const url = req.headers.referer;
-    res.redirect(url);
+    const url = req.headers.referer.split('?')[0];
+    res.redirect(`${url}?message=Payment successfully`);
   }
   else{
     res.redirect("/account/login");

@@ -6,6 +6,7 @@ import catchAsync from "../utilities/catchAsync.js";
 
 
 export const shoppingCartPage = catchAsync(async (req, res) => {
+  res.locals.HTMLTitle = 'Shopping cart';
   res.locals.handlebars = "payment/payment";
 
   let shoppingCart = null;
@@ -116,7 +117,7 @@ export const updateShoppingCart = catchAsync(async (req, res, next) => {
     shoppingCartPage(req, res, next)
   }
   else if (req.body.deleteItem == "payment") {
-    res.locals.messages = "success"
+    res.locals.messages = "Payment successfully"
     shoppingCartPage(req, res, next)
   }
 })

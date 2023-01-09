@@ -49,7 +49,7 @@ const videoFilter = async (req, file, cb) => {
             return lesson.title === req.body.lecture_title || file_name === slug_name;
         });
         if (foundLesson) {
-            console.log('skipped')
+            // console.log('skipped')
             cb(null, false)
             return
         }
@@ -69,7 +69,7 @@ const videoFilter = async (req, file, cb) => {
             }))
         })
         if (foundLesson) {
-            console.log('skipped')
+            // console.log('skipped')
             cb(null, false)
             return
         }
@@ -127,6 +127,8 @@ export const getInstructorProfile = async (req, res, next) => {
     res.locals.email = user.email;
     res.locals.address = user.address;
     res.locals.description = user.description;
+    res.locals.HTMLTitle = 'Profile';
+    
     res.render('instructor/myProfile', {
         layout: "instructor",
         sidebar: "user-profile",
@@ -162,6 +164,8 @@ export const updateInstructorProfile = async (req, res, next) => {
     res.locals.phoneNumber = res.locals.props.historyPhone != null ? res.locals.props.historyPhone : renderUser.phone;
     res.locals.email = res.locals.props.historyEmail != null ? res.locals.props.historyEmail : renderUser.email;
     res.locals.address = res.locals.props.historyAddress != null ? res.locals.props.historyAddress : renderUser.address;
+
+    res.locals.HTMLTitle = 'Profile';
 
     if (submitForm == "editProfile") {
         res.locals.handlebars = "instructor/myProfile";
@@ -227,7 +231,6 @@ export const updateInstructorProfile = async (req, res, next) => {
         res.locals.email = res.locals.props.historyEmail
         res.locals.address = res.locals.props.historyAddress
 
-
         res.render('instructor/myProfile', {
             layout: "instructor",
             page: 'editform',
@@ -292,6 +295,7 @@ export const updateInstructorProfile = async (req, res, next) => {
 export const getPreview = (async (req, res) => {
     res.locals.handlebars = "instructor/coursePreview";
     res.locals.layout = "instructor.hbs";
+    res.locals.HTMLTitle = 'Preview';
     // if haven't registered course yet
     if (!req.query.course) {
         return res.render("instructor/addCourseDescription", {
@@ -370,6 +374,7 @@ export const getMyCourses = async function (req, res, next) {
             }
         }
     }
+    res.locals.HTMLTitle = 'All courses';
     res.render('instructor/myCourses', {
         layout: "instructor",
         courseList: courseList,
@@ -379,6 +384,8 @@ export const getMyCourses = async function (req, res, next) {
 }
 
 export const getCourseDescription = catchAsync(async (req, res) => {
+    res.locals.HTMLTitle = 'Add new course';
+
     const Categories = await Category.find({}).lean();
     let thisCourse = {};
     let urCourseSubcategory = [];
@@ -458,6 +465,8 @@ export const editCourseDescription = catchAsync(async (req, res) => {
         else {
             // if haven't registered course yet => create new one
             if (!req.query.course) {
+                res.locals.HTMLTitle = 'Create new course';
+
                 const foundCourse = await Course.findOne({ name: req.body.course_title });
                 // if user does not upload file
                 if (!req.hasFile) {
@@ -546,7 +555,7 @@ export const editCourseDescription = catchAsync(async (req, res) => {
                 if (req.body.requestActionInDescription == "save_course_description") { // save course description
                     // if user does not upload file
                     if (req.hasFile) {
-                    // if user upload invalid file
+                        // if user upload invalid file
                         if (!req.validFile) {
                             return res.render(res.locals.handlebars, {
                                 layout: res.locals.layout,
@@ -557,6 +566,7 @@ export const editCourseDescription = catchAsync(async (req, res) => {
                         }
                     }
                     const thisCourse = await Course.findOne({ _id: req.query.course });
+                    res.locals.HTMLTitle = `Edit course: ${thisCourse.name}`;
                     const thisCourseCategory = await Category.findOne({_id: thisCourse.category});
                     let foundCategory = await Category.findOne({title: req.body.course_category}).lean();
                     let subcategory = [];
@@ -622,6 +632,7 @@ export const editCourseDescription = catchAsync(async (req, res) => {
 export const getCourseContent = catchAsync(async (req, res) => {
     res.locals.handlebars = "instructor/addCourseContent";
     res.locals.layout = "instructor.hbs";
+    res.locals.HTMLTitle = 'All lectures';
     // if haven't registered course yet
     if (!req.query.course) {
         return res.render('instructor/addCourseContent', {
@@ -821,6 +832,7 @@ export const editCourseContent = catchAsync(async (req, res, next) => {
             // if user edit course content
             if (req.body.requestAction === "publish") {
                 if (req.query.lesson) {  // edit lesson
+                    res.locals.HTMLTitle = 'Edit lesson';
                     if (req.hasFile) { // if file already exists, if add new one => check format
                         if (!req.validVideo) {
                             return res.render('instructor/addCourseContent', {
@@ -855,6 +867,8 @@ export const editCourseContent = catchAsync(async (req, res, next) => {
                 }
                 // if user add new lessons
                 else if (req.query.section) { // user add new lessons
+                    res.locals.HTMLTitle = 'Add new lesson';
+
                     if (!req.hasFile) {
                         return res.render('instructor/addCourseContent', {
                             layout: "instructor",

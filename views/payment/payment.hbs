@@ -1,3 +1,6 @@
+{{#if message}}
+<script>alert(`{{{message}}}`);</script>
+{{/if}}
 <div class="shoppingCart">
     <div class="titlee">
       <h1>shopping cart</h1>
@@ -361,10 +364,6 @@
           }
         })
           
-        $(".paymentButton").on("click",(event)=>{
-          alert("Payment successfully!");
-        })
-
         //$(document).ready(function(){
         //  const messages = '{{{message}}}'
         //  if(messages && (messages==="success")) alert("Payment successfully!");

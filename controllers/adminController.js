@@ -11,6 +11,8 @@ import { title } from "process";
 //-----------------Categories--------------
 export const renderCategories = catchAsync(async (req, res) => {
   res.locals.handlebars = "admin/categories";
+  res.locals.HTMLTitle = "Categories";
+
   const category = await Category.find().lean();
   const course = await Course.find().lean();
 
@@ -49,6 +51,7 @@ export const renderCategories = catchAsync(async (req, res) => {
 });
 
 export const renderCategoriesByCategories = catchAsync(async (req, res) => {
+  
   const category = await Category.find().lean();
   const categoryName = await Category.findOne({
     slug: url.parse(req.url, true).query.slug
@@ -88,9 +91,9 @@ export const renderCategoriesByCategories = catchAsync(async (req, res) => {
 
 export const addCategories = catchAsync(async (req, res) => {
   const getCategoryInDB = await Category.findOne({title: req.body.newtitle}).lean();
-  console.log(getCategoryInDB);
+  // console.log(getCategoryInDB);
   if(getCategoryInDB===null){
-    console.log('addd');
+    // console.log('addd');
     const getData = {
       slug: "/" + req.body.newtitle.toLowerCase().replaceAll(" ", "-"),
       title: req.body.newtitle,
@@ -104,7 +107,7 @@ export const addCategories = catchAsync(async (req, res) => {
     const addCategoriesData = await Category.create(getData);
   }
   else{
-    console.log('without add');
+    // console.log('without add');
     let subCat = getCategoryInDB.subcategories;
     subCat.push({
       slug: "/none",
@@ -196,6 +199,8 @@ export const deleteCategories = catchAsync(async (req, res) => {
 
 //-------------------Courses------------------------
 export const renderCourses = catchAsync(async (req, res) => {
+  res.locals.HTMLTitle = "Courses";
+
   res.locals.handlebars = "admin/courses";
   let allCourses = await Course.find().lean();
   const allCategories = await Category.find().lean();
@@ -226,6 +231,8 @@ export const renderCourses = catchAsync(async (req, res) => {
 });
 
 export const renderCoursesByCategories = catchAsync(async (req, res) => {
+  res.locals.HTMLTitle = "Courses";
+
   const categoryName = await Category.findOne({
     slug: url.parse(req.url, true).query.slug
   });
@@ -264,6 +271,8 @@ export const renderCoursesByCategories = catchAsync(async (req, res) => {
 });
 
 export const renderCoursesByInstructors = catchAsync(async (req, res) => {
+  res.locals.HTMLTitle = "Courses";
+
   const allCourses = await Course.find({
     author: req.params.id
   }).lean();
@@ -317,6 +326,8 @@ export const banCourses = catchAsync(async (req, res) => {
 
 export const viewMoreCourse = catchAsync(async (req, res) => {
   const allCourses = await Course.findOne({ _id: req.params.id }).lean();
+  res.locals.HTMLTitle = allCourses.name;
+
   const courseDetail = await CourseDetail.findOne({ course_id: req.params.id }).lean();
   courseDetail["integerPart"] = Array(Math.floor(courseDetail.avg_rating)).fill('0');
   courseDetail["isRemainder"] = courseDetail.avg_rating - Math.floor(courseDetail.avg_rating) !== 0;
@@ -361,6 +372,7 @@ export const deleteCourses = catchAsync(async (req, res) => {
 //-------------------Teacher------------------------
 export const renderTeachers = catchAsync(async (req, res) => {
   res.locals.handlebars = "admin/teachers";
+  res.locals.HTMLTitle = "Teachers";
   const allTeachers = await User.find({ role: "instructor" }).lean();
   res.render("admin/teachers.hbs", {
     teachers: allTeachers,
@@ -415,6 +427,8 @@ export const deleteTeachers = catchAsync(async (req, res) => {
 //-------------------Student------------------------
 export const renderStudents = catchAsync(async (req, res) => {
   res.locals.handlebars = "admin/students";
+  res.locals.HTMLTitle = "Students";
+
   const allStudents = await User.find({ role: "user" }).lean();
   res.render("admin/students.hbs", {
     students: allStudents,

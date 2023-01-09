@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     {{!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"> --}}
-    <title>Document</title>
+    <title>Online Academy{{#if HTMLTitle}} - {{HTMLTitle}}{{/if}}</title>
     {{!-- BEGIN GLOBAL --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -38,6 +38,10 @@
 
     {{#if (eq handlebars "home/courses")}}
     <link rel="stylesheet" href="/assets/css/home/courses.css" type="text/css" />
+    {{/if}}
+
+    {{#if message}}
+        <script>alert(`{{{messages}}}`)</script>
     {{/if}}
 </head>
 <body>
